@@ -14,6 +14,7 @@
 		222D53111D1D23A300ABB2DD /* PresentMenuAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D53101D1D23A300ABB2DD /* PresentMenuAnimator.swift */; };
 		222D53131D1D26A000ABB2DD /* DismissMenuAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D53121D1D26A000ABB2DD /* DismissMenuAnimator.swift */; };
 		222D53161D1D396200ABB2DD /* WriteMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D53151D1D396100ABB2DD /* WriteMessage.swift */; };
+		222D53191D1D44D600ABB2DD /* LookAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D53181D1D44D600ABB2DD /* LookAround.swift */; };
 		2279873B1D1C5CCF00C0EC30 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279873A1D1C5CCF00C0EC30 /* HomeCell.swift */; };
 		22C8893F1D1C536F009DE688 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C8893E1D1C536F009DE688 /* AppDelegate.swift */; };
 		22C889441D1C536F009DE688 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C889421D1C536F009DE688 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		222D53101D1D23A300ABB2DD /* PresentMenuAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentMenuAnimator.swift; sourceTree = "<group>"; };
 		222D53121D1D26A000ABB2DD /* DismissMenuAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissMenuAnimator.swift; sourceTree = "<group>"; };
 		222D53151D1D396100ABB2DD /* WriteMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteMessage.swift; sourceTree = "<group>"; };
+		222D53181D1D44D600ABB2DD /* LookAround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAround.swift; sourceTree = "<group>"; };
 		2279873A1D1C5CCF00C0EC30 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		22C8893B1D1C536E009DE688 /* Walla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Walla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22C8893E1D1C536F009DE688 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 			name = Write;
 			sourceTree = "<group>";
 		};
+		222D53171D1D44A500ABB2DD /* LookAround */ = {
+			isa = PBXGroup;
+			children = (
+				222D53181D1D44D600ABB2DD /* LookAround.swift */,
+			);
+			name = LookAround;
+			sourceTree = "<group>";
+		};
 		22C889321D1C536E009DE688 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +88,7 @@
 		22C8893D1D1C536F009DE688 /* Walla */ = {
 			isa = PBXGroup;
 			children = (
+				222D53171D1D44A500ABB2DD /* LookAround */,
 				222D53141D1D394C00ABB2DD /* Write */,
 				22C889501D1C55D6009DE688 /* Home */,
 				22C8893E1D1C536F009DE688 /* AppDelegate.swift */,
@@ -183,6 +194,7 @@
 				2279873B1D1C5CCF00C0EC30 /* HomeCell.swift in Sources */,
 				222D53161D1D396200ABB2DD /* WriteMessage.swift in Sources */,
 				222D53111D1D23A300ABB2DD /* PresentMenuAnimator.swift in Sources */,
+				222D53191D1D44D600ABB2DD /* LookAround.swift in Sources */,
 				222D53131D1D26A000ABB2DD /* DismissMenuAnimator.swift in Sources */,
 				22C889521D1C5612009DE688 /* HomeViewController.swift in Sources */,
 				222D530F1D1D235D00ABB2DD /* MenuHelper.swift in Sources */,
