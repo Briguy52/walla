@@ -35,12 +35,12 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.tagPicker.dataSource = self
-		self.tagPicker.delegate = self
+		self.tagPicker?.dataSource = self
+		self.tagPicker?.delegate = self
 		
 		self.navigationItem.hidesBackButton = true
-		self.requestDetails!.layer.borderWidth = 0.2
-		self.requestDetails!.layer.borderColor = UIColor.lightGrayColor().CGColor
+		self.requestDetails?.layer.borderWidth = 0.2
+		self.requestDetails?.layer.borderColor = UIColor.lightGrayColor().CGColor
 		
 		self.holla?.userInteractionEnabled = false
 		//self.holla?.titleLabel?.textColor = UIColor(netHex: 0xffa160)
