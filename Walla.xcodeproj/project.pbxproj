@@ -84,6 +84,13 @@
 			name = MyProfile;
 			sourceTree = "<group>";
 		};
+		222D53211D1D4C0500ABB2DD /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Messages;
+			sourceTree = "<group>";
+		};
 		22C889321D1C536E009DE688 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +110,7 @@
 		22C8893D1D1C536F009DE688 /* Walla */ = {
 			isa = PBXGroup;
 			children = (
+				222D53211D1D4C0500ABB2DD /* Messages */,
 				222D531A1D1D464C00ABB2DD /* MyProfile */,
 				222D53171D1D44A500ABB2DD /* LookAround */,
 				222D53141D1D394C00ABB2DD /* Write */,

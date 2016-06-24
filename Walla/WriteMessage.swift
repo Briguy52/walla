@@ -166,7 +166,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	func addTag(tag: String) {
 		if (!self.myTags.contains(tag)) {
 			self.myTags.append(tag);
-			self.tagLabel.text = self.myTags.joinWithSeparator(" ")
+			self.tagLabel.text = self.myTags.joinWithSeparator("# ")
 		}
 	}
 }
