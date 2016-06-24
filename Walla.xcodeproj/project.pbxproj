@@ -15,6 +15,9 @@
 		222D53131D1D26A000ABB2DD /* DismissMenuAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D53121D1D26A000ABB2DD /* DismissMenuAnimator.swift */; };
 		222D53161D1D396200ABB2DD /* WriteMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D53151D1D396100ABB2DD /* WriteMessage.swift */; };
 		222D53191D1D44D600ABB2DD /* LookAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D53181D1D44D600ABB2DD /* LookAround.swift */; };
+		222D531C1D1D47D000ABB2DD /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D531B1D1D47D000ABB2DD /* FilterTableViewController.swift */; };
+		222D531E1D1D487A00ABB2DD /* MeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D531D1D1D487A00ABB2DD /* MeTableView.swift */; };
+		222D53201D1D489400ABB2DD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D531F1D1D489400ABB2DD /* ProfileViewController.swift */; };
 		2279873B1D1C5CCF00C0EC30 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279873A1D1C5CCF00C0EC30 /* HomeCell.swift */; };
 		22C8893F1D1C536F009DE688 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C8893E1D1C536F009DE688 /* AppDelegate.swift */; };
 		22C889441D1C536F009DE688 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C889421D1C536F009DE688 /* Main.storyboard */; };
@@ -32,6 +35,9 @@
 		222D53121D1D26A000ABB2DD /* DismissMenuAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissMenuAnimator.swift; sourceTree = "<group>"; };
 		222D53151D1D396100ABB2DD /* WriteMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteMessage.swift; sourceTree = "<group>"; };
 		222D53181D1D44D600ABB2DD /* LookAround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAround.swift; sourceTree = "<group>"; };
+		222D531B1D1D47D000ABB2DD /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
+		222D531D1D1D487A00ABB2DD /* MeTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeTableView.swift; sourceTree = "<group>"; };
+		222D531F1D1D489400ABB2DD /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2279873A1D1C5CCF00C0EC30 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		22C8893B1D1C536E009DE688 /* Walla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Walla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22C8893E1D1C536F009DE688 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +75,15 @@
 			name = LookAround;
 			sourceTree = "<group>";
 		};
+		222D531A1D1D464C00ABB2DD /* MyProfile */ = {
+			isa = PBXGroup;
+			children = (
+				222D531D1D1D487A00ABB2DD /* MeTableView.swift */,
+				222D531F1D1D489400ABB2DD /* ProfileViewController.swift */,
+			);
+			name = MyProfile;
+			sourceTree = "<group>";
+		};
 		22C889321D1C536E009DE688 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +103,7 @@
 		22C8893D1D1C536F009DE688 /* Walla */ = {
 			isa = PBXGroup;
 			children = (
+				222D531A1D1D464C00ABB2DD /* MyProfile */,
 				222D53171D1D44A500ABB2DD /* LookAround */,
 				222D53141D1D394C00ABB2DD /* Write */,
 				22C889501D1C55D6009DE688 /* Home */,
@@ -111,6 +127,7 @@
 				222D530E1D1D235D00ABB2DD /* MenuHelper.swift */,
 				222D53101D1D23A300ABB2DD /* PresentMenuAnimator.swift */,
 				222D53121D1D26A000ABB2DD /* DismissMenuAnimator.swift */,
+				222D531B1D1D47D000ABB2DD /* FilterTableViewController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -189,11 +206,14 @@
 			files = (
 				222D530D1D1D233B00ABB2DD /* Interactor.swift in Sources */,
 				22C8893F1D1C536F009DE688 /* AppDelegate.swift in Sources */,
+				222D531E1D1D487A00ABB2DD /* MeTableView.swift in Sources */,
 				222D530B1D1D226F00ABB2DD /* MenuViewController.swift in Sources */,
+				222D53201D1D489400ABB2DD /* ProfileViewController.swift in Sources */,
 				222D53091D1D094C00ABB2DD /* ViewDetails.swift in Sources */,
 				2279873B1D1C5CCF00C0EC30 /* HomeCell.swift in Sources */,
 				222D53161D1D396200ABB2DD /* WriteMessage.swift in Sources */,
 				222D53111D1D23A300ABB2DD /* PresentMenuAnimator.swift in Sources */,
+				222D531C1D1D47D000ABB2DD /* FilterTableViewController.swift in Sources */,
 				222D53191D1D44D600ABB2DD /* LookAround.swift in Sources */,
 				222D53131D1D26A000ABB2DD /* DismissMenuAnimator.swift in Sources */,
 				22C889521D1C5612009DE688 /* HomeViewController.swift in Sources */,
