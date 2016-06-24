@@ -33,13 +33,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		let backgroundImage = UIImage(named: "background")
 		let imageView = UIImageView(image: backgroundImage)
-		self.tableView.backgroundView = imageView
+		self.tableView?.backgroundView = imageView
 		
-		tableView.tableFooterView = UIView(frame: CGRectZero)
+		tableView?.tableFooterView = UIView(frame: CGRectZero)
 		
 		imageView.contentMode = .ScaleAspectFit
 		
-		tableView.backgroundColor = UIColor(netHex: 0xffa160)
+		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
 	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
