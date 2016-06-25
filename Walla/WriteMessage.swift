@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -49,6 +50,10 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	}
 	
 	
+	@IBAction func submit(sender: UIButton) {
+	}
+	
+	
 	@IBAction func allFieldsSet(sender: AnyObject) {
 		if !requestBody.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty && !requestDetails.text.isEmpty && !generalLocation.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty
 		{
@@ -57,49 +62,49 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		}
 	}
 	
-//	func saveAndUpdate() {
-//		self.postNewRequest(self.myTitle, content: self.myDetails, authorID: self.myUserBackend.getUserID(), latitude: self.myLatitude, longitude: self.myLongitude, urgency: self.myUrgency, tags: self.myTags, expirationDate: self.calcExpirationDate(self.myDelayHours))
-//	}
+func saveAndUpdate() {
+	self.postNewRequest(self.myTitle, content: self.myDetails, authorID: self.myUserBackend.getUserID(), latitude: self.myLatitude, longitude: self.myLongitude, urgency: self.myUrgency, tags: self.myTags, expirationDate: self.calcExpirationDate(self.myDelayHours))
+}
 	
 	func resetFields()
 	{
 		requestBody?.text = ""
 		requestDetails?.text = ""
 		generalLocation?.text = ""
-		tagLabel?.text = "Genera"
+		tagLabel?.text = "General"
 		
 	}
 	
-//	func postNewRequest(title: String, content: String, authorID: String, latitude: String, longitude: String, urgency: String, tags: [String], expirationDate: Double ) -> Void {
-//		_ = "tags"
-//		
-//		let newPost = [
-//			"title":title,
-//			"content": content,
-//			"authorID": authorID,
-//			"latitude": latitude,
-//			"longitude": longitude,
-//			"urgency": urgency,
-//			"tags": tags,
-//			"timestamp": currentTime,
-//			"expirationDate": expirationDate
-//		]
-//		
-//		let toHash = authorID + title
-//		let afterHash = String(toHash.hashValue)
-//		
-//		let newPostRef = myBasic.postRef.childByAppendingPath(afterHash) // generate a unique ID for this post
-//		let postId = newPostRef.key
-//		newPostRef.setValue(newPost, withCompletionBlock: {
-//			(error:NSError?, ref:Firebase!) in
-//			if (error != nil) {
-//				print("Post data could not be saved.")
-//			} else {
-//				print("Post data saved successfully!")
-//				self.myUserBackend.updateUserPosts(postId, userID: authorID)
-//			}
-//		})
-//	}
+func postNewRequest(title: String, content: String, authorID: String, latitude: String, longitude: String, urgency: String, tags: [String], expirationDate: Double ) -> Void {
+	_ = "tags"
+	
+	let newPost = [
+		"title":title,
+		"content": content,
+		"authorID": authorID,
+		"latitude": latitude,
+		"longitude": longitude,
+		"urgency": urgency,
+		"tags": tags,
+		"timestamp": currentTime,
+		"expirationDate": expirationDate
+	]
+	
+	let toHash = authorID + title
+	let afterHash = String(toHash.hashValue)
+	
+	let newPostRef = myBasic.postRef.childByAppendingPath(afterHash) // generate a unique ID for this post
+	let postId = newPostRef.key
+	newPostRef.setValue(newPost, withCompletionBlock: {
+		(error:NSError?, ref:Firebase!) in
+		if (error != nil) {
+			print("Post data could not be saved.")
+		} else {
+			print("Post data saved successfully!")
+			self.myUserBackend.updateUserPosts(postId, userID: authorID)
+		}
+	})
+}
 	
 	//init functions
 	func setAuthorName(name: String) {
@@ -109,9 +114,9 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	
 	func initRequestInfo() {
 		self.tagLabel.text = self.myTags.joinWithSeparator(" ")
-		//self.detailTextInput.text = self.myDetails
-		//self.name.text = self.myAuthorName
-		//self.expirationNumber.text = "Expire in: \(Int(myDelayHours)) hours" // Make this a function
+//		self.detailTextInput.text = self.myDetails
+//		self.name.text = self.myAuthorName
+//		self.expirationNumber.text = "Expire in: \(Int(myDelayHours)) hours" // Make this a function
 	}
 	
 	func calcHoursFromNow(expiry: Double) -> Double {
@@ -128,7 +133,6 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 //			self.myTitle = title
 //		}
 //	}
-	
 	
 	//tag functions
 	func setPossibleTags(tags: [String]) {
