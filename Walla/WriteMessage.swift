@@ -44,6 +44,8 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		
 		self.holla?.userInteractionEnabled = false
 		//self.holla?.titleLabel?.textColor = UIColor(netHex: 0xffa160)
+		
+		self.tabBarController?.tabBar.hidden = true
 	}
 	
 	
