@@ -22,4 +22,24 @@ class HomeCell: UITableViewCell {
 	override func setSelected(selected: Bool, animated: Bool) {
 		super.setSelected(selected, animated: animated)
 	}
+	
+	func setAuthorName(nameToSet: String)
+	{
+		self.userName.text = nameToSet
+	}
+	
+	func setCellTags(tagsToSet: [String])
+	{
+		self.topics.text = tagsToSet.joinWithSeparator("# ")
+	}
+	
+	func setCellDetails(detailsToSet: String)
+	{
+		self.message.text = detailsToSet
+	}
+	
+	func parseDateFromTime(time: Double) -> String {
+		let date = NSDate(timeIntervalSince1970: time)
+		return String(date)
+	}
 }

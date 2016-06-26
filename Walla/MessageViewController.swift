@@ -6,93 +6,132 @@
 //  Copyright © 2016 GenieUs. All rights reserved.
 //
 
-//import UIKit
-//import CoreLocation
-//import Foundation
-//import Firebase
-//import RxCocoa
-//import RxSwift
-//import FirebaseRxSwiftExtensions
-//
-//class MessageViewController: UITableViewController
-//{
-//	let myBasic = Basic()
-//	var isInitialLoad = true;
-//	var disposeBag = DisposeBag()
-//	
-//	// Model that corresponds to this ViewController
-//	var convoModels: [ConvoModel] = [ConvoModel]()
-//	
-//	override func viewDidLoad() {
-//		super.viewDidLoad()
-//		self.navigationItem.hidesBackButton = true
-//		observeWithStreams()
-//	}
-//	
-//	
-//	// MARK: - Table view data source
-//	
-//	override func numberOfSectionsInTableView(tableView: UITableView) -> Int
-//	{
-//		return 2
-//	}
-//	
-//	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-//	{
-//		return convoModels.count
-//	}
-//	
-//	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
-//		-> UITableViewCell
-//	{
-//		let cell = tableView.dequeueReusableCellWithIdentifier("ConvoCell", forIndexPath: indexPath) as! ConvoCell
-//		
-//		let convo = convoModels[indexPath.row] as ConvoModel
-//		cell.convoModel = convo
-//		return cell
-//	}
-//	
-//	override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-//		// Return false if you do not want the specified item to be editable.
-//		return true
-//	}
-//	
-//	// Copied from MessagingVC, remainder of code to use is there
-//	func observeWithStreams() {
-//		let myID = myBasic.rootRef.authData.uid
-//		myBasic.convoRef.rx_observe(FEventType.ChildAdded)
-//			.filter { snapshot in
-//				// Note: can also add filters for tags, location, etc.
-//				return !(snapshot.value is NSNull)
-//			}
-//			.filter { snapshot in
-//				// Only return Snapshots with authorID or userID == user's ID
-//				return (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID)
-//			}
-//			.map {snapshot in
-//				return ConvoModel(snapshot: snapshot)
-//			}
-//			.subscribeNext({ (convoModel: ConvoModel) -> Void in
-//				self.convoModels.insert(convoModel, atIndex: 0);
-//			})
-//			.addDisposableTo(self.disposeBag)
-//		
-//		myBasic.convoRef.rx_observe(FEventType.Value)
-//			.subscribeNext({ (snapshot: FDataSnapshot) -> Void in
-//				self.tableView.reloadData()
-//				self.isInitialLoad = false;
-//			})
-//			.addDisposableTo(self.disposeBag)
-//	}
-//	
-//	
-//	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//		var convoIndex: Int = 0
-//		if let indexPath = self.tableView.indexPathForSelectedRow {
-//			convoIndex = indexPath.row
-//		}
-//		let messagingVC = segue.destinationViewController as! MessagingViewController
-//		messagingVC.convoID = self.convoModels[convoIndex].convoID!
-//	}
-//	
-//}
+import UIKit
+import Lock
+import RxCocoa
+import RxSwift
+import SlackTextViewController
+import FirebaseRxSwiftExtensions
+import Firebase
+
+class MessageViewController: SLKTextViewController {
+	
+	let myBasic = Basic() // This ref will be replaced by the selected conversation ref
+	var messageModels : [MessageModel] = [MessageModel]()
+	var disposeBag = DisposeBag()
+	var isInitialLoad = true;
+	var name = "AnonymousGenie"
+	var sender = "sender" // TODO: comes from backend
+	var recipient = "recipient" // TODO: comes from backend
+	var convoID = "sampleConversation"
+	
+	var pressedRightButtonSubject : PublishSubject<String> = PublishSubject()
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		self.navigationItem.hidesBackButton = true
+		
+		self.sender = myBasic.rootRef.authData.uid
+		
+		let keychain = MyApplication.sharedInstance.keychain
+		let profileData:NSData! = keychain.dataForKey("profile")
+		let profile:A0UserProfile = NSKeyedUnarchiver.unarchiveObjectWithData(profileData) as! A0UserProfile
+		self.name = profile.name
+		
+		self.bounces = true
+		self.shakeToClearEnabled = true
+		self.keyboardPanningEnabled = true
+		self.typingIndicatorView.canResignByTouch = true
+		self.textInputbar.autoHideRightButton = true
+		self.textInputbar.maxCharCount = 140
+		self.textInputbar.counterStyle = SLKCounterStyle.Split
+		self.inverted = true
+		
+		tableView.registerClass(MessageTableViewCell.self, forCellReuseIdentifier: MessageTableViewCell.REUSE_ID)
+		tableView.rowHeight = UITableViewAutomaticDimension //needed for autolayout
+		tableView.estimatedRowHeight = 50.0 //needed for autolayout
+		
+		
+		// Messages ref stores the Messages for a Conversation
+		let conversationRef = myBasic.messageRef.childByAppendingPath(self.convoID)
+		
+		//part 1
+		conversationRef.rx_observe(FEventType.ChildAdded)
+			.filter { snapshot in
+				return !(snapshot.value is NSNull)
+			}
+			.map {snapshot in
+				return MessageModel(snapshot: snapshot)
+			}
+			.subscribeNext({ (messageModel: MessageModel) -> Void in
+				self.messageModels.insert(messageModel, atIndex: 0);
+				if(self.isInitialLoad == false){
+					self.tableView.beginUpdates()
+					self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
+					self.tableView.endUpdates()
+					//you can do everything else here!
+				}
+			})
+			.addDisposableTo(self.disposeBag)
+		
+		conversationRef.rx_observe(FEventType.Value)
+			.subscribeNext({ (snapshot: FDataSnapshot) -> Void in
+				self.tableView.reloadData()
+				self.isInitialLoad = false;
+			})
+			.addDisposableTo(self.disposeBag)
+		
+		pressedRightButtonSubject
+			.flatMap({ (bodyText: String) -> Observable<Firebase> in
+				let name = self.name
+				let sender = self.sender
+				let recipient = self.recipient
+				return conversationRef.childByAutoId().rx_setValue(["name" : name, "body": bodyText, "sender": sender, "recipient": recipient, "timestamp" : NSDate().timeIntervalSince1970 * 1000])
+			})
+			.subscribeNext({ (newMessageReference:Firebase) -> Void in
+				print("A new message was successfully committed to firebase")
+			})
+			.addDisposableTo(self.disposeBag)
+	}
+	
+	override func didPressRightButton(sender: AnyObject!) {
+		pressedRightButtonSubject.onNext(self.textView.text)
+		super.didPressRightButton(sender) // this important. calling the super.didPressRightButton will clear the method. We cannot use rx_tap due to inheritance
+	}
+	
+	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return messageModels.count
+	}
+	
+	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCellWithIdentifier(MessageTableViewCell.REUSE_ID, forIndexPath: indexPath) as! MessageTableViewCell
+		
+		let messageModelAtIndexPath = messageModels[indexPath.row]
+		
+		//        self.tableView.scrollToRowAtIndexPath((indexPath, atScrollPosition: .Bottom,
+		//            animated: true))
+		
+		cell.nameLabel.text = messageModelAtIndexPath.name
+		cell.bodyLabel.text = messageModelAtIndexPath.body
+		cell.selectionStyle = .None
+		cell.transform = self.tableView.transform // TODO: figure out what this actually does
+		return cell
+	}
+	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
+	}
+	
+	
+	/*
+	// MARK: - Navigation
+	
+	// In a storyboard-based application, you will often want to do a little preparation before navigation
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	// Get the new view controller using segue.destinationViewController.
+	// Pass the selected object to the new view controller.
+	}
+	*/
+	
+}

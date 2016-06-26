@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewDetails: UIViewController {
 	
@@ -17,10 +18,13 @@ class ViewDetails: UIViewController {
 	@IBOutlet weak var location: UILabel!
 	@IBOutlet weak var tags: UILabel!
 	
+	let myBasic = Basic()
+	let myUserBackend = UserBackend()
+	var currentTime = NSDate().timeIntervalSince1970
+	var convoID:String!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		self.navigationItem.hidesBackButton = false
 		
 		self.initRequestInfo()
 	}
@@ -38,7 +42,7 @@ class ViewDetails: UIViewController {
 	
 	func initRequestInfo()
 	{
-		//let requestModel = requestModels[currentIndex]
+		let requestModel = requestModels[currentIndex]
 		//self.profile?.UIImage
 		
 		self.profile?.layer.borderWidth = 0.75
@@ -47,17 +51,69 @@ class ViewDetails: UIViewController {
 		self.profile?.layer.cornerRadius = self.profile.frame.height / 4
 		self.profile?.clipsToBounds = true
 		
-		self.message?.text = "ello this is a test" //requestModel.title
-		self.timestamp?.text = "posted just now" //requestModel.time
-		self.additional?.text = "additional text" //requestModel.content
-		self.location?.text = "some random location and time" //requestModel.location
-		self.tags?.text = "#general #Comp Sci" //requestModel.tags.joinWithSeperator("# ")
-	}
-	
-	@IBAction func goBack(sender: AnyObject) {
-		self.tabBarController?.selectedIndex = 0
+		self.message?.text = requestModel.title
+		self.timestamp?.text = requestModel.urgency
+		self.additional?.text = requestModel.content
+		self.location?.text = "NEED TO FIX BACKEND"
+		self.tags?.text = requestModel.tags.joinWithSeparator(" ")
 	}
 	
 	@IBAction func startConvo(sender: AnyObject) {
+		let requestID = requestModels[currentIndex].postID!
+		let authorID = requestModels[currentIndex].authorID
+		let userID = myBasic.rootRef.authData.uid
+		let title = requestModels[currentIndex].title
+		let convoHash = createConvoHash(requestID, authorID: authorID, userID: userID)
+		let testRef = myBasic.convoRef.childByAppendingPath(convoHash)
+		testRef.observeEventType(.Value, withBlock: { snap in
+			if snap.value is NSNull {
+				self.createSingleConvoRef(requestID, authorID: authorID, userID: userID, title: title)
+			}
+			else {
+				self.convoID = convoHash
+				//self.performSegueWithIdentifier("genieCellToMessagingVC", sender: self)
+				self.tabBarController?.selectedIndex = 3
+			}
+		})
 	}
+	
+	func createConvoHash(requestID: String, authorID: String, userID: String) -> String {
+		let toHash = requestID + authorID + userID
+		return String(toHash.hashValue)
+	}
+	
+	// Should only be called by users other than the Author
+	func createSingleConvoRef(requestID: String, authorID: String, userID: String, title: String) {
+		
+		let newConvo = [
+			"title": title,
+			"authorID": authorID,
+			"userID": userID,
+			"timestamp": currentTime
+		]
+		
+		let convoHash = createConvoHash(requestID, authorID: authorID , userID: userID)
+		
+		// Create a new Conversation with the above information
+		let newConvoRef = myBasic.convoRef.childByAppendingPath(convoHash)
+		
+		convoID = newConvoRef.key // make sure that convoID = convoHash
+		newConvoRef.setValue(newConvo, withCompletionBlock: {
+			(error:NSError?, ref:Firebase!) in
+			if (error != nil) {
+				print("Conversation data could not be saved.")
+			} else {
+				print("Conversation data saved successfully!")
+				// Update user Firebase w/ new post ID
+				self.myUserBackend.updateUserConversations(self.convoID, userID: authorID)
+			}
+		})
+	}
+	
+//	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//		if segue.identifier == "genieCellToMessagingVC" {
+//			let messagingVC = segue.destinationViewController as! MessagingViewController
+//			messagingVC.convoID = self.convoID
+//		}
+//	}
 }
