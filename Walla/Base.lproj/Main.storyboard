@@ -234,7 +234,6 @@
                         <outlet property="add" destination="d9f-wy-oQG" id="L8B-Z2-5cS"/>
                         <outlet property="cancel" destination="RR3-DK-f0p" id="Uof-3W-F2T"/>
                         <outlet property="clear" destination="afE-5q-s8K" id="RQw-34-OeX"/>
-                        <outlet property="clearFilter" destination="afE-5q-s8K" id="flF-ST-M9g"/>
                         <outlet property="filters" destination="iVQ-5a-Rl0" id="ZcV-1t-yJN"/>
                         <outlet property="type" destination="bVp-oy-L9B" id="psk-3z-KZ0"/>
                     </connections>
@@ -779,10 +778,10 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="eph-Rg-IVv">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="eph-Rg-IVv">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                             </imageView>
-                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4z6-nD-zl2">
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4z6-nD-zl2">
                                 <rect key="frame" x="0.0" y="64" width="375" height="171"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6A-zu-2Sy">
@@ -795,7 +794,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When I'm messaged back" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SE2-bq-lxw">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="When I'm messaged back" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SE2-bq-lxw">
                                         <rect key="frame" x="8" y="63" width="197" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="Uoj-ta-pEo"/>
@@ -805,7 +804,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New requests with my tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mS-qk-Em1">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="New requests with my tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mS-qk-Em1">
                                         <rect key="frame" x="8" y="97" width="253" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="LDj-qn-UMX"/>
@@ -815,7 +814,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When a Holla is recieved" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dea-OH-EQo">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="When a Holla is recieved" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dea-OH-EQo">
                                         <rect key="frame" x="8" y="130" width="197" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="xmH-Cn-7cE"/>
@@ -835,7 +834,7 @@
                                             <action selector="requestResolvedPressed:" destination="1nc-cy-LDt" eventType="valueChanged" id="gcU-Yy-lwM"/>
                                         </connections>
                                     </switch>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iwa-kd-xGn">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iwa-kd-xGn">
                                         <rect key="frame" x="318" y="58" width="51" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="49" id="3Ie-RR-nmg"/>
@@ -845,7 +844,7 @@
                                             <action selector="newRequestPressed:" destination="1nc-cy-LDt" eventType="valueChanged" id="WfQ-p5-mCb"/>
                                         </connections>
                                     </switch>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2VI-CT-4YM">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2VI-CT-4YM">
                                         <rect key="frame" x="318" y="92" width="51" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="Bhz-xA-hq5"/>
@@ -855,7 +854,7 @@
                                             <action selector="messagePressed:" destination="1nc-cy-LDt" eventType="valueChanged" id="lwK-lg-4TL"/>
                                         </connections>
                                     </switch>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fnr-rh-QfS">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fnr-rh-QfS">
                                         <rect key="frame" x="318" y="125" width="51" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="8H1-ah-HvV"/>
@@ -906,7 +905,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1t-FC-ln0">
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W1t-FC-ln0">
                                 <rect key="frame" x="0.0" y="243" width="375" height="68"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dj8-vo-pXF">
@@ -944,7 +943,7 @@
                                     <constraint firstItem="dj8-vo-pXF" firstAttribute="leading" secondItem="W1t-FC-ln0" secondAttribute="leading" constant="8" id="tGu-Pt-Kjm"/>
                                 </constraints>
                             </view>
-                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvO-M2-kYt">
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gvO-M2-kYt">
                                 <rect key="frame" x="0.0" y="328" width="375" height="67"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHONE NUMBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAr-gh-52p">
@@ -1026,6 +1025,8 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="jxq-9e-UTO"/>
+                                <exclude reference="KrU-Eo-Sup"/>
+                                <exclude reference="nKK-DY-hDU"/>
                             </mask>
                         </variation>
                     </view>
