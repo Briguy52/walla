@@ -1,0 +1,6 @@
+framework module Pods_Walla {
+  umbrella header "Pods-Walla-umbrella.h"
+
+  export *
+  module * { export * }
+}

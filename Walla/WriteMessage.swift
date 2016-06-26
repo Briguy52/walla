@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -24,13 +25,16 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	var myLatitude: String = "36.0014"
 	var myLongitude: String = "78.9382"
 	var myUrgency: String = "normal"
-	var myTags:[String] = ["General\n"]
+	var myTags:[String] = ["#General\n"]
 	var myDelayHours: Double = 5
 	
 	var currentTime = NSDate().timeIntervalSince1970
 	//let locManager = CLLocationManager()
 	
-	var tagsToPick = ["Math", "ACT", "Working Out", "Cooking", "Music", "Video Games", "Board Games", "SAT", "MCAT", "Money", "Vehicles", "Running", "History", "Tech"]
+	let myBasic = Basic()
+	let myUserBackend = UserBackend()
+	
+	var tagsToPick = ["Math\n", "ACT\n", "Working Out\n", "Cooking\n", "Music\n", "Video Games\n", "Board Games\n", "SAT\n", "MCAT\n", "Money\n", "Vehicles\n", "Running\n", "History\n", "Tech\n"]
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -38,12 +42,30 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		self.tagPicker?.dataSource = self
 		self.tagPicker?.delegate = self
 		
-		self.navigationItem.hidesBackButton = true
+		self.navigationItem.hidesBackButton = false
 		self.requestDetails?.layer.borderWidth = 0.2
 		self.requestDetails?.layer.borderColor = UIColor.lightGrayColor().CGColor
 		
 		self.holla?.userInteractionEnabled = false
 		//self.holla?.titleLabel?.textColor = UIColor(netHex: 0xffa160)
+		
+		//self.hidesBottomBarWhenPushed = true
+		
+		self.tabBarController?.tabBar.hidden = true
+//
+//		navigationController?.popViewControllerAnimated(true)
+	}
+	
+	override func viewDidAppear(animated: Bool) {
+		self.viewDidLoad()
+	}
+	
+	
+	@IBAction func submit(sender: UIButton) {
+		self.saveAndUpdate()
+		self.resetFields()
+		self.tabBarController?.tabBar.hidden = false
+		tabBarController?.selectedIndex = 0
 	}
 	
 	
@@ -55,49 +77,57 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		}
 	}
 	
-//	func saveAndUpdate() {
-//		self.postNewRequest(self.myTitle, content: self.myDetails, authorID: self.myUserBackend.getUserID(), latitude: self.myLatitude, longitude: self.myLongitude, urgency: self.myUrgency, tags: self.myTags, expirationDate: self.calcExpirationDate(self.myDelayHours))
-//	}
+	func saveAndUpdate() {
+		self.postNewRequest(self.myTitle, content: self.myDetails, authorID: self.myUserBackend.getUserID(), latitude: self.myLatitude, longitude: self.myLongitude, urgency: self.myUrgency, tags: self.myTags, expirationDate: self.myDelayHours)
+	}
+	
+	
+	@IBAction func cancelWalla(sender: AnyObject)
+	{
+		self.tabBarController?.tabBar.hidden = false
+		self.resetFields()
+		tabBarController?.selectedIndex = 0
+	}
 	
 	func resetFields()
 	{
 		requestBody?.text = ""
 		requestDetails?.text = ""
 		generalLocation?.text = ""
-		tagLabel?.text = "Genera"
+		tagLabel?.text = "#General\n"
 		
 	}
 	
-//	func postNewRequest(title: String, content: String, authorID: String, latitude: String, longitude: String, urgency: String, tags: [String], expirationDate: Double ) -> Void {
-//		_ = "tags"
-//		
-//		let newPost = [
-//			"title":title,
-//			"content": content,
-//			"authorID": authorID,
-//			"latitude": latitude,
-//			"longitude": longitude,
-//			"urgency": urgency,
-//			"tags": tags,
-//			"timestamp": currentTime,
-//			"expirationDate": expirationDate
-//		]
-//		
-//		let toHash = authorID + title
-//		let afterHash = String(toHash.hashValue)
-//		
-//		let newPostRef = myBasic.postRef.childByAppendingPath(afterHash) // generate a unique ID for this post
-//		let postId = newPostRef.key
-//		newPostRef.setValue(newPost, withCompletionBlock: {
-//			(error:NSError?, ref:Firebase!) in
-//			if (error != nil) {
-//				print("Post data could not be saved.")
-//			} else {
-//				print("Post data saved successfully!")
-//				self.myUserBackend.updateUserPosts(postId, userID: authorID)
-//			}
-//		})
-//	}
+func postNewRequest(title: String, content: String, authorID: String, latitude: String, longitude: String, urgency: String, tags: [String], expirationDate: Double ) -> Void {
+	_ = "tags"
+	
+	let newPost = [
+		"title":title,
+		"content": content,
+		"authorID": authorID,
+		"latitude": latitude,
+		"longitude": longitude,
+		"urgency": urgency,
+		"tags": tags,
+		"timestamp": currentTime,
+		"expirationDate": expirationDate
+	]
+	
+	let toHash = authorID + title
+	let afterHash = String(toHash.hashValue)
+	
+	let newPostRef = myBasic.postRef.childByAppendingPath(afterHash) // generate a unique ID for this post
+	let postId = newPostRef.key
+	newPostRef.setValue(newPost, withCompletionBlock: {
+		(error:NSError?, ref:Firebase!) in
+		if (error != nil) {
+			print("Post data could not be saved.")
+		} else {
+			print("Post data saved successfully!")
+			self.myUserBackend.updateUserPosts(postId, userID: authorID)
+		}
+	})
+}
 	
 	//init functions
 	func setAuthorName(name: String) {
@@ -106,10 +136,10 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	}
 	
 	func initRequestInfo() {
-		self.tagLabel.text = self.myTags.joinWithSeparator(" ")
-		//self.detailTextInput.text = self.myDetails
-		//self.name.text = self.myAuthorName
-		//self.expirationNumber.text = "Expire in: \(Int(myDelayHours)) hours" // Make this a function
+		self.tagLabel.text = self.myTags.joinWithSeparator("")
+//		self.detailTextInput.text = self.myDetails
+//		self.name.text = self.myAuthorName
+//		self.expirationNumber.text = "Expire in: \(Int(myDelayHours)) hours" // Make this a function
 	}
 	
 	func calcHoursFromNow(expiry: Double) -> Double {
@@ -126,7 +156,6 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 //			self.myTitle = title
 //		}
 //	}
-	
 	
 	//tag functions
 	func setPossibleTags(tags: [String]) {
@@ -165,8 +194,8 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	
 	func addTag(tag: String) {
 		if (!self.myTags.contains(tag)) {
-			self.myTags.append(tag);
-			self.tagLabel.text = self.myTags.joinWithSeparator("# ")
+			self.myTags.append(tag)
+			self.tagLabel.text = self.myTags.joinWithSeparator("#")
 		}
 	}
 }

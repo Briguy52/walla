@@ -16,15 +16,27 @@
 		222D53161D1D396200ABB2DD /* WriteMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D53151D1D396100ABB2DD /* WriteMessage.swift */; };
 		222D53191D1D44D600ABB2DD /* LookAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D53181D1D44D600ABB2DD /* LookAround.swift */; };
 		222D531C1D1D47D000ABB2DD /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D531B1D1D47D000ABB2DD /* FilterTableViewController.swift */; };
-		222D531E1D1D487A00ABB2DD /* MeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D531D1D1D487A00ABB2DD /* MeTableView.swift */; };
-		222D53201D1D489400ABB2DD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D531F1D1D489400ABB2DD /* ProfileViewController.swift */; };
 		222D53231D1D53CD00ABB2DD /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D53221D1D53CD00ABB2DD /* MainTabBarController.swift */; };
+		224488521D1F27F400C98916 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224488511D1F27F400C98916 /* MyProfileViewController.swift */; };
+		224488541D1FBAAE00C98916 /* ConvoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224488531D1FBAAE00C98916 /* ConvoViewController.swift */; };
+		224488561D1FBAD200C98916 /* ConvoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224488551D1FBAD200C98916 /* ConvoCell.swift */; };
+		224488581D1FBB1300C98916 /* ConvoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224488571D1FBB1300C98916 /* ConvoModel.swift */; };
+		226527271D1F1422004B89D2 /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226527261D1F1422004B89D2 /* RequestModel.swift */; };
+		2265272A1D1F14AC004B89D2 /* MyApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226527291D1F14AC004B89D2 /* MyApplication.swift */; };
+		2265272C1D1F14EA004B89D2 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265272B1D1F14EA004B89D2 /* AuthViewController.swift */; };
+		2265272E1D1F153B004B89D2 /* ProflieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265272D1D1F153B004B89D2 /* ProflieViewController.swift */; };
+		226527301D1F1572004B89D2 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265272F1D1F1572004B89D2 /* MessageViewController.swift */; };
+		226527321D1F158E004B89D2 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226527311D1F158E004B89D2 /* MessageModel.swift */; };
+		226527341D1F15C5004B89D2 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226527331D1F15C5004B89D2 /* MessageTableViewCell.swift */; };
+		226527391D1F179C004B89D2 /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226527381D1F179C004B89D2 /* Basic.swift */; };
+		2265273B1D1F17DD004B89D2 /* UserBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265273A1D1F17DD004B89D2 /* UserBackend.swift */; };
 		2279873B1D1C5CCF00C0EC30 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279873A1D1C5CCF00C0EC30 /* HomeCell.swift */; };
 		22C8893F1D1C536F009DE688 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C8893E1D1C536F009DE688 /* AppDelegate.swift */; };
 		22C889441D1C536F009DE688 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C889421D1C536F009DE688 /* Main.storyboard */; };
 		22C889461D1C536F009DE688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22C889451D1C536F009DE688 /* Assets.xcassets */; };
 		22C889491D1C536F009DE688 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C889471D1C536F009DE688 /* LaunchScreen.storyboard */; };
 		22C889521D1C5612009DE688 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C889511D1C5612009DE688 /* HomeViewController.swift */; };
+		BBC0C0FB56D7B2430E20F096 /* Pods_Walla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36FD80449EB2641B7C2BB3A /* Pods_Walla.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +49,20 @@
 		222D53151D1D396100ABB2DD /* WriteMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteMessage.swift; sourceTree = "<group>"; };
 		222D53181D1D44D600ABB2DD /* LookAround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAround.swift; sourceTree = "<group>"; };
 		222D531B1D1D47D000ABB2DD /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
-		222D531D1D1D487A00ABB2DD /* MeTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeTableView.swift; sourceTree = "<group>"; };
-		222D531F1D1D489400ABB2DD /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		222D53221D1D53CD00ABB2DD /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		224488511D1F27F400C98916 /* MyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		224488531D1FBAAE00C98916 /* ConvoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvoViewController.swift; sourceTree = "<group>"; };
+		224488551D1FBAD200C98916 /* ConvoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvoCell.swift; sourceTree = "<group>"; };
+		224488571D1FBB1300C98916 /* ConvoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvoModel.swift; sourceTree = "<group>"; };
+		226527261D1F1422004B89D2 /* RequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
+		226527291D1F14AC004B89D2 /* MyApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyApplication.swift; sourceTree = "<group>"; };
+		2265272B1D1F14EA004B89D2 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		2265272D1D1F153B004B89D2 /* ProflieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProflieViewController.swift; sourceTree = "<group>"; };
+		2265272F1D1F1572004B89D2 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		226527311D1F158E004B89D2 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
+		226527331D1F15C5004B89D2 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		226527381D1F179C004B89D2 /* Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Basic.swift; sourceTree = "<group>"; };
+		2265273A1D1F17DD004B89D2 /* UserBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBackend.swift; sourceTree = "<group>"; };
 		2279873A1D1C5CCF00C0EC30 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		22C8893B1D1C536E009DE688 /* Walla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Walla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22C8893E1D1C536F009DE688 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +71,9 @@
 		22C889481D1C536F009DE688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22C8894A1D1C536F009DE688 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22C889511D1C5612009DE688 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		3BAD9241B6F4C633F3C5DF5A /* Pods-Walla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Walla.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Walla/Pods-Walla.debug.xcconfig"; sourceTree = "<group>"; };
+		60B82CDBFF92298443BF52CE /* Pods-Walla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Walla.release.xcconfig"; path = "Pods/Target Support Files/Pods-Walla/Pods-Walla.release.xcconfig"; sourceTree = "<group>"; };
+		D36FD80449EB2641B7C2BB3A /* Pods_Walla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Walla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBC0C0FB56D7B2430E20F096 /* Pods_Walla.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,8 +107,7 @@
 		222D531A1D1D464C00ABB2DD /* MyProfile */ = {
 			isa = PBXGroup;
 			children = (
-				222D531D1D1D487A00ABB2DD /* MeTableView.swift */,
-				222D531F1D1D489400ABB2DD /* ProfileViewController.swift */,
+				224488511D1F27F400C98916 /* MyProfileViewController.swift */,
 			);
 			name = MyProfile;
 			sourceTree = "<group>";
@@ -89,8 +115,41 @@
 		222D53211D1D4C0500ABB2DD /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				2265272F1D1F1572004B89D2 /* MessageViewController.swift */,
+				226527311D1F158E004B89D2 /* MessageModel.swift */,
+				226527331D1F15C5004B89D2 /* MessageTableViewCell.swift */,
+				224488531D1FBAAE00C98916 /* ConvoViewController.swift */,
+				224488551D1FBAD200C98916 /* ConvoCell.swift */,
+				224488571D1FBB1300C98916 /* ConvoModel.swift */,
 			);
 			name = Messages;
+			sourceTree = "<group>";
+		};
+		226527251D1F13FF004B89D2 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				226527261D1F1422004B89D2 /* RequestModel.swift */,
+			);
+			name = Requests;
+			sourceTree = "<group>";
+		};
+		226527281D1F1471004B89D2 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				226527291D1F14AC004B89D2 /* MyApplication.swift */,
+				2265272B1D1F14EA004B89D2 /* AuthViewController.swift */,
+				2265272D1D1F153B004B89D2 /* ProflieViewController.swift */,
+			);
+			name = Auth;
+			sourceTree = "<group>";
+		};
+		226527371D1F1773004B89D2 /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+				226527381D1F179C004B89D2 /* Basic.swift */,
+				2265273A1D1F17DD004B89D2 /* UserBackend.swift */,
+			);
+			name = Backend;
 			sourceTree = "<group>";
 		};
 		22C889321D1C536E009DE688 = {
@@ -98,6 +157,8 @@
 			children = (
 				22C8893D1D1C536F009DE688 /* Walla */,
 				22C8893C1D1C536E009DE688 /* Products */,
+				825D71D7C2A14F81BFED3852 /* Pods */,
+				9504B886BD43E756FB0A7817 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +173,9 @@
 		22C8893D1D1C536F009DE688 /* Walla */ = {
 			isa = PBXGroup;
 			children = (
+				226527371D1F1773004B89D2 /* Backend */,
+				226527281D1F1471004B89D2 /* Auth */,
+				226527251D1F13FF004B89D2 /* Requests */,
 				222D53211D1D4C0500ABB2DD /* Messages */,
 				222D531A1D1D464C00ABB2DD /* MyProfile */,
 				222D53171D1D44A500ABB2DD /* LookAround */,
@@ -143,6 +207,23 @@
 			name = Home;
 			sourceTree = "<group>";
 		};
+		825D71D7C2A14F81BFED3852 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3BAD9241B6F4C633F3C5DF5A /* Pods-Walla.debug.xcconfig */,
+				60B82CDBFF92298443BF52CE /* Pods-Walla.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9504B886BD43E756FB0A7817 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D36FD80449EB2641B7C2BB3A /* Pods_Walla.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,9 +231,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22C8894D1D1C536F009DE688 /* Build configuration list for PBXNativeTarget "Walla" */;
 			buildPhases = (
+				B09814EA1F87F1760D1DA4C3 /* [CP] Check Pods Manifest.lock */,
 				22C889371D1C536E009DE688 /* Sources */,
 				22C889381D1C536E009DE688 /* Frameworks */,
 				22C889391D1C536E009DE688 /* Resources */,
+				617E04F3CF2106DCDE4AC775 /* [CP] Embed Pods Frameworks */,
+				23C8E7F840D9271647D68B13 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -210,6 +294,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		23C8E7F840D9271647D68B13 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Walla/Pods-Walla-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		617E04F3CF2106DCDE4AC775 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Walla/Pods-Walla-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B09814EA1F87F1760D1DA4C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		22C889371D1C536E009DE688 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -218,17 +350,28 @@
 				222D530D1D1D233B00ABB2DD /* Interactor.swift in Sources */,
 				22C8893F1D1C536F009DE688 /* AppDelegate.swift in Sources */,
 				222D53231D1D53CD00ABB2DD /* MainTabBarController.swift in Sources */,
-				222D531E1D1D487A00ABB2DD /* MeTableView.swift in Sources */,
+				2265272A1D1F14AC004B89D2 /* MyApplication.swift in Sources */,
 				222D530B1D1D226F00ABB2DD /* MenuViewController.swift in Sources */,
-				222D53201D1D489400ABB2DD /* ProfileViewController.swift in Sources */,
+				2265273B1D1F17DD004B89D2 /* UserBackend.swift in Sources */,
 				222D53091D1D094C00ABB2DD /* ViewDetails.swift in Sources */,
+				226527271D1F1422004B89D2 /* RequestModel.swift in Sources */,
 				2279873B1D1C5CCF00C0EC30 /* HomeCell.swift in Sources */,
 				222D53161D1D396200ABB2DD /* WriteMessage.swift in Sources */,
+				2265272E1D1F153B004B89D2 /* ProflieViewController.swift in Sources */,
 				222D53111D1D23A300ABB2DD /* PresentMenuAnimator.swift in Sources */,
 				222D531C1D1D47D000ABB2DD /* FilterTableViewController.swift in Sources */,
+				224488581D1FBB1300C98916 /* ConvoModel.swift in Sources */,
 				222D53191D1D44D600ABB2DD /* LookAround.swift in Sources */,
+				226527341D1F15C5004B89D2 /* MessageTableViewCell.swift in Sources */,
+				226527301D1F1572004B89D2 /* MessageViewController.swift in Sources */,
+				224488541D1FBAAE00C98916 /* ConvoViewController.swift in Sources */,
+				226527321D1F158E004B89D2 /* MessageModel.swift in Sources */,
+				224488561D1FBAD200C98916 /* ConvoCell.swift in Sources */,
 				222D53131D1D26A000ABB2DD /* DismissMenuAnimator.swift in Sources */,
+				224488521D1F27F400C98916 /* MyProfileViewController.swift in Sources */,
 				22C889521D1C5612009DE688 /* HomeViewController.swift in Sources */,
+				226527391D1F179C004B89D2 /* Basic.swift in Sources */,
+				2265272C1D1F14EA004B89D2 /* AuthViewController.swift in Sources */,
 				222D530F1D1D235D00ABB2DD /* MenuHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +485,7 @@
 		};
 		22C8894E1D1C536F009DE688 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BAD9241B6F4C633F3C5DF5A /* Pods-Walla.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Walla/Info.plist;
@@ -353,6 +497,7 @@
 		};
 		22C8894F1D1C536F009DE688 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60B82CDBFF92298443BF52CE /* Pods-Walla.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Walla/Info.plist;

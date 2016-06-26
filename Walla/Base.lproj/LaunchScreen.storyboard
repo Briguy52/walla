@@ -17,11 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splashscreen" translatesAutoresizingMaskIntoConstraints="NO" id="vLq-a8-BxU">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splashscreen" translatesAutoresizingMaskIntoConstraints="NO" id="vLq-a8-BxU">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="vLq-a8-BxU" secondAttribute="bottom" id="TBq-U8-jsc"/>
+                            <constraint firstItem="vLq-a8-BxU" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Wxl-df-Vwt"/>
+                            <constraint firstAttribute="trailing" secondItem="vLq-a8-BxU" secondAttribute="trailing" id="dYx-94-sDE"/>
+                            <constraint firstItem="vLq-a8-BxU" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="erS-Fy-97F"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>

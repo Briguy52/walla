@@ -7,6 +7,17 @@
 //
 
 import UIKit
+import CoreLocation
+import Foundation
+import Firebase
+import RxCocoa
+import RxSwift
+import FirebaseRxSwiftExtensions
+
+var masterView: HomeViewController?
+var detailView: ViewDetails?
+var requestModels: [RequestModel] = [RequestModel]()
+var currentIndex: Int = 0
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
@@ -14,11 +25,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	
 	var cellIdentifier = "ViewWallaCell"
 	
-	var currentIndex: Int = 0
+	let myBasic = Basic()
+	let myUserBackend = UserBackend()
+	let postPath = "posts"
+	let tagPath = "tags"
+	let postContents = ["title", "content", "authorID", "latitude", "longitude", "urgency", "tags", "expirationDate"]
+	var isInitialLoad = true;
+	var disposeBag = DisposeBag()
+	var authorName = ""
+	var latitude = ""
+	var longitude = ""
+	var currentTime = NSDate().timeIntervalSince1970
 	
-	var usernames: [String] = ["user1", "user2", "user3", "user4"]
-	var messages: [String] = ["m1", "m2", "m3", "m4"]
-	var topics: [String] = ["t1", "t2", "t3"]
+//	var usernames: [String] = ["user1", "user2", "user3", "user4"]
+//	var messages: [String] = ["m1", "m2", "m3", "m4"]
+//	var topics: [String] = ["t1", "t2", "t3"]
 	
 	func ViewDidLoad()
 	{
@@ -26,6 +47,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		tableView.delegate = self
 		tableView.dataSource = self
+		masterView = self
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -37,7 +59,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		tableView?.tableFooterView = UIView(frame: CGRectZero)
 		
-		imageView.contentMode = .ScaleAspectFit
+		imageView.contentMode = .ScaleAspectFill
 		
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
 	}
@@ -47,16 +69,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		let rows = usernames.count
-		return rows
+		return requestModels.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell :HomeCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! HomeCell
 		
-		cell.userName?.text = self.usernames[indexPath.row]
-		cell.message?.text = self.messages[indexPath.row]
-		cell.topics?.text = self.topics.joinWithSeparator(", ")
+		let requestModel = requestModels[indexPath.row]
+		
+		let key = requestModel.authorID
+		self.myUserBackend.getUserInfo("DisplayName", userID: key)
+		{
+			(result: String) in cell.setAuthorName(result)
+		}
+		
+		cell.userName?.text = requestModel.authorID
+		cell.message?.text = requestModel.title
+		cell.topics?.text = requestModel.tags.joinWithSeparator(", ")
+		cell.timeStamp?.text = "posted " + cell.parseDateFromTime(requestModel.timestamp)
 		
 		cell.profile.layer.borderWidth = 0.5
 		cell.profile.layer.masksToBounds = false
@@ -76,9 +106,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	}
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		
 		self.performSegueWithIdentifier("showDetail", sender: nil)
-		
 	}
 
 	@IBAction func openMenu(sender: AnyObject) {
