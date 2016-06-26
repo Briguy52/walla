@@ -32,6 +32,11 @@ class MyProfileViewController: UIViewController {
 		self.setNameAndTitle()
 	}
 	
+	@IBAction func settings(sender: AnyObject) {
+		performSegueWithIdentifier("openSettings", sender: nil)
+	}
+	
+	
 	func setImage()
 	{
 		let key = self.myUserBackend.updateDisplayName

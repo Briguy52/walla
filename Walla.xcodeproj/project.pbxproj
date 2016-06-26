@@ -21,6 +21,7 @@
 		224488541D1FBAAE00C98916 /* ConvoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224488531D1FBAAE00C98916 /* ConvoViewController.swift */; };
 		224488561D1FBAD200C98916 /* ConvoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224488551D1FBAD200C98916 /* ConvoCell.swift */; };
 		224488581D1FBB1300C98916 /* ConvoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224488571D1FBB1300C98916 /* ConvoModel.swift */; };
+		2244885A1D1FE3E400C98916 /* MainSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224488591D1FE3E400C98916 /* MainSettings.swift */; };
 		226527271D1F1422004B89D2 /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226527261D1F1422004B89D2 /* RequestModel.swift */; };
 		2265272A1D1F14AC004B89D2 /* MyApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226527291D1F14AC004B89D2 /* MyApplication.swift */; };
 		2265272C1D1F14EA004B89D2 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265272B1D1F14EA004B89D2 /* AuthViewController.swift */; };
@@ -54,6 +55,7 @@
 		224488531D1FBAAE00C98916 /* ConvoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvoViewController.swift; sourceTree = "<group>"; };
 		224488551D1FBAD200C98916 /* ConvoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvoCell.swift; sourceTree = "<group>"; };
 		224488571D1FBB1300C98916 /* ConvoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvoModel.swift; sourceTree = "<group>"; };
+		224488591D1FE3E400C98916 /* MainSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSettings.swift; sourceTree = "<group>"; };
 		226527261D1F1422004B89D2 /* RequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
 		226527291D1F14AC004B89D2 /* MyApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyApplication.swift; sourceTree = "<group>"; };
 		2265272B1D1F14EA004B89D2 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				224488511D1F27F400C98916 /* MyProfileViewController.swift */,
+				224488591D1FE3E400C98916 /* MainSettings.swift */,
 			);
 			name = MyProfile;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				224488581D1FBB1300C98916 /* ConvoModel.swift in Sources */,
 				222D53191D1D44D600ABB2DD /* LookAround.swift in Sources */,
 				226527341D1F15C5004B89D2 /* MessageTableViewCell.swift in Sources */,
+				2244885A1D1FE3E400C98916 /* MainSettings.swift in Sources */,
 				226527301D1F1572004B89D2 /* MessageViewController.swift in Sources */,
 				224488541D1FBAAE00C98916 /* ConvoViewController.swift in Sources */,
 				226527321D1F158E004B89D2 /* MessageModel.swift in Sources */,
