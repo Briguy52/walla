@@ -55,4 +55,8 @@ class MyProfileViewController: UIViewController {
 			(result: String) in self.username.text = result
 		}
 	}
+	
+	@IBAction func logout(sender: UIButton) {
+		myUserBackend.logout()
+	}
 }
