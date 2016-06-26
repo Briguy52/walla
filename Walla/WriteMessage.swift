@@ -51,9 +51,13 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		
 		//self.hidesBottomBarWhenPushed = true
 		
-//		self.tabBarController?.tabBar.hidden = true
-//		
+		self.tabBarController?.tabBar.hidden = true
+//
 //		navigationController?.popViewControllerAnimated(true)
+	}
+	
+	override func viewDidAppear(animated: Bool) {
+		self.viewDidLoad()
 	}
 	
 	
@@ -80,7 +84,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	
 	@IBAction func cancelWalla(sender: AnyObject)
 	{
-		//self.tabBarController?.tabBar.hidden = false
+		self.tabBarController?.tabBar.hidden = false
 		self.resetFields()
 		tabBarController?.selectedIndex = 0
 	}
