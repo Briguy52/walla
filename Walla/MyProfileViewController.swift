@@ -22,7 +22,7 @@ class MyProfileViewController: UIViewController {
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
 	
-	func viewDidLoad() {
+	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		self.navigationItem.hidesBackButton = true
@@ -35,10 +35,10 @@ class MyProfileViewController: UIViewController {
 	func setImage()
 	{
 		let key = self.myUserBackend.updateDisplayName
-		self.myUserBackend.getUserInfo("ProfilePicUrl", userID: key)
+		/*self.myUserBackend.getUserInfo("ProfilePicUrl", userID: key)
 		{
 			(result: String) in self.profile.setImageWithURL(NSURL(string: result)!)
-		}
+		}*/
 	}
 	
 	func setTotalPoints()
