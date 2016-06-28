@@ -62,6 +62,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		imageView.contentMode = .ScaleAspectFill
 		
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
+		
+		print(requestModels.count)
 	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
