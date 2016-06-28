@@ -119,6 +119,7 @@ class AuthViewController: UIViewController {
 				print(authData.uid)
 				self.myUserBackend.updateUserData("token", value: authData.token, userID: authData.uid)
 				self.myUserBackend.updateUserData("provider", value: authData.provider, userID: authData.uid)
+                self.performSegueWithIdentifier("showProfile", sender: self)
 			}
 		})
 	}

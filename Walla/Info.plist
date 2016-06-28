@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Auth0Domain</key>
+	<string>genieapp.auth0.com</string>
+	<key>Auth0ClientId</key>
+	<string>NiZctA0id6Bd5IgTLcEoYai116RirhUw</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
