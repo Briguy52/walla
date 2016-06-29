@@ -37,6 +37,7 @@
 		22C889461D1C536F009DE688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22C889451D1C536F009DE688 /* Assets.xcassets */; };
 		22C889491D1C536F009DE688 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C889471D1C536F009DE688 /* LaunchScreen.storyboard */; };
 		22C889521D1C5612009DE688 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C889511D1C5612009DE688 /* HomeViewController.swift */; };
+		AF0364681D23582800D57094 /* RequestBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0364671D23582800D57094 /* RequestBackend.swift */; };
 		BBC0C0FB56D7B2430E20F096 /* Pods_Walla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36FD80449EB2641B7C2BB3A /* Pods_Walla.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		22C889511D1C5612009DE688 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3BAD9241B6F4C633F3C5DF5A /* Pods-Walla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Walla.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Walla/Pods-Walla.debug.xcconfig"; sourceTree = "<group>"; };
 		60B82CDBFF92298443BF52CE /* Pods-Walla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Walla.release.xcconfig"; path = "Pods/Target Support Files/Pods-Walla/Pods-Walla.release.xcconfig"; sourceTree = "<group>"; };
+		AF0364671D23582800D57094 /* RequestBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBackend.swift; sourceTree = "<group>"; };
 		D36FD80449EB2641B7C2BB3A /* Pods_Walla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Walla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -151,6 +153,7 @@
 			children = (
 				226527381D1F179C004B89D2 /* Basic.swift */,
 				2265273A1D1F17DD004B89D2 /* UserBackend.swift */,
+				AF0364671D23582800D57094 /* RequestBackend.swift */,
 			);
 			name = Backend;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF0364681D23582800D57094 /* RequestBackend.swift in Sources */,
 				222D530D1D1D233B00ABB2DD /* Interactor.swift in Sources */,
 				22C8893F1D1C536F009DE688 /* AppDelegate.swift in Sources */,
 				222D53231D1D53CD00ABB2DD /* MainTabBarController.swift in Sources */,

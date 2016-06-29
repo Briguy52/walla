@@ -116,7 +116,7 @@ func postNewRequest(title: String, content: String, authorID: String, latitude: 
 	let toHash = authorID + title
 	let afterHash = String(toHash.hashValue)
 	
-	let newPostRef = myBasic.postRef.childByAppendingPath(afterHash) // generate a unique ID for this post
+	let newPostRef = myBasic.requestRef.childByAppendingPath(afterHash) // generate a unique ID for this post
 	let postId = newPostRef.key
 	newPostRef.setValue(newPost, withCompletionBlock: {
 		(error:NSError?, ref:Firebase!) in

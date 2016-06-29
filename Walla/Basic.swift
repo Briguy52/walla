@@ -15,10 +15,10 @@ class Basic {
 	// Create a reference to a Firebase location
 	let rootPath = "https://thegenieapp.firebaseio.com/dev/"
 	let rootRef = Firebase(url: "https://thegenieapp.firebaseio.com/dev/")
-	let postRef = Firebase(url:"https://thegenieapp.firebaseio.com/dev/posts")
-	let userRef = Firebase(url:"https://thegenieapp.firebaseio.com/dev/users")
-	let convoRef = Firebase(url:"https://thegenieapp.firebaseio.com/dev/conversations")
-	let messageRef = Firebase(url:"https://thegenieapp.firebaseio.com/dev/messages")
+	let requestRef = Firebase(url:"https://thegenieapp.firebaseio.com/dev/Requests")
+	let userRef = Firebase(url:"https://thegenieapp.firebaseio.com/dev/Users")
+	let convoRef = Firebase(url:"https://thegenieapp.firebaseio.com/dev/Conversations")
+	let messageRef = Firebase(url:"https://thegenieapp.firebaseio.com/dev/Messages")
 	
 	func checkLoggedIn() -> Bool {
 		if rootRef.authData != nil {
