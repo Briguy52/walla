@@ -86,7 +86,7 @@ class ViewDetails: UIViewController {
 	func createSingleConvoRef(requestID: String, authorID: String, userID: String, title: String) {
 		
 		let newConvo = [
-			"title": title,
+			"uniqueID": requestID,
 			"authorID": authorID,
 			"userID": userID,
 			"timestamp": currentTime
