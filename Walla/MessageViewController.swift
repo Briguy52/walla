@@ -17,10 +17,10 @@ import Firebase
 class MessageViewController: SLKTextViewController {
 	
 	let myBasic = Basic() // This ref will be replaced by the selected conversation ref
+    let myUserBackend = UserBackend()
 	var messageModels : [MessageModel] = [MessageModel]()
 	var disposeBag = DisposeBag()
 	var isInitialLoad = true;
-	var name = "AnonymousGenie"
 	var sender = "sender" // TODO: comes from backend
 	var recipient = "recipient" // TODO: comes from backend
 	var convoID = "sampleConversation"
@@ -36,7 +36,6 @@ class MessageViewController: SLKTextViewController {
 		let keychain = MyApplication.sharedInstance.keychain
 		let profileData:NSData! = keychain.dataForKey("profile")
 		let profile:A0UserProfile = NSKeyedUnarchiver.unarchiveObjectWithData(profileData) as! A0UserProfile
-		self.name = profile.name
 		
 		self.bounces = true
 		self.shakeToClearEnabled = true
@@ -83,10 +82,9 @@ class MessageViewController: SLKTextViewController {
 		
 		pressedRightButtonSubject
 			.flatMap({ (bodyText: String) -> Observable<Firebase> in
-				let name = self.name
 				let sender = self.sender
 				let recipient = self.recipient
-				return conversationRef.childByAutoId().rx_setValue(["name" : name, "body": bodyText, "sender": sender, "recipient": recipient, "timestamp" : NSDate().timeIntervalSince1970 * 1000])
+				return conversationRef.childByAutoId().rx_setValue(["text": bodyText, "sender": sender, "recipient": recipient, "timestamp" : NSDate().timeIntervalSince1970 * 1000])
 			})
 			.subscribeNext({ (newMessageReference:Firebase) -> Void in
 				print("A new message was successfully committed to firebase")
@@ -110,9 +108,14 @@ class MessageViewController: SLKTextViewController {
 		
 		//        self.tableView.scrollToRowAtIndexPath((indexPath, atScrollPosition: .Bottom,
 		//            animated: true))
-		
-		cell.nameLabel.text = messageModelAtIndexPath.name
-		cell.bodyLabel.text = messageModelAtIndexPath.body
+        
+        let key = messageModelAtIndexPath.sender
+        self.myUserBackend.getUserInfo("DisplayName", userID: key)
+        {
+            (result: String) in cell.nameLabel.text = result
+        }
+
+		cell.bodyLabel.text = messageModelAtIndexPath.text
 		cell.selectionStyle = .None
 		cell.transform = self.tableView.transform // TODO: figure out what this actually does
 		return cell
