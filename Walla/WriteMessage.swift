@@ -13,6 +13,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 
 	@IBOutlet weak var tagPicker: UIPickerView!
 	@IBOutlet weak var addTagButton: UIButton!
+	@IBOutlet weak var removeTagButton: UIButton!
 	@IBOutlet weak var tagLabel: UILabel!
 	@IBOutlet weak var requestBody: UITextField!
 	@IBOutlet weak var requestDetails: UITextView!
@@ -25,7 +26,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	var myLatitude: String = "36.0014"
 	var myLongitude: String = "78.9382"
 	var myUrgency: String = "normal"
-	var myTags:[String] = ["#General\n"]
+	var myTags:[String] = ["#General "]
 	var myDelayHours: Double = 5
 	
 	var currentTime = NSDate().timeIntervalSince1970
@@ -34,7 +35,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
 	
-	var tagsToPick = ["Math\n", "ACT\n", "Working Out\n", "Cooking\n", "Music\n", "Video Games\n", "Board Games\n", "SAT\n", "MCAT\n", "Money\n", "Vehicles\n", "Running\n", "History\n", "Tech\n"]
+	var tagsToPick = ["#Elementary School", "#Middle School", "#High School", "#University", "#Inudstry", "#Long Term Change", "#Math and Comp Sci", "#Partnerships for Change", "#Social Entrpreneurship", "#Entrepreneurship", "#STEM+", "#Maker Ideas", "#Success Stories", "#Online Learning", "#Engineering", "#Community Integration", "#Growing Sustained STEM"]
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -70,7 +71,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	
 	
 	@IBAction func allFieldsSet(sender: AnyObject) {
-		if !requestBody.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty && !requestDetails.text.isEmpty && !generalLocation.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty
+		if !requestBody.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty && !requestDetails.text.isEmpty && !generalLocation.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty && myTags.count > 1
 		{
 			self.holla?.userInteractionEnabled = true
 			self.holla?.titleLabel?.textColor = UIColor(netHex: 0xffffff)
@@ -94,7 +95,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		requestBody?.text = ""
 		requestDetails?.text = ""
 		generalLocation?.text = ""
-		tagLabel?.text = "#General\n"
+		tagLabel?.text = "#General "
 		
 	}
 	
@@ -189,13 +190,24 @@ func postNewRequest(title: String, content: String, authorID: String, latitude: 
 	@IBAction func addTags(sender: UIButton)
 	{
 		let tag = self.tagsToPick[self.tagPicker.selectedRowInComponent(0)]
+		if tagLabel.text == "Please Enter a Tag"
+		{
+			tagLabel.text = ""
+		}
 		self.addTag(tag)
+	}
+	
+	@IBAction func removeTags(sender: UIButton)
+	{
+		self.myTags.removeAll()
+		self.tagLabel.textColor = UIColor.redColor()
+		self.tagLabel.text = "Please Enter a Tag"
 	}
 	
 	func addTag(tag: String) {
 		if (!self.myTags.contains(tag)) {
 			self.myTags.append(tag)
-			self.tagLabel.text = self.myTags.joinWithSeparator("#")
+			self.tagLabel.text = self.myTags.joinWithSeparator(" ")
 		}
 	}
 }
