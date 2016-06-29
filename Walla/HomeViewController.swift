@@ -22,6 +22,7 @@ var currentIndex: Int = 0
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var noWallas: UILabel!
 	
 	var cellIdentifier = "ViewWallaCell"
 	
@@ -63,7 +64,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
 		
+		self.noWallasPosts()
+		
 		print(requestModels.count)
+	}
+	
+	func noWallasPosts()
+	{
+		if requestModels.count == 0
+		{
+			noWallas.hidden = false
+		}
+		else
+		{
+			noWallas.hidden = true
+		}
 	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
