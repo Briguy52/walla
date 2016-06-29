@@ -39,7 +39,7 @@ class MyProfileViewController: UIViewController {
 	
 	func setImage()
 	{
-		let key = self.myUserBackend.updateDisplayName
+//		let key = self.myUserBackend.updateDisplayName
 		/*self.myUserBackend.getUserInfo("ProfilePicUrl", userID: key)
 		{
 			(result: String) in self.profile.setImageWithURL(NSURL(string: result)!)

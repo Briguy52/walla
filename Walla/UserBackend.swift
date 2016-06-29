@@ -24,37 +24,9 @@ class UserBackend {
 		pairRef.updateChildValues(pair)
 	}
 	
-	func updateDisplayName(displayName: String, userID: String) {
-		self.updateUserData("displayName", value: displayName, userID: userID)
-	}
-	
-	func updateProfilePicUrl(url: String, userID: String) {
-		self.updateUserData("profilePicUrl", value: url, userID: userID)
-	}
-	
-	func updateNotifications(userID: String) {
-		self.updateNotificationSetting("pushNotifications", value: true, userID: userID)
-	}
-	
-	// TODO: test type cast
+		// TODO: test type cast
 	func updateKarma(karma: Int, userID: String) {
 		self.updateUserData("karma", value: String(karma), userID: userID)
-	}
-	
-	func updatePhoneNumber(phone: String, userID: String) {
-		self.updateUserData("phoneNumber", value: phone, userID: userID)
-	}
-	
-	func updateEmail(email: String, userID: String) {
-		self.updateUserData("email", value: email, userID: userID)
-	}
-	
-	func updateLatitude(latitude: String, userID: String) {
-		self.updateUserData("latitude", value: latitude, userID: userID)
-	}
-	
-	func updateLongitude(longitude: String, userID: String) {
-		self.updateUserData("longitude", value: longitude, userID: userID)
 	}
 	
 	func updateNotificationSetting(setting: String, value: Bool, userID: String) {
@@ -70,11 +42,11 @@ class UserBackend {
 	}
 	
 	func updateUserConversations(convoID: String, userID: String) {
-		self.updateUserDataWithChildPath(convoID, value: convoID, userID: userID, path: "conversations")
+		self.updateUserDataWithChildPath(convoID, value: convoID, userID: userID, path: "Conversations")
 	}
 	
 	func updateUserPosts(postID: String, userID: String) {
-		self.updateUserDataWithChildPath(postID, value: postID, userID: userID, path: "posts")
+		self.updateUserDataWithChildPath(postID, value: postID, userID: userID, path: "Requests")
 	}
 	
 	func getUserID() -> String {
@@ -109,7 +81,7 @@ class UserBackend {
 		let ref = myBasic.rootRef.childByAppendingPath(self.userPath)
 		ref.queryOrderedByChild(key).queryLimitedToFirst(1)
 			.observeEventType(.ChildAdded, withBlock: { snapshot in
-				if let out = snapshot.value.valueForKey("posts") {
+				if let out = snapshot.value.valueForKey("Requests") {
 					completion(result: String(out.count))
 				}
 			})

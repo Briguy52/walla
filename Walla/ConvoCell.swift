@@ -18,7 +18,12 @@ class ConvoCell: UITableViewCell {
 		didSet {
 			// TODO: store Author name in addition to AuthorID
 			nameLabel.text = convoModel.authorID
-			previewLabel.text = convoModel.title
+            
+            let myRequestBackend = RequestBackend()
+            myRequestBackend.getRequestValue(convoModel.uniqueID, key: "request") {
+                (result: String) in self.previewLabel.text = result
+            }
+            
 			//            ratingImageView.image = imageForRating(genie.rating)
 		}
 	}

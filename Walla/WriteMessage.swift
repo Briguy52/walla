@@ -24,6 +24,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	var myDetails:String = "womp"
 	var myLatitude: String = "36.0014"
 	var myLongitude: String = "78.9382"
+    var myLocation: String = "Anonymous location"
 	var myUrgency: String = "normal"
 	var myTags:[String] = ["#General\n"]
 	var myDelayHours: Double = 5
@@ -77,8 +78,9 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		}
 	}
 	
+    // TODO: link up location with Tim's UI text field
 	func saveAndUpdate() {
-		self.postNewRequest(self.myTitle, content: self.myDetails, authorID: self.myUserBackend.getUserID(), latitude: self.myLatitude, longitude: self.myLongitude, urgency: self.myUrgency, tags: self.myTags, expirationDate: self.myDelayHours)
+        self.postNewRequest(self.myUserBackend.getUserID(), request: self.myTitle, additionalDetails: self.myDetails, latitude: self.myLatitude, longitude: self.myLongitude, location: self.myLocation, resolved: false, visible: true, tags: self.myTags, expirationDate: self.myDelayHours)
 	}
 	
 	
@@ -98,22 +100,24 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		
 	}
 	
-func postNewRequest(title: String, content: String, authorID: String, latitude: String, longitude: String, urgency: String, tags: [String], expirationDate: Double ) -> Void {
+    func postNewRequest(authorID: String, request: String, additionalDetails: String, latitude: String, longitude: String, location: String, resolved: Bool, visible: Bool, tags: [String], expirationDate: Double ) -> Void {
 	_ = "tags"
 	
 	let newPost = [
-		"title":title,
-		"content": content,
-		"authorID": authorID,
+        "authorID": authorID,
+        "request": request,
+        "additionalDetails": additionalDetails,
 		"latitude": latitude,
 		"longitude": longitude,
-		"urgency": urgency,
+		"location": location,
+		"resolved": resolved,
+		"visible": visible,
 		"tags": tags,
 		"timestamp": currentTime,
 		"expirationDate": expirationDate
 	]
 	
-	let toHash = authorID + title
+	let toHash = authorID + request
 	let afterHash = String(toHash.hashValue)
 	
 	let newPostRef = myBasic.requestRef.childByAppendingPath(afterHash) // generate a unique ID for this post

@@ -27,12 +27,23 @@ class ProfileViewController: UIViewController {
 		self.profileImage.setImageWithURL(profile.picture)
 		self.welcomeLabel.text = "Welcome \(profile.name)!"
 		if let data = myBasic.rootRef.authData {
-			myUserBackend.updateDisplayName(profile.nickname, userID: data.uid)
-			myUserBackend.updateProfilePicUrl(profile.picture.absoluteString, userID: data.uid)
-			myUserBackend.updatePhoneNumber("12345678", userID: data.uid)
-			myUserBackend.updateNotifications(data.uid)
+            myUserBackend.updateUserData("displayName", value: profile.nickname, userID: data.uid)
+            myUserBackend.updateUserData("profilePicUrl", value: profile.picture.absoluteString, userID: data.uid)
+            myUserBackend.updateUserData("phoneNumber", value: "12345678", userID: data.uid)
+            myUserBackend.updateUserData("latitude", value: "21.2827778", userID: data.uid)
+            myUserBackend.updateUserData("longitude", value: "-157.8294444", userID: data.uid)
+            
+            myUserBackend.updateKarma(0, userID: data.uid)
+            
+            myUserBackend.updateNotificationSetting("pushNotifications", value: true, userID: data.uid)
+            myUserBackend.updateNotificationSetting("messageNotification", value: true, userID: data.uid)
+            myUserBackend.updateNotificationSetting("helpMeResponseNotifcation", value: true, userID: data.uid)
+            myUserBackend.updateNotificationSetting("newRequestNotification", value: true, userID: data.uid)
+            myUserBackend.updateNotificationSetting("requestResolvedNotification", value: true, userID: data.uid)
+            
+            
 			if let email = profile.email {
-				myUserBackend.updateEmail(email, userID: data.uid)
+                myUserBackend.updateUserData("email", value: email, userID: data.uid)
 			}
 		}
 		self.delay(myDelay) {
