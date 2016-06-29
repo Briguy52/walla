@@ -19,6 +19,7 @@ struct RequestModel {
 	var longitude: String
 	var location: String
     var resolved: Bool
+    var visible: Bool
 	var tags: [String]
 	var timestamp: Double // time the Request was created
 	var expirationDate: Double // time the Request becomes invalidated (calculated OUTSIDE of this Model)
@@ -32,12 +33,13 @@ struct RequestModel {
 		longitude = snapshot.value["longitude"] as! String
 		location = snapshot.value["location"] as! String
         resolved = snapshot.value["resolved"] as! Bool
+        visible = snapshot.value["visible"] as! Bool
 		tags = snapshot.value["tags"] as! [String]
 		timestamp =  snapshot.value["timestamp"] as! Double
 		expirationDate = snapshot.value["expirationDate"] as! Double
 	}
 	
-    init(request: String, additionalDetails: String, authorID: String, latitude: String, longitude: String, location: String, resolved: Bool, tags: [String], expirationDate: Double) {
+    init(request: String, additionalDetails: String, authorID: String, latitude: String, longitude: String, location: String, resolved: Bool, visible: Bool, tags: [String], expirationDate: Double) {
 		self.request = request
 		self.additionalDetails = additionalDetails
 		self.authorID = authorID
@@ -45,6 +47,7 @@ struct RequestModel {
 		self.longitude = longitude
 		self.location = location
         self.resolved = resolved
+        self.visible = visible
 		self.tags = tags
 		self.timestamp = NSDate().timeIntervalSince1970
 		self.expirationDate = expirationDate
