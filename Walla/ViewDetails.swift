@@ -51,10 +51,10 @@ class ViewDetails: UIViewController {
 		self.profile?.layer.cornerRadius = self.profile.frame.height / 4
 		self.profile?.clipsToBounds = true
 		
-		self.message?.text = requestModel.title
-		self.timestamp?.text = requestModel.urgency
-		self.additional?.text = requestModel.content
-		self.location?.text = "NEED TO FIX BACKEND"
+		self.message?.text = requestModel.request
+		self.timestamp?.text = String(requestModel.timestamp)
+        self.additional?.text = requestModel.additionalDetails
+		self.location?.text = requestModel.location
 		self.tags?.text = requestModel.tags.joinWithSeparator(" ")
 	}
 	
@@ -62,12 +62,11 @@ class ViewDetails: UIViewController {
 		let requestID = requestModels[currentIndex].postID!
 		let authorID = requestModels[currentIndex].authorID
 		let userID = myBasic.rootRef.authData.uid
-		let title = requestModels[currentIndex].title
 		let convoHash = createConvoHash(requestID, authorID: authorID, userID: userID)
 		let testRef = myBasic.convoRef.childByAppendingPath(convoHash)
 		testRef.observeEventType(.Value, withBlock: { snap in
 			if snap.value is NSNull {
-				self.createSingleConvoRef(requestID, authorID: authorID, userID: userID, title: title)
+				self.createSingleConvoRef(requestID, authorID: authorID, userID: userID)
 			}
 			else {
 				self.convoID = convoHash
@@ -83,7 +82,7 @@ class ViewDetails: UIViewController {
 	}
 	
 	// Should only be called by users other than the Author
-	func createSingleConvoRef(requestID: String, authorID: String, userID: String, title: String) {
+	func createSingleConvoRef(requestID: String, authorID: String, userID: String) {
 		
 		let newConvo = [
 			"uniqueID": requestID,

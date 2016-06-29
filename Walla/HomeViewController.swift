@@ -86,7 +86,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		}
 		
 		cell.userName?.text = requestModel.authorID
-		cell.message?.text = requestModel.title
+		cell.message?.text = requestModel.request
 		cell.topics?.text = requestModel.tags.joinWithSeparator(", ")
 		cell.timeStamp?.text = "posted " + cell.parseDateFromTime(requestModel.timestamp)
 		
