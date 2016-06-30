@@ -103,6 +103,133 @@
             </objects>
             <point key="canvasLocation" x="1430.5" y="1322.5"/>
         </scene>
+        <!--My Topics-->
+        <scene sceneID="L2j-29-ymk">
+            <objects>
+                <viewController id="KSC-C0-68L" customClass="MyTopics" customModule="Walla" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0I8-Bg-JSL"/>
+                        <viewControllerLayoutGuide type="bottom" id="cZB-mE-gXF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="J39-bo-mOa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssl-nu-dD0">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="0.99215686270000003" green="0.56078431370000004" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="My Topics" id="eza-v0-h5c">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="dkB-L0-Cwz">
+                                            <connections>
+                                                <action selector="goBack:" destination="KSC-C0-68L" id="1MW-LI-85F"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="xJ3-nB-Fec">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="603" id="ob7-dd-5LQ"/>
+                                </constraints>
+                            </imageView>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ELZ-H5-giQ">
+                                <rect key="frame" x="20" y="80" width="335" height="549"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Awp-CK-jV2">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="163"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="163" id="xOO-d2-qgr"/>
+                                        </constraints>
+                                    </pickerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKS-zt-QZ9">
+                                        <rect key="frame" x="8" y="171" width="125" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="125" id="Vr6-sE-6MY"/>
+                                            <constraint firstAttribute="height" constant="30" id="WgZ-vc-ljg"/>
+                                        </constraints>
+                                        <state key="normal" title="Add Topic"/>
+                                        <connections>
+                                            <action selector="addTags:" destination="KSC-C0-68L" eventType="touchUpInside" id="fkt-ov-ayb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l67-Gq-UAP">
+                                        <rect key="frame" x="202" y="171" width="125" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="CCu-oI-PvY"/>
+                                            <constraint firstAttribute="width" constant="125" id="wNS-ra-cWM"/>
+                                        </constraints>
+                                        <state key="normal" title="Clear Topics"/>
+                                        <connections>
+                                            <action selector="removeTags:" destination="KSC-C0-68L" eventType="touchUpInside" id="Lwa-3i-sOt"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U52-6o-W3H">
+                                        <rect key="frame" x="8" y="209" width="319" height="332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Awp-CK-jV2" firstAttribute="leading" secondItem="ELZ-H5-giQ" secondAttribute="leading" id="1KY-HW-ql5"/>
+                                    <constraint firstItem="U52-6o-W3H" firstAttribute="top" secondItem="lKS-zt-QZ9" secondAttribute="bottom" constant="8" id="1Qv-Ze-ffO"/>
+                                    <constraint firstAttribute="trailing" secondItem="U52-6o-W3H" secondAttribute="trailing" constant="8" id="2ra-Ap-Bqc"/>
+                                    <constraint firstItem="l67-Gq-UAP" firstAttribute="top" secondItem="Awp-CK-jV2" secondAttribute="bottom" constant="8" id="J8u-QC-CVg"/>
+                                    <constraint firstAttribute="trailing" secondItem="Awp-CK-jV2" secondAttribute="trailing" id="MtT-fq-Vnh"/>
+                                    <constraint firstAttribute="bottom" secondItem="U52-6o-W3H" secondAttribute="bottom" constant="8" id="PU5-qr-aVu"/>
+                                    <constraint firstItem="U52-6o-W3H" firstAttribute="top" secondItem="l67-Gq-UAP" secondAttribute="bottom" constant="8" id="V1E-yn-oMQ"/>
+                                    <constraint firstItem="U52-6o-W3H" firstAttribute="top" secondItem="l67-Gq-UAP" secondAttribute="bottom" constant="8" id="WjQ-gq-f0D"/>
+                                    <constraint firstItem="lKS-zt-QZ9" firstAttribute="top" secondItem="Awp-CK-jV2" secondAttribute="bottom" constant="8" id="XT4-Ho-9C2"/>
+                                    <constraint firstItem="U52-6o-W3H" firstAttribute="leading" secondItem="ELZ-H5-giQ" secondAttribute="leading" constant="8" id="an3-YF-fz1"/>
+                                    <constraint firstItem="lKS-zt-QZ9" firstAttribute="leading" secondItem="ELZ-H5-giQ" secondAttribute="leading" constant="8" id="eOu-hD-SKp"/>
+                                    <constraint firstAttribute="trailing" secondItem="l67-Gq-UAP" secondAttribute="trailing" constant="8" id="gfK-h3-dEK"/>
+                                    <constraint firstItem="Awp-CK-jV2" firstAttribute="top" secondItem="ELZ-H5-giQ" secondAttribute="top" id="lOn-QX-Hqb"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ELZ-H5-giQ" firstAttribute="leading" secondItem="J39-bo-mOa" secondAttribute="leadingMargin" id="2DZ-4F-zeb"/>
+                            <constraint firstItem="xJ3-nB-Fec" firstAttribute="leading" secondItem="ssl-nu-dD0" secondAttribute="leading" id="G5v-vw-Qvz"/>
+                            <constraint firstItem="xJ3-nB-Fec" firstAttribute="width" secondItem="J39-bo-mOa" secondAttribute="width" id="HBE-2J-9Do"/>
+                            <constraint firstItem="ELZ-H5-giQ" firstAttribute="leading" secondItem="J39-bo-mOa" secondAttribute="leading" constant="20" id="Kax-3E-ii5"/>
+                            <constraint firstItem="xJ3-nB-Fec" firstAttribute="leading" secondItem="J39-bo-mOa" secondAttribute="leading" id="KzZ-oU-9g4"/>
+                            <constraint firstItem="ELZ-H5-giQ" firstAttribute="top" secondItem="ssl-nu-dD0" secondAttribute="bottom" constant="16" id="MFB-bg-3Em"/>
+                            <constraint firstItem="ELZ-H5-giQ" firstAttribute="top" secondItem="ssl-nu-dD0" secondAttribute="bottom" constant="16" id="OUG-Jc-qaU"/>
+                            <constraint firstItem="xJ3-nB-Fec" firstAttribute="trailing" secondItem="ssl-nu-dD0" secondAttribute="trailing" id="TEw-CR-b5A"/>
+                            <constraint firstAttribute="trailing" secondItem="ELZ-H5-giQ" secondAttribute="trailing" constant="20" id="Tsd-yA-461"/>
+                            <constraint firstItem="cZB-mE-gXF" firstAttribute="top" secondItem="ELZ-H5-giQ" secondAttribute="bottom" constant="38" id="UF4-r1-lge"/>
+                            <constraint firstItem="ELZ-H5-giQ" firstAttribute="centerX" secondItem="xJ3-nB-Fec" secondAttribute="centerX" id="W6S-os-28D"/>
+                            <constraint firstItem="xJ3-nB-Fec" firstAttribute="top" secondItem="ssl-nu-dD0" secondAttribute="bottom" id="ZFX-je-Sb4"/>
+                            <constraint firstItem="cZB-mE-gXF" firstAttribute="top" secondItem="ELZ-H5-giQ" secondAttribute="bottom" constant="38" id="eln-Dl-5Lf"/>
+                            <constraint firstAttribute="trailing" secondItem="ELZ-H5-giQ" secondAttribute="trailing" constant="20" id="fZY-5l-E3Y"/>
+                            <constraint firstItem="cZB-mE-gXF" firstAttribute="top" secondItem="ELZ-H5-giQ" secondAttribute="bottom" constant="38" id="l3j-Ov-qen"/>
+                            <constraint firstItem="ELZ-H5-giQ" firstAttribute="leading" secondItem="J39-bo-mOa" secondAttribute="leading" constant="20" id="lFb-KT-UgX"/>
+                            <constraint firstItem="ELZ-H5-giQ" firstAttribute="top" secondItem="ssl-nu-dD0" secondAttribute="bottom" constant="16" id="luF-cK-Gmg"/>
+                            <constraint firstItem="xJ3-nB-Fec" firstAttribute="bottom" secondItem="cZB-mE-gXF" secondAttribute="top" id="wwF-sf-EWK"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2DZ-4F-zeb"/>
+                                <exclude reference="eln-Dl-5Lf"/>
+                                <exclude reference="l3j-Ov-qen"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="addTopics" destination="lKS-zt-QZ9" id="5Gf-cR-Zce"/>
+                        <outlet property="clearTopics" destination="l67-Gq-UAP" id="OHP-dy-fiV"/>
+                        <outlet property="topicLabel" destination="U52-6o-W3H" id="g8F-Te-zs6"/>
+                        <outlet property="topicPicker" destination="Awp-CK-jV2" id="etE-t6-RPH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q60-1s-ptM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1910.5" y="1322.5"/>
+        </scene>
         <!--Look Around-->
         <scene sceneID="ncd-YX-B28">
             <objects>
@@ -676,6 +803,9 @@
                                         <state key="normal" title="My Topic Tags">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="KSC-C0-68L" kind="modal" id="7o2-mZ-hWx"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksu-Pk-uLU">
                                         <rect key="frame" x="0.0" y="200" width="375" height="50"/>
@@ -1078,7 +1208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4RO-mJ-L8G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1430.5" y="-247.5"/>
+            <point key="canvasLocation" x="1910.5" y="534.5"/>
         </scene>
         <!--Write Message-->
         <scene sceneID="LTh-jd-6i3">

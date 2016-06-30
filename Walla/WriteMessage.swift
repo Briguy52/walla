@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 
+var tagsToPick = ["#ElementarySchool", "#MiddleSchool", "#HighSchool", "#University", "#Industry", "#LongTermChange", "#MathAndCompSci", "#PartnershipsForChange", "#SocialEntrpreneurship", "#Entrepreneurship", "#STEM+", "#MakerIdeas", "#SuccessStories", "#OnlineLearning", "#Engineering", "#CommunityIntegration", "#GrowingSustainedSTEM"]
+
 class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
 
 	@IBOutlet weak var tagPicker: UIPickerView!
@@ -34,8 +36,6 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
-	
-	var tagsToPick = ["#Elementary School", "#Middle School", "#High School", "#University", "#Industry", "#Long Term Change", "#Math and Comp Sci", "#Partnerships for Change", "#Social Entrpreneurship", "#Entrepreneurship", "#STEM+", "#Maker Ideas", "#Success Stories", "#Online Learning", "#Engineering", "#Community Integration", "#Growing Sustained STEM"]
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -83,7 +83,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		
 		let alert = UIAlertView()
 		alert.title = "You missed a field"
-		alert.addButtonWithTitle("ok")
+		alert.addButtonWithTitle("OK")
 		
 		print(myTags.count)
 		print(requestBody.text)
@@ -261,7 +261,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     
 	//tag functions
 	func setPossibleTags(tags: [String]) {
-		self.tagsToPick = tags
+		tagsToPick = tags
 	}
 	
 	func setSelectedTags(tags: [String]) {
@@ -273,16 +273,16 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	}
 	
 	func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-		return self.tagsToPick.count
+		return tagsToPick.count
 	}
 	
 	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		return self.tagsToPick[row]
+		return tagsToPick[row]
 	}
 	
 	func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
 		
-		let titleData = self.tagsToPick[row]
+		let titleData = tagsToPick[row]
 		let myTitle = NSAttributedString(string: titleData, attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
 		
 		return myTitle
@@ -304,7 +304,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	
 	@IBAction func addTags(sender: UIButton)
 	{
-		let tag = self.tagsToPick[self.tagPicker.selectedRowInComponent(0)]
+		let tag = tagsToPick[self.tagPicker.selectedRowInComponent(0)]
 		if tagLabel.text == "Please Enter a Tag"
 		{
 			tagLabel.text = ""
