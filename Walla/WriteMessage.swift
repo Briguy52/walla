@@ -49,7 +49,9 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		self.requestDetails?.layer.borderWidth = 0.2
 		self.requestDetails?.layer.borderColor = UIColor.lightGrayColor().CGColor
 		
-		self.holla?.userInteractionEnabled = false
+		self.addTagButton.hidden = true
+		
+		//self.holla?.userInteractionEnabled = false
 		//self.holla?.titleLabel?.textColor = UIColor(netHex: 0xffa160)
 		
 		//self.hidesBottomBarWhenPushed = true
@@ -64,21 +66,98 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	}
 	
 	
-	@IBAction func submit(sender: UIButton) {
+	func submit()
+	{
 		self.saveAndUpdate()
 		self.resetFields()
 		self.tabBarController?.tabBar.hidden = false
 		tabBarController?.selectedIndex = 0
 	}
 	
-    // temporarily commenting this out for testing purposes
-	@IBAction func allFieldsSet(sender: AnyObject) {
-//		if !requestBody.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty && !requestDetails.text.isEmpty && !generalLocation.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty && myTags.count > 1
-//		{
-			self.holla?.userInteractionEnabled = true
-			self.holla?.titleLabel?.textColor = UIColor(netHex: 0xffffff)
-//		}
+	@IBAction func allFieldsSet(sender: UIButton)
+	{
+		var tags: Bool = false
+		var wish: Bool = false
+		var dets: Bool = false
+		var locs: Bool = false
+		
+		let alert = UIAlertView()
+		alert.title = "You missed a field"
+		alert.addButtonWithTitle("ok")
+		
+		print(myTags.count)
+		print(requestBody.text)
+		print(requestDetails.text)
+		print(generalLocation.text)
+		
+		if self.myTags.count == 1
+		{
+			tags = true
+		}
+		else
+		{
+			tags = false
+		}
+		
+		if self.requestBody.text!.isEmptyField == false
+		{
+			wish = true
+		}
+		else
+		{
+			wish = false
+		}
+		
+		if self.requestDetails.text!.isEmptyField == false
+		{
+			dets = true
+		}
+		else
+		{
+			dets = false
+		}
+		
+		if self.generalLocation.text!.isEmptyField == false
+		{
+			locs = true
+		}
+		else
+		{
+			locs = false
+		}
+		
+		if tags == true && wish == true && dets == true && locs == true
+		{
+			self.submit()
+		}
+		else
+		{
+			if tags == false
+			{
+				alert.message = "You forgot to add tags!"
+			}
+			else if wish == false
+			{
+				alert.message = "You forgot the wish!"
+			}
+			else if dets == false
+			{
+				alert.message = "You forgot the details!"
+			}
+			else if locs == false
+			{
+				alert.message = "You forgot the location!"
+			}
+			else
+			{
+				alert.message = "Not sure why this showed up"
+			}
+			
+			alert.show()
+		}
+		
 	}
+
 	
     // TODO: link up location with Tim's UI text field
 	func saveAndUpdate() {
@@ -209,6 +288,20 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		return myTitle
 	}
 	
+	func oneTag()
+	{
+		if self.myTags.count == 1
+		{
+			self.addTagButton.hidden = true
+			self.removeTagButton.hidden = false
+		}
+		else
+		{
+			self.addTagButton.hidden = false
+			self.removeTagButton.hidden = true
+		}
+	}
+	
 	@IBAction func addTags(sender: UIButton)
 	{
 		let tag = self.tagsToPick[self.tagPicker.selectedRowInComponent(0)]
@@ -217,6 +310,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 			tagLabel.text = ""
 		}
 		self.addTag(tag)
+		self.oneTag()
 	}
 	
 	@IBAction func removeTags(sender: UIButton)
@@ -224,11 +318,18 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		self.myTags.removeAll()
 		self.tagLabel.textColor = UIColor.redColor()
 		self.tagLabel.text = "Please Enter a Tag"
+		self.oneTag()
 	}
 	
 	func addTag(tag: String) {
         self.myTags.removeAll()
         self.myTags.append(tag)
         self.tagLabel.text = self.myTags.joinWithSeparator(" ")
+	}
+}
+
+extension String {
+	var isEmptyField: Bool {
+		return stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == ""
 	}
 }

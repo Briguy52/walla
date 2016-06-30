@@ -70,7 +70,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Ask Tim about the order of WHEN to place this call
         self.observeWithStreams()
 		
-		self.noWallasPosts()
+		//self.noWallasPosts()
     }
 	
 	func noWallasPosts()
@@ -135,7 +135,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		cell.userName?.text = requestModel.authorID
 		cell.message?.text = requestModel.request
-		cell.topics?.text = requestModel.tags.joinWithSeparator(", ")
+		cell.topics?.text = requestModel.tags.joinWithSeparator(" ")
 		cell.timeStamp?.text = "posted " + cell.parseDateFromTime(requestModel.timestamp)
 		
 		cell.profile.layer.borderWidth = 0.5
@@ -143,6 +143,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		cell.profile.layer.borderColor = UIColor.blackColor().CGColor
 		cell.profile.layer.cornerRadius = cell.profile.frame.height / 2
 		cell.profile.clipsToBounds = true
+		
+		self.noWallasPosts()
 		
 		return cell
 	}

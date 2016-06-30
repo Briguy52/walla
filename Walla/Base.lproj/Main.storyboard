@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4AJ-Vh-XpJ" id="iZj-pM-bso">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWK-qg-7iK">
@@ -265,7 +265,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0nA-zo-0Ev" id="sWq-sY-Kco">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tk6-PO-mVb">
@@ -1126,7 +1126,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="UK4-f4-RDC">
+                                    <pickerView alpha="0.75" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="UK4-f4-RDC">
                                         <rect key="frame" x="21" y="32" width="334" height="97"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="97" id="5lH-Pe-MEb"/>
@@ -1150,7 +1150,7 @@
                                             <constraint firstAttribute="width" constant="106" id="7KD-qI-6sx"/>
                                             <constraint firstAttribute="height" constant="30" id="XOu-vs-LaF"/>
                                         </constraints>
-                                        <state key="normal" title="Clear Topics">
+                                        <state key="normal" title="Remove Topic">
                                             <color key="titleColor" red="1" green="0.0" blue="0.020532956710000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -1198,7 +1198,7 @@
                                     <color key="titleColor" red="0.2470588235" green="0.56078431370000004" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="submit:" destination="BBR-qh-Caj" eventType="touchUpInside" id="0rN-4J-8Va"/>
+                                    <action selector="allFieldsSet:" destination="BBR-qh-Caj" eventType="touchUpInside" id="flH-ep-jJS"/>
                                 </connections>
                             </button>
                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3II-Vt-kKG">
@@ -1269,7 +1269,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <action selector="allFieldsSet:" destination="BBR-qh-Caj" eventType="editingDidBegin" id="2bq-mt-hKf"/>
                                             <action selector="locationEditingDidEnd:" destination="BBR-qh-Caj" eventType="editingDidEnd" id="gyA-Sc-RYL"/>
                                         </connections>
                                     </textField>
