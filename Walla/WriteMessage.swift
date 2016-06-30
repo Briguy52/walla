@@ -71,7 +71,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		tabBarController?.selectedIndex = 0
 	}
 	
-    // temporarily commenting this out for testing purposes 
+    // temporarily commenting this out for testing purposes
 	@IBAction func allFieldsSet(sender: AnyObject) {
 //		if !requestBody.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty && !requestDetails.text.isEmpty && !generalLocation.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty && myTags.count > 1
 //		{
@@ -98,7 +98,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		requestBody?.text = ""
 		requestDetails?.text = ""
 		generalLocation?.text = ""
-		tagLabel?.text = "#General "
+		tagLabel?.text = "#STEM+ "
 		
 	}
 	
@@ -159,7 +159,6 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     // Begin listeners for input text fields and text views (Brian)
     
     @IBAction func requestEditingDidEnd(sender: UITextField) {
-        print("womp request editing did end")
         if let text = self.requestBody.text {
             self.myTitle = text
         }
