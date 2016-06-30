@@ -18,6 +18,7 @@ class MessageViewController: SLKTextViewController {
 	
 	let myBasic = Basic() // This ref will be replaced by the selected conversation ref
     let myUserBackend = UserBackend()
+    let myConvoBackend = ConvoBackend() 
 	var messageModels : [MessageModel] = [MessageModel]()
 	var disposeBag = DisposeBag()
 	var isInitialLoad = true;
@@ -32,7 +33,7 @@ class MessageViewController: SLKTextViewController {
 		self.navigationItem.hidesBackButton = true
 		
 		self.sender = myBasic.rootRef.authData.uid
-		
+        
 		let keychain = MyApplication.sharedInstance.keychain
 		let profileData:NSData! = keychain.dataForKey("profile")
 		let profile:A0UserProfile = NSKeyedUnarchiver.unarchiveObjectWithData(profileData) as! A0UserProfile

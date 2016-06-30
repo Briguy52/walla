@@ -1,5 +1,5 @@
 //
-//  ConversationBackend.swift
+//  ConvoBackend.swift
 //  Walla
 //
 //  Created by Brian Lin on 6/29/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ConversationBackend {
+class ConvoBackend {
     
     let myBasic = Basic()
     
