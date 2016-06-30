@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
 
 	@IBOutlet weak var tagPicker: UIPickerView!
 	@IBOutlet weak var addTagButton: UIButton!
@@ -43,6 +43,8 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		
 		self.tagPicker?.dataSource = self
 		self.tagPicker?.delegate = self
+        
+        self.initRequestDetails()
 		
 		self.navigationItem.hidesBackButton = false
 		self.requestDetails?.layer.borderWidth = 0.2
@@ -167,6 +169,16 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         if let text = self.requestBody.text {
             self.myTitle = text
         }
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        
+        print("womp")
+        
+    }
+    
+    func initRequestDetails() {
+        self.requestDetails.delegate = self
     }
     
     
