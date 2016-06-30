@@ -51,27 +51,30 @@ class ViewDetails: UIViewController {
 		self.profile?.layer.cornerRadius = self.profile.frame.height / 4
 		self.profile?.clipsToBounds = true
 		
-		self.message?.text = requestModel.title
-		self.timestamp?.text = requestModel.urgency
-		self.additional?.text = requestModel.content
-		self.location?.text = "NEED TO FIX BACKEND"
+		self.message?.text = requestModel.request
+		self.timestamp?.text = String(requestModel.timestamp)
+        self.additional?.text = requestModel.additionalDetails
+		self.location?.text = requestModel.location
 		self.tags?.text = requestModel.tags.joinWithSeparator(" ")
 	}
 	
 	@IBAction func startConvo(sender: AnyObject) {
+        print("womp start convo")
+        
 		let requestID = requestModels[currentIndex].postID!
 		let authorID = requestModels[currentIndex].authorID
 		let userID = myBasic.rootRef.authData.uid
-		let title = requestModels[currentIndex].title
 		let convoHash = createConvoHash(requestID, authorID: authorID, userID: userID)
 		let testRef = myBasic.convoRef.childByAppendingPath(convoHash)
-		testRef.observeEventType(.Value, withBlock: { snap in
-			if snap.value is NSNull {
-				self.createSingleConvoRef(requestID, authorID: authorID, userID: userID, title: title)
+		testRef.observeEventType(.Value, withBlock: { snapshot in
+			if snapshot.value is NSNull {
+                print("womp null")
+				self.createSingleConvoRef(requestID, authorID: authorID, userID: userID)
 			}
 			else {
+                print("womp not null")
 				self.convoID = convoHash
-				//self.performSegueWithIdentifier("genieCellToMessagingVC", sender: self)
+				self.performSegueWithIdentifier("showMessage", sender: self)
 				self.tabBarController?.selectedIndex = 3
 			}
 		})
@@ -83,10 +86,10 @@ class ViewDetails: UIViewController {
 	}
 	
 	// Should only be called by users other than the Author
-	func createSingleConvoRef(requestID: String, authorID: String, userID: String, title: String) {
+	func createSingleConvoRef(requestID: String, authorID: String, userID: String) {
 		
 		let newConvo = [
-			"title": title,
+			"uniqueID": requestID,
 			"authorID": authorID,
 			"userID": userID,
 			"timestamp": currentTime
@@ -110,10 +113,10 @@ class ViewDetails: UIViewController {
 		})
 	}
 	
-//	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//		if segue.identifier == "genieCellToMessagingVC" {
-//			let messagingVC = segue.destinationViewController as! MessagingViewController
-//			messagingVC.convoID = self.convoID
-//		}
-//	}
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "showMessage" {
+			let messagingVC = segue.destinationViewController as! MessageViewController
+			messagingVC.convoID = self.convoID
+		}
+	}
 }

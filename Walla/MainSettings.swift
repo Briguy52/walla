@@ -33,7 +33,7 @@ class MainSettings: UIViewController{
 	
 	@IBAction func phoneNumberSavePressed(sender: AnyObject) {
 		if let number = self.phoneNumberTextField.text {
-			self.myUserBackend.updatePhoneNumber(number, userID: myBasic.rootRef.authData.uid)
+            self.myUserBackend.updateUserData("phoneNumber", value: number, userID: myBasic.rootRef.authData.uid)
 		}
 		self.phoneNumberSaveButton.hidden = true
 	}

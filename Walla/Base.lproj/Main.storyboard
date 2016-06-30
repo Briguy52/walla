@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ak3-Nb-uIc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ghy-10-qaV">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4AJ-Vh-XpJ" id="iZj-pM-bso">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWK-qg-7iK">
@@ -265,7 +265,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0nA-zo-0Ev" id="sWq-sY-Kco">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tk6-PO-mVb">
@@ -582,6 +582,7 @@
                         <outlet property="profile" destination="rHp-2K-YMr" id="E73-XT-8pf"/>
                         <outlet property="tags" destination="TD4-UT-URw" id="BNo-l2-kJu"/>
                         <outlet property="timestamp" destination="RYv-w3-Y2k" id="ULF-7P-0GA"/>
+                        <segue destination="4ux-RC-hsb" kind="show" identifier="showMessage" id="pOS-je-JBp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Qi-nu-Eg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1156,7 +1157,7 @@
                                             <action selector="removeTags:" destination="BBR-qh-Caj" eventType="touchUpInside" id="nyF-vk-cuy"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#General" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rma-pk-q4w">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#STEM+" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rma-pk-q4w">
                                         <rect key="frame" x="21" y="169" width="334" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="A8C-FW-iNV"/>
@@ -1210,6 +1211,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="requestEditingDidEnd:" destination="BBR-qh-Caj" eventType="editingDidEnd" id="5vj-TH-mRU"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please add any additional details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iI2-3Z-579">
                                         <rect key="frame" x="8" y="46" width="261" height="21"/>
@@ -1266,6 +1270,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="allFieldsSet:" destination="BBR-qh-Caj" eventType="editingDidBegin" id="2bq-mt-hKf"/>
+                                            <action selector="locationEditingDidEnd:" destination="BBR-qh-Caj" eventType="editingDidEnd" id="gyA-Sc-RYL"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -1540,4 +1545,7 @@
         <image name="walla-background" width="405" height="719"/>
         <image name="write" width="42" height="42"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="pOS-je-JBp"/>
+    </inferredMetricsTieBreakers>
 </document>
