@@ -37,6 +37,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	var latitude = ""
 	var longitude = ""
 	var currentTime = NSDate().timeIntervalSince1970
+    
+    // TODO: stores these tags in the Users ref
+    var tagsToFilter: [String] = ["STEM+ "]
 	
 //	var usernames: [String] = ["user1", "user2", "user3", "user4"]
 //	var messages: [String] = ["m1", "m2", "m3", "m4"]
@@ -63,6 +66,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		imageView.contentMode = .ScaleAspectFill
 		
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
+        
+        // Ask Tim about the order of WHEN to place this call
+        print("womp call observe with streams")
+        self.observeWithStreams()
 		
 		self.noWallasPosts()
 		
@@ -80,6 +87,35 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 			noWallas.hidden = true
 		}
 	}
+    
+    // Copied from MessagingVC, remainder of code to use is there
+    func observeWithStreams() {
+        requestModels.removeAll()
+        self.myBasic.requestRef.rx_observe(FEventType.ChildAdded)
+            .filter { snapshot in
+                return !(snapshot.value is NSNull)
+            }
+            .filter { snapshot in
+                if let exp = snapshot.value.objectForKey("expirationDate")?.doubleValue {
+                    return exp >= self.currentTime
+                }
+                return false
+            }
+            .map { snapshot in
+                return RequestModel(snapshot: snapshot)
+            }
+            .subscribeNext({ (requestModel: RequestModel) -> Void in
+                requestModels.insert(requestModel, atIndex: 0);
+            })
+            .addDisposableTo(self.disposeBag)
+        
+        self.myBasic.requestRef.rx_observe(FEventType.Value)
+            .subscribeNext({ (snapshot: FDataSnapshot) -> Void in
+                self.tableView.reloadData()
+                self.isInitialLoad = false;
+            })
+            .addDisposableTo(self.disposeBag)
+    }
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
