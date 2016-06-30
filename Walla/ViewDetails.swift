@@ -59,18 +59,22 @@ class ViewDetails: UIViewController {
 	}
 	
 	@IBAction func startConvo(sender: AnyObject) {
+        print("womp start convo")
+        
 		let requestID = requestModels[currentIndex].postID!
 		let authorID = requestModels[currentIndex].authorID
 		let userID = myBasic.rootRef.authData.uid
 		let convoHash = createConvoHash(requestID, authorID: authorID, userID: userID)
 		let testRef = myBasic.convoRef.childByAppendingPath(convoHash)
-		testRef.observeEventType(.Value, withBlock: { snap in
-			if snap.value is NSNull {
+		testRef.observeEventType(.Value, withBlock: { snapshot in
+			if snapshot.value is NSNull {
+                print("womp null")
 				self.createSingleConvoRef(requestID, authorID: authorID, userID: userID)
 			}
 			else {
+                print("womp not null")
 				self.convoID = convoHash
-				//self.performSegueWithIdentifier("genieCellToMessagingVC", sender: self)
+				self.performSegueWithIdentifier("showMessage", sender: self)
 				self.tabBarController?.selectedIndex = 3
 			}
 		})
@@ -109,10 +113,10 @@ class ViewDetails: UIViewController {
 		})
 	}
 	
-//	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//		if segue.identifier == "genieCellToMessagingVC" {
-//			let messagingVC = segue.destinationViewController as! MessagingViewController
-//			messagingVC.convoID = self.convoID
-//		}
-//	}
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "showMessage" {
+			let messagingVC = segue.destinationViewController as! MessageViewController
+			messagingVC.convoID = self.convoID
+		}
+	}
 }

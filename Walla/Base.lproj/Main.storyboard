@@ -582,6 +582,7 @@
                         <outlet property="profile" destination="rHp-2K-YMr" id="E73-XT-8pf"/>
                         <outlet property="tags" destination="TD4-UT-URw" id="BNo-l2-kJu"/>
                         <outlet property="timestamp" destination="RYv-w3-Y2k" id="ULF-7P-0GA"/>
+                        <segue destination="4ux-RC-hsb" kind="show" identifier="showMessage" id="pOS-je-JBp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Qi-nu-Eg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1544,4 +1545,7 @@
         <image name="walla-background" width="405" height="719"/>
         <image name="write" width="42" height="42"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="pOS-je-JBp"/>
+    </inferredMetricsTieBreakers>
 </document>
