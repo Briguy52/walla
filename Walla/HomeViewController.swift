@@ -68,13 +68,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
         
         // Ask Tim about the order of WHEN to place this call
-        print("womp call observe with streams")
         self.observeWithStreams()
 		
 		self.noWallasPosts()
-		
-		print(requestModels.count)
-	}
+    }
 	
 	func noWallasPosts()
 	{
