@@ -20,14 +20,13 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	@IBOutlet weak var generalLocation: UITextField!
 	@IBOutlet weak var holla: UIButton!
 	
-	var myTitle:String = ""
+	var myTitle:String = "default request"
 	var myAuthorName:String = ""
-	var myDetails:String = "womp"
+	var myDetails:String = "default details"
 	var myLatitude: String = "36.0014"
 	var myLongitude: String = "78.9382"
-    var myLocation: String = "Anonymous location"
-	var myUrgency: String = "normal"
-	var myTags:[String] = ["#General "]
+    var myLocation: String = "default location"
+	var myTags:[String] = ["#STEM+"]
 	var myDelayHours: Double = 5
 	
 	var currentTime = NSDate().timeIntervalSince1970
@@ -36,7 +35,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
 	
-	var tagsToPick = ["#Elementary School", "#Middle School", "#High School", "#University", "#Inudstry", "#Long Term Change", "#Math and Comp Sci", "#Partnerships for Change", "#Social Entrpreneurship", "#Entrepreneurship", "#STEM+", "#Maker Ideas", "#Success Stories", "#Online Learning", "#Engineering", "#Community Integration", "#Growing Sustained STEM"]
+	var tagsToPick = ["#Elementary School", "#Middle School", "#High School", "#University", "#Industry", "#Long Term Change", "#Math and Comp Sci", "#Partnerships for Change", "#Social Entrpreneurship", "#Entrepreneurship", "#STEM+", "#Maker Ideas", "#Success Stories", "#Online Learning", "#Engineering", "#Community Integration", "#Growing Sustained STEM"]
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -72,13 +71,13 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		tabBarController?.selectedIndex = 0
 	}
 	
-	
+    // temporarily commenting this out for testing purposes 
 	@IBAction func allFieldsSet(sender: AnyObject) {
-		if !requestBody.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty && !requestDetails.text.isEmpty && !generalLocation.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty && myTags.count > 1
-		{
+//		if !requestBody.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty && !requestDetails.text.isEmpty && !generalLocation.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty && myTags.count > 1
+//		{
 			self.holla?.userInteractionEnabled = true
 			self.holla?.titleLabel?.textColor = UIColor(netHex: 0xffffff)
-		}
+//		}
 	}
 	
     // TODO: link up location with Tim's UI text field
@@ -142,11 +141,9 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		//self.name.text = self.myAuthorName
 	}
 	
+    // currently not called
 	func initRequestInfo() {
 		self.tagLabel.text = self.myTags.joinWithSeparator("")
-//		self.detailTextInput.text = self.myDetails
-//		self.name.text = self.myAuthorName
-//		self.expirationNumber.text = "Expire in: \(Int(myDelayHours)) hours" // Make this a function
 	}
 	
 	func calcHoursFromNow(expiry: Double) -> Double {
@@ -231,9 +228,8 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	}
 	
 	func addTag(tag: String) {
-		if (!self.myTags.contains(tag)) {
-			self.myTags.append(tag)
-			self.tagLabel.text = self.myTags.joinWithSeparator(" ")
-		}
+        self.myTags.removeAll()
+        self.myTags.append(tag)
+        self.tagLabel.text = self.myTags.joinWithSeparator(" ")
 	}
 }

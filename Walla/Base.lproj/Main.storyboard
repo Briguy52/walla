@@ -1156,7 +1156,7 @@
                                             <action selector="removeTags:" destination="BBR-qh-Caj" eventType="touchUpInside" id="nyF-vk-cuy"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#General" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rma-pk-q4w">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#STEM+" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rma-pk-q4w">
                                         <rect key="frame" x="21" y="169" width="334" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="A8C-FW-iNV"/>
