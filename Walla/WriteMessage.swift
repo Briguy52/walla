@@ -83,7 +83,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	
     // TODO: link up location with Tim's UI text field
 	func saveAndUpdate() {
-        self.postNewRequest(self.myUserBackend.getUserID(), request: self.myTitle, additionalDetails: self.myDetails, latitude: self.myLatitude, longitude: self.myLongitude, location: self.myLocation, resolved: false, visible: true, tags: self.myTags, expirationDate: self.myDelayHours)
+        self.postNewRequest(self.myUserBackend.getUserID(), request: self.myTitle, additionalDetails: self.myDetails, latitude: self.myLatitude, longitude: self.myLongitude, location: self.myLocation, resolved: false, visible: true, tags: self.myTags, expirationDate: self.calcExpirationDate(self.myDelayHours))
 	}
 	
 	
