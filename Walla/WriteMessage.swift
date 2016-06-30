@@ -161,6 +161,16 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 //			self.myTitle = title
 //		}
 //	}
+    
+    @IBAction func requestEditingDidEnd(sender: UITextField) {
+        print("womp request editing did end")
+        if let text = self.requestBody.text {
+            self.myTitle = text
+        }
+    }
+    
+    
+    
 	
 	//tag functions
 	func setPossibleTags(tags: [String]) {
