@@ -158,11 +158,8 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		return ( NSDate().timeIntervalSince1970 + hours * 60 * 60 )
 	}
 	
-//	@IBAction func requestTitleEditingDidEnd(sender: AnyObject) {
-//		if let title = self.requestTitleTextField.text {
-//			self.myTitle = title
-//		}
-//	}
+    
+    // Begin listeners for input text fields and text views (Brian)
     
     @IBAction func requestEditingDidEnd(sender: UITextField) {
         print("womp request editing did end")
@@ -172,18 +169,21 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     }
     
     func textViewDidChange(textView: UITextView) {
-        
-        print("womp")
-        
+        if let text = self.requestDetails.text {
+            self.myDetails = text
+        }
     }
     
     func initRequestDetails() {
         self.requestDetails.delegate = self
     }
     
+    @IBAction func locationEditingDidEnd(sender: UITextField) {
+        if let text = self.generalLocation.text {
+            self.myLocation = text
+        }
+    }
     
-    
-	
 	//tag functions
 	func setPossibleTags(tags: [String]) {
 		self.tagsToPick = tags
