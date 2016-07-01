@@ -18,7 +18,7 @@ class UserBackend {
 		myBasic.rootRef.unauth()
 	}
 	
-	func updateUserData(key: String, value: String, userID: String) {
+	func updateUserData(key: String, value: AnyObject, userID: String) {
 		let pair = [key:value]
 		let pairRef = myBasic.userRef.childByAppendingPath(userID)
 		pairRef.updateChildValues(pair)
@@ -74,8 +74,21 @@ class UserBackend {
 					}
 				}
 			})
-		
 	}
+    
+    func getStuff(param: String, userID: String, completion: (result: AnyObject) -> Void) {
+        let key = userID
+        let ref = myBasic.rootRef.childByAppendingPath(self.userPath)
+        ref.queryOrderedByChild(key).queryLimitedToFirst(1)
+            .observeEventType(.ChildAdded, withBlock: { snapshot in
+                if let snapshot = snapshot {
+                    print(snapshot)
+                    if let out = snapshot.value[param] {
+                        completion(result: out!)
+                    }
+                }
+            })
+    }
 	
 	func getNumPosts(userID: String, completion: (result: String) -> Void) {
 		let key = userID

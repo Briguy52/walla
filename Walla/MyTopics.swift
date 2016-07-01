@@ -25,11 +25,18 @@ class MyTopics: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 	override func viewDidLoad() {
 		super.viewDidLoad()
         
+        print("womp MyTopics loaded")
+        myUserBackend.getStuff("tags", userID: self.myBasic.rootRef.authData.uid) {
+            (result: AnyObject) in
+            print("womp tags retrieved")
+            print(result as! [String])
+            self.myTags = result as! [String]
+        }
+        
         // In order to show the Tag Picker
         self.topicPicker?.dataSource = self
         self.topicPicker?.delegate = self
 
-		
 		self.tabBarController?.tabBar.hidden = true
 	}
 	
@@ -95,12 +102,18 @@ class MyTopics: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 		self.myTags.removeAll()
 		self.topicLabel.textColor = UIColor.redColor()
 		self.topicLabel.text = "Please Enter a Tag"
+        self.updateUserTags()
 	}
 	
 	func addTag(tag: String) {
         if (!self.myTags.contains(tag)) {
             self.myTags.append(tag)
-            self.topicLabel.text = self.myTags.joinWithSeparator("# ") + "\n"
+            self.topicLabel.text = self.myTags.joinWithSeparator(" ") + "\n"
         }
+        self.updateUserTags()
 	}
+    
+    func updateUserTags() {
+        self.myUserBackend.updateUserData("tags", value: self.myTags, userID: self.myBasic.rootRef.authData.uid)
+    }
 }
