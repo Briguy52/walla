@@ -25,12 +25,9 @@ class MyTopics: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 	override func viewDidLoad() {
 		super.viewDidLoad()
         
-        print("womp MyTopics loaded")
         myUserBackend.getStuff("tags", userID: self.myBasic.rootRef.authData.uid) {
             (result: AnyObject) in
-            print("womp tags retrieved")
-            print(result as! [String])
-            self.myTags = result as! [String]
+            self.initTags(result as! [String])
         }
         
         // In order to show the Tag Picker
@@ -39,6 +36,12 @@ class MyTopics: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 
 		self.tabBarController?.tabBar.hidden = true
 	}
+    
+    func initTags(tags: [String]) {
+        for tag in tags {
+            self.addTag(tag)
+        }
+    }
 	
 	@IBAction func goBack(sender: UIBarButtonItem)
 	{

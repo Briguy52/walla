@@ -55,7 +55,7 @@ class MyProfileViewController: UIViewController {
 	func setNameAndTitle()
 	{
 		let key=self.myUserBackend.getUserID()
-		self.myUserBackend.getUserInfo("DisplayName", userID: key)
+		self.myUserBackend.getUserInfo("displayName", userID: key)
 		{
 			(result: String) in self.username.text = result
 		}
