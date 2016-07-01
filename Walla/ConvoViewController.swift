@@ -45,6 +45,10 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
 	}
 	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+	}
+	
 	
 	// MARK: - Table view data source
 	
@@ -72,9 +76,13 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		return cell
 	}
 	
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		self.performSegueWithIdentifier("messagingSegue", sender: nil)
+	}
+	
 	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
 		// Return false if you do not want the specified item to be editable.
-		return true
+		return false
 	}
 	
 	// Copied from MessagingVC, remainder of code to use is there
@@ -115,8 +123,12 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		if let indexPath = self.tableView.indexPathForSelectedRow {
 			convoIndex = indexPath.row
 		}
-		let messagingVC = segue.destinationViewController as! MessageViewController
-		messagingVC.convoID = self.convoModels[convoIndex].convoID!
+		
+		if segue.identifier == "messagingSegue"
+		{
+			let messagingVC = segue.destinationViewController as! MessageViewController
+			messagingVC.convoID = self.convoModels[convoIndex].convoID!
+		}
 	}
 	
 }

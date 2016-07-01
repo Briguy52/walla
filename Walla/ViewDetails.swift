@@ -36,7 +36,6 @@ class ViewDetails: UIViewController {
 	
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
-		self.tabBarController?.tabBar.hidden = false
 	}
 	
 	func initRequestInfo()
@@ -69,8 +68,9 @@ class ViewDetails: UIViewController {
 			}
 			else {
 				self.convoID = convoHash
-				self.performSegueWithIdentifier("showMessage", sender: self)
+				self.tabBarController?.tabBar.hidden = false
 				self.tabBarController?.selectedIndex = 3
+				self.performSegueWithIdentifier("showMessage", sender: self)
 			}
 		})
 	}
