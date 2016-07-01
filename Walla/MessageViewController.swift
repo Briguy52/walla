@@ -16,6 +16,7 @@ import Firebase
 
 class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 	
+	@IBOutlet weak var backButton: UIBarButtonItem!
 	let myBasic = Basic() // This ref will be replaced by the selected conversation ref
     let myUserBackend = UserBackend()
     let myConvoBackend = ConvoBackend() 
@@ -28,19 +29,23 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 	
 	var pressedRightButtonSubject : PublishSubject<String> = PublishSubject()
 	
+	var navBar: UINavigationBar = UINavigationBar()//:CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		let navBar: UINavigationBar = UINavigationBar(frame:CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
-		navBar.backgroundColor = UIColor.init(netHex: 0xffa160)
-		navBar.delegate = self
-		let navItem = UINavigationItem()
-		navItem.title = "Messaging"
-		let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target:self, action: "backButton")
-		navItem.leftBarButtonItem = backButton
+		//let navBar: UINavigationBar = UINavigationBar(frame:CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
 		
-		navBar.items = [navItem]
-		self.view.addSubview(navBar)
+//		navBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
+//		navBar.backgroundColor = UIColor.init(netHex: 0xffa160)
+//		navBar.delegate = self
+//		let navItem = UINavigationItem()
+//		navItem.title = "Messaging"
+//		let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target:self, action: "backButton")
+//		navItem.leftBarButtonItem = backButton
+//		
+//		navBar.items = [navItem]
+//		self.view.addSubview(navBar)
 		
 		self.sender = myBasic.rootRef.authData.uid
         
@@ -133,9 +138,9 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 		return cell
 	}
 	
-	func backButton() -> Void {
-		//self.tabBarController?.selectedIndex = 3
+	@IBAction func backMessage(sender: UIBarButtonItem) {
 		self.navigationController?.popViewControllerAnimated(true)
+		print("back pressed")
 	}
 	
 	override func didReceiveMemoryWarning() {
