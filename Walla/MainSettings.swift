@@ -73,7 +73,6 @@ class MainSettings: UIViewController{
 			(result: AnyObject) in
 			self.phoneNumberTextField.text = result as! String
 		}
-		
 	}
 	
 	override func didReceiveMemoryWarning() {

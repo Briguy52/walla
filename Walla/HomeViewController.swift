@@ -40,7 +40,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	var currentTime = NSDate().timeIntervalSince1970
     
     // TODO: stores these tags in the Users ref
-    var tagsToFilter: [String] = ["STEM+ "]
+    var tagsToFilter: [String] = ["#STEM+ "]
 	
 //	var usernames: [String] = ["user1", "user2", "user3", "user4"]
 //	var messages: [String] = ["m1", "m2", "m3", "m4"]

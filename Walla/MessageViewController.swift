@@ -14,7 +14,7 @@ import SlackTextViewController
 import FirebaseRxSwiftExtensions
 import Firebase
 
-class MessageViewController: SLKTextViewController {
+class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 	
 	let myBasic = Basic() // This ref will be replaced by the selected conversation ref
     let myUserBackend = UserBackend()
@@ -30,7 +30,17 @@ class MessageViewController: SLKTextViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.navigationItem.hidesBackButton = true
+		
+		let navBar: UINavigationBar = UINavigationBar(frame:CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
+		navBar.backgroundColor = UIColor.init(netHex: 0xffa160)
+		navBar.delegate = self
+		let navItem = UINavigationItem()
+		navItem.title = "Messaging"
+		let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target:self, action: "backButton")
+		navItem.leftBarButtonItem = backButton
+		
+		navBar.items = [navItem]
+		self.view.addSubview(navBar)
 		
 		self.sender = myBasic.rootRef.authData.uid
         
@@ -121,6 +131,11 @@ class MessageViewController: SLKTextViewController {
 		cell.selectionStyle = .None
 		cell.transform = self.tableView.transform // TODO: figure out what this actually does
 		return cell
+	}
+	
+	func backButton() -> Void {
+		//self.tabBarController?.selectedIndex = 3
+		self.navigationController?.popViewControllerAnimated(true)
 	}
 	
 	override func didReceiveMemoryWarning() {
