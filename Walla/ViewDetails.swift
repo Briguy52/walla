@@ -26,6 +26,7 @@ class ViewDetails: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		self.tabBarController?.tabBar.hidden = true
 		self.initRequestInfo()
 	}
 	
@@ -35,9 +36,7 @@ class ViewDetails: UIViewController {
 	
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
-		//if requestModels.count == 0 {
-		//	return
-		//}
+		self.tabBarController?.tabBar.hidden = false
 	}
 	
 	func initRequestInfo()
