@@ -132,9 +132,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		let requestModel = requestModels[indexPath.row]
 		
 		let key = requestModel.authorID
-		self.myUserBackend.getUserInfo("DisplayName", userID: key)
+		self.myUserBackend.getUserInfo("displayName", userID: key)
 		{
-			(result: String) in cell.setAuthorName(result)
+			(result: AnyObject) in
+            cell.setAuthorName(result as! String)
 		}
 		
 		cell.userName?.text = requestModel.authorID

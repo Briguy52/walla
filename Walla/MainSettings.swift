@@ -66,12 +66,12 @@ class MainSettings: UIViewController{
 	
 	func initContactInfo() {
 		self.myUserBackend.getUserInfo("email", userID: self.myBasic.rootRef.authData.uid) {
-			(result: String) in
-			self.emailTextField.text = result
+			(result: AnyObject) in
+			self.emailTextField.text = result as! String
 		}
 		self.myUserBackend.getUserInfo("phoneNumber", userID: self.myBasic.rootRef.authData.uid) {
-			(result: String) in
-			self.phoneNumberTextField.text = result
+			(result: AnyObject) in
+			self.phoneNumberTextField.text = result as! String
 		}
 		
 	}

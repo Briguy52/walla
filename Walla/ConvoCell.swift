@@ -19,18 +19,19 @@ class ConvoCell: UITableViewCell {
             
             let myUserBackend = UserBackend()
             myUserBackend.getUserInfo("displayName", userID: convoModel.authorID) {
-                (result: String) in
-                print(result)
-                self.nameLabel.text = result
+                (result: AnyObject) in
+                self.nameLabel.text = result as! String
             }
             
             let myRequestBackend = RequestBackend()
             myRequestBackend.getRequestValue(convoModel.uniqueID, key: "request") {
-                (result: String) in self.previewLabel.text = result
+                (result: String) in
+                self.previewLabel.text = result
             }
             
             myUserBackend.getUserInfo("profilePicUrl", userID: convoModel.authorID) {
-                (result: String) in self.profile.setImageWithURL(NSURL(string: result)!)
+                (result: AnyObject) in
+                self.profile.setImageWithURL(NSURL(string: result as! String)!)
             }
             
 		}

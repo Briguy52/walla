@@ -56,20 +56,7 @@ class UserBackend {
 	//    print("got back: \(result)")
 	//    }
 	
-	func getUserInfo(param: String, userID: String, completion: (result: String) -> Void) {
-		let key = userID
-		let ref = myBasic.userRef
-		ref.queryOrderedByChild(key).queryLimitedToFirst(1)
-			.observeEventType(.ChildAdded, withBlock: { snapshot in
-				if let snapshot = snapshot {
-					if let out = snapshot.value[param] as? String {
-						completion(result: out)
-					}
-				}
-			})
-	}
-    
-    func getStuff(param: String, userID: String, completion: (result: AnyObject) -> Void) {
+	func getUserInfo(param: String, userID: String, completion: (result: AnyObject) -> Void) {
         let key = userID
         let ref = myBasic.userRef
         ref.queryOrderedByChild(key).queryLimitedToFirst(1)
@@ -81,17 +68,5 @@ class UserBackend {
                 }
             })
     }
-    
-	
-	func getNumPosts(userID: String, completion: (result: String) -> Void) {
-		let key = userID
-		let ref = myBasic.userRef
-		ref.queryOrderedByChild(key).queryLimitedToFirst(1)
-			.observeEventType(.ChildAdded, withBlock: { snapshot in
-				if let out = snapshot.value.valueForKey("Requests") {
-					completion(result: String(out.count))
-				}
-			})
-	}
 	
 }

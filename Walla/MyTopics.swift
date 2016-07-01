@@ -25,7 +25,7 @@ class MyTopics: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 	override func viewDidLoad() {
 		super.viewDidLoad()
         
-        myUserBackend.getStuff("tags", userID: self.myBasic.rootRef.authData.uid) {
+        myUserBackend.getUserInfo("tags", userID: self.myBasic.rootRef.authData.uid) {
             (result: AnyObject) in
             self.initTags(result as! [String])
         }
