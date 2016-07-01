@@ -58,8 +58,6 @@ class ViewDetails: UIViewController {
 	}
 	
 	@IBAction func startConvo(sender: AnyObject) {
-        print("womp start convo")
-        
 		let requestID = requestModels[currentIndex].postID!
 		let authorID = requestModels[currentIndex].authorID
 		let userID = myBasic.rootRef.authData.uid
@@ -67,11 +65,9 @@ class ViewDetails: UIViewController {
 		let testRef = myBasic.convoRef.childByAppendingPath(convoHash)
 		testRef.observeEventType(.Value, withBlock: { snapshot in
 			if snapshot.value is NSNull {
-                print("womp null")
 				self.createSingleConvoRef(requestID, authorID: authorID, userID: userID)
 			}
 			else {
-                print("womp not null")
 				self.convoID = convoHash
 				self.performSegueWithIdentifier("showMessage", sender: self)
 				self.tabBarController?.selectedIndex = 3

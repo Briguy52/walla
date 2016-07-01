@@ -17,8 +17,6 @@ class ConvoCell: UITableViewCell {
 	var convoModel: ConvoModel! {
 		didSet {
             
-            print("womp hello?")
-
             let myUserBackend = UserBackend()
             myUserBackend.getUserInfo("displayName", userID: convoModel.authorID) {
                 (result: String) in

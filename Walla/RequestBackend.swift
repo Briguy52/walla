@@ -26,7 +26,7 @@ class RequestBackend {
             })
     }
     
-    func customContains(models: [RequestModel], snapshot: FDataSnapshot) -> Bool {
+    func contains(models: [RequestModel], snapshot: FDataSnapshot) -> Bool {
         if let snapID = snapshot.key {
             for model in models {
                 if model.postID == snapID {

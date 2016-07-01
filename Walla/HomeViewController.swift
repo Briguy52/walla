@@ -91,16 +91,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         requestModels.removeAll()
         self.myBasic.requestRef.rx_observe(FEventType.ChildAdded)
             .filter { snapshot in
-                return !(snapshot.value is NSNull)
+                return !(snapshot.value is NSNull) // hide Null requests
             }
             .filter { snapshot in
-                if let exp = snapshot.value.objectForKey("expirationDate")?.doubleValue {
+                if let exp = snapshot.value.objectForKey("expirationDate")?.doubleValue { // hide expired Requests
                     return exp >= self.currentTime
                 }
                 return false
             }
             .filter { snapshot in
-                return !self.myRequestBackend.customContains(requestModels, snapshot: snapshot)
+                return !self.myRequestBackend.contains(requestModels, snapshot: snapshot) // avoids showing duplicate Requests on initial load
             }
             .map { snapshot in
                 return RequestModel(snapshot: snapshot)
