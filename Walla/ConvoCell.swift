@@ -16,15 +16,25 @@ class ConvoCell: UITableViewCell {
 	
 	var convoModel: ConvoModel! {
 		didSet {
-			// TODO: store Author name in addition to AuthorID
-			nameLabel.text = convoModel.authorID
+            
+            print("womp hello?")
+
+            let myUserBackend = UserBackend()
+            myUserBackend.getUserInfo("displayName", userID: convoModel.authorID) {
+                (result: String) in
+                print(result)
+                self.nameLabel.text = result
+            }
             
             let myRequestBackend = RequestBackend()
             myRequestBackend.getRequestValue(convoModel.uniqueID, key: "request") {
                 (result: String) in self.previewLabel.text = result
             }
             
-			//            ratingImageView.image = imageForRating(genie.rating)
+            myUserBackend.getUserInfo("profilePicUrl", userID: convoModel.authorID) {
+                (result: String) in self.profile.setImageWithURL(NSURL(string: result)!)
+            }
+            
 		}
 	}
 }

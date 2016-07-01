@@ -68,6 +68,7 @@ class UserBackend {
 		ref.queryOrderedByChild(key).queryLimitedToFirst(1)
 			.observeEventType(.ChildAdded, withBlock: { snapshot in
 				if let snapshot = snapshot {
+                    print(snapshot)
 					if let out = snapshot.value[param] as? String {
 						completion(result: out)
 					}

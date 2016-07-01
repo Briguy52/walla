@@ -28,6 +28,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
+    let myRequestBackend = RequestBackend()
 	let postPath = "posts"
 	let tagPath = "tags"
 	let postContents = ["title", "content", "authorID", "latitude", "longitude", "urgency", "tags", "expirationDate"]
@@ -97,6 +98,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     return exp >= self.currentTime
                 }
                 return false
+            }
+            .filter { snapshot in
+                return !self.myRequestBackend.customContains(requestModels, snapshot: snapshot)
             }
             .map { snapshot in
                 return RequestModel(snapshot: snapshot)

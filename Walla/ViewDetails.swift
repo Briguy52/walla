@@ -107,7 +107,7 @@ class ViewDetails: UIViewController {
 			} else {
 				print("Conversation data saved successfully!")
 				// Update user Firebase w/ new post ID
-				self.myUserBackend.updateUserConversations(self.convoID, userID: authorID)
+//				self.myUserBackend.updateUserConversations(self.convoID, userID: authorID)
 			}
 		})
 	}
