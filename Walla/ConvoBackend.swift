@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class ConvoBackend {
     
@@ -22,6 +23,17 @@ class ConvoBackend {
                     }
                 }
             })
+    }
+    
+    func contains(models: [ConvoModel], snapshot: FDataSnapshot) -> Bool {
+        if let snapID = snapshot.key {
+            for model in models {
+                if model.convoID == snapID {
+                    return true
+                }
+            }
+        }
+        return false
     }
     
     

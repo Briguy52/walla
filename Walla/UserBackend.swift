@@ -12,21 +12,15 @@ import Firebase
 class UserBackend {
 	
 	let myBasic = Basic()
-	let userPath = "users"
-	
+    
 	func logout() {
 		myBasic.rootRef.unauth()
 	}
 	
-	func updateUserData(key: String, value: String, userID: String) {
+	func updateUserData(key: String, value: AnyObject, userID: String) {
 		let pair = [key:value]
 		let pairRef = myBasic.userRef.childByAppendingPath(userID)
 		pairRef.updateChildValues(pair)
-	}
-	
-		// TODO: test type cast
-	func updateKarma(karma: Int, userID: String) {
-		self.updateUserData("karma", value: String(karma), userID: userID)
 	}
 	
 	func updateNotificationSetting(setting: String, value: Bool, userID: String) {
@@ -62,29 +56,17 @@ class UserBackend {
 	//    print("got back: \(result)")
 	//    }
 	
-	func getUserInfo(param: String, userID: String, completion: (result: String) -> Void) {
-		let key = userID
-		let ref = myBasic.rootRef.childByAppendingPath(self.userPath)
-		ref.queryOrderedByChild(key).queryLimitedToFirst(1)
-			.observeEventType(.ChildAdded, withBlock: { snapshot in
-				if let snapshot = snapshot {
-					if let out = snapshot.value[param] as? String {
-						completion(result: out)
-					}
-				}
-			})
-		
-	}
-	
-	func getNumPosts(userID: String, completion: (result: String) -> Void) {
-		let key = userID
-		let ref = myBasic.rootRef.childByAppendingPath(self.userPath)
-		ref.queryOrderedByChild(key).queryLimitedToFirst(1)
-			.observeEventType(.ChildAdded, withBlock: { snapshot in
-				if let out = snapshot.value.valueForKey("Requests") {
-					completion(result: String(out.count))
-				}
-			})
-	}
+	func getUserInfo(param: String, userID: String, completion: (result: AnyObject) -> Void) {
+        let key = userID
+        let ref = myBasic.userRef
+        ref.queryOrderedByChild(key).queryLimitedToFirst(1)
+            .observeEventType(.ChildAdded, withBlock: { snapshot in
+                if let snapshot = snapshot {
+                    if let out = snapshot.value[param]!! as? AnyObject {
+                        completion(result: out)
+                    }
+                }
+            })
+    }
 	
 }

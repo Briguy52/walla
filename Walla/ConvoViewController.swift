@@ -20,6 +20,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	@IBOutlet weak var tableView: UITableView!
 	
 	let myBasic = Basic()
+    let myConvoBackend =  ConvoBackend()
 	var isInitialLoad = true;
 	var disposeBag = DisposeBag()
 	
@@ -49,7 +50,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int
 	{
-		return 2
+		return 1 // previously set to '2' and caused duplicate Convos to show up :(
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -78,16 +79,20 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	// Copied from MessagingVC, remainder of code to use is there
 	func observeWithStreams() {
+        convoModels.removeAll()
 		let myID = myBasic.rootRef.authData.uid
 		myBasic.convoRef.rx_observe(FEventType.ChildAdded)
 			.filter { snapshot in
 				// Note: can also add filters for tags, location, etc.
 				return !(snapshot.value is NSNull)
 			}
-			.filter { snapshot in
-				// Only return Snapshots with authorID or userID == user's ID
-				return (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID)
-			}
+            .filter { snapshot in
+                return !self.myConvoBackend.contains(self.convoModels, snapshot: snapshot) // avoids showing duplicate Convos on initial load
+            }
+            .filter { snapshot in
+                // Only return Snapshots with authorID or userID == user's ID
+                return (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID)
+            }
 			.map {snapshot in
 				return ConvoModel(snapshot: snapshot)
 			}

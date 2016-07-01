@@ -32,16 +32,14 @@ class ProfileViewController: UIViewController {
             myUserBackend.updateUserData("phoneNumber", value: "12345678", userID: data.uid)
             myUserBackend.updateUserData("latitude", value: "21.2827778", userID: data.uid)
             myUserBackend.updateUserData("longitude", value: "-157.8294444", userID: data.uid)
-            
-            myUserBackend.updateKarma(0, userID: data.uid)
+            myUserBackend.updateUserData("karma", value: 0, userID: data.uid)
             
             myUserBackend.updateNotificationSetting("pushNotifications", value: true, userID: data.uid)
             myUserBackend.updateNotificationSetting("messageNotification", value: true, userID: data.uid)
             myUserBackend.updateNotificationSetting("helpMeResponseNotifcation", value: true, userID: data.uid)
             myUserBackend.updateNotificationSetting("newRequestNotification", value: true, userID: data.uid)
-            myUserBackend.updateNotificationSetting("requestResolvedNotification", value: true, userID: data.uid)
-            
-            
+            myUserBackend.updateNotificationSetting("requestResolvedNotification", value: true, userID: data.uid)            
+
 			if let email = profile.email {
                 myUserBackend.updateUserData("email", value: email, userID: data.uid)
 			}

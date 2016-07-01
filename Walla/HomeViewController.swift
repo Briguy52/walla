@@ -28,6 +28,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
+    let myRequestBackend = RequestBackend()
 	let postPath = "posts"
 	let tagPath = "tags"
 	let postContents = ["title", "content", "authorID", "latitude", "longitude", "urgency", "tags", "expirationDate"]
@@ -52,7 +53,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		tableView.delegate = self
 		tableView.dataSource = self
 		masterView = self
-	}
+    }
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
@@ -90,13 +91,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         requestModels.removeAll()
         self.myBasic.requestRef.rx_observe(FEventType.ChildAdded)
             .filter { snapshot in
-                return !(snapshot.value is NSNull)
+                return !(snapshot.value is NSNull) // hide Null requests
             }
             .filter { snapshot in
-                if let exp = snapshot.value.objectForKey("expirationDate")?.doubleValue {
+                if let exp = snapshot.value.objectForKey("expirationDate")?.doubleValue { // hide expired Requests
                     return exp >= self.currentTime
                 }
                 return false
+            }
+            .filter { snapshot in
+                return !self.myRequestBackend.contains(requestModels, snapshot: snapshot) // avoids showing duplicate Requests on initial load
             }
             .map { snapshot in
                 return RequestModel(snapshot: snapshot)
@@ -128,9 +132,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		let requestModel = requestModels[indexPath.row]
 		
 		let key = requestModel.authorID
-		self.myUserBackend.getUserInfo("DisplayName", userID: key)
+		self.myUserBackend.getUserInfo("displayName", userID: key)
 		{
-			(result: String) in cell.setAuthorName(result)
+			(result: AnyObject) in
+            cell.setAuthorName(result as! String)
 		}
 		
 		cell.userName?.text = requestModel.authorID

@@ -111,9 +111,10 @@ class MessageViewController: SLKTextViewController {
 		//            animated: true))
         
         let key = messageModelAtIndexPath.sender
-        self.myUserBackend.getUserInfo("DisplayName", userID: key)
+        self.myUserBackend.getUserInfo("displayName", userID: key)
         {
-            (result: String) in cell.nameLabel.text = result
+            (result: AnyObject)
+            in cell.nameLabel.text = result as! String
         }
 
 		cell.bodyLabel.text = messageModelAtIndexPath.text

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class RequestBackend {
     
@@ -24,6 +25,15 @@ class RequestBackend {
                 }
             })
     }
-
     
+    func contains(models: [RequestModel], snapshot: FDataSnapshot) -> Bool {
+        if let snapID = snapshot.key {
+            for model in models {
+                if model.postID == snapID {
+                    return true
+                }
+            }
+        }
+        return false
+    }
 }

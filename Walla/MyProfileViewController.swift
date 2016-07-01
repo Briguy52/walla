@@ -39,11 +39,11 @@ class MyProfileViewController: UIViewController {
 	
 	func setImage()
 	{
-//		let key = self.myUserBackend.updateDisplayName
-		/*self.myUserBackend.getUserInfo("ProfilePicUrl", userID: key)
+        self.myUserBackend.getUserInfo("profilePicUrl", userID: self.myUserBackend.getUserID())
 		{
-			(result: String) in self.profile.setImageWithURL(NSURL(string: result)!)
-		}*/
+			(result: AnyObject) in
+            self.profile.setImageWithURL(NSURL(string: result as! String)!)
+		}
 	}
 	
 	func setTotalPoints()
@@ -54,10 +54,10 @@ class MyProfileViewController: UIViewController {
 	
 	func setNameAndTitle()
 	{
-		let key=self.myUserBackend.getUserID()
-		self.myUserBackend.getUserInfo("DisplayName", userID: key)
+		self.myUserBackend.getUserInfo("displayName", userID: self.myUserBackend.getUserID())
 		{
-			(result: String) in self.username.text = result
+			(result: AnyObject) in
+            self.username.text = result as! String
 		}
 	}
 	

@@ -49,7 +49,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		self.requestDetails?.layer.borderWidth = 0.2
 		self.requestDetails?.layer.borderColor = UIColor.lightGrayColor().CGColor
 		
-		self.addTagButton.hidden = true
+//		self.addTagButton.hidden = true
 		
 		//self.holla?.userInteractionEnabled = false
 		//self.holla?.titleLabel?.textColor = UIColor(netHex: 0xffa160)
@@ -310,7 +310,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 			tagLabel.text = ""
 		}
 		self.addTag(tag)
-		self.oneTag()
+//		self.oneTag()
 	}
 	
 	@IBAction func removeTags(sender: UIButton)
@@ -318,7 +318,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		self.myTags.removeAll()
 		self.tagLabel.textColor = UIColor.redColor()
 		self.tagLabel.text = "Please Enter a Tag"
-		self.oneTag()
+//		self.oneTag()
 	}
 	
 	func addTag(tag: String) {
