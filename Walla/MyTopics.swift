@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyTopics: UIViewController
+class MyTopics: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 {
 	
 	@IBOutlet weak var topicPicker: UIPickerView!
@@ -18,9 +18,17 @@ class MyTopics: UIViewController
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
+    
+    // TODO: replace with call to Backend store of Tags
+    var myTags: [String] = []
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
+        // In order to show the Tag Picker
+        self.topicPicker?.dataSource = self
+        self.topicPicker?.delegate = self
+
 		
 		self.tabBarController?.tabBar.hidden = true
 	}
@@ -85,13 +93,14 @@ class MyTopics: UIViewController
 	@IBAction func removeTags(sender: UIButton)
 	{
 		self.myTags.removeAll()
-		self.topiclable.textColor = UIColor.redColor()
+		self.topicLabel.textColor = UIColor.redColor()
 		self.topicLabel.text = "Please Enter a Tag"
 	}
 	
 	func addTag(tag: String) {
-		self.myTags.removeAll()
-		self.myTags.append(tag)
-		self.topicLabel.text = self.myTags.joinWithSeparator("# ") + "\n"
+        if (!self.myTags.contains(tag)) {
+            self.myTags.append(tag)
+            self.topicLabel.text = self.myTags.joinWithSeparator("# ") + "\n"
+        }
 	}
 }
