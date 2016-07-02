@@ -18,6 +18,8 @@ class AuthViewController: UIViewController {
 	let client_id = "NiZctA0id6Bd5IgTLcEoYai116RirhUw"
 	let myUserBackend = UserBackend()
 	let myBasic = Basic()
+    
+    var userHasAuthenticated: Bool = false
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -59,12 +61,16 @@ class AuthViewController: UIViewController {
 				}
 				keychain.setData(NSKeyedArchiver.archivedDataWithRootObject(profile), forKey: "profile")
 				self.dismissViewControllerAnimated(true, completion: nil)
+                self.userHasAuthenticated = true
 				self.performSegueWithIdentifier("showProfile", sender: self)
 			default:
 				print("User signed up without logging in")
 			}
 		}
-		self.presentViewController(authController, animated: true, completion: nil)
+        print("I has logged in? " + String(self.userHasAuthenticated))
+        if (!self.userHasAuthenticated) {
+          self.presentViewController(authController, animated: true, completion: nil)
+        }
 	}
 	
 	// Source: https://auth0.com/docs/auth-api#!#post--delegation, https://auth0.com/authenticate/ios-swift/firebase
@@ -116,8 +122,6 @@ class AuthViewController: UIViewController {
 				print("Login failed! \(error)")
 			} else {
 				print("Auth with Firebase Token")
-//				print(authData.uid)
-//				self.myUserBackend.updateUserData("token", value: authData.token, userID: authData.uid)
 				self.myUserBackend.updateUserData("provider", value: authData.provider, userID: authData.uid)
                 self.performSegueWithIdentifier("showProfile", sender: self)
 			}
