@@ -26,7 +26,6 @@ class AuthViewController: UIViewController {
 		let keychain = MyApplication.sharedInstance.keychain
 		if let idToken = keychain.stringForKey("id_token"), let jwt = try? JWTDecode.decode(idToken) {
 			if jwt.expired, let refreshToken = keychain.stringForKey("refresh_token") {
-				
 				MBProgressHUD.showHUDAddedTo(self.view, animated: true)
 				let success = {(token:A0Token!) -> () in
 					keychain.setString(token.idToken, forKey: "id_token")
@@ -40,7 +39,7 @@ class AuthViewController: UIViewController {
 				let client = MyApplication.sharedInstance.lock.apiClient()
 				client.fetchNewIdTokenWithRefreshToken(refreshToken, parameters: nil, success: success, failure: failure)
 			} else {
-				self.performSegueWithIdentifier("showProfile", sender: self)
+                self.userHasAuthenticated = true
 			}
 		}
 	}
@@ -68,8 +67,14 @@ class AuthViewController: UIViewController {
 			}
 		}
         print("I has logged in? " + String(self.userHasAuthenticated))
+        if let test = myBasic.rootRef.authData {
+            print(test)
+        }
         if (!self.userHasAuthenticated) {
-          self.presentViewController(authController, animated: true, completion: nil)
+            self.presentViewController(authController, animated: true, completion: nil)
+        }
+        else {
+            self.performSegueWithIdentifier("showProfile", sender: self)
         }
 	}
 	
