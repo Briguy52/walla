@@ -66,10 +66,7 @@ class AuthViewController: UIViewController {
 				print("User signed up without logging in")
 			}
 		}
-        print("I has logged in? " + String(self.userHasAuthenticated))
-        if let test = myBasic.rootRef.authData {
-            print(test)
-        }
+        print("womp previously logged in? " + String(self.userHasAuthenticated))
         if (!self.userHasAuthenticated) {
             self.presentViewController(authController, animated: true, completion: nil)
         }
