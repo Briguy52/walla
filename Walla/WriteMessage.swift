@@ -65,7 +65,6 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		self.viewDidLoad()
 	}
 	
-	
 	func submit()
 	{
 		self.saveAndUpdate()
@@ -169,7 +168,8 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	{
 		self.tabBarController?.tabBar.hidden = false
 		self.resetFields()
-		tabBarController?.selectedIndex = 0
+		self.performSegueWithIdentifier("unwindToHomeFromWrite", sender: self)
+		//tabBarController?.selectedIndex = 0
 	}
 	
 	func resetFields()

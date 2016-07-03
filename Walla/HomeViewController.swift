@@ -86,10 +86,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		}
 	}
 	
-	func goToConvoAtIndexZero()
+	@IBAction func unwindToHomeFromWrite(segue: UIStoryboardSegue)
 	{
-		self.tabBarController?.selectedIndex = 3
-		
 	}
 	
 	// Copied from MessagingVC, remainder of code to use is there

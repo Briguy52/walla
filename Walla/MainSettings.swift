@@ -48,7 +48,6 @@ class MainSettings: UIViewController{
 	
 	@IBOutlet weak var emailTextField: UITextField!
 	
-	
 	@IBAction func back(sender: UIBarButtonItem) {
 		dismissViewControllerAnimated(true, completion: nil)
 	}
