@@ -1561,7 +1561,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <segue destination="nlo-Vb-1eN" kind="show" identifier="showProfile" id="s98-ln-4gR"/>
-                        <segue destination="ak3-Nb-uIc" kind="show" identifier="showHome" id="1fg-3t-G9J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EpB-In-PmJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1662,7 +1661,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTi-qQ-Gvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-308.5" y="622.5"/>
+            <point key="canvasLocation" x="-302.5" y="1048.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="OhI-Wm-YuQ">
@@ -1702,7 +1701,6 @@
         <image name="write" width="42" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1fg-3t-G9J"/>
         <segue reference="xj0-KD-YYw"/>
     </inferredMetricsTieBreakers>
 </document>
