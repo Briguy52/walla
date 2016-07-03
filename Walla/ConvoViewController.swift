@@ -144,15 +144,9 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		let convoIndex: Int = self.messageIndex
-		/*if let indexPath = self.tableView.indexPathForSelectedRow {
-		convoIndex = indexPath.row
-		}*/
-		
-		if segue.identifier == "messagingSegue"
-		{
+		if segue.identifier == "messagingSegue" {
 			let messagingVC = segue.destinationViewController as! MessageViewController
-			messagingVC.convoID = convoModels[convoIndex].convoID!
+			messagingVC.convoID = convoModels[self.messageIndex].convoID!
 		}
 	}
 	
