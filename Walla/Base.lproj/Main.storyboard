@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4AJ-Vh-XpJ" id="iZj-pM-bso">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWK-qg-7iK">
@@ -96,34 +96,8 @@
                     <view key="view" contentMode="scaleToFill" id="fYY-dh-SbF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9UK-WR-Tnj">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="XUA-3U-AoG"/>
-                                </constraints>
-                                <color key="barTintColor" red="0.99215686270000003" green="0.56078431370000004" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <items>
-                                    <navigationItem title="Messaging" id="Qxm-bP-JMY">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="oPS-P1-JJu">
-                                            <connections>
-                                                <action selector="backMessage:" destination="4ux-RC-hsb" id="s9R-my-7xA"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="9UK-WR-Tnj" secondAttribute="trailing" id="Pu8-ui-ayQ"/>
-                            <constraint firstItem="9UK-WR-Tnj" firstAttribute="top" secondItem="wJ9-4H-JJ8" secondAttribute="bottom" id="s0B-hD-iRM"/>
-                            <constraint firstItem="9UK-WR-Tnj" firstAttribute="leading" secondItem="fYY-dh-SbF" secondAttribute="leading" id="sjd-CT-jvk"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="backButton" destination="oPS-P1-JJu" id="rLP-yw-aTK"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGU-fo-I2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -418,7 +392,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0nA-zo-0Ev" id="sWq-sY-Kco">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tk6-PO-mVb">
@@ -484,7 +458,7 @@
                                             <outlet property="timeStamp" destination="y3f-Iw-Vgw" id="Di9-N4-R6W"/>
                                             <outlet property="topics" destination="l46-o2-lYh" id="LQ4-Cq-zpR"/>
                                             <outlet property="userName" destination="tk6-PO-mVb" id="eoq-kh-P2r"/>
-                                            <segue destination="orr-ZP-B0Q" kind="showDetail" identifier="showDetail" trigger="accessoryAction" id="c80-OH-bMq"/>
+                                            <segue destination="orr-ZP-B0Q" kind="modal" identifier="showDetail" trigger="accessoryAction" id="c80-OH-bMq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -688,6 +662,11 @@
                                 <items>
                                     <navigationItem title="HOLLA DETAILS" id="6UJ-4P-hsh">
                                         <barButtonItem key="backBarButtonItem" title="&lt;" id="aaH-VG-Aos"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="4vR-Yh-lXC">
+                                            <connections>
+                                                <action selector="goBack:" destination="orr-ZP-B0Q" id="Cj5-am-wGs"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -702,7 +681,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="startConvo:" destination="orr-ZP-B0Q" eventType="touchUpInside" id="Dmu-HA-aDR"/>
+                                    <action selector="goToMessages:" destination="orr-ZP-B0Q" eventType="touchUpInside" id="23d-eF-NnL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -735,10 +714,11 @@
                         <outlet property="profile" destination="rHp-2K-YMr" id="E73-XT-8pf"/>
                         <outlet property="tags" destination="TD4-UT-URw" id="BNo-l2-kJu"/>
                         <outlet property="timestamp" destination="RYv-w3-Y2k" id="ULF-7P-0GA"/>
-                        <segue destination="4ux-RC-hsb" kind="show" identifier="showMessage" id="pOS-je-JBp"/>
+                        <segue destination="57d-MZ-lnx" kind="unwind" identifier="unwindToMessages" unwindAction="unwindToMessages:" id="bub-Pc-K0J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Qi-nu-Eg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="57d-MZ-lnx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1430.5" y="-1058.5"/>
         </scene>
@@ -1703,6 +1683,5 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1fg-3t-G9J"/>
-        <segue reference="xj0-KD-YYw"/>
     </inferredMetricsTieBreakers>
 </document>

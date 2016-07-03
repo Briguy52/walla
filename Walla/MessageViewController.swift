@@ -18,8 +18,8 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 	
 	@IBOutlet weak var backButton: UIBarButtonItem!
 	let myBasic = Basic() // This ref will be replaced by the selected conversation ref
-    let myUserBackend = UserBackend()
-    let myConvoBackend = ConvoBackend() 
+	let myUserBackend = UserBackend()
+	let myConvoBackend = ConvoBackend()
 	var messageModels : [MessageModel] = [MessageModel]()
 	var disposeBag = DisposeBag()
 	var isInitialLoad = true;
@@ -34,21 +34,8 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		//let navBar: UINavigationBar = UINavigationBar(frame:CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
-		
-//		navBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
-//		navBar.backgroundColor = UIColor.init(netHex: 0xffa160)
-//		navBar.delegate = self
-//		let navItem = UINavigationItem()
-//		navItem.title = "Messaging"
-//		let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target:self, action: "backButton")
-//		navItem.leftBarButtonItem = backButton
-//		
-//		navBar.items = [navItem]
-//		self.view.addSubview(navBar)
-		
 		self.sender = myBasic.rootRef.authData.uid
-        
+		
 		let keychain = MyApplication.sharedInstance.keychain
 		let profileData:NSData! = keychain.dataForKey("profile")
 		let profile:A0UserProfile = NSKeyedUnarchiver.unarchiveObjectWithData(profileData) as! A0UserProfile
@@ -65,6 +52,27 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 		tableView.registerClass(MessageTableViewCell.self, forCellReuseIdentifier: MessageTableViewCell.REUSE_ID)
 		tableView.rowHeight = UITableViewAutomaticDimension //needed for autolayout
 		tableView.estimatedRowHeight = 50.0 //needed for autolayout
+		
+		tableView.frame = CGRectMake(tableView.frame.origin.x, tableView.frame.origin.y - 44, tableView.frame.size.width, tableView.contentSize.height)
+		
+		// navBar: UINavigationBar = UINavigationBar(frame:CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
+		
+		navBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
+		navBar.backgroundColor = UIColor.init(netHex: 0xffa160)
+		navBar.delegate = self
+		let navItem = UINavigationItem()
+		navItem.title = "Messaging"
+		//		let backButton = UIButton(type: .Custom)
+		//		backButton.setTitle("Back", forState: .Normal)
+		//		backButton.setTitleColor(backButton.tintColor, forState: .Normal)
+		//		backButton.addTarget(self, action: "backButtonClick", forControlEvents: .TouchUpInside)
+		//		navItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+		
+		let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "backButtonClick")
+		navItem.leftBarButtonItem = backButton
+		
+		navBar.items = [navItem]
+		self.view.addSubview(navBar)
 		
 		
 		// Messages ref stores the Messages for a Conversation
@@ -124,23 +132,29 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 		
 		//        self.tableView.scrollToRowAtIndexPath((indexPath, atScrollPosition: .Bottom,
 		//            animated: true))
-        
-        let key = messageModelAtIndexPath.sender
-        self.myUserBackend.getUserInfo("displayName", userID: key)
-        {
-            (result: AnyObject)
-            in cell.nameLabel.text = result as! String
-        }
-
+		
+		let key = messageModelAtIndexPath.sender
+		self.myUserBackend.getUserInfo("displayName", userID: key)
+		{
+			(result: AnyObject)
+			in cell.nameLabel.text = result as! String
+		}
+		
 		cell.bodyLabel.text = messageModelAtIndexPath.text
 		cell.selectionStyle = .None
 		cell.transform = self.tableView.transform // TODO: figure out what this actually does
 		return cell
 	}
 	
+	func backButtonClick() -> Void
+	{
+		dismissViewControllerAnimated(true, completion: nil)
+		//self.navigationController?.popViewControllerAnimated(true)
+	}
+	
 	@IBAction func backMessage(sender: UIBarButtonItem) {
-		self.navigationController?.popViewControllerAnimated(true)
-		print("back pressed")
+		dismissViewControllerAnimated(true, completion: nil)
+		//self.navigationController?.popViewControllerAnimated(true)
 	}
 	
 	override func didReceiveMemoryWarning() {
