@@ -467,7 +467,8 @@
                                     <outlet property="delegate" destination="9SG-PT-eQc" id="yxE-x4-DhR"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO WALLAS :( MAKE YOUR OWN WALLA BY CLICKING THE PENCIL BELOW" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwS-gw-peY">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO WALLAS :(
+MAKE YOUR OWN WALLA BY CLICKING THE PENCIL BELOW" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwS-gw-peY">
                                 <rect key="frame" x="20" y="150" width="335" height="114"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1683,6 +1684,6 @@
         <image name="write" width="42" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1fg-3t-G9J"/>
+    <segue reference="xj0-KD-YYw"/>
     </inferredMetricsTieBreakers>
 </document>

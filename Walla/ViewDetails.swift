@@ -158,8 +158,9 @@ class ViewDetails: UIViewController {
                 }
                 index += 1
             }
-//			let messagingVC = segue.destinationViewController as! MessageViewController
-//			messagingVC.convoID = self.convoID
+            
+            let  convoVC = segue.destinationViewController as! ConvoViewController
+            convoVC.messageIndex = index
 		}
 	}
 
