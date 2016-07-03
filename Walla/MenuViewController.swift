@@ -23,13 +23,13 @@ class MenuViewController : UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		add.enabled = false
-		clear.enabled = false
-		cancel.enabled = false
+		self.add.enabled = false
+		self.clear.enabled = false
+		self.cancel.enabled = false
 	}
 	
 	@IBAction func typingFilter(sender: AnyObject) {
-		
+		self.add.enabled = true
 	}
 	
 	@IBAction func addFilter(sender: AnyObject) {
@@ -37,7 +37,7 @@ class MenuViewController : UIViewController {
 	}
 	
 	@IBAction func clearFilter(sender: AnyObject) {
-		
+	
 	}
 	
 	@IBAction func cancelFilter(sender: AnyObject) {

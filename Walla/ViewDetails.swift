@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 
+var myMessageTitle = ""
+
 class ViewDetails: UIViewController {
 	
 	@IBOutlet weak var profile: UIImageView!
@@ -51,12 +53,41 @@ class ViewDetails: UIViewController {
 		
 		self.message?.text = requestModel.request
 		self.timestamp?.text = String(requestModel.timestamp)
-        self.additional?.text = requestModel.additionalDetails
+		self.additional?.text = requestModel.additionalDetails
 		self.location?.text = requestModel.location
 		self.tags?.text = requestModel.tags.joinWithSeparator(" ")
 	}
 	
-	@IBAction func startConvo(sender: AnyObject) {
+	/*@IBAction func startConvo(sender: AnyObject) {
+	let requestID = requestModels[currentIndex].postID!
+	let authorID = requestModels[currentIndex].authorID
+	let userID = myBasic.rootRef.authData.uid
+	let convoHash = createConvoHash(requestID, authorID: authorID, userID: userID)
+	let testRef = myBasic.convoRef.childByAppendingPath(convoHash)
+	testRef.observeEventType(.Value, withBlock: { snapshot in
+	if snapshot.value is NSNull {
+	self.createSingleConvoRef(requestID, authorID: authorID, userID: userID)
+	}
+	else {
+	self.convoID = convoHash
+	self.tabBarController?.tabBar.hidden = false
+	//self.tabBarController?.selectedIndex = 3
+	//ConvoViewController().startConvoFromWalla()
+	//self.performSegueWithIdentifier("showMessage", sender: self)
+	}
+	})
+	dismissViewControllerAnimated(false, completion: nil)
+	//HomeViewController().goToConvoAtIndexZero()
+	}*/
+	
+	@IBAction func goBack(sender: UIBarButtonItem)
+	{
+		dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	@IBAction func goToMessages(sender: UIButton)
+	{
+		myMessageTitle = requestModels[currentIndex].request
 		let requestID = requestModels[currentIndex].postID!
 		let authorID = requestModels[currentIndex].authorID
 		let userID = myBasic.rootRef.authData.uid
@@ -68,12 +99,20 @@ class ViewDetails: UIViewController {
 			}
 			else {
 				self.convoID = convoHash
-				self.tabBarController?.tabBar.hidden = false
-				self.tabBarController?.selectedIndex = 3
-				self.performSegueWithIdentifier("showMessage", sender: self)
+				//self.tabBarController?.tabBar.hidden = false
+				//self.tabBarController?.selectedIndex = 3
+				//ConvoViewController().startConvoFromWalla()
+				//self.performSegueWithIdentifier("showMessage", sender: self)
 			}
 		})
+		
+		print("goTo")
+		self.performSegueWithIdentifier("unwindToMessages", sender: self)
 	}
+	
+	/*@IBAction func goToMessages(sender: AnyObject) {
+	self.performSegueWithIdentifier("unwindToMenu", sender: self)
+	}*/
 	
 	func createConvoHash(requestID: String, authorID: String, userID: String) -> String {
 		let toHash = requestID + authorID + userID
@@ -103,15 +142,15 @@ class ViewDetails: UIViewController {
 			} else {
 				print("Conversation data saved successfully!")
 				// Update user Firebase w/ new post ID
-//				self.myUserBackend.updateUserConversations(self.convoID, userID: authorID)
+				//				self.myUserBackend.updateUserConversations(self.convoID, userID: authorID)
 			}
 		})
 	}
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "showMessage" {
-			let messagingVC = segue.destinationViewController as! MessageViewController
-			messagingVC.convoID = self.convoID
-		}
-	}
+	//	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	//		if segue.identifier == "showMessage" {
+	//			let convoVC = segue.destinationViewController as! ConvoViewController
+	//			//convoVC.convoID = self.convoID
+	//		}
+	//	}
 }

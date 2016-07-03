@@ -20,9 +20,11 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	@IBOutlet weak var tableView: UITableView!
 	
 	let myBasic = Basic()
-    let myConvoBackend =  ConvoBackend()
-	var isInitialLoad = true;
+	let myConvoBackend =  ConvoBackend()
+	var isInitialLoad = true
 	var disposeBag = DisposeBag()
+	var messageIndex: Int = 0
+	var messageTitleFromWalla = ""
 	
 	// Model that corresponds to this ViewController
 	var convoModels: [ConvoModel] = [ConvoModel]()
@@ -43,18 +45,28 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		imageView.contentMode = .ScaleAspectFill
 		
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
+		
+		self.messageIndex = 0
 	}
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+		self.messageIndex = 0
 	}
 	
+	@IBAction func unwindToMessages(segue: UIStoryboardSegue)
+	{
+		messageTitleFromWalla = myMessageTitle
+		startConvoFromWalla()
+	}
 	
 	// MARK: - Table view data source
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int
 	{
 		return 1 // previously set to '2' and caused duplicate Convos to show up :(
+		// the 2 was because there were 2 sections: resolved and unresolved.  the problem was how we were going to store that
+		// thats where the problem comes in from the backend.  Are we storing that info?  how is the andorid team doing it?
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -77,7 +89,18 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	}
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		self.performSegueWithIdentifier("messagingSegue", sender: nil)
+		self.selectIndex(indexPath.row)
+	}
+	
+	func selectIndex(index: Int)
+	{
+		self.messageIndex = index
+		self.performSegueWithIdentifier("messagingSegue", sender: self)
+	}
+	
+	func startConvoFromWalla()
+	{
+		self.selectIndex(convoModels.count) //change whats in the function param for where ever the new post is going to be
 	}
 	
 	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -87,20 +110,20 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	// Copied from MessagingVC, remainder of code to use is there
 	func observeWithStreams() {
-        convoModels.removeAll()
+		convoModels.removeAll()
 		let myID = myBasic.rootRef.authData.uid
 		myBasic.convoRef.rx_observe(FEventType.ChildAdded)
 			.filter { snapshot in
 				// Note: can also add filters for tags, location, etc.
 				return !(snapshot.value is NSNull)
 			}
-            .filter { snapshot in
-                return !self.myConvoBackend.contains(self.convoModels, snapshot: snapshot) // avoids showing duplicate Convos on initial load
-            }
-            .filter { snapshot in
-                // Only return Snapshots with authorID or userID == user's ID
-                return (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID)
-            }
+			.filter { snapshot in
+				return !self.myConvoBackend.contains(self.convoModels, snapshot: snapshot) // avoids showing duplicate Convos on initial load
+			}
+			.filter { snapshot in
+				// Only return Snapshots with authorID or userID == user's ID
+				return (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID)
+			}
 			.map {snapshot in
 				return ConvoModel(snapshot: snapshot)
 			}
@@ -119,10 +142,10 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		var convoIndex: Int = 0
-		if let indexPath = self.tableView.indexPathForSelectedRow {
-			convoIndex = indexPath.row
-		}
+		let convoIndex: Int = self.messageIndex
+		/*if let indexPath = self.tableView.indexPathForSelectedRow {
+		convoIndex = indexPath.row
+		}*/
 		
 		if segue.identifier == "messagingSegue"
 		{
