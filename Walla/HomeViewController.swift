@@ -28,7 +28,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
-    let myRequestBackend = RequestBackend()
+	let myRequestBackend = RequestBackend()
 	let postPath = "posts"
 	let tagPath = "tags"
 	let postContents = ["title", "content", "authorID", "latitude", "longitude", "urgency", "tags", "expirationDate"]
@@ -38,13 +38,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	var latitude = ""
 	var longitude = ""
 	var currentTime = NSDate().timeIntervalSince1970
-    
-    // TODO: stores these tags in the Users ref
-    var tagsToFilter: [String] = ["#STEM+ "]
 	
-//	var usernames: [String] = ["user1", "user2", "user3", "user4"]
-//	var messages: [String] = ["m1", "m2", "m3", "m4"]
-//	var topics: [String] = ["t1", "t2", "t3"]
+	// TODO: stores these tags in the Users ref
+	var tagsToFilter: [String] = ["#STEM+ "]
+	
+	//	var usernames: [String] = ["user1", "user2", "user3", "user4"]
+	//	var messages: [String] = ["m1", "m2", "m3", "m4"]
+	//	var topics: [String] = ["t1", "t2", "t3"]
 	
 	func ViewDidLoad()
 	{
@@ -53,7 +53,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		tableView.delegate = self
 		tableView.dataSource = self
 		masterView = self
-    }
+	}
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
@@ -67,12 +67,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		imageView.contentMode = .ScaleAspectFill
 		
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
-        
-        // Ask Tim about the order of WHEN to place this call
-        self.observeWithStreams()
+		
+		// Ask Tim about the order of WHEN to place this call
+		self.observeWithStreams()
 		
 		//self.noWallasPosts()
-    }
+	}
 	
 	func noWallasPosts()
 	{
@@ -85,38 +85,42 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 			noWallas.hidden = true
 		}
 	}
-    
-    // Copied from MessagingVC, remainder of code to use is there
-    func observeWithStreams() {
-        requestModels.removeAll()
-        self.myBasic.requestRef.rx_observe(FEventType.ChildAdded)
-            .filter { snapshot in
-                return !(snapshot.value is NSNull) // hide Null requests
-            }
-            .filter { snapshot in
-                if let exp = snapshot.value.objectForKey("expirationDate")?.doubleValue { // hide expired Requests
-                    return exp >= self.currentTime
-                }
-                return false
-            }
-            .filter { snapshot in
-                return !self.myRequestBackend.contains(requestModels, snapshot: snapshot) // avoids showing duplicate Requests on initial load
-            }
-            .map { snapshot in
-                return RequestModel(snapshot: snapshot)
-            }
-            .subscribeNext({ (requestModel: RequestModel) -> Void in
-                requestModels.insert(requestModel, atIndex: 0);
-            })
-            .addDisposableTo(self.disposeBag)
-        
-        self.myBasic.requestRef.rx_observe(FEventType.Value)
-            .subscribeNext({ (snapshot: FDataSnapshot) -> Void in
-                self.tableView.reloadData()
-                self.isInitialLoad = false;
-            })
-            .addDisposableTo(self.disposeBag)
-    }
+	
+	@IBAction func unwindToHomeFromWrite(segue: UIStoryboardSegue)
+	{
+	}
+	
+	// Copied from MessagingVC, remainder of code to use is there
+	func observeWithStreams() {
+		requestModels.removeAll()
+		self.myBasic.requestRef.rx_observe(FEventType.ChildAdded)
+			.filter { snapshot in
+				return !(snapshot.value is NSNull) // hide Null requests
+			}
+			.filter { snapshot in
+				if let exp = snapshot.value.objectForKey("expirationDate")?.doubleValue { // hide expired Requests
+					return exp >= self.currentTime
+				}
+				return false
+			}
+			.filter { snapshot in
+				return !self.myRequestBackend.contains(requestModels, snapshot: snapshot) // avoids showing duplicate Requests on initial load
+			}
+			.map { snapshot in
+				return RequestModel(snapshot: snapshot)
+			}
+			.subscribeNext({ (requestModel: RequestModel) -> Void in
+				requestModels.insert(requestModel, atIndex: 0);
+			})
+			.addDisposableTo(self.disposeBag)
+		
+		self.myBasic.requestRef.rx_observe(FEventType.Value)
+			.subscribeNext({ (snapshot: FDataSnapshot) -> Void in
+				self.tableView.reloadData()
+				self.isInitialLoad = false;
+			})
+			.addDisposableTo(self.disposeBag)
+	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
@@ -135,7 +139,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		self.myUserBackend.getUserInfo("displayName", userID: key)
 		{
 			(result: AnyObject) in
-            cell.setAuthorName(result as! String)
+			cell.setAuthorName(result as! String)
 		}
 		
 		cell.userName?.text = requestModel.authorID
@@ -165,7 +169,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		self.performSegueWithIdentifier("showDetail", sender: nil)
 	}
-
+	
 	@IBAction func openMenu(sender: AnyObject) {
 		performSegueWithIdentifier("openMenu", sender: nil)
 	}
