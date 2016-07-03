@@ -14,6 +14,9 @@ import RxCocoa
 import RxSwift
 import FirebaseRxSwiftExtensions
 
+var convoModels: [ConvoModel] = [ConvoModel]() // global variable for ViewDetails.swift access
+
+
 class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
 	
@@ -25,7 +28,6 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	var disposeBag = DisposeBag()
 	
 	// Model that corresponds to this ViewController
-	var convoModels: [ConvoModel] = [ConvoModel]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -95,7 +97,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 				return !(snapshot.value is NSNull)
 			}
             .filter { snapshot in
-                return !self.myConvoBackend.contains(self.convoModels, snapshot: snapshot) // avoids showing duplicate Convos on initial load
+                return !self.myConvoBackend.contains(convoModels, snapshot: snapshot) // avoids showing duplicate Convos on initial load
             }
             .filter { snapshot in
                 // Only return Snapshots with authorID or userID == user's ID
@@ -105,7 +107,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 				return ConvoModel(snapshot: snapshot)
 			}
 			.subscribeNext({ (convoModel: ConvoModel) -> Void in
-				self.convoModels.insert(convoModel, atIndex: 0);
+				convoModels.insert(convoModel, atIndex: 0);
 			})
 			.addDisposableTo(self.disposeBag)
 		
@@ -127,7 +129,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		if segue.identifier == "messagingSegue"
 		{
 			let messagingVC = segue.destinationViewController as! MessageViewController
-			messagingVC.convoID = self.convoModels[convoIndex].convoID!
+			messagingVC.convoID = convoModels[convoIndex].convoID!
 		}
 	}
 	

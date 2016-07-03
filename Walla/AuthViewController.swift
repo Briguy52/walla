@@ -19,8 +19,6 @@ class AuthViewController: UIViewController {
 	let myUserBackend = UserBackend()
 	let myBasic = Basic()
     
-    var userHasAuthenticated: Bool = false
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		let keychain = MyApplication.sharedInstance.keychain
@@ -38,8 +36,6 @@ class AuthViewController: UIViewController {
 				}
 				let client = MyApplication.sharedInstance.lock.apiClient()
 				client.fetchNewIdTokenWithRefreshToken(refreshToken, parameters: nil, success: success, failure: failure)
-			} else {
-                self.userHasAuthenticated = true
 			}
 		}
 	}
@@ -60,14 +56,12 @@ class AuthViewController: UIViewController {
 				}
 				keychain.setData(NSKeyedArchiver.archivedDataWithRootObject(profile), forKey: "profile")
 				self.dismissViewControllerAnimated(true, completion: nil)
-                self.userHasAuthenticated = true
 				self.performSegueWithIdentifier("showProfile", sender: self)
 			default:
 				print("User signed up without logging in")
 			}
 		}
-        print("womp previously logged in? " + String(self.userHasAuthenticated))
-        if (!self.userHasAuthenticated) {
+        if (!self.hasUserAuthenticated()) {
             self.presentViewController(authController, animated: true, completion: nil)
         }
         else {
@@ -97,23 +91,9 @@ class AuthViewController: UIViewController {
 		}
 	}
 	
-	// Source: https://auth0.com/docs/auth-api#!#post--with_sms
-	// Note: phone number must be in Twilio format (+12223334444)
-	// Note: this method is UNTESTED (waiting on Twilio account from Yoon)
-	func auth0SMS(phoneNumber: String) {
-		let connection = "sms"
-		let phone_number = phoneNumber
-		let myParameters = [
-			"client_id": self.client_id,
-			"connection": connection,
-			"phone_number": phone_number]
-		Alamofire.request(.POST, "https://genieapp.auth0.com/passwordless/start", parameters: myParameters, encoding: .JSON)
-			.responseJSON { response in
-				if let myResponse = response.result.value {
-					print(myResponse)
-				}
-		}
-	}
+    func hasUserAuthenticated() -> Bool {
+        return self.myBasic.rootRef.authData != nil
+    }
 	
 	// Source: https://www.firebase.com/docs/web/guide/login/custom.html (Authenticating Clients section)
 	// Note: call this method from auth0Delegation

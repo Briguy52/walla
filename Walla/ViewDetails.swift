@@ -110,8 +110,17 @@ class ViewDetails: UIViewController {
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "showMessage" {
-			let messagingVC = segue.destinationViewController as! MessageViewController
-			messagingVC.convoID = self.convoID
+            print("womp convo models")
+            var index: Int = 0
+            for convo in convoModels {
+                if (convo.convoID == self.convoID) {
+                    print("womp convo found")
+                    print(index)
+                }
+                index++
+            }
+//			let messagingVC = segue.destinationViewController as! MessageViewController
+//			messagingVC.convoID = self.convoID
 		}
 	}
 }
