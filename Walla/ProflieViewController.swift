@@ -29,9 +29,6 @@ class ProfileViewController: UIViewController {
 		self.welcomeLabel.text = "Welcome \(profile.name)!"
 		if let data = myBasic.rootRef.authData {
             
-            print("womp profile vc")
-            print(data)
-            
             myUserBackend.updateUserData("displayName", value: profile.nickname, userID: data.uid)
             myUserBackend.updateUserData("profilePicUrl", value: profile.picture.absoluteString, userID: data.uid)
             myUserBackend.updateUserData("phoneNumber", value: "12345678", userID: data.uid)

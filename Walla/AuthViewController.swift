@@ -19,6 +19,8 @@ class AuthViewController: UIViewController {
 	let myUserBackend = UserBackend()
 	let myBasic = Basic()
     
+    var hasShownAuthScreen: Bool = false 
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		let keychain = MyApplication.sharedInstance.keychain

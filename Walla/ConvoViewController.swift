@@ -56,8 +56,8 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		self.messageIndex = 0
 	}
 	
-	@IBAction func unwindToMessages(segue: UIStoryboardSegue)
-	{
+	@IBAction func unwindToMessages(segue: UIStoryboardSegue) {
+        print("womp unwind")
 		messageTitleFromWalla = myMessageTitle
 		startConvoFromWalla()
 	}
@@ -99,10 +99,15 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		self.messageIndex = index
 		self.performSegueWithIdentifier("messagingSegue", sender: self)
 	}
+    
+    func womp() {
+        print("womp womp womp")
+    }
 	
 	func startConvoFromWalla()
 	{
-		self.selectIndex(convoModels.count) //change whats in the function param for where ever the new post is going to be
+        print("womp starting convo from walla")
+//		self.selectIndex(self.messageIndex) //change whats in the function param for where ever the new post is going to be
 	}
 	
 	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -145,6 +150,10 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "messagingSegue" {
+            print("womp messaging segue")
+            print(self.messageIndex)
+            print(convoModels)
+            
 			let messagingVC = segue.destinationViewController as! MessageViewController
 			messagingVC.convoID = convoModels[self.messageIndex].convoID!
 		}

@@ -34,6 +34,7 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+        print("womp loading messageVC")
 		self.sender = myBasic.rootRef.authData.uid
 		
 		let keychain = MyApplication.sharedInstance.keychain
