@@ -99,10 +99,6 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		self.messageIndex = index
 		self.performSegueWithIdentifier("messagingSegue", sender: self)
 	}
-    
-    func womp() {
-        print("womp womp womp")
-    }
 	
 	func startConvoFromWalla()
 	{
@@ -156,6 +152,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
 			let messagingVC = segue.destinationViewController as! MessageViewController
 			messagingVC.convoID = convoModels[self.messageIndex].convoID!
+            messagingVC.womp()
 		}
 	}
 	

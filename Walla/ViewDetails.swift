@@ -132,7 +132,6 @@ class ViewDetails: UIViewController {
                     print("womp convo found with index " + String(index))
                     let  convoVC = segue.destinationViewController as! ConvoViewController
                     convoVC.selectIndex(index)
-                    convoVC.womp()
                     break
                 }
                 index += 1

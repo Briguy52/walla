@@ -75,47 +75,53 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 		navBar.items = [navItem]
 		self.view.addSubview(navBar)
 		
-		
-		// Messages ref stores the Messages for a Conversation
-		let conversationRef = myBasic.messageRef.childByAppendingPath(self.convoID)
-		
-		//part 1
-		conversationRef.rx_observe(FEventType.ChildAdded)
-			.filter { snapshot in
-				return !(snapshot.value is NSNull)
-			}
-			.map {snapshot in
-				return MessageModel(snapshot: snapshot)
-			}
-			.subscribeNext({ (messageModel: MessageModel) -> Void in
-				self.messageModels.insert(messageModel, atIndex: 0);
-				if(self.isInitialLoad == false){
-					self.tableView.beginUpdates()
-					self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
-					self.tableView.endUpdates()
-					//you can do everything else here!
-				}
-			})
-			.addDisposableTo(self.disposeBag)
-		
-		conversationRef.rx_observe(FEventType.Value)
-			.subscribeNext({ (snapshot: FDataSnapshot) -> Void in
-				self.tableView.reloadData()
-				self.isInitialLoad = false;
-			})
-			.addDisposableTo(self.disposeBag)
-		
-		pressedRightButtonSubject
-			.flatMap({ (bodyText: String) -> Observable<Firebase> in
-				let sender = self.sender
-				let recipient = self.recipient
-				return conversationRef.childByAutoId().rx_setValue(["text": bodyText, "sender": sender, "recipient": recipient, "timestamp" : NSDate().timeIntervalSince1970 * 1000])
-			})
-			.subscribeNext({ (newMessageReference:Firebase) -> Void in
-				print("A new message was successfully committed to firebase")
-			})
-			.addDisposableTo(self.disposeBag)
+        self.observeMessages()
 	}
+    
+    func womp() {
+        print("womp womp womp")
+    }
+    
+    func observeMessages() {
+        let conversationRef = myBasic.convoRef
+        
+        //part 1
+        conversationRef.rx_observe(FEventType.ChildAdded)
+            .filter { snapshot in
+                return !(snapshot.value is NSNull)
+            }
+            .map {snapshot in
+                return MessageModel(snapshot: snapshot)
+            }
+            .subscribeNext({ (messageModel: MessageModel) -> Void in
+                self.messageModels.insert(messageModel, atIndex: 0);
+                if(self.isInitialLoad == false){
+                    self.tableView.beginUpdates()
+                    self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
+                    self.tableView.endUpdates()
+                    //you can do everything else here!
+                }
+            })
+            .addDisposableTo(self.disposeBag)
+        
+        conversationRef.rx_observe(FEventType.Value)
+            .subscribeNext({ (snapshot: FDataSnapshot) -> Void in
+                self.tableView.reloadData()
+                self.isInitialLoad = false;
+            })
+            .addDisposableTo(self.disposeBag)
+        
+        pressedRightButtonSubject
+            .flatMap({ (bodyText: String) -> Observable<Firebase> in
+                let sender = self.sender
+                let recipient = self.recipient
+                return conversationRef.childByAutoId().rx_setValue(["text": bodyText, "sender": sender, "recipient": recipient, "timestamp" : NSDate().timeIntervalSince1970 * 1000])
+            })
+            .subscribeNext({ (newMessageReference:Firebase) -> Void in
+                print("A new message was successfully committed to firebase")
+            })
+            .addDisposableTo(self.disposeBag)
+    }
 	
 	override func didPressRightButton(sender: AnyObject!) {
 		pressedRightButtonSubject.onNext(self.textView.text)
