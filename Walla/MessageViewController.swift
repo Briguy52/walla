@@ -77,9 +77,12 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 		
         self.observeMessages()
 	}
-    
-    func womp() {
-        print("womp womp womp")
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        print("womp did appear")
+            
+        self.viewDidLoad()
     }
     
     func observeMessages() {

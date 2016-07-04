@@ -30,7 +30,7 @@ class AuthViewController: UIViewController {
 				let success = {(token:A0Token!) -> () in
 					keychain.setString(token.idToken, forKey: "id_token")
 					MBProgressHUD.hideHUDForView(self.view, animated: true)
-					self.performSegueWithIdentifier("showProfile", sender: self)
+                    self.performSafeShowProfile()
 				}
 				let failure = {(error:NSError!) -> () in
 					keychain.clearAll()
@@ -58,7 +58,7 @@ class AuthViewController: UIViewController {
 				}
 				keychain.setData(NSKeyedArchiver.archivedDataWithRootObject(profile), forKey: "profile")
 				self.dismissViewControllerAnimated(true, completion: nil)
-				self.performSegueWithIdentifier("showProfile", sender: self)
+				self.performSafeShowProfile()
 			default:
 				print("User signed up without logging in")
 			}
@@ -67,7 +67,7 @@ class AuthViewController: UIViewController {
             self.presentViewController(authController, animated: true, completion: nil)
         }
         else {
-            self.performSegueWithIdentifier("showProfile", sender: self)
+            self.performSafeShowProfile()
         }
 	}
 	
@@ -92,6 +92,13 @@ class AuthViewController: UIViewController {
 				}
 		}
 	}
+    
+    func performSafeShowProfile() {
+        if (self.hasUserAuthenticated()) {
+            print("womp safe to segue to profile")
+            performSegueWithIdentifier("showProfile", sender: self)
+        }
+    }
 	
     func hasUserAuthenticated() -> Bool {
         return self.myBasic.rootRef.authData != nil
@@ -107,7 +114,7 @@ class AuthViewController: UIViewController {
 			} else {
 				print("Auth with Firebase Token")
 				self.myUserBackend.updateUserData("provider", value: authData.provider, userID: authData.uid)
-                self.performSegueWithIdentifier("showProfile", sender: self)
+                self.performSafeShowProfile()
 			}
 		})
 	}
