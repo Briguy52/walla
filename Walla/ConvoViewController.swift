@@ -152,7 +152,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
 			let messagingVC = segue.destinationViewController as! MessageViewController
 			messagingVC.convoID = convoModels[self.messageIndex].convoID!
-		}
+        }
 	}
 	
 }
