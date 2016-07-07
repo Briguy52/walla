@@ -148,10 +148,6 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
 		pressedRightButtonSubject.onNext(self.textView.text)
 		super.didPressRightButton(sender) // this important. calling the super.didPressRightButton will clear the method. We cannot use rx_tap due to inheritance
 	}
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
 	
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("womp there are " + String(self.messageModels.count) + " rows in section")

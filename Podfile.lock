@@ -86,7 +86,7 @@ DEPENDENCIES:
   - RxCocoa (>= 1.8.1)
   - RxSwift (>= 1.8.1)
   - SimpleKeychain (~> 0.3)
-  - SlackTextViewController (>= 1.5.2)
+  - SlackTextViewController (>= 1.9)
   - SnapKit
 
 SPEC CHECKSUMS:
@@ -108,6 +108,6 @@ SPEC CHECKSUMS:
   SlackTextViewController: 6b0d1030c53937226fc5358f217af2a34fc211cf
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
 
-PODFILE CHECKSUM: d592b4c09c393cec6338a7305aba5ba898419ca0
+PODFILE CHECKSUM: 7250822c241c1928dfdc8a724ca440bcaeb9efe9
 
 COCOAPODS: 1.0.1
