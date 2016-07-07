@@ -24,7 +24,7 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 	var disposeBag = DisposeBag()
 	var isInitialLoad = true;
 	var sender = "sender" // TODO: comes from backend
-	var recipient = "recipient" // TODO: comes from backend
+	var recipient = ""
 	var convoID = "sampleConversation"
 	
 	var pressedRightButtonSubject : PublishSubject<String> = PublishSubject()
@@ -34,18 +34,22 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		print("message VC did load")
+        
+        self.initModel()
+        self.initView()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        
-        print("womp message VC did appear")
+    func initModel() {
         self.sender = myBasic.rootRef.authData.uid
         
         let keychain = MyApplication.sharedInstance.keychain
         let profileData:NSData! = keychain.dataForKey("profile")
         let profile:A0UserProfile = NSKeyedUnarchiver.unarchiveObjectWithData(profileData) as! A0UserProfile
         
+        self.observeMessages()
+    }
+    
+    func initView() {
         self.bounces = true
         self.shakeToClearEnabled = true
         self.keyboardPanningEnabled = true
@@ -79,8 +83,11 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
         
         navBar.items = [navItem]
         self.view.addSubview(navBar)
-        
-        self.observeMessages()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        print("womp MessageVC did appear")
     }
 
 //    override func viewWillAppear(animated: Bool) {
@@ -122,7 +129,7 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
         secondRef.rx_observe(FEventType.Value)
             .subscribeNext({ (snapshot: FDataSnapshot) -> Void in
                 print("subscribing again")
-                self.tableView.reloadData()
+//                self.tableView.reloadData()
                 self.isInitialLoad = false;
                 print("flag")
             })
