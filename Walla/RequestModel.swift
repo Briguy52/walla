@@ -15,8 +15,8 @@ struct RequestModel {
 	var request: String
 	var additionalDetails: String
 	var authorID: String
-	var latitude: String
-	var longitude: String
+	var latitude: Double
+	var longitude: Double
 	var location: String
     var resolved: Bool
     var visible: Bool
@@ -29,8 +29,8 @@ struct RequestModel {
 		request = snapshot.value["request"] as! String
 		additionalDetails = snapshot.value["additionalDetails"] as! String
 		authorID = snapshot.value["authorID"] as! String
-		latitude = snapshot.value["latitude"] as! String
-		longitude = snapshot.value["longitude"] as! String
+		latitude = snapshot.value["latitude"] as! Double
+		longitude = snapshot.value["longitude"] as! Double
 		location = snapshot.value["location"] as! String
         resolved = snapshot.value["resolved"] as! Bool
         visible = snapshot.value["visible"] as! Bool
@@ -39,7 +39,7 @@ struct RequestModel {
 		expirationDate = snapshot.value["expirationDate"] as! Double
 	}
 	
-    init(request: String, additionalDetails: String, authorID: String, latitude: String, longitude: String, location: String, resolved: Bool, visible: Bool, tags: [String], expirationDate: Double) {
+    init(request: String, additionalDetails: String, authorID: String, latitude: Double, longitude: Double, location: String, resolved: Bool, visible: Bool, tags: [String], expirationDate: Double) {
 		self.request = request
 		self.additionalDetails = additionalDetails
 		self.authorID = authorID
