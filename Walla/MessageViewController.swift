@@ -91,14 +91,17 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 //    }
     
     func observeMessages() {
-        let conversationRef = myBasic.convoRef
+        
+        self.messageModels.removeAll()
+        let refToObserve = self.myBasic.messageRef
         
         //part 1
-        conversationRef.rx_observe(FEventType.ChildAdded)
+        refToObserve.rx_observe(FEventType.ChildAdded)
             .filter { snapshot in
                 return !(snapshot.value is NSNull)
             }
             .map {snapshot in
+                print(snapshot.value["text"])
                 return MessageModel(snapshot: snapshot)
             }
             .subscribeNext({ (messageModel: MessageModel) -> Void in
@@ -112,7 +115,7 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
             })
             .addDisposableTo(self.disposeBag)
         
-        conversationRef.rx_observe(FEventType.Value)
+        refToObserve.rx_observe(FEventType.Value)
             .subscribeNext({ (snapshot: FDataSnapshot) -> Void in
                 self.tableView.reloadData()
                 self.isInitialLoad = false;
@@ -123,7 +126,7 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
             .flatMap({ (bodyText: String) -> Observable<Firebase> in
                 let sender = self.sender
                 let recipient = self.recipient
-                return conversationRef.childByAutoId().rx_setValue(["text": bodyText, "sender": sender, "recipient": recipient, "timestamp" : NSDate().timeIntervalSince1970 * 1000])
+                return refToObserve.childByAutoId().rx_setValue(["text": bodyText, "sender": sender, "recipient": recipient, "timestamp" : NSDate().timeIntervalSince1970 * 1000])
             })
             .subscribeNext({ (newMessageReference:Firebase) -> Void in
                 print("A new message was successfully committed to firebase")

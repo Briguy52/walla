@@ -101,7 +101,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
         print("womp ConvoVC message index now set to " + String(self.messageIndex))
         
         // commenting this last segue out for now in order to keep things stable!
-//		self.performSegueWithIdentifier("messagingSegue", sender: self)
+		self.performSegueWithIdentifier("messagingSegue", sender: self)
 	}
 	
 	func startConvoFromWalla()
