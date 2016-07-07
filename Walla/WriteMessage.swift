@@ -21,6 +21,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	@IBOutlet weak var requestDetails: UITextView!
 	@IBOutlet weak var generalLocation: UITextField!
 	@IBOutlet weak var holla: UIButton!
+	@IBOutlet weak var scrollView: UIScrollView!
 	
 	var myTitle:String = "default request"
 	var myAuthorName:String = ""
@@ -60,10 +61,44 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		self.tabBarController?.tabBar.hidden = true
 //
 //		navigationController?.popViewControllerAnimated(true)
+		
+		NSNotificationCenter.defaultCenter().addObserver(
+			self,
+			selector: #selector(WriteMessage.keyboardWillShow(_:)),
+			name: UIKeyboardWillShowNotification,
+			object: nil
+		)
+		
+		NSNotificationCenter.defaultCenter().addObserver(
+			self,
+			selector: #selector(WriteMessage.keyboardWillHide(_:)),
+			name: UIKeyboardWillHideNotification,
+			object: nil
+		)
+	}
+	
+	deinit {
+		NSNotificationCenter.defaultCenter().removeObserver(self)
 	}
 	
 	override func viewDidAppear(animated: Bool) {
 		self.viewDidLoad()
+	}
+	
+	func adjustInsetForKeyboardShow(show: Bool, notification: NSNotification) {
+		guard let value = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue else { return }
+		let keyboardFrame = value.CGRectValue()
+		let adjustmentHeight = (CGRectGetHeight(keyboardFrame) + 20) * (show ? 1 : -1)
+		scrollView.contentInset.bottom += adjustmentHeight
+		scrollView.scrollIndicatorInsets.bottom += adjustmentHeight
+	}
+ 
+	func keyboardWillShow(notification: NSNotification) {
+		adjustInsetForKeyboardShow(true, notification: notification)
+	}
+ 
+	func keyboardWillHide(notification: NSNotification) {
+		adjustInsetForKeyboardShow(false, notification: notification)
 	}
 	
 	func submit()
