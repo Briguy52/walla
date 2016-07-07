@@ -116,6 +116,9 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssl-nu-dD0">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Dd2-1o-XCg"/>
+                                </constraints>
                                 <color key="barTintColor" red="0.99215686270000003" green="0.56078431370000004" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="My Topics" id="eza-v0-h5c">
@@ -192,7 +195,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ELZ-H5-giQ" firstAttribute="leading" secondItem="J39-bo-mOa" secondAttribute="leadingMargin" id="2DZ-4F-zeb"/>
+                            <constraint firstItem="ssl-nu-dD0" firstAttribute="top" secondItem="0I8-Bg-JSL" secondAttribute="bottom" id="DQf-aI-YhW"/>
+                            <constraint firstAttribute="trailing" secondItem="ssl-nu-dD0" secondAttribute="trailing" id="FLR-nc-fw3"/>
                             <constraint firstItem="xJ3-nB-Fec" firstAttribute="leading" secondItem="ssl-nu-dD0" secondAttribute="leading" id="G5v-vw-Qvz"/>
+                            <constraint firstItem="ssl-nu-dD0" firstAttribute="leading" secondItem="J39-bo-mOa" secondAttribute="leading" id="GKD-4H-Rmp"/>
                             <constraint firstItem="xJ3-nB-Fec" firstAttribute="width" secondItem="J39-bo-mOa" secondAttribute="width" id="HBE-2J-9Do"/>
                             <constraint firstItem="ELZ-H5-giQ" firstAttribute="leading" secondItem="J39-bo-mOa" secondAttribute="leading" constant="20" id="Kax-3E-ii5"/>
                             <constraint firstItem="xJ3-nB-Fec" firstAttribute="leading" secondItem="J39-bo-mOa" secondAttribute="leading" id="KzZ-oU-9g4"/>
@@ -208,6 +214,7 @@
                             <constraint firstItem="cZB-mE-gXF" firstAttribute="top" secondItem="ELZ-H5-giQ" secondAttribute="bottom" constant="38" id="l3j-Ov-qen"/>
                             <constraint firstItem="ELZ-H5-giQ" firstAttribute="leading" secondItem="J39-bo-mOa" secondAttribute="leading" constant="20" id="lFb-KT-UgX"/>
                             <constraint firstItem="ELZ-H5-giQ" firstAttribute="top" secondItem="ssl-nu-dD0" secondAttribute="bottom" constant="16" id="luF-cK-Gmg"/>
+                            <constraint firstItem="xJ3-nB-Fec" firstAttribute="top" secondItem="ssl-nu-dD0" secondAttribute="bottom" id="oDs-74-MVl"/>
                             <constraint firstItem="xJ3-nB-Fec" firstAttribute="bottom" secondItem="cZB-mE-gXF" secondAttribute="top" id="wwF-sf-EWK"/>
                         </constraints>
                         <variation key="default">
