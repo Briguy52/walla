@@ -94,6 +94,7 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
         
         self.messageModels.removeAll()
         let refToObserve = self.myBasic.messageRef.childByAppendingPath(self.convoID)
+        let secondRef = self.myBasic.messageRef
         
         //part 1
         refToObserve.rx_observe(FEventType.ChildAdded)
@@ -118,7 +119,7 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
             })
             .addDisposableTo(self.disposeBag)
         
-        refToObserve.rx_observe(FEventType.Value)
+        secondRef.rx_observe(FEventType.Value)
             .subscribeNext({ (snapshot: FDataSnapshot) -> Void in
                 print("subscribing again")
                 self.tableView.reloadData()
@@ -160,11 +161,15 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 		let key = messageModelAtIndexPath.sender
 		self.myUserBackend.getUserInfo("displayName", userID: key)
 		{
-			(result: AnyObject)
-			in cell.nameLabel.text = result as! String
+			(result: AnyObject) in
+            cell.nameLabel.text = result as! String
 		}
 		
-		cell.bodyLabel.text = messageModelAtIndexPath.text
+        // Safe unwrapping of text
+        if let messageText = messageModelAtIndexPath.text as? String {
+            cell.bodyLabel.text = messageText
+        }
+        
 		cell.selectionStyle = .None
 		cell.transform = self.tableView.transform // TODO: figure out what this actually does
 		return cell
