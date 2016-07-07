@@ -8,6 +8,8 @@
 
 import UIKit
 
+var hasFilters: Bool = false
+
 class MenuViewController : UIViewController {
 	
 	@IBOutlet weak var type: UITextField!
@@ -33,15 +35,25 @@ class MenuViewController : UIViewController {
 	}
 	
 	@IBAction func addFilter(sender: AnyObject) {
+		let i = 1
+		let doesMatch: String = self.type.text!
 		
+		repeat {
+			if tagsToPick[i].containsString(doesMatch) {
+				tagsToFilter.append(tagsToPick[i])
+				hasFilters = true
+				break
+			}
+		} while i < tagsToPick.count
 	}
 	
 	@IBAction func clearFilter(sender: AnyObject) {
-	
+		tagsToFilter.removeAll()
+		hasFilters = false
 	}
 	
 	@IBAction func cancelFilter(sender: AnyObject) {
-		
+		dismissViewControllerAnimated(true, completion: nil)
 	}
 	
 }
