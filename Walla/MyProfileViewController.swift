@@ -18,6 +18,7 @@ class MyProfileViewController: UIViewController {
 	@IBOutlet weak var settings: UIButton!
 	@IBOutlet weak var myTopics: UIButton!
 	@IBOutlet weak var logout: UIButton!
+	@IBOutlet weak var buttonViews: UIView!
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
@@ -31,6 +32,19 @@ class MyProfileViewController: UIViewController {
 		self.setImage()
 		self.setTotalPoints()
 		self.setNameAndTitle()
+	}
+	
+	override func viewDidLayoutSubviews() {
+		self.setButtonSizes()
+	}
+	
+	func setButtonSizes() {
+		let screenSize = buttonViews.frame.size
+		self.myHollas.frame = CGRectMake(0,0, screenSize.height * 0.2, 50)
+		self.myWallas.frame = CGRectMake(0,0, screenSize.height * 0.2, 50)
+		self.settings.frame = CGRectMake(0,0, screenSize.height * 0.2, 50)
+		self.myTopics.frame = CGRectMake(0,0, screenSize.height * 0.2, 50)
+		self.logout.frame = CGRectMake(0,0, screenSize.height * 0.2, 50)
 	}
 	
 	@IBAction func settings(sender: AnyObject) {
