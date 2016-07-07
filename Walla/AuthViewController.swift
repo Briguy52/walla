@@ -96,6 +96,7 @@ class AuthViewController: UIViewController {
     func performSafeShowProfile() {
         if (self.hasUserAuthenticated()) {
             print("womp safe to segue to profile")
+            print(self.myBasic.rootRef.authData.uid)
             performSegueWithIdentifier("showProfile", sender: self)
         }
     }

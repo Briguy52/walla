@@ -84,11 +84,11 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		alert.title = "You missed a field"
 		alert.addButtonWithTitle("OK")
 		
-		print(myTags.count)
-		print(requestBody.text)
-		print(requestDetails.text)
-		print(generalLocation.text)
-		
+//		print(myTags.count)
+//		print(requestBody.text)
+//		print(requestDetails.text)
+//		print(generalLocation.text)
+//		
 		if self.myTags.count == 1
 		{
 			tags = true

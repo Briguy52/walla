@@ -58,31 +58,42 @@ class ViewDetails: UIViewController {
 		self.tags?.text = requestModel.tags.joinWithSeparator(" ")
 	}
 	
-	@IBAction func goBack(sender: UIBarButtonItem)
-	{
+	@IBAction func goBack(sender: UIBarButtonItem) {
 		dismissViewControllerAnimated(true, completion: nil)
 	}
+    
+    func buildRef() -> Firebase {
+        let requestID = requestModels[currentIndex].postID!
+        let authorID = requestModels[currentIndex].authorID
+        let userID = myBasic.rootRef.authData.uid
+        let convoHash = createConvoHash(requestID, authorID: authorID, userID: userID)
+        
+        return myBasic.convoRef.childByAppendingPath(convoHash)
+    }
 	
 	@IBAction func goToMessages(sender: UIButton)
 	{
-		myMessageTitle = requestModels[currentIndex].request
-		let requestID = requestModels[currentIndex].postID!
-		let authorID = requestModels[currentIndex].authorID
-		let userID = myBasic.rootRef.authData.uid
-		let convoHash = createConvoHash(requestID, authorID: authorID, userID: userID)
-		let testRef = myBasic.convoRef.childByAppendingPath(convoHash)
-		testRef.observeEventType(.Value, withBlock: { snapshot in
+        myMessageTitle = requestModels[currentIndex].request
+        let requestID = requestModels[currentIndex].postID!
+        let authorID = requestModels[currentIndex].authorID
+        let userID = myBasic.rootRef.authData.uid
+        let convoHash = createConvoHash(requestID, authorID: authorID, userID: userID)
+        
+		let refToTry = self.buildRef()
+		refToTry.observeEventType(.Value, withBlock: { snapshot in
+            
+            // Convo does not yet exist
 			if snapshot.value is NSNull {
+                print("womp conversation not found")
 				self.createSingleConvoRef(requestID, authorID: authorID, userID: userID)
 			}
+            
+            // Convo does exist
 			else {
+                print("womp conversation found")
 				self.convoID = convoHash
-				//self.tabBarController?.tabBar.hidden = false
-				//self.tabBarController?.selectedIndex = 3
-				//ConvoViewController().startConvoFromWalla()
-				//self.performSegueWithIdentifier("showMessage", sender: self)
-                self.performSegueWithIdentifier("unwindToMessages", sender: self)
-			}
+                self.unwindAndCleanup(self.buildRef())
+            }
 		})
 	}
 	
@@ -98,7 +109,7 @@ class ViewDetails: UIViewController {
 	// Should only be called by users other than the Author
 	func createSingleConvoRef(requestID: String, authorID: String, userID: String) {
         
-        print("womp creating single convo ref")
+        print("womp create single convo ref")
 		
 		let newConvo = [
 			"uniqueID": requestID,
@@ -119,10 +130,17 @@ class ViewDetails: UIViewController {
 				print("Conversation data could not be saved.")
 			} else {
 				print("Conversation data saved successfully!")
-                self.performSegueWithIdentifier("unwindToMessages", sender: self)
+                self.unwindAndCleanup(self.buildRef())
 			}
 		})
 	}
+    
+    // Call unwind segue to ConvoVC & clean-up observer (to prevent unwanted segues)
+    func unwindAndCleanup(ref: Firebase) {
+        self.performSegueWithIdentifier("unwindToMessages", sender: self)
+        ref.removeAllObservers()
+        print("womp all observers removed")
+    }
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "unwindToMessages" {

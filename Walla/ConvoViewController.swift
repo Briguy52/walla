@@ -59,7 +59,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	@IBAction func unwindToMessages(segue: UIStoryboardSegue) {
         print("womp unwind")
 		messageTitleFromWalla = myMessageTitle
-		startConvoFromWalla()
+//		startConvoFromWalla()
 	}
 	
 	// MARK: - Table view data source
@@ -97,13 +97,16 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	func selectIndex(index: Int)
 	{
 		self.messageIndex = index
-		self.performSegueWithIdentifier("messagingSegue", sender: self)
+        
+        print("womp ConvoVC message index now set to " + String(self.messageIndex))
+        
+        // commenting this last segue out for now in order to keep things stable!
+//		self.performSegueWithIdentifier("messagingSegue", sender: self)
 	}
 	
 	func startConvoFromWalla()
 	{
-        print("womp starting convo from walla")
-//		self.selectIndex(self.messageIndex) //change whats in the function param for where ever the new post is going to be
+		self.selectIndex(self.messageIndex) //change whats in the function param for where ever the new post is going to be
 	}
 	
 	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -147,8 +150,6 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "messagingSegue" {
             print("womp messaging segue")
-            print(self.messageIndex)
-            print(convoModels)
             
 			let messagingVC = segue.destinationViewController as! MessageViewController
 			messagingVC.convoID = convoModels[self.messageIndex].convoID!

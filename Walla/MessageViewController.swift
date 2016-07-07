@@ -33,57 +33,62 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-        print("womp loading messageVC")
-		self.sender = myBasic.rootRef.authData.uid
-		
-		let keychain = MyApplication.sharedInstance.keychain
-		let profileData:NSData! = keychain.dataForKey("profile")
-		let profile:A0UserProfile = NSKeyedUnarchiver.unarchiveObjectWithData(profileData) as! A0UserProfile
-		
-		self.bounces = true
-		self.shakeToClearEnabled = true
-		self.keyboardPanningEnabled = true
-		self.typingIndicatorView.canResignByTouch = true
-		self.textInputbar.autoHideRightButton = true
-		self.textInputbar.maxCharCount = 140
-		self.textInputbar.counterStyle = SLKCounterStyle.Split
-		self.inverted = true
-		
-		tableView.registerClass(MessageTableViewCell.self, forCellReuseIdentifier: MessageTableViewCell.REUSE_ID)
-		tableView.rowHeight = UITableViewAutomaticDimension //needed for autolayout
-		tableView.estimatedRowHeight = 50.0 //needed for autolayout
-		
-		tableView.frame = CGRectMake(tableView.frame.origin.x, tableView.frame.origin.y - 44, tableView.frame.size.width, tableView.contentSize.height)
-		
-		// navBar: UINavigationBar = UINavigationBar(frame:CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
-		
-		navBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
-		navBar.backgroundColor = UIColor.init(netHex: 0xffa160)
-		navBar.delegate = self
-		let navItem = UINavigationItem()
-		navItem.title = "Messaging"
-		//		let backButton = UIButton(type: .Custom)
-		//		backButton.setTitle("Back", forState: .Normal)
-		//		backButton.setTitleColor(backButton.tintColor, forState: .Normal)
-		//		backButton.addTarget(self, action: "backButtonClick", forControlEvents: .TouchUpInside)
-		//		navItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-		
-		let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "backButtonClick")
-		navItem.leftBarButtonItem = backButton
-		
-		navBar.items = [navItem]
-		self.view.addSubview(navBar)
-		
-        self.observeMessages()
-	}
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        print("womp did appear")
-            
-        self.viewDidLoad()
+		print("message VC did load")
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+        print("womp message VC did appear")
+        self.sender = myBasic.rootRef.authData.uid
+        
+        let keychain = MyApplication.sharedInstance.keychain
+        let profileData:NSData! = keychain.dataForKey("profile")
+        let profile:A0UserProfile = NSKeyedUnarchiver.unarchiveObjectWithData(profileData) as! A0UserProfile
+        
+        self.bounces = true
+        self.shakeToClearEnabled = true
+        self.keyboardPanningEnabled = true
+        self.typingIndicatorView.canResignByTouch = true
+        self.textInputbar.autoHideRightButton = true
+        self.textInputbar.maxCharCount = 140
+        self.textInputbar.counterStyle = SLKCounterStyle.Split
+        self.inverted = true
+        
+        tableView.registerClass(MessageTableViewCell.self, forCellReuseIdentifier: MessageTableViewCell.REUSE_ID)
+        tableView.rowHeight = UITableViewAutomaticDimension //needed for autolayout
+        tableView.estimatedRowHeight = 50.0 //needed for autolayout
+        
+        tableView.frame = CGRectMake(tableView.frame.origin.x, tableView.frame.origin.y - 44, tableView.frame.size.width, tableView.contentSize.height)
+        
+        // navBar: UINavigationBar = UINavigationBar(frame:CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
+        
+        navBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
+        navBar.backgroundColor = UIColor.init(netHex: 0xffa160)
+        navBar.delegate = self
+        let navItem = UINavigationItem()
+        navItem.title = "Messaging"
+        //		let backButton = UIButton(type: .Custom)
+        //		backButton.setTitle("Back", forState: .Normal)
+        //		backButton.setTitleColor(backButton.tintColor, forState: .Normal)
+        //		backButton.addTarget(self, action: "backButtonClick", forControlEvents: .TouchUpInside)
+        //		navItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        
+        let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "backButtonClick")
+        navItem.leftBarButtonItem = backButton
+        
+        navBar.items = [navItem]
+        self.view.addSubview(navBar)
+        
+        self.observeMessages()
+    }
+
+//    override func viewWillAppear(animated: Bool) {
+//        super.viewWillAppear(animated)
+//        print("womp did appear")
+//            
+//        self.viewDidLoad()
+//    }
     
     func observeMessages() {
         let conversationRef = myBasic.convoRef
