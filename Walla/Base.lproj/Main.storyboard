@@ -1422,8 +1422,8 @@
                                                     </navigationItem>
                                                 </items>
                                             </navigationBar>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="walla-background" translatesAutoresizingMaskIntoConstraints="NO" id="gwg-sB-WdX">
-                                                <rect key="frame" x="0.0" y="64" width="375" height="596"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walla-background" translatesAutoresizingMaskIntoConstraints="NO" id="gwg-sB-WdX">
+                                                <rect key="frame" x="0.0" y="64" width="375" height="719"/>
                                             </imageView>
                                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eCi-pw-FfX">
                                                 <rect key="frame" x="8" y="64" width="359" height="211"/>
@@ -1646,9 +1646,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.99215686270000003" green="0.56078431370000004" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="d7y-oi-AKy" firstAttribute="height" secondItem="eLf-TR-K5k" secondAttribute="height" id="9dw-TW-XOY"/>
                             <constraint firstAttribute="trailing" secondItem="d7y-oi-AKy" secondAttribute="trailing" id="A1J-gK-5bj"/>
                             <constraint firstItem="d7y-oi-AKy" firstAttribute="top" secondItem="eLf-TR-K5k" secondAttribute="top" id="Kdd-Ow-bRa"/>
                             <constraint firstItem="d7y-oi-AKy" firstAttribute="leading" secondItem="eLf-TR-K5k" secondAttribute="leading" id="QSF-Mn-Lhu"/>
+                            <constraint firstItem="d7y-oi-AKy" firstAttribute="width" secondItem="eLf-TR-K5k" secondAttribute="width" id="cSm-MV-Exp"/>
                             <constraint firstItem="NDR-vE-Q26" firstAttribute="top" secondItem="d7y-oi-AKy" secondAttribute="bottom" constant="-49" id="hq6-f7-KEP"/>
                             <constraint firstItem="vBB-94-lag" firstAttribute="width" secondItem="eLf-TR-K5k" secondAttribute="width" id="kbD-78-tT8"/>
                         </constraints>
