@@ -39,6 +39,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.hideKeyboardWhenTappedAround()
 		
 		self.tagPicker?.dataSource = self
 		self.tagPicker?.delegate = self
@@ -70,7 +71,8 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		self.saveAndUpdate()
 		self.resetFields()
 		self.tabBarController?.tabBar.hidden = false
-		tabBarController?.selectedIndex = 0
+		self.dismissKeyboard()
+		self.performSegueWithIdentifier("unwindToHomeFromWrite", sender: self)
 	}
 	
 	@IBAction func allFieldsSet(sender: UIButton)
@@ -168,8 +170,8 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	{
 		self.tabBarController?.tabBar.hidden = false
 		self.resetFields()
+		self.dismissKeyboard()
 		self.performSegueWithIdentifier("unwindToHomeFromWrite", sender: self)
-		//tabBarController?.selectedIndex = 0
 	}
 	
 	func resetFields()
@@ -331,5 +333,16 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 extension String {
 	var isEmptyField: Bool {
 		return stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == ""
+	}
+}
+
+extension UIViewController {
+	func hideKeyboardWhenTappedAround() {
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+		view.addGestureRecognizer(tap)
+	}
+	
+	func dismissKeyboard() {
+		view.endEditing(true)
 	}
 }

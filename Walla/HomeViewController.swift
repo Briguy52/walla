@@ -18,6 +18,7 @@ var masterView: HomeViewController?
 var detailView: ViewDetails?
 var requestModels: [RequestModel] = [RequestModel]()
 var currentIndex: Int = 0
+var tagsToFilter: [String] = []
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
@@ -32,7 +33,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	let postPath = "posts"
 	let tagPath = "tags"
 	let postContents = ["title", "content", "authorID", "latitude", "longitude", "urgency", "tags", "expirationDate"]
-	var isInitialLoad = true;
+	var isInitialLoad = true
 	var disposeBag = DisposeBag()
 	var authorName = ""
     var latitude: Double = 36.0014
