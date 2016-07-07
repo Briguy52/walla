@@ -64,15 +64,12 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	// MARK: - Table view data source
 	
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int
-	{
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1 // previously set to '2' and caused duplicate Convos to show up :(
 		// the 2 was because there were 2 sections: resolved and unresolved.  the problem was how we were going to store that
-		// thats where the problem comes in from the backend.  Are we storing that info?  how is the andorid team doing it?
 	}
 	
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-	{
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return convoModels.count
 	}
 	
@@ -80,9 +77,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		cell.backgroundColor = UIColor(white: 1, alpha: 0.8)
 	}
 	
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
-		-> UITableViewCell
-	{
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("ConvoCell", forIndexPath: indexPath) as! ConvoCell
 		
 		let convo = convoModels[indexPath.row] as ConvoModel
@@ -94,8 +89,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		self.selectIndex(indexPath.row)
 	}
 	
-	func selectIndex(index: Int)
-	{
+	func selectIndex(index: Int) {
 		self.messageIndex = index
         
         print("womp ConvoVC message index now set to " + String(self.messageIndex))
@@ -104,8 +98,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		self.performSegueWithIdentifier("messagingSegue", sender: self)
 	}
 	
-	func startConvoFromWalla()
-	{
+	func startConvoFromWalla() {
 		self.selectIndex(self.messageIndex) //change whats in the function param for where ever the new post is going to be
 	}
 	
