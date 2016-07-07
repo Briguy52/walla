@@ -85,21 +85,22 @@ class ViewDetails: UIViewController {
             // Convo does not yet exist
 			if snapshot.value is NSNull {
                 print("womp conversation not found")
+                refToTry.removeAllObservers()
 				self.createSingleConvoRef(requestID, authorID: authorID, userID: userID)
+                
 			}
             
             // Convo does exist
 			else {
                 print("womp conversation found")
+                refToTry.removeAllObservers()
 				self.convoID = convoHash
-                self.unwindAndCleanup(self.buildRef())
+                self.performSegueWithIdentifier("unwindToMessages", sender: self)
             }
+            
+            
 		})
 	}
-	
-	/*@IBAction func goToMessages(sender: AnyObject) {
-	self.performSegueWithIdentifier("unwindToMenu", sender: self)
-	}*/
 	
 	func createConvoHash(requestID: String, authorID: String, userID: String) -> String {
 		let toHash = requestID + authorID + userID
@@ -130,18 +131,11 @@ class ViewDetails: UIViewController {
 				print("Conversation data could not be saved.")
 			} else {
 				print("Conversation data saved successfully!")
-                self.unwindAndCleanup(self.buildRef())
+                self.performSegueWithIdentifier("unwindToMessages", sender: self)
 			}
 		})
 	}
-    
-    // Call unwind segue to ConvoVC & clean-up observer (to prevent unwanted segues)
-    func unwindAndCleanup(ref: Firebase) {
-        self.performSegueWithIdentifier("unwindToMessages", sender: self)
-        ref.removeAllObservers()
-        print("womp all observers removed")
-    }
-	
+
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "unwindToMessages" {
             var index: Int = 0
