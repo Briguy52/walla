@@ -244,10 +244,19 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="hUG-uI-Ugu">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SORRY NOT LOOKING AROUND YET :'(" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoM-Tg-xvJ">
+                                <rect key="frame" x="20" y="108" width="335" height="194"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="194" id="rhi-yp-FFS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ma-28-BU5">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="PcU-rf-HrB"/>
+                                    <constraint firstAttribute="height" constant="44" id="w00-Zq-leZ"/>
                                 </constraints>
                                 <color key="barTintColor" red="0.99215686270000003" green="0.56078431370000004" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <textAttributes key="titleTextAttributes">
@@ -257,26 +266,20 @@
                                     <navigationItem title="LOOK AROUND" id="kIh-gk-UIb"/>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SORRY NOT LOOKING AROUND YET :'(" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoM-Tg-xvJ">
-                                <rect key="frame" x="20" y="108" width="335" height="74"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="HoM-Tg-xvJ" firstAttribute="top" secondItem="1Ma-28-BU5" secondAttribute="bottom" constant="44" id="3OW-Kw-KwO"/>
-                            <constraint firstItem="hUG-uI-Ugu" firstAttribute="bottom" secondItem="x5d-yB-7PV" secondAttribute="top" id="9FR-pv-BKL"/>
-                            <constraint firstItem="1Ma-28-BU5" firstAttribute="leading" secondItem="dEE-bX-QlH" secondAttribute="leading" id="O8P-6r-SVC"/>
-                            <constraint firstItem="HoM-Tg-xvJ" firstAttribute="leading" secondItem="dEE-bX-QlH" secondAttribute="leadingMargin" constant="4" id="Rm3-1w-JHZ"/>
-                            <constraint firstAttribute="trailing" secondItem="1Ma-28-BU5" secondAttribute="trailing" id="USA-qp-woL"/>
-                            <constraint firstItem="hUG-uI-Ugu" firstAttribute="leading" secondItem="1Ma-28-BU5" secondAttribute="leading" id="Yta-fP-ISN"/>
-                            <constraint firstItem="hUG-uI-Ugu" firstAttribute="centerX" secondItem="HoM-Tg-xvJ" secondAttribute="centerX" id="Yxv-yM-4dV"/>
-                            <constraint firstItem="1Ma-28-BU5" firstAttribute="top" secondItem="dl2-JS-H24" secondAttribute="bottom" id="kqq-D4-iEA"/>
-                            <constraint firstItem="hUG-uI-Ugu" firstAttribute="width" secondItem="dEE-bX-QlH" secondAttribute="width" id="opn-q9-gg7"/>
-                            <constraint firstItem="hUG-uI-Ugu" firstAttribute="height" secondItem="dEE-bX-QlH" secondAttribute="height" constant="-113" id="pHq-9Q-UMw"/>
-                            <constraint firstItem="x5d-yB-7PV" firstAttribute="top" secondItem="HoM-Tg-xvJ" secondAttribute="bottom" constant="436" id="ydb-8r-DCr"/>
+                            <constraint firstAttribute="trailing" secondItem="hUG-uI-Ugu" secondAttribute="trailing" id="MIS-HB-35z"/>
+                            <constraint firstItem="hUG-uI-Ugu" firstAttribute="leading" secondItem="dEE-bX-QlH" secondAttribute="leading" id="Nza-AQ-yJX"/>
+                            <constraint firstAttribute="trailing" secondItem="HoM-Tg-xvJ" secondAttribute="trailing" constant="20" id="W7T-Bu-6Ep"/>
+                            <constraint firstItem="1Ma-28-BU5" firstAttribute="leading" secondItem="dEE-bX-QlH" secondAttribute="leading" id="X0E-E8-7JN"/>
+                            <constraint firstItem="HoM-Tg-xvJ" firstAttribute="top" secondItem="1Ma-28-BU5" secondAttribute="bottom" constant="44" id="XRq-dm-C3K"/>
+                            <constraint firstItem="HoM-Tg-xvJ" firstAttribute="leading" secondItem="dEE-bX-QlH" secondAttribute="leading" constant="20" id="Zyv-mQ-MJy"/>
+                            <constraint firstItem="hUG-uI-Ugu" firstAttribute="top" secondItem="1Ma-28-BU5" secondAttribute="bottom" id="aEB-kg-3R3"/>
+                            <constraint firstItem="x5d-yB-7PV" firstAttribute="top" secondItem="hUG-uI-Ugu" secondAttribute="bottom" id="sea-s6-bze"/>
+                            <constraint firstItem="hUG-uI-Ugu" firstAttribute="top" secondItem="1Ma-28-BU5" secondAttribute="bottom" id="xIT-yK-81o"/>
+                            <constraint firstItem="1Ma-28-BU5" firstAttribute="top" secondItem="dl2-JS-H24" secondAttribute="bottom" id="yRc-Dk-OS8"/>
+                            <constraint firstAttribute="trailing" secondItem="1Ma-28-BU5" secondAttribute="trailing" id="zMf-PV-g6n"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="lookaround" selectedImage="lookaround-selected" id="afk-mK-EKM"/>
