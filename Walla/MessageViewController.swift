@@ -93,7 +93,6 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
     func observeMessages() {
         
         self.messageModels.removeAll()
-        print("my convo id is " + self.convoID)
         let refToObserve = self.myBasic.messageRef.childByAppendingPath(self.convoID)
         
         //part 1
@@ -103,7 +102,8 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
             }
             .map {snapshot in
                 print("mapping")
-                print(snapshot.value["text"])
+                print(snapshot.key)
+                print(snapshot.value)
                 return MessageModel(snapshot: snapshot)
             }
             .subscribeNext({ (messageModel: MessageModel) -> Void in
@@ -123,6 +123,7 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
                 print("subscribing again")
                 self.tableView.reloadData()
                 self.isInitialLoad = false;
+                print("flag")
             })
             .addDisposableTo(self.disposeBag)
         
