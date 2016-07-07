@@ -93,7 +93,8 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
     func observeMessages() {
         
         self.messageModels.removeAll()
-        let refToObserve = self.myBasic.messageRef
+        print("my convo id is " + self.convoID)
+        let refToObserve = self.myBasic.messageRef.childByAppendingPath(self.convoID)
         
         //part 1
         refToObserve.rx_observe(FEventType.ChildAdded)
@@ -101,10 +102,12 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
                 return !(snapshot.value is NSNull)
             }
             .map {snapshot in
+                print("mapping")
                 print(snapshot.value["text"])
                 return MessageModel(snapshot: snapshot)
             }
             .subscribeNext({ (messageModel: MessageModel) -> Void in
+                print("subscribing")
                 self.messageModels.insert(messageModel, atIndex: 0);
                 if(self.isInitialLoad == false){
                     self.tableView.beginUpdates()
@@ -117,6 +120,7 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
         
         refToObserve.rx_observe(FEventType.Value)
             .subscribeNext({ (snapshot: FDataSnapshot) -> Void in
+                print("subscribing again")
                 self.tableView.reloadData()
                 self.isInitialLoad = false;
             })
@@ -124,6 +128,7 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
         
         pressedRightButtonSubject
             .flatMap({ (bodyText: String) -> Observable<Firebase> in
+                print("flat mapping")
                 let sender = self.sender
                 let recipient = self.recipient
                 return refToObserve.childByAutoId().rx_setValue(["text": bodyText, "sender": sender, "recipient": recipient, "timestamp" : NSDate().timeIntervalSince1970 * 1000])
