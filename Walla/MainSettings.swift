@@ -17,6 +17,7 @@ class MainSettings: UIViewController{
 	@IBOutlet weak var messageToggle: UISwitch!
 	@IBOutlet weak var helpMeResponseToggle: UISwitch!
 	@IBOutlet weak var requestResolvedToggle: UISwitch!
+	@IBOutlet weak var scrollView: UIScrollView!
 	
 	@IBAction func requestResolvedPressed(sender: AnyObject) {
 		self.myUserBackend.updateNotificationSetting("requestResolvedNotification", value: self.requestResolvedToggle.on, userID: myBasic.rootRef.authData.uid)
@@ -36,6 +37,7 @@ class MainSettings: UIViewController{
             self.myUserBackend.updateUserData("phoneNumber", value: number, userID: myBasic.rootRef.authData.uid)
 		}
 		self.phoneNumberSaveButton.hidden = true
+		self.dismissKeyboard()
 	}
 	
 	@IBAction func phoneNumberBeginEditing(sender: AnyObject) {
@@ -56,6 +58,26 @@ class MainSettings: UIViewController{
 		super.viewDidLoad()
 		self.hideButtons()
 		self.initContactInfo()
+		self.hideKeyboardWhenTappedAround()
+		
+		
+		NSNotificationCenter.defaultCenter().addObserver(
+			self,
+			selector: #selector(MainSettings.keyboardWillShow(_:)),
+			name: UIKeyboardWillShowNotification,
+			object: nil
+		)
+		
+		NSNotificationCenter.defaultCenter().addObserver(
+			self,
+			selector: #selector(MainSettings.keyboardWillHide(_:)),
+			name: UIKeyboardWillHideNotification,
+			object: nil
+		)
+	}
+	
+	deinit {
+		NSNotificationCenter.defaultCenter().removeObserver(self)
 	}
 	
 	func hideButtons() {
@@ -74,9 +96,24 @@ class MainSettings: UIViewController{
 		}
 	}
 	
+	func adjustInsetForKeyboardShow(show: Bool, notification: NSNotification) {
+		guard let value = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue else { return }
+		let keyboardFrame = value.CGRectValue()
+		let adjustmentHeight = (CGRectGetHeight(keyboardFrame) + 20) * (show ? 1 : -1)
+		scrollView.contentInset.bottom += adjustmentHeight
+		scrollView.scrollIndicatorInsets.bottom += adjustmentHeight
+	}
+ 
+	func keyboardWillShow(notification: NSNotification) {
+		adjustInsetForKeyboardShow(true, notification: notification)
+	}
+ 
+	func keyboardWillHide(notification: NSNotification) {
+		adjustInsetForKeyboardShow(false, notification: notification)
+	}
+	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
-	
 }
