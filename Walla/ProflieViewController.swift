@@ -28,11 +28,12 @@ class ProfileViewController: UIViewController {
 		self.profileImage.setImageWithURL(profile.picture)
 		self.welcomeLabel.text = "Welcome \(profile.name)!"
 		if let data = myBasic.rootRef.authData {
+            
             myUserBackend.updateUserData("displayName", value: profile.nickname, userID: data.uid)
             myUserBackend.updateUserData("profilePicUrl", value: profile.picture.absoluteString, userID: data.uid)
             myUserBackend.updateUserData("phoneNumber", value: "12345678", userID: data.uid)
-            myUserBackend.updateUserData("latitude", value: "21.2827778", userID: data.uid)
-            myUserBackend.updateUserData("longitude", value: "-157.8294444", userID: data.uid)
+            myUserBackend.updateUserData("latitude", value: 36.0014, userID: data.uid)
+            myUserBackend.updateUserData("longitude", value: 78.9382, userID: data.uid)
             myUserBackend.updateUserData("karma", value: 0, userID: data.uid)
             
             myUserBackend.updateNotificationSetting("pushNotifications", value: true, userID: data.uid)

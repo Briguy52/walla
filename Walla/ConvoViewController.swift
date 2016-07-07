@@ -14,6 +14,9 @@ import RxCocoa
 import RxSwift
 import FirebaseRxSwiftExtensions
 
+var convoModels: [ConvoModel] = [ConvoModel]() // global variable for ViewDetails.swift access
+
+
 class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
 	
@@ -27,7 +30,6 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	var messageTitleFromWalla = ""
 	
 	// Model that corresponds to this ViewController
-	var convoModels: [ConvoModel] = [ConvoModel]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -54,10 +56,10 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		self.messageIndex = 0
 	}
 	
-	@IBAction func unwindToMessages(segue: UIStoryboardSegue)
-	{
+	@IBAction func unwindToMessages(segue: UIStoryboardSegue) {
+        print("womp unwind")
 		messageTitleFromWalla = myMessageTitle
-		startConvoFromWalla()
+//		startConvoFromWalla()
 	}
 	
 	// MARK: - Table view data source
@@ -95,12 +97,16 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	func selectIndex(index: Int)
 	{
 		self.messageIndex = index
+        
+        print("womp ConvoVC message index now set to " + String(self.messageIndex))
+        
+        // commenting this last segue out for now in order to keep things stable!
 		self.performSegueWithIdentifier("messagingSegue", sender: self)
 	}
 	
 	func startConvoFromWalla()
 	{
-		self.selectIndex(convoModels.count) //change whats in the function param for where ever the new post is going to be
+		self.selectIndex(self.messageIndex) //change whats in the function param for where ever the new post is going to be
 	}
 	
 	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -117,18 +123,18 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 				// Note: can also add filters for tags, location, etc.
 				return !(snapshot.value is NSNull)
 			}
-			.filter { snapshot in
-				return !self.myConvoBackend.contains(self.convoModels, snapshot: snapshot) // avoids showing duplicate Convos on initial load
-			}
-			.filter { snapshot in
-				// Only return Snapshots with authorID or userID == user's ID
-				return (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID)
-			}
+            .filter { snapshot in
+                return !self.myConvoBackend.contains(convoModels, snapshot: snapshot) // avoids showing duplicate Convos on initial load
+            }
+            .filter { snapshot in
+                // Only return Snapshots with authorID or userID == user's ID
+                return (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID)
+            }
 			.map {snapshot in
 				return ConvoModel(snapshot: snapshot)
 			}
 			.subscribeNext({ (convoModel: ConvoModel) -> Void in
-				self.convoModels.insert(convoModel, atIndex: 0);
+				convoModels.insert(convoModel, atIndex: 0);
 			})
 			.addDisposableTo(self.disposeBag)
 		
@@ -142,16 +148,12 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		let convoIndex: Int = self.messageIndex
-		/*if let indexPath = self.tableView.indexPathForSelectedRow {
-		convoIndex = indexPath.row
-		}*/
-		
-		if segue.identifier == "messagingSegue"
-		{
+		if segue.identifier == "messagingSegue" {
+            print("womp messaging segue")
+            
 			let messagingVC = segue.destinationViewController as! MessageViewController
-			messagingVC.convoID = self.convoModels[convoIndex].convoID!
-		}
+			messagingVC.convoID = convoModels[self.messageIndex].convoID!
+        }
 	}
 	
 }

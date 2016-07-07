@@ -25,8 +25,8 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	var myTitle:String = "default request"
 	var myAuthorName:String = ""
 	var myDetails:String = "default details"
-	var myLatitude: String = "36.0014"
-	var myLongitude: String = "78.9382"
+	var myLatitude: Double = 36.0014
+	var myLongitude: Double = 78.9382
     var myLocation: String = "default location"
 	var myTags:[String] = ["#STEM+"]
 	var myDelayHours: Double = 5
@@ -84,11 +84,11 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		alert.title = "You missed a field"
 		alert.addButtonWithTitle("OK")
 		
-		print(myTags.count)
-		print(requestBody.text)
-		print(requestDetails.text)
-		print(generalLocation.text)
-		
+//		print(myTags.count)
+//		print(requestBody.text)
+//		print(requestDetails.text)
+//		print(generalLocation.text)
+//		
 		if self.myTags.count == 1
 		{
 			tags = true
@@ -181,7 +181,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		
 	}
 	
-    func postNewRequest(authorID: String, request: String, additionalDetails: String, latitude: String, longitude: String, location: String, resolved: Bool, visible: Bool, tags: [String], expirationDate: Double ) -> Void {
+    func postNewRequest(authorID: String, request: String, additionalDetails: String, latitude: Double, longitude: Double, location: String, resolved: Bool, visible: Bool, tags: [String], expirationDate: Double ) -> Void {
 	_ = "tags"
 	
 	let newPost = [

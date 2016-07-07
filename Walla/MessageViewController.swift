@@ -33,88 +33,112 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		self.sender = myBasic.rootRef.authData.uid
-		
-		let keychain = MyApplication.sharedInstance.keychain
-		let profileData:NSData! = keychain.dataForKey("profile")
-		let profile:A0UserProfile = NSKeyedUnarchiver.unarchiveObjectWithData(profileData) as! A0UserProfile
-		
-		self.bounces = true
-		self.shakeToClearEnabled = true
-		self.keyboardPanningEnabled = true
-		self.typingIndicatorView.canResignByTouch = true
-		self.textInputbar.autoHideRightButton = true
-		self.textInputbar.maxCharCount = 140
-		self.textInputbar.counterStyle = SLKCounterStyle.Split
-		self.inverted = true
-		
-		tableView.registerClass(MessageTableViewCell.self, forCellReuseIdentifier: MessageTableViewCell.REUSE_ID)
-		tableView.rowHeight = UITableViewAutomaticDimension //needed for autolayout
-		tableView.estimatedRowHeight = 50.0 //needed for autolayout
-		
-		tableView.frame = CGRectMake(tableView.frame.origin.x, tableView.frame.origin.y - 44, tableView.frame.size.width, tableView.contentSize.height)
-		
-		// navBar: UINavigationBar = UINavigationBar(frame:CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
-		
-		navBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
-		navBar.backgroundColor = UIColor.init(netHex: 0xffa160)
-		navBar.delegate = self
-		let navItem = UINavigationItem()
-		navItem.title = "Messaging"
-		//		let backButton = UIButton(type: .Custom)
-		//		backButton.setTitle("Back", forState: .Normal)
-		//		backButton.setTitleColor(backButton.tintColor, forState: .Normal)
-		//		backButton.addTarget(self, action: "backButtonClick", forControlEvents: .TouchUpInside)
-		//		navItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-		
-		let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "backButtonClick")
-		navItem.leftBarButtonItem = backButton
-		
-		navBar.items = [navItem]
-		self.view.addSubview(navBar)
-		
-		
-		// Messages ref stores the Messages for a Conversation
-		let conversationRef = myBasic.messageRef.childByAppendingPath(self.convoID)
-		
-		//part 1
-		conversationRef.rx_observe(FEventType.ChildAdded)
-			.filter { snapshot in
-				return !(snapshot.value is NSNull)
-			}
-			.map {snapshot in
-				return MessageModel(snapshot: snapshot)
-			}
-			.subscribeNext({ (messageModel: MessageModel) -> Void in
-				self.messageModels.insert(messageModel, atIndex: 0);
-				if(self.isInitialLoad == false){
-					self.tableView.beginUpdates()
-					self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
-					self.tableView.endUpdates()
-					//you can do everything else here!
-				}
-			})
-			.addDisposableTo(self.disposeBag)
-		
-		conversationRef.rx_observe(FEventType.Value)
-			.subscribeNext({ (snapshot: FDataSnapshot) -> Void in
-				self.tableView.reloadData()
-				self.isInitialLoad = false;
-			})
-			.addDisposableTo(self.disposeBag)
-		
-		pressedRightButtonSubject
-			.flatMap({ (bodyText: String) -> Observable<Firebase> in
-				let sender = self.sender
-				let recipient = self.recipient
-				return conversationRef.childByAutoId().rx_setValue(["text": bodyText, "sender": sender, "recipient": recipient, "timestamp" : NSDate().timeIntervalSince1970 * 1000])
-			})
-			.subscribeNext({ (newMessageReference:Firebase) -> Void in
-				print("A new message was successfully committed to firebase")
-			})
-			.addDisposableTo(self.disposeBag)
-	}
+		print("message VC did load")
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+        print("womp message VC did appear")
+        self.sender = myBasic.rootRef.authData.uid
+        
+        let keychain = MyApplication.sharedInstance.keychain
+        let profileData:NSData! = keychain.dataForKey("profile")
+        let profile:A0UserProfile = NSKeyedUnarchiver.unarchiveObjectWithData(profileData) as! A0UserProfile
+        
+        self.bounces = true
+        self.shakeToClearEnabled = true
+        self.keyboardPanningEnabled = true
+        self.typingIndicatorView.canResignByTouch = true
+        self.textInputbar.autoHideRightButton = true
+        self.textInputbar.maxCharCount = 140
+        self.textInputbar.counterStyle = SLKCounterStyle.Split
+        self.inverted = true
+        
+        tableView.registerClass(MessageTableViewCell.self, forCellReuseIdentifier: MessageTableViewCell.REUSE_ID)
+        tableView.rowHeight = UITableViewAutomaticDimension //needed for autolayout
+        tableView.estimatedRowHeight = 50.0 //needed for autolayout
+        
+        tableView.frame = CGRectMake(tableView.frame.origin.x, tableView.frame.origin.y - 44, tableView.frame.size.width, tableView.contentSize.height)
+        
+        // navBar: UINavigationBar = UINavigationBar(frame:CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
+        
+        navBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 44))
+        navBar.backgroundColor = UIColor.init(netHex: 0xffa160)
+        navBar.delegate = self
+        let navItem = UINavigationItem()
+        navItem.title = "Messaging"
+        //		let backButton = UIButton(type: .Custom)
+        //		backButton.setTitle("Back", forState: .Normal)
+        //		backButton.setTitleColor(backButton.tintColor, forState: .Normal)
+        //		backButton.addTarget(self, action: "backButtonClick", forControlEvents: .TouchUpInside)
+        //		navItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        
+        let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "backButtonClick")
+        navItem.leftBarButtonItem = backButton
+        
+        navBar.items = [navItem]
+        self.view.addSubview(navBar)
+        
+        self.observeMessages()
+    }
+
+//    override func viewWillAppear(animated: Bool) {
+//        super.viewWillAppear(animated)
+//        print("womp did appear")
+//            
+//        self.viewDidLoad()
+//    }
+    
+    func observeMessages() {
+        
+        self.messageModels.removeAll()
+        let refToObserve = self.myBasic.messageRef.childByAppendingPath(self.convoID)
+        
+        //part 1
+        refToObserve.rx_observe(FEventType.ChildAdded)
+            .filter { snapshot in
+                return !(snapshot.value is NSNull)
+            }
+            .map {snapshot in
+                print("mapping")
+                print(snapshot.key)
+                print(snapshot.value)
+                return MessageModel(snapshot: snapshot)
+            }
+            .subscribeNext({ (messageModel: MessageModel) -> Void in
+                print("subscribing")
+                self.messageModels.insert(messageModel, atIndex: 0);
+                if(self.isInitialLoad == false){
+                    self.tableView.beginUpdates()
+                    self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
+                    self.tableView.endUpdates()
+                    //you can do everything else here!
+                }
+            })
+            .addDisposableTo(self.disposeBag)
+        
+        refToObserve.rx_observe(FEventType.Value)
+            .subscribeNext({ (snapshot: FDataSnapshot) -> Void in
+                print("subscribing again")
+                self.tableView.reloadData()
+                self.isInitialLoad = false;
+                print("flag")
+            })
+            .addDisposableTo(self.disposeBag)
+        
+        pressedRightButtonSubject
+            .flatMap({ (bodyText: String) -> Observable<Firebase> in
+                print("flat mapping")
+                let sender = self.sender
+                let recipient = self.recipient
+                return refToObserve.childByAutoId().rx_setValue(["text": bodyText, "sender": sender, "recipient": recipient, "timestamp" : NSDate().timeIntervalSince1970 * 1000])
+            })
+            .subscribeNext({ (newMessageReference:Firebase) -> Void in
+                print("A new message was successfully committed to firebase")
+            })
+            .addDisposableTo(self.disposeBag)
+    }
 	
 	override func didPressRightButton(sender: AnyObject!) {
 		pressedRightButtonSubject.onNext(self.textView.text)

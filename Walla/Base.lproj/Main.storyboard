@@ -53,7 +53,6 @@
                                             <outlet property="nameLabel" destination="Dhf-Io-1jA" id="Jqe-S3-YVs"/>
                                             <outlet property="previewLabel" destination="FHd-KB-0DV" id="Kmx-gn-3FT"/>
                                             <outlet property="profile" destination="uWK-qg-7iK" id="rqR-qR-iGo"/>
-                                            <segue destination="4ux-RC-hsb" kind="show" identifier="messagingSegue" id="xj0-KD-YYw"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -79,6 +78,7 @@
                     <tabBarItem key="tabBarItem" title="" image="messages" selectedImage="messages-selected" id="wZm-OP-7BA"/>
                     <connections>
                         <outlet property="tableView" destination="NwH-tm-Xhz" id="yUv-80-G1o"/>
+                        <segue destination="4ux-RC-hsb" kind="show" identifier="messagingSegue" id="YmS-RJ-box"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mlu-hH-3iB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -467,7 +467,7 @@
                                     <outlet property="delegate" destination="9SG-PT-eQc" id="yxE-x4-DhR"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO WALLAS :( MAKE YOUR OWN WALLA BY CLICKING THE PENCIL BELOW" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwS-gw-peY">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO WALLAS :( MAKE YOUR OWN WALLA BY CLICKING THE PENCIL BELOW" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwS-gw-peY">
                                 <rect key="frame" x="20" y="150" width="335" height="114"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1543,7 +1543,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <segue destination="nlo-Vb-1eN" kind="show" identifier="showProfile" id="s98-ln-4gR"/>
-                        <segue destination="ak3-Nb-uIc" kind="show" identifier="showHome" id="1fg-3t-G9J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EpB-In-PmJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1644,7 +1643,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTi-qQ-Gvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-308.5" y="622.5"/>
+            <point key="canvasLocation" x="-302.5" y="1048.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="OhI-Wm-YuQ">
@@ -1683,7 +1682,4 @@
         <image name="walla-background" width="405" height="719"/>
         <image name="write" width="42" height="42"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="1fg-3t-G9J"/>
-    </inferredMetricsTieBreakers>
 </document>

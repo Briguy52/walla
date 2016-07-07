@@ -59,13 +59,16 @@ class UserBackend {
 	func getUserInfo(param: String, userID: String, completion: (result: AnyObject) -> Void) {
         let key = userID
         let ref = myBasic.userRef
-        ref.queryOrderedByChild(key).queryLimitedToFirst(1)
+        ref.queryOrderedByChild(key)
             .observeEventType(.ChildAdded, withBlock: { snapshot in
-                if let snapshot = snapshot {
-                    if let out = snapshot.value[param]!! as? AnyObject {
-                        completion(result: out)
+                if snapshot.key == userID {
+                    if let snapshot = snapshot {
+                        if let out = snapshot.value[param]!! as? AnyObject {
+                            completion(result: out)
+                        }
                     }
                 }
+                
             })
     }
 	

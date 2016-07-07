@@ -35,8 +35,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	var isInitialLoad = true;
 	var disposeBag = DisposeBag()
 	var authorName = ""
-	var latitude = ""
-	var longitude = ""
+    var latitude: Double = 36.0014
+    var longitude: Double = 78.9382
 	var currentTime = NSDate().timeIntervalSince1970
 	
 	// TODO: stores these tags in the Users ref

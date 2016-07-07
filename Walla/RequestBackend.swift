@@ -16,11 +16,13 @@ class RequestBackend {
     // TODO: get this to return AnyObject
     func getRequestValue(uniqueID: String, key: String, completion: (result: String) -> Void) {
         
-        myBasic.requestRef.queryOrderedByChild(uniqueID).queryLimitedToFirst(1)
+        myBasic.requestRef.queryOrderedByChild(uniqueID)
             .observeEventType(.ChildAdded, withBlock: { snapshot in
-                if let snapshot = snapshot {
-                    if let out = snapshot.value[key] as? String {
-                        completion(result: out)
+                if snapshot.key == uniqueID {
+                    if let snapshot = snapshot {
+                        if let out = snapshot.value[key] as? String {
+                            completion(result: out)
+                        }
                     }
                 }
             })
