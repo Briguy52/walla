@@ -24,7 +24,7 @@ class MyProfileViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.hideKeyboardWhenTappedAround()g
+		self.hideKeyboardWhenTappedAround()
 		
 		self.navigationItem.hidesBackButton = true
 		
