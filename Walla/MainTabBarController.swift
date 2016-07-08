@@ -8,11 +8,15 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
+		
+		UITabBar.appearance().tintColor = UIColor.orangeColor()
+		
+		
 	}
 	
 //		let controller1 = HomeViewController()

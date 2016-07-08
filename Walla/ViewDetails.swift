@@ -30,6 +30,12 @@ class ViewDetails: UIViewController {
 		
 		self.tabBarController?.tabBar.hidden = true
 		self.initRequestInfo()
+		
+		self.profile?.layer.borderWidth = 0.5
+		self.profile?.layer.masksToBounds = false
+		self.profile?.layer.borderColor = UIColor.blackColor().CGColor
+		self.profile?.layer.cornerRadius = self.profile.frame.height / 2
+		self.profile?.clipsToBounds = true
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -43,14 +49,8 @@ class ViewDetails: UIViewController {
 	func initRequestInfo()
 	{
 		let requestModel = requestModels[currentIndex]
-		//self.profile?.UIImage
 		
-		self.profile?.layer.borderWidth = 0.75
-		self.profile?.layer.masksToBounds = false
-		self.profile?.layer.borderColor = UIColor.blackColor().CGColor
-		self.profile?.layer.cornerRadius = self.profile.frame.height / 4
-		self.profile?.clipsToBounds = true
-		
+		self.setImage()
 		self.message?.text = requestModel.request
 		self.timestamp?.text = parseDateFromTime(requestModel.timestamp)
 		self.additional?.text = requestModel.additionalDetails
@@ -79,6 +79,15 @@ class ViewDetails: UIViewController {
 		//		print(timeDifference)
 		
 		return String("posted " + timeDifference + " ago")
+	}
+	
+	func setImage()
+	{
+		self.myUserBackend.getUserInfo("profilePicUrl", userID: self.myUserBackend.getUserID())
+		{
+			(result: AnyObject) in
+			self.profile.setImageWithURL(NSURL(string: result as! String)!)
+		}
 	}
 	
 	@IBAction func goBack(sender: UIBarButtonItem) {

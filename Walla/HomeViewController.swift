@@ -163,6 +163,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 			cell.setAuthorName(result as! String)
 		}
 		
+		/*self.myUserBackend.getUserInfo("ProfilePicUrl", userID: self.myUserBackend.getUserID())
+		{
+			(result: AnyObject) in
+			cell.setProfileImage(result as! String)
+		}*/
+		
 		cell.userName?.text = requestModel.authorID
 		cell.message?.text = requestModel.request
 		cell.topics?.text = requestModel.tags.joinWithSeparator(" ")

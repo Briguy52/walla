@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class HomeCell: UITableViewCell {
 	@IBOutlet weak var profile: UIImageView!
@@ -31,11 +32,17 @@ class HomeCell: UITableViewCell {
 	func setCellTags(tagsToSet: [String])
 	{
 		self.topics.text = tagsToSet.joinWithSeparator("")
+		//self.topics.sizeThatFits(self.topics.text.width)
 	}
 	
 	func setCellDetails(detailsToSet: String)
 	{
 		self.message.text = detailsToSet
+	}
+	
+	func setProfileImage(result: String)
+	{
+			self.profile.setImageWithURL(NSURL(string: result)!)
 	}
 	
 	func parseDateFromTime(time: Double) -> String {
