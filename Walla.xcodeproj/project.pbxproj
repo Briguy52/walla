@@ -38,6 +38,7 @@
 		22C889461D1C536F009DE688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22C889451D1C536F009DE688 /* Assets.xcassets */; };
 		22C889491D1C536F009DE688 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C889471D1C536F009DE688 /* LaunchScreen.storyboard */; };
 		22C889521D1C5612009DE688 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C889511D1C5612009DE688 /* HomeViewController.swift */; };
+		22F9A4AA1D3006FD005C2903 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F9A4A91D3006FD005C2903 /* FilterCell.swift */; };
 		AF0364681D23582800D57094 /* RequestBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0364671D23582800D57094 /* RequestBackend.swift */; };
 		AFAA6A4F1D24CF1000FE1DB1 /* ConvoBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAA6A4E1D24CF1000FE1DB1 /* ConvoBackend.swift */; };
 		BBC0C0FB56D7B2430E20F096 /* Pods_Walla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36FD80449EB2641B7C2BB3A /* Pods_Walla.framework */; };
@@ -77,6 +78,7 @@
 		22C889481D1C536F009DE688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22C8894A1D1C536F009DE688 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22C889511D1C5612009DE688 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		22F9A4A91D3006FD005C2903 /* FilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		3BAD9241B6F4C633F3C5DF5A /* Pods-Walla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Walla.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Walla/Pods-Walla.debug.xcconfig"; sourceTree = "<group>"; };
 		60B82CDBFF92298443BF52CE /* Pods-Walla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Walla.release.xcconfig"; path = "Pods/Target Support Files/Pods-Walla/Pods-Walla.release.xcconfig"; sourceTree = "<group>"; };
 		AF0364671D23582800D57094 /* RequestBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBackend.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				222D53101D1D23A300ABB2DD /* PresentMenuAnimator.swift */,
 				222D53121D1D26A000ABB2DD /* DismissMenuAnimator.swift */,
 				222D531B1D1D47D000ABB2DD /* FilterTableViewController.swift */,
+				22F9A4A91D3006FD005C2903 /* FilterCell.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -272,6 +275,11 @@
 					22C8893A1D1C536E009DE688 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 744V26C44U;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -367,6 +375,7 @@
 				222D530B1D1D226F00ABB2DD /* MenuViewController.swift in Sources */,
 				2265273B1D1F17DD004B89D2 /* UserBackend.swift in Sources */,
 				222D53091D1D094C00ABB2DD /* ViewDetails.swift in Sources */,
+				22F9A4AA1D3006FD005C2903 /* FilterCell.swift in Sources */,
 				226527271D1F1422004B89D2 /* RequestModel.swift in Sources */,
 				2279873B1D1C5CCF00C0EC30 /* HomeCell.swift in Sources */,
 				222D53161D1D396200ABB2DD /* WriteMessage.swift in Sources */,
