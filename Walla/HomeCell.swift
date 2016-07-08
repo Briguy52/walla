@@ -30,7 +30,7 @@ class HomeCell: UITableViewCell {
 	
 	func setCellTags(tagsToSet: [String])
 	{
-		self.topics.text = tagsToSet.joinWithSeparator("# ")
+		self.topics.text = tagsToSet.joinWithSeparator("")
 	}
 	
 	func setCellDetails(detailsToSet: String)

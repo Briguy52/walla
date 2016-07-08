@@ -29,23 +29,30 @@ class MyProfileViewController: UIViewController {
 		
 		self.navigationItem.hidesBackButton = true
 		
+		self.profile?.layer.borderWidth = 0.75
+		self.profile?.layer.masksToBounds = false
+		self.profile?.layer.borderColor = UIColor.blackColor().CGColor
+		self.profile?.layer.cornerRadius = self.profile.frame.height / 4
+		self.profile?.clipsToBounds = true
+		
 		self.setImage()
 		self.setTotalPoints()
 		self.setNameAndTitle()
 	}
 	
 	override func viewDidLayoutSubviews() {
-		self.setButtonSizes()
+		super.viewDidLayoutSubviews()
+		//self.setButtonSizes()
 	}
 	
-	func setButtonSizes() {
+	/*func setButtonSizes() {
 		let screenSize = buttonViews.frame.size
 		self.myHollas.frame = CGRectMake(0,0, screenSize.height * 0.2, 50)
 		self.myWallas.frame = CGRectMake(0,0, screenSize.height * 0.2, 50)
 		self.settings.frame = CGRectMake(0,0, screenSize.height * 0.2, 50)
 		self.myTopics.frame = CGRectMake(0,0, screenSize.height * 0.2, 50)
 		self.logout.frame = CGRectMake(0,0, screenSize.height * 0.2, 50)
-	}
+	}*/
 	
 	@IBAction func settings(sender: AnyObject) {
 		performSegueWithIdentifier("openSettings", sender: nil)

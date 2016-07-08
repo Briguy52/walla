@@ -131,6 +131,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		return requestModels.count
 	}
 	
+	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		return 140.0
+	}
+	
+//	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//		
+//		cell.contentView.backgroundColor = UIColor.clearColor()
+//		
+//		let whiteRoundedView : UIView = UIView(frame: CGRectMake(0, 10, self.view.frame.size.width, 120))
+//		
+//		whiteRoundedView.layer.backgroundColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 1.0])
+//		whiteRoundedView.layer.masksToBounds = false
+//		whiteRoundedView.layer.cornerRadius = 2.0
+//		whiteRoundedView.layer.shadowOffset = CGSizeMake(-1, 1)
+//		whiteRoundedView.layer.shadowOpacity = 0.2
+//		
+//		cell.contentView.addSubview(whiteRoundedView)
+//		cell.contentView.sendSubviewToBack(whiteRoundedView)
+//	}
+	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell :HomeCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! HomeCell
 		
@@ -155,6 +175,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		cell.profile.clipsToBounds = true
 		
 		self.noWallasPosts()
+		
+		let whiteRoundedView : UIView = UIView(frame: CGRectMake(10, 8, self.view.frame.size.width - 20, 149))
+		
+		whiteRoundedView.layer.backgroundColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 0.8])
+		whiteRoundedView.layer.masksToBounds = false
+		whiteRoundedView.layer.cornerRadius = 2.0
+		whiteRoundedView.layer.shadowOffset = CGSizeMake(-1, 1)
+		whiteRoundedView.layer.shadowOpacity = 0.2
+		
+		cell.contentView.addSubview(whiteRoundedView)
+		cell.contentView.sendSubviewToBack(whiteRoundedView)
 		
 		return cell
 	}

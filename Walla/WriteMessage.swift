@@ -11,7 +11,7 @@ import Firebase
 
 var tagsToPick = ["#ElementarySchool", "#MiddleSchool", "#HighSchool", "#University", "#Industry", "#LongTermChange", "#MathAndCompSci", "#PartnershipsForChange", "#SocialEntrpreneurship", "#Entrepreneurship", "#STEM+", "#MakerIdeas", "#SuccessStories", "#OnlineLearning", "#Engineering", "#CommunityIntegration", "#GrowingSustainedSTEM"]
 
-class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
+class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate, UITextFieldDelegate {
 
 	@IBOutlet weak var tagPicker: UIPickerView!
 	@IBOutlet weak var addTagButton: UIButton!
@@ -61,45 +61,67 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		self.tabBarController?.tabBar.hidden = true
 //
 //		navigationController?.popViewControllerAnimated(true)
-		
-		NSNotificationCenter.defaultCenter().addObserver(
-			self,
-			selector: #selector(WriteMessage.keyboardWillShow(_:)),
-			name: UIKeyboardWillShowNotification,
-			object: nil
-		)
-		
-		NSNotificationCenter.defaultCenter().addObserver(
-			self,
-			selector: #selector(WriteMessage.keyboardWillHide(_:)),
-			name: UIKeyboardWillHideNotification,
-			object: nil
-		)
 	}
 	
-	deinit {
-		NSNotificationCenter.defaultCenter().removeObserver(self)
+	func textFieldDidBeginEditing(textField: UITextField) {
+		scrollView.setContentOffset(CGPointMake(0, 200), animated: true)
 	}
 	
-	override func viewDidAppear(animated: Bool) {
-		self.viewDidLoad()
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		return true
 	}
 	
-	func adjustInsetForKeyboardShow(show: Bool, notification: NSNotification) {
-		guard let value = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue else { return }
-		let keyboardFrame = value.CGRectValue()
-		let adjustmentHeight = (CGRectGetHeight(keyboardFrame) + 20) * (show ? 1 : -1)
-		scrollView.contentInset.bottom += adjustmentHeight
-		scrollView.scrollIndicatorInsets.bottom += adjustmentHeight
+	func textFieldDidEndEditing(textField: UITextField) {
+		scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
 	}
- 
-	func keyboardWillShow(notification: NSNotification) {
-		adjustInsetForKeyboardShow(true, notification: notification)
+	
+	func textViewDidBeginEditing(textView: UITextView) {
+		scrollView.setContentOffset(CGPointMake(0, 100), animated: true)
 	}
- 
-	func keyboardWillHide(notification: NSNotification) {
-		adjustInsetForKeyboardShow(false, notification: notification)
+	
+	func textViewDidEndEditing(textView: UITextView) {
+		scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
 	}
+	
+//		NSNotificationCenter.defaultCenter().addObserver(
+//			self,
+//			selector: #selector(WriteMessage.keyboardWillShow(_:)),
+//			name: UIKeyboardWillShowNotification,
+//			object: nil
+//		)
+//		
+//		NSNotificationCenter.defaultCenter().addObserver(
+//			self,
+//			selector: #selector(WriteMessage.keyboardWillHide(_:)),
+//			name: UIKeyboardWillHideNotification,
+//			object: nil
+//		)
+//	}
+//	
+//	deinit {
+//		NSNotificationCenter.defaultCenter().removeObserver(self)
+//	}
+//	
+//	override func viewDidAppear(animated: Bool) {
+//		self.viewDidLoad()
+//	}
+//	
+//	func adjustInsetForKeyboardShow(show: Bool, notification: NSNotification) {
+//		guard let value = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue else { return }
+//		let keyboardFrame = value.CGRectValue()
+//		let adjustmentHeight = (CGRectGetHeight(keyboardFrame) + 20) * (show ? 1 : -1)
+//		scrollView.contentInset.bottom += adjustmentHeight
+//		scrollView.scrollIndicatorInsets.bottom += adjustmentHeight
+//	}
+// 
+//	func keyboardWillShow(notification: NSNotification) {
+//		adjustInsetForKeyboardShow(true, notification: notification)
+//	}
+// 
+//	func keyboardWillHide(notification: NSNotification) {
+//		adjustInsetForKeyboardShow(false, notification: notification)
+//	}
 	
 	func submit()
 	{
