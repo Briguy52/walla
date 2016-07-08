@@ -35,8 +35,8 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
 		super.viewDidLoad()
 		print("womp MessageVC did load")
         
-        self.initModel()
         self.initView()
+        self.initModel()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -107,33 +107,32 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
                 return !(snapshot.value is NSNull)
             }
             .map {snapshot in
-//                print(snapshot.key)
-//                print(snapshot.value)
                 return MessageModel(snapshot: snapshot)
             }
             .subscribeNext({ (messageModel: MessageModel) -> Void in
                 self.messageModels.insert(messageModel, atIndex: 0);
-//                if(self.isInitialLoad == false){
-//                    self.tableView.beginUpdates()
-//                    self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
-//                    self.tableView.endUpdates()
-//                    //you can do everything else here!
-//                }
+                if(self.isInitialLoad == false){
+                    print("womp not initial load")
+                    self.tableView.beginUpdates()
+                    self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
+                    self.tableView.endUpdates()
+//                    you can do everything else here!
+                    
+                }
+                self.tableView.reloadData()
             })
             .addDisposableTo(self.disposeBag)
         
-        refToObserve.rx_observe(FEventType.Value)
-            .subscribeNext({ (snapshot: FDataSnapshot) -> Void in
-                print("subscribing again")
-                self.tableView.reloadData()
-                self.isInitialLoad = false;
-                print("flag")
-            })
-            .addDisposableTo(self.disposeBag)
+//        refToObserve.rx_observe(FEventType.Value)
+//            .subscribeNext({ (snapshot: FDataSnapshot) -> Void in
+//                print("womp test")
+//                self.tableView.reloadData()
+//                self.isInitialLoad = false;
+//            })
+//            .addDisposableTo(self.disposeBag)
         
         pressedRightButtonSubject
             .flatMap({ (bodyText: String) -> Observable<Firebase> in
-                print("flat mapping")
                 let sender = self.sender
                 let recipient = self.recipient
                 return refToObserve.childByAutoId().rx_setValue(["text": bodyText, "sender": sender, "recipient": recipient, "timestamp" : self.myBasic.getTimestamp()])
@@ -150,8 +149,7 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
 	}
 	
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("womp there are " + String(self.messageModels.count) + " rows in section")
-//        print(self.messageModels)
+//        print("womp there are " + String(self.messageModels.count) + " rows in section")
 		return messageModels.count
 	}
 	
@@ -159,14 +157,19 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
 		let cell = tableView.dequeueReusableCellWithIdentifier(MessageTableViewCell.REUSE_ID, forIndexPath: indexPath) as! MessageTableViewCell
 		
 		let messageModelAtIndexPath = messageModels[indexPath.row]
+        
+        print("womp loading cell at row  " + String(indexPath.row))
+        print(messageModelAtIndexPath.text)
 		
 		//        self.tableView.scrollToRowAtIndexPath((indexPath, atScrollPosition: .Bottom,
 		//            animated: true))
 		
 		let key = messageModelAtIndexPath.sender
+        print("using key " + key)
 		self.myUserBackend.getUserInfo("displayName", userID: key)
 		{
 			(result: AnyObject) in
+            print(result as? String)
             cell.nameLabel.text = result as? String
 		}
 		
