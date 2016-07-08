@@ -37,14 +37,25 @@ class MenuViewController : UIViewController {
 	@IBAction func addFilter(sender: AnyObject) {
 		let i = 1
 		let doesMatch: String = self.type.text!
+		var matchesTag: Bool = false
 		
 		repeat {
 			if tagsToPick[i].containsString(doesMatch) {
 				tagsToFilter.append(tagsToPick[i])
 				hasFilters = true
+				matchesTag = true
 				break
 			}
 		} while i < tagsToPick.count
+		
+		if matchesTag == false
+		{
+			let alert = UIAlertView()
+			alert.title = "No Topic"
+			alert.message = "The Topic Does not Exist"
+			alert.addButtonWithTitle("OK")
+			alert.show()
+		}
 	}
 	
 	@IBAction func clearFilter(sender: AnyObject) {
