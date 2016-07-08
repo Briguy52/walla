@@ -52,10 +52,33 @@ class ViewDetails: UIViewController {
 		self.profile?.clipsToBounds = true
 		
 		self.message?.text = requestModel.request
-		self.timestamp?.text = String(requestModel.timestamp)
+		self.timestamp?.text = parseDateFromTime(requestModel.timestamp)
 		self.additional?.text = requestModel.additionalDetails
 		self.location?.text = requestModel.location
 		self.tags?.text = requestModel.tags.joinWithSeparator(" ")
+	}
+	
+	func parseDateFromTime(time: Double) -> String {
+		let postedDate = NSDate(timeIntervalSince1970: time)
+		
+		let currentDate = NSDate()
+		
+		let hourMinute: NSCalendarUnit = [.Hour, .Minute]
+		let difference = NSCalendar.currentCalendar().components(hourMinute, fromDate: postedDate, toDate: currentDate, options: [])
+		var timeDifference: String = ""
+		
+		if difference.hour < 1
+		{
+			timeDifference = "\(difference.minute)m"
+		}
+		else
+		{
+			timeDifference = "\(difference.hour)h" + " " + "\(difference.minute)m"
+		}
+		
+		//		print(timeDifference)
+		
+		return String("posted " + timeDifference + " ago")
 	}
 	
 	@IBAction func goBack(sender: UIBarButtonItem) {
@@ -95,8 +118,6 @@ class ViewDetails: UIViewController {
 				self.convoID = convoHash
                 self.performSegueWithIdentifier("unwindToMessages", sender: self)
             }
-            
-            
 		})
 	}
 	

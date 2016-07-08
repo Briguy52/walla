@@ -10,13 +10,15 @@ import UIKit
 
 var hasFilters: Bool = false
 
-class MenuViewController : UIViewController {
+class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
-	@IBOutlet weak var type: UITextField!
-	@IBOutlet weak var filters: UILabel!
-	@IBOutlet weak var add: UIButton!
-	@IBOutlet weak var clear: UIButton!
-	@IBOutlet weak var cancel: UIButton!
+	let myBasic = Basic()
+	let myUserBackend = UserBackend()
+	
+	var filterTags: [String] = ["All", "Time"]
+	var cellIdentifier = "FilterCell"
+	
+	@IBOutlet weak var tableView: UITableView!
 	
 	@IBAction func closeMenu(sender: AnyObject) {
 		dismissViewControllerAnimated(true, completion: nil)
@@ -24,47 +26,31 @@ class MenuViewController : UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		self.add.enabled = false
-		self.clear.enabled = false
-		self.cancel.enabled = false
+		tableView.delegate = self
+		tableView.dataSource = self
 	}
 	
-	@IBAction func typingFilter(sender: AnyObject) {
-		self.add.enabled = true
-	}
-	
-	@IBAction func addFilter(sender: AnyObject) {
-		let i = 1
-		let doesMatch: String = self.type.text!
-		var matchesTag: Bool = false
-		
+	func populateFilter() {
 		repeat {
-			if tagsToPick[i].containsString(doesMatch) {
-				tagsToFilter.append(tagsToPick[i])
-				hasFilters = true
-				matchesTag = true
-				break
-			}
-		} while i < tagsToPick.count
+			
+		} while true // change true to number of tags the user has set
+	}
+	
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		return 1
+	}
+	
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return filterTags.count
+ 	}
+	
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let cell :FilterCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! FilterCell
 		
-		if matchesTag == false
-		{
-			let alert = UIAlertView()
-			alert.title = "No Topic"
-			alert.message = "The Topic Does not Exist"
-			alert.addButtonWithTitle("OK")
-			alert.show()
-		}
+		let title = filterTags[indexPath.row]
+		
+		cell.topicTitle?.text = title
+		
+		return cell
 	}
-	
-	@IBAction func clearFilter(sender: AnyObject) {
-		tagsToFilter.removeAll()
-		hasFilters = false
-	}
-	
-	@IBAction func cancelFilter(sender: AnyObject) {
-		dismissViewControllerAnimated(true, completion: nil)
-	}
-	
 }

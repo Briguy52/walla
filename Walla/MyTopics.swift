@@ -68,7 +68,6 @@ class MyTopics: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 		else {
 			self.tabBarController?.tabBar.hidden = false
 			dismissViewControllerAnimated(true, completion: nil)
-			//tabBarController?.selectedIndex = 3
 		}
 	}
 	

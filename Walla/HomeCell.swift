@@ -39,7 +39,25 @@ class HomeCell: UITableViewCell {
 	}
 	
 	func parseDateFromTime(time: Double) -> String {
-		let date = NSDate(timeIntervalSince1970: time)
-		return String(date)
+		let postedDate = NSDate(timeIntervalSince1970: time)
+		
+		let currentDate = NSDate()
+		
+		let hourMinute: NSCalendarUnit = [.Hour, .Minute]
+		let difference = NSCalendar.currentCalendar().components(hourMinute, fromDate: postedDate, toDate: currentDate, options: [])
+		var timeDifference: String = ""
+		
+		if difference.hour < 1
+		{
+			timeDifference = "\(difference.minute)m"
+		}
+		else
+		{
+			timeDifference = "\(difference.hour)h" + " " + "\(difference.minute)m"
+		}
+		
+//		print(timeDifference)
+		
+		return String(timeDifference + " ago")
 	}
 }
