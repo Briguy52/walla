@@ -15,10 +15,21 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 		super.viewDidLoad()
 		
 		UITabBar.appearance().tintColor = UIColor.orangeColor()
-		
-		
 	}
-	
+}
+
+extension UIImage {
+	class func imageWithColor(color: UIColor, size: CGSize) -> UIImage {
+		let rect: CGRect = CGRectMake(0, 0, size.width, size.height)
+		UIGraphicsBeginImageContextWithOptions(size, false, 0)
+		color.setFill()
+		UIRectFill(rect)
+		let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		return image
+	}
+}
+
 //		let controller1 = HomeViewController()
 //		let nav1 = UINavigationController(rootViewController: controller1)
 //		let customTabBarItem1:UITabBarItem = UITabBarItem(title: nil, image: UIImage(named: "home_32.png")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), selectedImage: UIImage(named: "home_32.png"))
@@ -67,5 +78,5 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 //	func menuButtonAction(sender: UIButton) {
 //		self.selectedIndex = 2
 //	}
-	
-}
+//	
+//}

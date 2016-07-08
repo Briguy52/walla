@@ -1714,17 +1714,21 @@
             </objects>
             <point key="canvasLocation" x="-302.5" y="1048.5"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="OhI-Wm-YuQ">
             <objects>
-                <tabBarController id="ak3-Nb-uIc" sceneMemberID="viewController">
+                <tabBarController id="ak3-Nb-uIc" customClass="MainTabBarController" customModule="Walla" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="cdc-bB-wZ0">
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="cdc-bB-wZ0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.95686274510000002" green="0.56078431370000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.95686274510000002" green="0.56078431370000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
+                        <outlet property="tabBar" destination="cdc-bB-wZ0" id="y3f-1X-mu6"/>
                         <segue destination="9SG-PT-eQc" kind="relationship" relationship="viewControllers" id="f9q-5V-K6n"/>
                         <segue destination="M8p-iL-WUF" kind="relationship" relationship="viewControllers" id="S8N-GT-KsY"/>
                         <segue destination="BBR-qh-Caj" kind="relationship" relationship="viewControllers" id="pcT-mt-war"/>
