@@ -271,7 +271,7 @@
 				TargetAttributes = {
 					22C8893A1D1C536E009DE688 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = EJ92R85Z6M;
+						DevelopmentTeam = 744V26C44U;
 					};
 				};
 			};
@@ -504,10 +504,12 @@
 			baseConfigurationReference = 3BAD9241B6F4C633F3C5DF5A /* Pods-Walla.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Walla/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GenieUs.Walla;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wallasquad.walla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -516,10 +518,12 @@
 			baseConfigurationReference = 60B82CDBFF92298443BF52CE /* Pods-Walla.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Walla/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GenieUs.Walla;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wallasquad.walla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
