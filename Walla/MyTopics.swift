@@ -24,11 +24,8 @@ class MyTopics: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        
-        myUserBackend.getUserInfo("tags", userID: self.myBasic.rootRef.authData.uid) {
-            (result: AnyObject) in
-            self.initTags(result as! [String])
-        }
+
+        self.checkForTags()
         
         // In order to show the Tag Picker
         self.topicPicker?.dataSource = self
@@ -37,25 +34,38 @@ class MyTopics: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 		self.tabBarController?.tabBar.hidden = true
 	}
     
+    func checkForTags() {
+        let refToTry = self.myBasic.userRef.childByAppendingPath(self.myUserBackend.getUserID())
+    
+        refToTry.observeEventType(.Value, withBlock: { snapshot in
+            // Confirm that User has preset tags
+            if snapshot.value.objectForKey("tags") != nil {
+                self.initTags(snapshot.value.objectForKey("tags") as! [String])
+            }
+        })
+    }
+    
     func initTags(tags: [String]) {
         for tag in tags {
             self.addTag(tag)
         }
     }
+    
+    func isValid() -> Bool {
+//        if topicLabel.text!.isEmptyField == false
+        return !self.myTags.isEmpty
+    }
 	
-	@IBAction func goBack(sender: UIBarButtonItem)
-	{
+	@IBAction func goBack(sender: UIBarButtonItem) {
 		let alert = UIAlertView()
 		alert.title = "You Need Topics!"
 		alert.message = "You need at minimum\n one topic!"
 		alert.addButtonWithTitle("OK")
 		
-		if topicLabel.text!.isEmptyField == false
-		{
-			alert.show()
-		}
-		else
-		{
+        if !self.isValid() {
+            alert.show()
+        }
+		else {
 			self.tabBarController?.tabBar.hidden = false
 			dismissViewControllerAnimated(true, completion: nil)
 			//tabBarController?.selectedIndex = 3
