@@ -33,7 +33,8 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		print("womp MessageVC did load")
+        
+        print("MessageVC did load")
         
         self.initView()
         self.initModel()
@@ -41,12 +42,12 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        print("womp MessageVC did appear")
+        print("MessageVC did appear")
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("womp MessageVC will appear")
+        print("MessageVC will appear")
     }
     
     func initModel() {
@@ -99,7 +100,6 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
         
 //        self.messageModels.removeAll()
         let refToObserve = self.myBasic.messageRef.childByAppendingPath(self.convoID)
-        let secondRef = self.myBasic.messageRef
         
         //part 1
         refToObserve.rx_observe(FEventType.ChildAdded)
@@ -149,7 +149,6 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
 	}
 	
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        print("womp there are " + String(self.messageModels.count) + " rows in section")
 		return messageModels.count
 	}
 	
@@ -157,17 +156,13 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
 		let cell = tableView.dequeueReusableCellWithIdentifier(MessageTableViewCell.REUSE_ID, forIndexPath: indexPath) as! MessageTableViewCell
 		
 		let messageModelAtIndexPath = messageModels[indexPath.row]
-        
-        print("womp loading cell at row  " + String(indexPath.row))
-        print(messageModelAtIndexPath.text)
 		
 		//        self.tableView.scrollToRowAtIndexPath((indexPath, atScrollPosition: .Bottom,
 		//            animated: true))
 		
 		let key = messageModelAtIndexPath.sender
-        print("using key " + key)
-		self.myUserBackend.getUserInfo("displayName", userID: key)
-		{
+
+        self.myUserBackend.getUserInfo("displayName", userID: key) {
 			(result: AnyObject) in
             print(result as? String)
             cell.nameLabel.text = result as? String
