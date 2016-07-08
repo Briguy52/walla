@@ -98,7 +98,7 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
     
     func observeMessages() {
         
-//        self.messageModels.removeAll()
+        self.messageModels.removeAll()
         let refToObserve = self.myBasic.messageRef.childByAppendingPath(self.convoID)
         
         //part 1
@@ -112,24 +112,20 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
             .subscribeNext({ (messageModel: MessageModel) -> Void in
                 self.messageModels.insert(messageModel, atIndex: 0);
                 if(self.isInitialLoad == false){
-                    print("womp not initial load")
                     self.tableView.beginUpdates()
                     self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
                     self.tableView.endUpdates()
-//                    you can do everything else here!
-                    
                 }
                 self.tableView.reloadData()
             })
             .addDisposableTo(self.disposeBag)
         
-//        refToObserve.rx_observe(FEventType.Value)
-//            .subscribeNext({ (snapshot: FDataSnapshot) -> Void in
-//                print("womp test")
-//                self.tableView.reloadData()
-//                self.isInitialLoad = false;
-//            })
-//            .addDisposableTo(self.disposeBag)
+        refToObserve.rx_observe(FEventType.Value)
+            .subscribeNext({ (snapshot: FDataSnapshot) -> Void in
+                self.tableView.reloadData()
+                self.isInitialLoad = false;
+            })
+            .addDisposableTo(self.disposeBag)
         
         pressedRightButtonSubject
             .flatMap({ (bodyText: String) -> Observable<Firebase> in

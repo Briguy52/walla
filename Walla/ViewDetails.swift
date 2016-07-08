@@ -84,7 +84,6 @@ class ViewDetails: UIViewController {
             
             // Convo does not yet exist
 			if snapshot.value is NSNull {
-                print("womp conversation not found")
                 refToTry.removeAllObservers()
 				self.createSingleConvoRef(requestID, authorID: authorID, userID: userID)
                 
@@ -92,7 +91,6 @@ class ViewDetails: UIViewController {
             
             // Convo does exist
 			else {
-                print("womp conversation found")
                 refToTry.removeAllObservers()
 				self.convoID = convoHash
                 self.performSegueWithIdentifier("unwindToMessages", sender: self)
@@ -110,8 +108,6 @@ class ViewDetails: UIViewController {
 	// Should only be called by users other than the Author
 	func createSingleConvoRef(requestID: String, authorID: String, userID: String) {
         
-        print("womp create single convo ref")
-		
 		let newConvo = [
 			"uniqueID": requestID,
 			"authorID": authorID,
@@ -141,7 +137,6 @@ class ViewDetails: UIViewController {
             var index: Int = 0
             for convo in convoModels {
                 if (convo.convoID == self.convoID) {
-                    print("womp convo found with index " + String(index))
                     let  convoVC = segue.destinationViewController as! ConvoViewController
                     convoVC.selectIndex(index)
                     break
