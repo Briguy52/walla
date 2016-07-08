@@ -14,7 +14,7 @@ import SlackTextViewController
 import FirebaseRxSwiftExtensions
 import Firebase
 
-class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
+class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
 	
 	@IBOutlet weak var backButton: UIBarButtonItem!
 	let myBasic = Basic() // This ref will be replaced by the selected conversation ref
@@ -24,7 +24,7 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 	var disposeBag = DisposeBag()
 	var isInitialLoad = true;
 	var sender = "sender" // TODO: comes from backend
-	var recipient = "recipient" // TODO: comes from backend
+	var recipient = ""
 	var convoID = "sampleConversation"
 	
 	var pressedRightButtonSubject : PublishSubject<String> = PublishSubject()
@@ -33,19 +33,34 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		print("message VC did load")
+        
+        print("MessageVC did load")
+        
+        self.initView()
+        self.initModel()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        
-        print("womp message VC did appear")
+        print("MessageVC did appear")
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        print("MessageVC will appear")
+    }
+    
+    func initModel() {
         self.sender = myBasic.rootRef.authData.uid
         
         let keychain = MyApplication.sharedInstance.keychain
         let profileData:NSData! = keychain.dataForKey("profile")
         let profile:A0UserProfile = NSKeyedUnarchiver.unarchiveObjectWithData(profileData) as! A0UserProfile
         
+        self.observeMessages()
+    }
+    
+    func initView() {
         self.bounces = true
         self.shakeToClearEnabled = true
         self.keyboardPanningEnabled = true
@@ -79,16 +94,7 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
         
         navBar.items = [navItem]
         self.view.addSubview(navBar)
-        
-        self.observeMessages()
     }
-
-//    override func viewWillAppear(animated: Bool) {
-//        super.viewWillAppear(animated)
-//        print("womp did appear")
-//            
-//        self.viewDidLoad()
-//    }
     
     func observeMessages() {
         
@@ -101,38 +107,31 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
                 return !(snapshot.value is NSNull)
             }
             .map {snapshot in
-                print("mapping")
-                print(snapshot.key)
-                print(snapshot.value)
                 return MessageModel(snapshot: snapshot)
             }
             .subscribeNext({ (messageModel: MessageModel) -> Void in
-                print("subscribing")
                 self.messageModels.insert(messageModel, atIndex: 0);
                 if(self.isInitialLoad == false){
                     self.tableView.beginUpdates()
                     self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
                     self.tableView.endUpdates()
-                    //you can do everything else here!
                 }
+                self.tableView.reloadData()
             })
             .addDisposableTo(self.disposeBag)
         
         refToObserve.rx_observe(FEventType.Value)
             .subscribeNext({ (snapshot: FDataSnapshot) -> Void in
-                print("subscribing again")
                 self.tableView.reloadData()
                 self.isInitialLoad = false;
-                print("flag")
             })
             .addDisposableTo(self.disposeBag)
         
         pressedRightButtonSubject
             .flatMap({ (bodyText: String) -> Observable<Firebase> in
-                print("flat mapping")
                 let sender = self.sender
                 let recipient = self.recipient
-                return refToObserve.childByAutoId().rx_setValue(["text": bodyText, "sender": sender, "recipient": recipient, "timestamp" : NSDate().timeIntervalSince1970 * 1000])
+                return refToObserve.childByAutoId().rx_setValue(["text": bodyText, "sender": sender, "recipient": recipient, "timestamp" : self.myBasic.getTimestamp()])
             })
             .subscribeNext({ (newMessageReference:Firebase) -> Void in
                 print("A new message was successfully committed to firebase")
@@ -158,13 +157,18 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 		//            animated: true))
 		
 		let key = messageModelAtIndexPath.sender
-		self.myUserBackend.getUserInfo("displayName", userID: key)
-		{
-			(result: AnyObject)
-			in cell.nameLabel.text = result as! String
+
+        self.myUserBackend.getUserInfo("displayName", userID: key) {
+			(result: AnyObject) in
+            print(result as? String)
+            cell.nameLabel.text = result as? String
 		}
 		
-		cell.bodyLabel.text = messageModelAtIndexPath.text
+        // Safe unwrapping of text
+        if let messageText = messageModelAtIndexPath.text as? String {
+            cell.bodyLabel.text = messageText
+        }
+        
 		cell.selectionStyle = .None
 		cell.transform = self.tableView.transform // TODO: figure out what this actually does
 		return cell
@@ -185,16 +189,4 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
-	
-	
-	/*
-	// MARK: - Navigation
-	
-	// In a storyboard-based application, you will often want to do a little preparation before navigation
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-	// Get the new view controller using segue.destinationViewController.
-	// Pass the selected object to the new view controller.
-	}
-	*/
-	
 }

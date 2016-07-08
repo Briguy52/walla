@@ -15,6 +15,10 @@ class ConvoBackend {
     
     func getConversationValue(convoID: String, key: String, completion: (result: String) -> Void) {
         
+        print("querying with values ")
+        print(convoID)
+        print(key)
+        
         self.myBasic.convoRef.queryOrderedByChild(convoID)
             .observeEventType(.ChildAdded, withBlock: { snapshot in
                 if snapshot.key == convoID {

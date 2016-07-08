@@ -20,6 +20,10 @@ class Basic {
 	let userRef = Firebase(url:"https://thegenieapp.firebaseio.com/Users")
 	let convoRef = Firebase(url:"https://thegenieapp.firebaseio.com/Conversations")
 	let messageRef = Firebase(url:"https://thegenieapp.firebaseio.com/Messages")
+    
+    func getTimestamp() -> Double {
+        return NSDate().timeIntervalSince1970 * 1000
+    }
 	
 	func checkLoggedIn() -> Bool {
 		if rootRef.authData != nil {
