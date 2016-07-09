@@ -21,7 +21,7 @@ class ProfileViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-    
+        
 		let keychain = MyApplication.sharedInstance.keychain
 		let profileData:NSData! = keychain.dataForKey("profile")
 		let profile:A0UserProfile = NSKeyedUnarchiver.unarchiveObjectWithData(profileData) as! A0UserProfile
@@ -30,6 +30,7 @@ class ProfileViewController: UIViewController {
 		if let data = myBasic.rootRef.authData {
             
             myUserBackend.updateUserData("displayName", value: profile.nickname, userID: data.uid)
+            myUserBackend.updateUserData("name", value: profile.name, userID: data.uid)
             myUserBackend.updateUserData("profilePicUrl", value: profile.picture.absoluteString, userID: data.uid)
             myUserBackend.updateUserData("phoneNumber", value: "12345678", userID: data.uid)
             myUserBackend.updateUserData("latitude", value: 36.0014, userID: data.uid)
