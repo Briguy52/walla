@@ -23,6 +23,22 @@ class AuthViewController: UIViewController {
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
+        let myAwesomeTheme = A0Theme()
+        
+        //Customize your theme
+        myAwesomeTheme.registerImageWithName("background", bundle: NSBundle.mainBundle(), forKey: "A0ThemeScreenBackgroundImageName")
+        myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeTextFieldPlaceholderTextColor")
+        myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeTextFieldTextColor")
+        myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeTextFieldIconColor")
+        
+        myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeSecondaryButtonBackgroundColor")
+        myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeSecondaryButtonTextColor")
+        
+        myAwesomeTheme.registerImageWithName("AppIcon_80", bundle: NSBundle.mainBundle(), forKey: "A0ThemeIconImageName")
+        
+        A0Theme.sharedInstance().registerTheme(myAwesomeTheme)
+        
 		let keychain = MyApplication.sharedInstance.keychain
 		if let idToken = keychain.stringForKey("id_token"), let jwt = try? JWTDecode.decode(idToken) {
 			if jwt.expired, let refreshToken = keychain.stringForKey("refresh_token") {

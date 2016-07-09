@@ -21,7 +21,7 @@ class ProfileViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-    
+        
 		let keychain = MyApplication.sharedInstance.keychain
 		let profileData:NSData! = keychain.dataForKey("profile")
 		let profile:A0UserProfile = NSKeyedUnarchiver.unarchiveObjectWithData(profileData) as! A0UserProfile
