@@ -28,9 +28,18 @@ class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDat
 		super.viewDidLoad()
 		tableView.delegate = self
 		tableView.dataSource = self
+		
+		tableView?.tableFooterView = UIView(frame: CGRectZero)
+		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
         
         self.populateFilter()
 	}
+	
+//	override func viewWillAppear(animated: Bool) {
+//		viewWillAppear(animated)
+//		tableView?.tableFooterView = UIView(frame: CGRectZero)
+//		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
+//	}
 	
     // Based on logic in MyTopic.swift
 	func populateFilter() {
