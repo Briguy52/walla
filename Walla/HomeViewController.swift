@@ -39,7 +39,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	var currentTime = NSDate().timeIntervalSince1970
 	
 	// TODO: stores these tags in the Users ref
-	var tagsToFilter: [String] = ["All"]
+	//var tagsToFilter: [String] = ["All"]
 	
 	//	var usernames: [String] = ["user1", "user2", "user3", "user4"]
 	//	var messages: [String] = ["m1", "m2", "m3", "m4"]
@@ -56,6 +56,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		tableView.delegate = self
 		tableView.dataSource = self
 		masterView = self
+		
+		self.checkForMyTags()
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -93,9 +95,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	{
 	}
 	
+	func checkForMyTags() {
+		let refToTry = self.myBasic.userRef.childByAppendingPath(self.myUserBackend.getUserID())
+		
+		refToTry.observeEventType(.Value, withBlock: { snapshot in
+			// Confirm that User has preset tags
+			if snapshot.value.objectForKey("tags") == nil {
+				userNeedsTags = true
+				self.performSegueWithIdentifier("unwindToTopicsFromHome", sender: self)
+			}
+		})
+	}
+	
 	// Copied from MessagingVC, remainder of code to use is there
 	func observeWithStreams() {
 		requestModels.removeAll()
+		
 		self.myBasic.requestRef.rx_observe(FEventType.ChildAdded)
 			.filter { snapshot in
 				return !(snapshot.value is NSNull) // hide Null requests
@@ -108,15 +123,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 			}
             .filter { snapshot in
                 
-                print(self.tagsToFilter)
+                print(tagsToFilter)
                 
-                if self.tagsToFilter.contains("All") || self.tagsToFilter.contains("Time") {
+                if tagsToFilter.contains("All") || tagsToFilter.contains("Time") {
                     return true
                 }
                 
                 var ret = true
                 if let tags = snapshot.value.objectForKey("tags") as? [String] {
-                    for tag in self.tagsToFilter {
+                    for tag in tagsToFilter {
                         if (!tags.contains(tag)) {
                             ret = false
                         }

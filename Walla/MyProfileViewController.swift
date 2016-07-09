@@ -8,6 +8,8 @@
 
 import UIKit
 
+var userNeedsTags: Bool = false
+
 class MyProfileViewController: UIViewController {
 	
 	@IBOutlet weak var profile: UIImageView!
@@ -40,9 +42,20 @@ class MyProfileViewController: UIViewController {
 		self.setNameAndTitle()
 	}
 	
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		if userNeedsTags {
+			performSegueWithIdentifier("showTopics", sender: self)
+			userNeedsTags = false
+		}
+	}
+	
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		//self.setButtonSizes()
+	}
+	
+	@IBAction func unwindToTopicsFromHome(segue: UIStoryboardSegue) {
 	}
 	
 	/*func setButtonSizes() {
@@ -58,6 +71,9 @@ class MyProfileViewController: UIViewController {
 		performSegueWithIdentifier("openSettings", sender: nil)
 	}
 	
+	@IBAction func myTopics(sender: AnyObject) {
+		performSegueWithIdentifier("showTopics", sender: nil)
+	}
 	
 	func setImage()
 	{
