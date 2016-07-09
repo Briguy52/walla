@@ -9,7 +9,6 @@
 import UIKit
 import SimpleKeychain
 import Lock
-import LockFacebook
 
 class MyApplication: NSObject {
 	
@@ -21,7 +20,7 @@ class MyApplication: NSObject {
 	private override init() {
 		keychain = A0SimpleKeychain(service: "Auth0")
 		lock = A0Lock.newLock()
-		let facebook = A0FacebookAuthenticator.newAuthenticatorWithDefaultPermissions()
-		lock.registerAuthenticators([facebook])
+//		let facebook = A0FacebookAuthenticator.newAuthenticatorWithDefaultPermissions()
+//		lock.registerAuthenticators([facebook])
 	}
 }
