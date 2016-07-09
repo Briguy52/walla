@@ -63,6 +63,11 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 //		navigationController?.popViewControllerAnimated(true)
 	}
 	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		self.tabBarController?.tabBar.hidden = true
+	}
+	
 	func textFieldDidBeginEditing(textField: UITextField) {
 		scrollView.setContentOffset(CGPointMake(0, 150), animated: true)
 	}
