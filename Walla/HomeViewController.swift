@@ -37,6 +37,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var latitude: Double = 36.0014
     var longitude: Double = 78.9382
 	var currentTime = NSDate().timeIntervalSince1970
+	var postsAreExpired: Bool = false
 	
 	// TODO: stores these tags in the Users ref
 	//var tagsToFilter: [String] = ["All"]
