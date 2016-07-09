@@ -38,11 +38,6 @@
 		22C889461D1C536F009DE688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22C889451D1C536F009DE688 /* Assets.xcassets */; };
 		22C889491D1C536F009DE688 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C889471D1C536F009DE688 /* LaunchScreen.storyboard */; };
 		22C889521D1C5612009DE688 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C889511D1C5612009DE688 /* HomeViewController.swift */; };
-		22EAE4BD1D30C30D008514FB /* appIcon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 22EAE4B81D30C30D008514FB /* appIcon_57.png */; };
-		22EAE4BE1D30C30D008514FB /* AppIcon_80.png in Resources */ = {isa = PBXBuildFile; fileRef = 22EAE4B91D30C30D008514FB /* AppIcon_80.png */; };
-		22EAE4BF1D30C30D008514FB /* AppIcon_87.png in Resources */ = {isa = PBXBuildFile; fileRef = 22EAE4BA1D30C30D008514FB /* AppIcon_87.png */; };
-		22EAE4C01D30C30D008514FB /* AppIcon_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 22EAE4BB1D30C30D008514FB /* AppIcon_120.png */; };
-		22EAE4C11D30C30D008514FB /* AppIcon_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 22EAE4BC1D30C30D008514FB /* AppIcon_180.png */; };
 		22F9A4AA1D3006FD005C2903 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F9A4A91D3006FD005C2903 /* FilterCell.swift */; };
 		AF0364681D23582800D57094 /* RequestBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0364671D23582800D57094 /* RequestBackend.swift */; };
 		AFAA6A4F1D24CF1000FE1DB1 /* ConvoBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAA6A4E1D24CF1000FE1DB1 /* ConvoBackend.swift */; };
@@ -83,11 +78,6 @@
 		22C889481D1C536F009DE688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22C8894A1D1C536F009DE688 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22C889511D1C5612009DE688 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		22EAE4B81D30C30D008514FB /* appIcon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon_57.png; sourceTree = "<group>"; };
-		22EAE4B91D30C30D008514FB /* AppIcon_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon_80.png; sourceTree = "<group>"; };
-		22EAE4BA1D30C30D008514FB /* AppIcon_87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon_87.png; sourceTree = "<group>"; };
-		22EAE4BB1D30C30D008514FB /* AppIcon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon_120.png; sourceTree = "<group>"; };
-		22EAE4BC1D30C30D008514FB /* AppIcon_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon_180.png; sourceTree = "<group>"; };
 		22F9A4A91D3006FD005C2903 /* FilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		3BAD9241B6F4C633F3C5DF5A /* Pods-Walla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Walla.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Walla/Pods-Walla.debug.xcconfig"; sourceTree = "<group>"; };
 		60B82CDBFF92298443BF52CE /* Pods-Walla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Walla.release.xcconfig"; path = "Pods/Target Support Files/Pods-Walla/Pods-Walla.release.xcconfig"; sourceTree = "<group>"; };
@@ -236,11 +226,6 @@
 		22EAE4B71D30C2DC008514FB /* appicons */ = {
 			isa = PBXGroup;
 			children = (
-				22EAE4B81D30C30D008514FB /* appIcon_57.png */,
-				22EAE4B91D30C30D008514FB /* AppIcon_80.png */,
-				22EAE4BA1D30C30D008514FB /* AppIcon_87.png */,
-				22EAE4BB1D30C30D008514FB /* AppIcon_120.png */,
-				22EAE4BC1D30C30D008514FB /* AppIcon_180.png */,
 			);
 			name = appicons;
 			sourceTree = "<group>";
@@ -331,11 +316,6 @@
 			files = (
 				22C889491D1C536F009DE688 /* LaunchScreen.storyboard in Resources */,
 				22C889461D1C536F009DE688 /* Assets.xcassets in Resources */,
-				22EAE4BE1D30C30D008514FB /* AppIcon_80.png in Resources */,
-				22EAE4BF1D30C30D008514FB /* AppIcon_87.png in Resources */,
-				22EAE4C11D30C30D008514FB /* AppIcon_180.png in Resources */,
-				22EAE4C01D30C30D008514FB /* AppIcon_120.png in Resources */,
-				22EAE4BD1D30C30D008514FB /* appIcon_57.png in Resources */,
 				22C889441D1C536F009DE688 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -36,6 +36,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	var authorName = ""
     var latitude: Double = 36.0014
     var longitude: Double = 78.9382
+	var postsAreExpired: Bool = false
 	
 	// TODO: stores these tags in the Users ref
 	//var tagsToFilter: [String] = ["All"]
