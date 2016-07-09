@@ -31,9 +31,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
 	let myRequestBackend = RequestBackend()
-	let postPath = "posts"
-	let tagPath = "tags"
-	let postContents = ["title", "content", "authorID", "latitude", "longitude", "urgency", "tags", "expirationDate"]
 	var isInitialLoad = true
 	var disposeBag = DisposeBag()
 	var authorName = ""
@@ -42,15 +39,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	var currentTime = NSDate().timeIntervalSince1970
 	
 	// TODO: stores these tags in the Users ref
-	var tagsToFilter: [String] = ["#STEM+ "]
+	var tagsToFilter: [String] = ["All"]
 	
 	//	var usernames: [String] = ["user1", "user2", "user3", "user4"]
 	//	var messages: [String] = ["m1", "m2", "m3", "m4"]
 	//	var topics: [String] = ["t1", "t2", "t3"]
 	
-	func ViewDidLoad()
+	override func viewDidLoad()
 	{
 		super.viewDidLoad()
+        
+        print("print womp")
 		
 		self.navigationItem.setLeftBarButtonItem(nil, animated: false)
 		
@@ -107,6 +106,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 				}
 				return false
 			}
+            .filter { snapshot in
+                
+                print(self.tagsToFilter)
+                
+                if self.tagsToFilter.contains("All") || self.tagsToFilter.contains("Time") {
+                    return true
+                }
+                
+                var ret = true
+                if let tags = snapshot.value.objectForKey("tags") as? [String] {
+                    for tag in self.tagsToFilter {
+                        if (!tags.contains(tag)) {
+                            ret = false
+                        }
+                    }
+                }
+                return ret
+            }
 			.filter { snapshot in
 				return !self.myRequestBackend.contains(requestModels, snapshot: snapshot) // avoids showing duplicate Requests on initial load
 			}
@@ -165,6 +182,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 			(result: AnyObject) in
 			cell.setAuthorName(result as! String)
 		}
+        
+        self.myUserBackend.getUserInfo("profilePicUrl", userID: key)
+        {
+            (result: AnyObject) in
+            cell.setCellImage(NSURL(string: result as! String)!)
+        }
+
 		
 		/*self.myUserBackend.getUserInfo("ProfilePicUrl", userID: self.myUserBackend.getUserID())
 		{
