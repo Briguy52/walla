@@ -32,6 +32,9 @@ class AuthViewController: UIViewController {
         myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeTextFieldTextColor")
         myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeTextFieldIconColor")
         
+        myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeCredentialBoxBorderColor")
+        myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeCredentialBoxSeparatorColor")
+        
         myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeSecondaryButtonBackgroundColor")
         myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeSecondaryButtonTextColor")
         
