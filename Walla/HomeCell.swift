@@ -28,6 +28,10 @@ class HomeCell: UITableViewCell {
 		self.userName.text = nameToSet
 	}
 	
+    func setCellImage(url: NSURL) {
+        self.profile.setImageWithURL(url)
+    }
+    
 	func setCellTags(tagsToSet: [String])
 	{
 		self.topics.text = tagsToSet.joinWithSeparator("")
