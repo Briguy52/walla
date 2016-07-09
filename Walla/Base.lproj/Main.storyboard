@@ -1354,7 +1354,7 @@
                                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eCi-pw-FfX">
                                                 <rect key="frame" x="8" y="64" width="359" height="138"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is your event about?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mb-LW-LA5">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Topic [scroll through topic]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mb-LW-LA5">
                                                         <rect key="frame" x="8" y="8" width="343" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="ers-cW-f2k"/>
@@ -1406,7 +1406,7 @@
                                                             <outlet property="delegate" destination="BBR-qh-Caj" id="6Zw-XV-Jfr"/>
                                                         </connections>
                                                     </textView>
-                                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="How can people find you?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fZH-6g-0QJ">
+                                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="make it easy for people to find you!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fZH-6g-0QJ">
                                                         <rect key="frame" x="8" y="130" width="343" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="bBf-wa-faI"/>
@@ -1471,7 +1471,7 @@
                                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNh-io-GHJ">
                                                 <rect key="frame" x="8" y="386" width="359" height="87"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where should people meet up with you?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eii-bR-TTJ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eii-bR-TTJ">
                                                         <rect key="frame" x="8" y="8" width="343" height="29"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="29" id="Pp9-az-an6"/>
