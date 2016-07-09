@@ -28,7 +28,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4AJ-Vh-XpJ" id="iZj-pM-bso">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWK-qg-7iK">
@@ -356,7 +356,7 @@
                                         <rect key="frame" x="0.0" y="28" width="272" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G5n-x2-pi8" id="Zwa-3O-9JM">
-                                            <rect key="frame" x="0.0" y="0.0" width="272" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="272" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ds-M7-3XH">
@@ -441,6 +441,17 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO WALLAS :( MAKE YOUR OWN WALLA BY CLICKING THE PENCIL BELOW" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwS-gw-peY">
+                                <rect key="frame" x="0.0" y="257" width="375" height="154"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="YAm-kF-WDH"/>
+                                    <constraint firstAttribute="height" constant="154" id="Z6M-oK-FGs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tl6-MX-pfd">
                                 <rect key="frame" x="-2" y="64" width="379" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -452,7 +463,7 @@
                                         <rect key="frame" x="0.0" y="28" width="379" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0nA-zo-0Ev" id="sWq-sY-Kco">
-                                            <rect key="frame" x="0.0" y="0.0" width="379" height="139"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="379" height="139.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tk6-PO-mVb">
@@ -529,21 +540,12 @@
                                     <outlet property="delegate" destination="9SG-PT-eQc" id="yxE-x4-DhR"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO WALLAS :( MAKE YOUR OWN WALLA BY CLICKING THE PENCIL BELOW" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwS-gw-peY">
-                                <rect key="frame" x="0.0" y="257" width="375" height="154"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="YAm-kF-WDH"/>
-                                    <constraint firstAttribute="height" constant="154" id="Z6M-oK-FGs"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="Tl6-MX-pfd" firstAttribute="top" secondItem="gV9-Sg-e1A" secondAttribute="bottom" id="2ZA-ED-xrZ"/>
                             <constraint firstItem="Tl6-MX-pfd" firstAttribute="leading" secondItem="p4b-SI-Ulj" secondAttribute="leading" constant="-1.5" id="9WK-tV-FDl"/>
                             <constraint firstItem="iwS-gw-peY" firstAttribute="leading" secondItem="gV9-Sg-e1A" secondAttribute="leading" id="It2-bV-1sI"/>
+                            <constraint firstItem="161-yf-y5b" firstAttribute="top" secondItem="Tl6-MX-pfd" secondAttribute="bottom" id="LHw-dQ-y5O"/>
                             <constraint firstItem="gV9-Sg-e1A" firstAttribute="top" secondItem="6cS-wD-HK1" secondAttribute="bottom" id="OlA-HD-Kh3"/>
                             <constraint firstItem="Tl6-MX-pfd" firstAttribute="top" secondItem="gV9-Sg-e1A" secondAttribute="bottom" id="WKX-3U-5Ne"/>
                             <constraint firstItem="iwS-gw-peY" firstAttribute="centerY" secondItem="p4b-SI-Ulj" secondAttribute="centerY" id="XWC-Q0-UXQ"/>
@@ -1335,8 +1337,21 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walla-background" translatesAutoresizingMaskIntoConstraints="NO" id="gwg-sB-WdX">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGW-q1-Exe">
+                                                <rect key="frame" x="8" y="561" width="359" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="oWy-Os-6Hf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                <state key="normal" title="HOLLA!">
+                                                    <color key="titleColor" red="0.2470588235" green="0.56078431370000004" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="allFieldsSet:" destination="BBR-qh-Caj" eventType="touchUpInside" id="flH-ep-jJS"/>
+                                                </connections>
+                                            </button>
                                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eCi-pw-FfX">
-                                                <rect key="frame" x="8" y="64" width="359" height="138"/>
+                                                <rect key="frame" x="8" y="70" width="359" height="138"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Topic [scroll through topic]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mb-LW-LA5">
                                                         <rect key="frame" x="8" y="8" width="343" height="24"/>
@@ -1367,7 +1382,7 @@
                                                 </constraints>
                                             </view>
                                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3II-Vt-kKG">
-                                                <rect key="frame" x="8" y="210" width="359" height="168"/>
+                                                <rect key="frame" x="8" y="216" width="359" height="168"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What do you want to do?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iI2-3Z-579">
                                                         <rect key="frame" x="8" y="8" width="343" height="21"/>
@@ -1418,42 +1433,8 @@
                                                     <constraint firstAttribute="height" constant="168" id="wQ0-0m-ct7"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGW-q1-Exe">
-                                                <rect key="frame" x="156" y="548" width="63" height="43"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="63" id="N1E-s4-cyq"/>
-                                                    <constraint firstAttribute="height" constant="43" id="ZXi-q4-A9G"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                <state key="normal" title="HOLLA!">
-                                                    <color key="titleColor" red="0.2470588235" green="0.56078431370000004" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="allFieldsSet:" destination="BBR-qh-Caj" eventType="touchUpInside" id="flH-ep-jJS"/>
-                                                </connections>
-                                            </button>
-                                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdH-tg-1jc">
-                                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="yrn-fj-vI0"/>
-                                                </constraints>
-                                                <color key="barTintColor" red="0.99215686270000003" green="0.56078431370000004" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <textAttributes key="titleTextAttributes">
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </textAttributes>
-                                                <items>
-                                                    <navigationItem title="HOLLA" id="yJO-Qk-sWi">
-                                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="ZHY-ND-lr1">
-                                                            <connections>
-                                                                <action selector="cancelWalla:" destination="BBR-qh-Caj" id="Y89-7u-bKf"/>
-                                                            </connections>
-                                                        </barButtonItem>
-                                                    </navigationItem>
-                                                </items>
-                                            </navigationBar>
                                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNh-io-GHJ">
-                                                <rect key="frame" x="8" y="386" width="359" height="87"/>
+                                                <rect key="frame" x="8" y="392" width="359" height="87"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eii-bR-TTJ">
                                                         <rect key="frame" x="8" y="8" width="343" height="29"/>
@@ -1493,20 +1474,17 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="gwg-sB-WdX" firstAttribute="top" secondItem="eCi-pw-FfX" secondAttribute="top" constant="-64" id="3kJ-7z-jSS"/>
-                                            <constraint firstItem="sdH-tg-1jc" firstAttribute="trailing" secondItem="gwg-sB-WdX" secondAttribute="trailing" id="48w-vF-N15"/>
+                                            <constraint firstItem="gwg-sB-WdX" firstAttribute="top" secondItem="eCi-pw-FfX" secondAttribute="top" constant="-70" id="3kJ-7z-jSS"/>
                                             <constraint firstItem="eCi-pw-FfX" firstAttribute="leading" secondItem="vBB-94-lag" secondAttribute="leading" constant="8" id="69b-tq-bbA"/>
-                                            <constraint firstItem="sdH-tg-1jc" firstAttribute="leading" secondItem="gwg-sB-WdX" secondAttribute="leading" id="8Xs-Ww-0cJ"/>
                                             <constraint firstItem="PNh-io-GHJ" firstAttribute="leading" secondItem="vBB-94-lag" secondAttribute="leading" constant="8" id="9DZ-SV-iOl"/>
                                             <constraint firstItem="3II-Vt-kKG" firstAttribute="leading" secondItem="vBB-94-lag" secondAttribute="leading" constant="8" id="DG8-bQ-lbQ"/>
                                             <constraint firstAttribute="trailing" secondItem="3II-Vt-kKG" secondAttribute="trailing" constant="8" id="EGu-e7-pJr"/>
                                             <constraint firstItem="gwg-sB-WdX" firstAttribute="centerX" secondItem="eCi-pw-FfX" secondAttribute="centerX" id="EOv-iB-oID"/>
+                                            <constraint firstItem="jGW-q1-Exe" firstAttribute="leading" secondItem="vBB-94-lag" secondAttribute="leading" constant="8" id="JDS-gw-8lt"/>
                                             <constraint firstAttribute="trailing" secondItem="PNh-io-GHJ" secondAttribute="trailing" constant="8" id="Kys-OY-tVi"/>
-                                            <constraint firstAttribute="trailing" secondItem="jGW-q1-Exe" secondAttribute="trailing" constant="156" id="MB8-vt-ZOP"/>
-                                            <constraint firstItem="sdH-tg-1jc" firstAttribute="bottom" secondItem="eCi-pw-FfX" secondAttribute="top" id="NTb-4m-Yld"/>
                                             <constraint firstAttribute="height" constant="650" id="Q8w-oO-cHd"/>
                                             <constraint firstItem="jGW-q1-Exe" firstAttribute="centerX" secondItem="PNh-io-GHJ" secondAttribute="centerX" id="QzY-NG-Fis"/>
-                                            <constraint firstItem="jGW-q1-Exe" firstAttribute="leading" secondItem="vBB-94-lag" secondAttribute="leading" constant="156" id="RHT-wW-P4k"/>
+                                            <constraint firstAttribute="trailing" secondItem="jGW-q1-Exe" secondAttribute="trailing" constant="8" id="h5O-4M-clw"/>
                                             <constraint firstItem="gwg-sB-WdX" firstAttribute="height" secondItem="vBB-94-lag" secondAttribute="height" constant="18" id="hpd-6T-G4E"/>
                                             <constraint firstItem="gwg-sB-WdX" firstAttribute="width" secondItem="vBB-94-lag" secondAttribute="width" id="i3E-y5-5bZ"/>
                                             <constraint firstItem="3II-Vt-kKG" firstAttribute="leading" secondItem="vBB-94-lag" secondAttribute="leading" constant="8" id="iFr-BU-WwJ"/>
@@ -1514,7 +1492,7 @@
                                             <constraint firstItem="3II-Vt-kKG" firstAttribute="top" secondItem="eCi-pw-FfX" secondAttribute="bottom" constant="8" id="st3-hW-TtT"/>
                                             <constraint firstAttribute="bottom" secondItem="jGW-q1-Exe" secondAttribute="bottom" constant="59" id="tLG-g7-nHG"/>
                                             <constraint firstAttribute="trailing" secondItem="eCi-pw-FfX" secondAttribute="trailing" constant="8" id="twi-i2-CJv"/>
-                                            <constraint firstItem="eCi-pw-FfX" firstAttribute="top" secondItem="vBB-94-lag" secondAttribute="top" constant="64" id="zDn-LZ-ASJ"/>
+                                            <constraint firstItem="eCi-pw-FfX" firstAttribute="top" secondItem="vBB-94-lag" secondAttribute="top" constant="70" id="zDn-LZ-ASJ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1522,17 +1500,41 @@
                                     <constraint firstItem="vBB-94-lag" firstAttribute="top" secondItem="d7y-oi-AKy" secondAttribute="top" id="6hX-kl-6bb"/>
                                     <constraint firstAttribute="trailing" secondItem="vBB-94-lag" secondAttribute="trailing" id="9Dk-3v-40Z"/>
                                     <constraint firstItem="vBB-94-lag" firstAttribute="leading" secondItem="d7y-oi-AKy" secondAttribute="leading" id="jMN-Ha-eRQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="vBB-94-lag" secondAttribute="bottom" constant="101" id="oeE-Vp-fsH"/>
+                                    <constraint firstAttribute="bottom" secondItem="vBB-94-lag" secondAttribute="bottom" constant="50" id="oeE-Vp-fsH"/>
                                 </constraints>
                             </scrollView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdH-tg-1jc">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="yrn-fj-vI0"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.99215686270000003" green="0.56078431370000004" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="HOLLA" id="yJO-Qk-sWi">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="ZHY-ND-lr1">
+                                            <connections>
+                                                <action selector="cancelWalla:" destination="BBR-qh-Caj" id="Y89-7u-bKf"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.99215686270000003" green="0.56078431370000004" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="sdH-tg-1jc" firstAttribute="width" secondItem="eLf-TR-K5k" secondAttribute="width" id="0Ai-MT-hJm"/>
+                            <constraint firstItem="sdH-tg-1jc" firstAttribute="top" secondItem="nZg-nD-QPI" secondAttribute="bottom" id="5EC-5a-FBO"/>
                             <constraint firstAttribute="trailing" secondItem="d7y-oi-AKy" secondAttribute="trailing" id="DTJ-OU-cFZ"/>
+                            <constraint firstItem="sdH-tg-1jc" firstAttribute="leading" secondItem="eLf-TR-K5k" secondAttribute="leading" id="SjR-Ja-gDu"/>
                             <constraint firstAttribute="bottom" secondItem="d7y-oi-AKy" secondAttribute="bottom" id="Ula-FV-g7a"/>
                             <constraint firstItem="d7y-oi-AKy" firstAttribute="leading" secondItem="eLf-TR-K5k" secondAttribute="leading" id="eVl-4i-owH"/>
                             <constraint firstItem="d7y-oi-AKy" firstAttribute="top" secondItem="eLf-TR-K5k" secondAttribute="top" id="hQn-ta-SvP"/>
                             <constraint firstItem="vBB-94-lag" firstAttribute="width" secondItem="eLf-TR-K5k" secondAttribute="width" id="kiJ-N8-AbR"/>
+                            <constraint firstAttribute="trailing" secondItem="sdH-tg-1jc" secondAttribute="trailing" id="tnO-21-Mc1"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="write" id="MBg-7j-HAX">
