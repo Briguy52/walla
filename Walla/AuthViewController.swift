@@ -38,7 +38,7 @@ class AuthViewController: UIViewController {
         myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeSecondaryButtonBackgroundColor")
         myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeSecondaryButtonTextColor")
         
-        myAwesomeTheme.registerImageWithName("Icon-40@2x.png", bundle: NSBundle.mainBundle(), forKey: "A0ThemeIconImageName")
+        myAwesomeTheme.registerImageWithName("Icon-60", bundle: NSBundle.mainBundle(), forKey: "A0ThemeIconImageName")
         
         A0Theme.sharedInstance().registerTheme(myAwesomeTheme)
         

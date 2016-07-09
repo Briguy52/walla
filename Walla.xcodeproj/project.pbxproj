@@ -521,6 +521,7 @@
 			baseConfigurationReference = 3BAD9241B6F4C633F3C5DF5A /* Pods-Walla.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Tim Choh (7H45KVJ2HG)";
 				INFOPLIST_FILE = Walla/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -536,6 +537,7 @@
 			baseConfigurationReference = 60B82CDBFF92298443BF52CE /* Pods-Walla.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Tim Choh (7H45KVJ2HG)";
 				INFOPLIST_FILE = Walla/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
