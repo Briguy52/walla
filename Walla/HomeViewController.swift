@@ -48,7 +48,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
-            
+        
 		self.navigationItem.setLeftBarButtonItem(nil, animated: false)
 		
 		tableView.delegate = self
@@ -61,7 +61,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("view did appear")
         self.observeWithStreams()
     }
 	
@@ -78,7 +77,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
         
-        print("view will appear")
         self.observeWithStreams()
 		
 		//self.noWallasPosts()
