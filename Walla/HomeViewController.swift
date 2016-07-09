@@ -36,7 +36,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	var authorName = ""
     var latitude: Double = 36.0014
     var longitude: Double = 78.9382
-	var currentTime = NSDate().timeIntervalSince1970
 	var postsAreExpired: Bool = false
 	
 	// TODO: stores these tags in the Users ref
@@ -121,7 +120,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 			}
 			.filter { snapshot in
 				if let exp = snapshot.value.objectForKey("expirationDate")?.doubleValue { // hide expired Requests
-					return exp >= self.currentTime
+					return exp >= self.myBasic.getTimestamp()
 				}
 				return false
 			}

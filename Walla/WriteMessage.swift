@@ -32,7 +32,6 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	var myTags:[String] = ["STEM+"]
 	var myDelayHours: Double = 5
 	
-	var currentTime = NSDate().timeIntervalSince1970
 	//let locManager = CLLocationManager()
 	
 	let myBasic = Basic()
@@ -257,7 +256,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		"resolved": resolved,
 		"visible": visible,
 		"tags": [tagsToPick[self.tagPicker.selectedRowInComponent(0)]],
-		"timestamp": currentTime,
+		"timestamp": self.myBasic.getTimestamp(),
 		"expirationDate": expirationDate
 	]
 	
@@ -288,12 +287,12 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 //	}
 	
 	func calcHoursFromNow(expiry: Double) -> Double {
-		let difference = expiry - NSDate().timeIntervalSince1970
+		let difference = expiry - self.myBasic.getTimestamp()
 		return (difference / (60 * 60 ))
 	}
 	
 	func calcExpirationDate(hours: Double) -> Double {
-		return ( NSDate().timeIntervalSince1970 + hours * 60 * 60 )
+		return ( self.myBasic.getTimestamp() + hours * 60 * 60 )
 	}
 	
     

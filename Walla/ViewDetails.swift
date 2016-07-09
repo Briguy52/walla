@@ -22,7 +22,6 @@ class ViewDetails: UIViewController {
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
-	var currentTime = NSDate().timeIntervalSince1970
 	var convoID:String!
 	
 	override func viewDidLoad() {
@@ -142,7 +141,7 @@ class ViewDetails: UIViewController {
 			"uniqueID": requestID,
 			"authorID": authorID,
 			"userID": userID,
-			"timestamp": currentTime
+			"timestamp": self.myBasic.getTimestamp()
 		]
 		
 		let convoHash = createConvoHash(requestID, authorID: authorID , userID: userID)
