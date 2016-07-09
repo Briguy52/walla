@@ -16,7 +16,7 @@ class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDat
 	let myUserBackend = UserBackend()
 	
 	var filterTags: [String] = ["All", "Time"]
-	var cellIdentifier = "FilterCell"
+	var cellIdentifier = "TopicTagName"
 	
 	@IBOutlet weak var tableView: UITableView!
 	
@@ -28,26 +28,26 @@ class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDat
 		super.viewDidLoad()
 		tableView.delegate = self
 		tableView.dataSource = self
+        
+        self.populateFilter()
 	}
 	
     // Based on logic in MyTopic.swift
 	func populateFilter() {
-//        let refToTry = self.myBasic.userRef.childByAppendingPath(self.myUserBackend.getUserID())
-//        
-//        refToTry.observeEventType(.Value, withBlock: { snapshot in
-//            // Confirm that User has preset tags
-//            if snapshot.value.objectForKey("tags") != nil {
-//                if let tagsToAppend = snapshot.value.objectForKey("tags") as? [String] {
-//                    for index in 0..<tagsToAppend.count {
-//                        if !self.filterTags.contains(tagsToAppend[index]) {
-//                            self.filterTags.append(tagsToAppend[index])
-//                        }
-//                    }
-//                }
-//            }
-//        })
-//        
-//        print(self.filterTags)
+        let refToTry = self.myBasic.userRef.childByAppendingPath(self.myUserBackend.getUserID())
+        
+        refToTry.observeEventType(.Value, withBlock: { snapshot in
+            // Confirm that User has preset tags
+            if snapshot.value.objectForKey("tags") != nil {
+                if let tagsToAppend = snapshot.value.objectForKey("tags") as? [String] {
+                    for index in 0..<tagsToAppend.count {
+                        if !self.filterTags.contains(tagsToAppend[index]) {
+                            self.filterTags.append(tagsToAppend[index])
+                        }
+                    }
+                }
+            }
+        })
 	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
