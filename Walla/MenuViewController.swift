@@ -53,4 +53,12 @@ class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDat
 		
 		return cell
 	}
+	
+	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+		return false
+	}
+	
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		//add code here
+	}
 }

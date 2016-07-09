@@ -14,7 +14,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 	{
 		super.viewDidLoad()
 		
-		UITabBar.appearance().tintColor = UIColor.orangeColor()
+		UITabBar.appearance().tintColor = UIColor.whiteColor()
 	}
 }
 
