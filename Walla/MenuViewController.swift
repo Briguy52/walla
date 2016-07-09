@@ -14,6 +14,7 @@ class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDat
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
+    let myConvoBackend = ConvoBackend()
 	
 	var filterTags: [String] = ["All", "Time"]
 	var cellIdentifier = "TopicTagName"
@@ -33,6 +34,7 @@ class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDat
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
         
         self.populateFilter()
+        self.myConvoBackend.reloadConvoModels()
 	}
 	
 //	override func viewWillAppear(animated: Bool) {

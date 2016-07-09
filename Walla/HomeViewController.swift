@@ -49,8 +49,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	{
 		super.viewDidLoad()
         
-        print("print womp")
-		
 		self.navigationItem.setLeftBarButtonItem(nil, animated: false)
 		
 		tableView.delegate = self
@@ -59,6 +57,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		self.checkForMyTags()
 	}
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.observeWithStreams()
+    }
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
@@ -72,9 +76,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		imageView.contentMode = .ScaleAspectFill
 		
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
-		
-		// Ask Tim about the order of WHEN to place this call
-		self.observeWithStreams()
+        
+        self.observeWithStreams()
 		
 		//self.noWallasPosts()
 	}
@@ -122,8 +125,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 				return false
 			}
             .filter { snapshot in
-                
-                print(tagsToFilter)
                 
                 if tagsToFilter.contains("All") || tagsToFilter.contains("Time") {
                     return true
