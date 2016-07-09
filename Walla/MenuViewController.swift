@@ -67,4 +67,11 @@ class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDat
 		
 		return cell
 	}
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tagsToFilter.removeAll()
+        tagsToFilter.append(self.filterTags[indexPath.row])
+        print("chose tag " + self.filterTags[indexPath.row])
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }

@@ -44,7 +44,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	//	var messages: [String] = ["m1", "m2", "m3", "m4"]
 	//	var topics: [String] = ["t1", "t2", "t3"]
 	
-	func ViewDidLoad()
+	override func viewDidLoad()
 	{
 		super.viewDidLoad()
 		
