@@ -30,10 +30,24 @@ class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDat
 		tableView.dataSource = self
 	}
 	
+    // Based on logic in MyTopic.swift
 	func populateFilter() {
-		repeat {
-			
-		} while true // change true to number of tags the user has set
+//        let refToTry = self.myBasic.userRef.childByAppendingPath(self.myUserBackend.getUserID())
+//        
+//        refToTry.observeEventType(.Value, withBlock: { snapshot in
+//            // Confirm that User has preset tags
+//            if snapshot.value.objectForKey("tags") != nil {
+//                if let tagsToAppend = snapshot.value.objectForKey("tags") as? [String] {
+//                    for index in 0..<tagsToAppend.count {
+//                        if !self.filterTags.contains(tagsToAppend[index]) {
+//                            self.filterTags.append(tagsToAppend[index])
+//                        }
+//                    }
+//                }
+//            }
+//        })
+//        
+//        print(self.filterTags)
 	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
