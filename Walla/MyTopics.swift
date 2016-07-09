@@ -121,7 +121,7 @@ class MyTopics: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 	func addTag(tag: String) {
         if (!self.myTags.contains(tag)) {
             self.myTags.append(tag)
-            self.topicLabel.text = self.myTags.joinWithSeparator(" ") + "\n"
+            self.topicLabel.text = self.myTags.joinWithSeparator("\n")
         }
         self.updateUserTags()
 	}

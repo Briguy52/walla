@@ -560,9 +560,11 @@
                         <outlet property="filterButton" destination="rFS-wI-KVB" id="oA7-rA-u1y"/>
                         <outlet property="noWallas" destination="iwS-gw-peY" id="yxe-A0-D9E"/>
                         <outlet property="tableView" destination="Tl6-MX-pfd" id="LvL-Wc-x39"/>
+                        <segue destination="Knj-Ne-6Yy" kind="unwind" identifier="unwindToTopicsFromHome" unwindAction="unwindToTopicsFromHome:" id="wav-d7-ta6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WQu-iv-ZB2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Knj-Ne-6Yy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="942.5" y="-1058.5"/>
         </scene>
@@ -917,7 +919,8 @@
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="KSC-C0-68L" kind="modal" id="7o2-mZ-hWx"/>
+                                            <action selector="myTopics:" destination="M8p-iL-WUF" eventType="touchUpInside" id="JFZ-Pt-9wQ"/>
+                                            <segue destination="KSC-C0-68L" kind="showDetail" identifier="showTopics" id="7o2-mZ-hWx"/>
                                         </connections>
                                     </button>
                                 </subviews>
