@@ -9,16 +9,16 @@
 import UIKit
 import Firebase
 
-var tagsToPick = ["#ElementarySchool", "#MiddleSchool", "#HighSchool", "#University", "#Industry", "#LongTermChange", "#MathAndCompSci", "#PartnershipsForChange", "#SocialEntrpreneurship", "#Entrepreneurship", "#STEM+", "#MakerIdeas", "#SuccessStories", "#OnlineLearning", "#Engineering", "#CommunityIntegration", "#GrowingSustainedSTEM"]
+var tagsToPick = ["ElementarySchool", "MiddleSchool", "HighSchool", "University", "Industry", "LongTermChange", "MathAndCompSci", "PartnershipsForChange", "SocialEntrpreneurship", "Entrepreneurship", "STEM+", "MakerIdeas", "SuccessStories", "OnlineLearning", "Engineering", "CommunityIntegration", "GrowingSustainedSTEM"]
 
 class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate, UITextFieldDelegate {
 
 	@IBOutlet weak var tagPicker: UIPickerView!
-	@IBOutlet weak var addTagButton: UIButton!
-	@IBOutlet weak var removeTagButton: UIButton!
-	@IBOutlet weak var tagLabel: UILabel!
-	@IBOutlet weak var requestBody: UITextField!
-	@IBOutlet weak var requestDetails: UITextView!
+//	@IBOutlet weak var addTagButton: UIButton!
+//	@IBOutlet weak var removeTagButton: UIButton!
+//	@IBOutlet weak var tagLabel: UILabel!
+	@IBOutlet weak var requestBody: UITextView!
+	@IBOutlet weak var requestDetails: UITextField!
 	@IBOutlet weak var generalLocation: UITextField!
 	@IBOutlet weak var holla: UIButton!
 	@IBOutlet weak var scrollView: UIScrollView!
@@ -29,7 +29,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	var myLatitude: Double = 36.0014
 	var myLongitude: Double = 78.9382
     var myLocation: String = "default location"
-	var myTags:[String] = ["#STEM+"]
+	var myTags:[String] = ["STEM+"]
 	var myDelayHours: Double = 5
 	
 	var currentTime = NSDate().timeIntervalSince1970
@@ -48,8 +48,8 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         self.initRequestDetails()
 		
 		self.navigationItem.hidesBackButton = false
-		self.requestDetails?.layer.borderWidth = 0.2
-		self.requestDetails?.layer.borderColor = UIColor.lightGrayColor().CGColor
+//		self.requestDetails?.layer.borderWidth = 0.2
+//		self.requestDetails?.layer.borderColor = UIColor.lightGrayColor().CGColor
 		
 //		self.addTagButton.hidden = true
 		
@@ -63,8 +63,13 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 //		navigationController?.popViewControllerAnimated(true)
 	}
 	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		self.tabBarController?.tabBar.hidden = true
+	}
+	
 	func textFieldDidBeginEditing(textField: UITextField) {
-		scrollView.setContentOffset(CGPointMake(0, 200), animated: true)
+		scrollView.setContentOffset(CGPointMake(0, 150), animated: true)
 	}
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -77,7 +82,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	}
 	
 	func textViewDidBeginEditing(textView: UITextView) {
-		scrollView.setContentOffset(CGPointMake(0, 100), animated: true)
+		scrollView.setContentOffset(CGPointMake(0, 25), animated: true)
 	}
 	
 	func textViewDidEndEditing(textView: UITextView) {
@@ -236,8 +241,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		requestBody?.text = ""
 		requestDetails?.text = ""
 		generalLocation?.text = ""
-		tagLabel?.text = "#STEM+ "
-		
+		//tagLabel?.text = "#STEM+ "
 	}
 	
     func postNewRequest(authorID: String, request: String, additionalDetails: String, latitude: Double, longitude: Double, location: String, resolved: Bool, visible: Bool, tags: [String], expirationDate: Double ) -> Void {
@@ -252,7 +256,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		"location": location,
 		"resolved": resolved,
 		"visible": visible,
-		"tags": tags,
+		"tags": [tagsToPick[self.tagPicker.selectedRowInComponent(0)]],
 		"timestamp": currentTime,
 		"expirationDate": expirationDate
 	]
@@ -276,13 +280,12 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	//init functions
 	func setAuthorName(name: String) {
 		self.myAuthorName = name
-		//self.name.text = self.myAuthorName
 	}
 	
     // currently not called
-	func initRequestInfo() {
-		self.tagLabel.text = self.myTags.joinWithSeparator("")
-	}
+//	func initRequestInfo() {
+//		self.tagLabel.text = self.myTags.joinWithSeparator("")
+//	}
 	
 	func calcHoursFromNow(expiry: Double) -> Double {
 		let difference = expiry - NSDate().timeIntervalSince1970
@@ -297,14 +300,14 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     // Begin listeners for input text fields and text views (Brian)
     
     @IBAction func requestEditingDidEnd(sender: UITextField) {
-        if let text = self.requestBody.text {
-            self.myTitle = text
+        if let text = self.requestDetails.text {
+            self.myDetails = text
         }
     }
     
     func textViewDidChange(textView: UITextView) {
-        if let text = self.requestDetails.text {
-            self.myDetails = text
+        if let text = self.requestBody.text {
+            self.myTitle = text
         }
     }
     
@@ -312,6 +315,12 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         self.requestDetails.delegate = self
     }
     
+	@IBAction func locationEditingChanged(sender: UITextField) {
+		if let text = self.generalLocation.text {
+			self.myLocation = text
+		}
+	}
+	
     @IBAction func locationEditingDidEnd(sender: UITextField) {
         if let text = self.generalLocation.text {
             self.myLocation = text
@@ -342,49 +351,49 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 	func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
 		
 		let titleData = tagsToPick[row]
-		let myTitle = NSAttributedString(string: titleData, attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+		let myTitle = NSAttributedString(string: titleData, attributes: [NSForegroundColorAttributeName: UIColor.orangeColor()])
 		
 		return myTitle
 	}
-	
-	func oneTag()
-	{
-		if self.myTags.count == 1
-		{
-			self.addTagButton.hidden = true
-			self.removeTagButton.hidden = false
-		}
-		else
-		{
-			self.addTagButton.hidden = false
-			self.removeTagButton.hidden = true
-		}
-	}
-	
-	@IBAction func addTags(sender: UIButton)
-	{
-		let tag = tagsToPick[self.tagPicker.selectedRowInComponent(0)]
-		if tagLabel.text == "Please Enter a Tag"
-		{
-			tagLabel.text = ""
-		}
-		self.addTag(tag)
-//		self.oneTag()
-	}
-	
-	@IBAction func removeTags(sender: UIButton)
-	{
-		self.myTags.removeAll()
-		self.tagLabel.textColor = UIColor.redColor()
-		self.tagLabel.text = "Please Enter a Tag"
-//		self.oneTag()
-	}
-	
-	func addTag(tag: String) {
-        self.myTags.removeAll()
-        self.myTags.append(tag)
-        self.tagLabel.text = self.myTags.joinWithSeparator(" ")
-	}
+//	
+//	func oneTag()
+//	{
+//		if self.myTags.count == 1
+//		{
+//			self.addTagButton.hidden = true
+//			self.removeTagButton.hidden = false
+//		}
+//		else
+//		{
+//			self.addTagButton.hidden = false
+//			self.removeTagButton.hidden = true
+//		}
+//	}
+//	
+//	@IBAction func addTags(sender: UIButton)
+//	{
+//		let tag = tagsToPick[self.tagPicker.selectedRowInComponent(0)]
+//		if tagLabel.text == "Please Enter a Tag"
+//		{
+//			tagLabel.text = ""
+//		}
+//		self.addTag(tag)
+////		self.oneTag()
+//	}
+//	
+//	@IBAction func removeTags(sender: UIButton)
+//	{
+//		self.myTags.removeAll()
+//		self.tagLabel.textColor = UIColor.redColor()
+//		self.tagLabel.text = "Please Enter a Tag"
+////		self.oneTag()
+//	}
+//	
+//	func addTag(tag: String) {
+//        self.myTags.removeAll()
+//        self.myTags.append(tag)
+//        self.tagLabel.text = self.myTags.joinWithSeparator(" ")
+//	}
 }
 
 extension String {

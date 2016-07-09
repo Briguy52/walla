@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var noWallas: UILabel!
+	@IBOutlet weak var filterButton: UIBarButtonItem!
 	
 	var cellIdentifier = "ViewWallaCell"
 	
@@ -47,6 +48,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
+        
+        print("print womp")
+		
+		self.navigationItem.setLeftBarButtonItem(nil, animated: false)
 		
 		tableView.delegate = self
 		tableView.dataSource = self
@@ -102,6 +107,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 				return false
 			}
             .filter { snapshot in
+                
+                print(self.tagsToFilter)
                 
                 if self.tagsToFilter.contains("All") || self.tagsToFilter.contains("Time") {
                     return true
@@ -183,6 +190,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
 		
+		/*self.myUserBackend.getUserInfo("ProfilePicUrl", userID: self.myUserBackend.getUserID())
+		{
+			(result: AnyObject) in
+			cell.setProfileImage(result as! String)
+		}*/
+		
 		cell.userName?.text = requestModel.authorID
 		cell.message?.text = requestModel.request
 		cell.topics?.text = requestModel.tags.joinWithSeparator(" ")
@@ -200,9 +213,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		whiteRoundedView.layer.backgroundColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 0.8])
 		whiteRoundedView.layer.masksToBounds = false
-		whiteRoundedView.layer.cornerRadius = 2.0
+		whiteRoundedView.layer.cornerRadius = 4.0
 		whiteRoundedView.layer.shadowOffset = CGSizeMake(-1, 1)
-		whiteRoundedView.layer.shadowOpacity = 0.2
+		whiteRoundedView.layer.shadowOpacity = 0.1
 		
 		cell.contentView.addSubview(whiteRoundedView)
 		cell.contentView.sendSubviewToBack(whiteRoundedView)
@@ -215,7 +228,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	}
 	
 	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-		cell.backgroundColor = UIColor(white: 1, alpha: 0.8)
+		cell.backgroundColor = UIColor(white: 1, alpha: 0.1)
 	}
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
