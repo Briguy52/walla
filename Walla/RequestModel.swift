@@ -11,6 +11,8 @@ import Firebase
 
 struct RequestModel {
 	
+    var myBasic = Basic()
+    
 	var postID: String? // unique post ID, randomly generated and untracked
 	var request: String
 	var additionalDetails: String
@@ -49,7 +51,7 @@ struct RequestModel {
         self.resolved = resolved
         self.visible = visible
 		self.tags = tags
-		self.timestamp = NSDate().timeIntervalSince1970
+		self.timestamp = self.myBasic.getTimestamp()
 		self.expirationDate = expirationDate
 	}
 }

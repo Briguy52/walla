@@ -10,6 +10,8 @@ import Foundation
 import Firebase
 
 struct ConvoModel {
+    
+    let myBasic = Basic()
 	
 	var convoID: String?
 	var uniqueID: String
@@ -30,6 +32,6 @@ struct ConvoModel {
 		self.uniqueID = uniqueID
 		self.authorID = authorID
 		self.userID = userID
-		self.timestamp = NSDate().timeIntervalSince1970 * 1000.0
+		self.timestamp = self.myBasic.getTimestamp()
 	}
 }

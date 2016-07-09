@@ -10,6 +10,9 @@ import Foundation
 import Firebase
 
 struct MessageModel {
+    
+    var myBasic = Basic()
+    
 	var messageId: String? // unique message ID, randomly generated and untracked
 	var sender: String // userID of sender, via UserBackend
 	var text: String // contents of message, via MessageViewController
@@ -28,6 +31,6 @@ struct MessageModel {
 		self.text = text
 		self.sender = sender
 		self.recipient = recipient
-		self.timestamp = NSDate().timeIntervalSince1970 * 1000.0
+		self.timestamp = self.myBasic.getTimestamp()
 	}
 }
