@@ -196,23 +196,23 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		{
 			if tags == false
 			{
-				alert.message = "You forgot to add tags!"
+				alert.title = "You forgot to add tags!"
 			}
 			else if wish == false
 			{
-				alert.message = "You forgot the wish!"
+				alert.title = "You forgot the wish!"
 			}
 			else if dets == false
 			{
-				alert.message = "You forgot the details!"
+				alert.title = "You forgot the details!"
 			}
 			else if locs == false
 			{
-				alert.message = "You forgot the location!"
+				alert.title = "You forgot the location!"
 			}
 			else
 			{
-				alert.message = "Not sure why this showed up"
+				alert.title = "Not sure why this showed up. Please try again."
 			}
 			
 			alert.show()
