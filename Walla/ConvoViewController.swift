@@ -29,6 +29,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	var disposeBag = DisposeBag()
 	var messageIndex: Int = 0
 	var convoFromWalla = ""
+	var indexFromWalla = -1
 	
 	// Model that corresponds to this ViewController
 	
@@ -58,8 +59,10 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	}
 	
 	@IBAction func unwindToMessages(segue: UIStoryboardSegue) {
-		convoFromWalla = myMessageTitle
+		convoFromWalla = convoIDFromHome
 		fromWalla = true
+		self.myConvoBackend.reloadConvoModels()
+		print(convoModels.count)
 	}
 	
 	func startConvoFromWalla() {
@@ -85,9 +88,6 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 		cell.backgroundColor = UIColor(white: 1, alpha: 0.8)
-		
-		print(indexPath.row, ": ")
-		print(convoModels[indexPath.row].convoID)
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

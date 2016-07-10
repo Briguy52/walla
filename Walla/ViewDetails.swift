@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-var myMessageTitle = ""
+var convoIDFromHome = ""
 
 class ViewDetails: UIViewController {
 	
@@ -22,6 +22,7 @@ class ViewDetails: UIViewController {
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
+	let myConvoBackend = ConvoBackend()
 	var convoID:String!
 	
 	override func viewDidLoad() {
@@ -105,7 +106,7 @@ class ViewDetails: UIViewController {
 	@IBAction func goToMessages(sender: UIButton)
 	{
 		if requestModels[currentIndex].authorID != self.myUserBackend.getUserID() {
-		myMessageTitle = requestModels[currentIndex].request
+//		myMessageTitle = requestModels[currentIndex].request
         let requestID = requestModels[currentIndex].postID!
         let authorID = requestModels[currentIndex].authorID
         let userID = myBasic.rootRef.authData.uid
@@ -125,6 +126,8 @@ class ViewDetails: UIViewController {
 			else {
                 refToTry.removeAllObservers()
 				self.convoID = convoHash
+				convoIDFromHome = self.convoID
+				self.myConvoBackend.reloadConvoModels()
                 self.performSegueWithIdentifier("unwindToMessages", sender: self)
             }
 		})
