@@ -187,7 +187,6 @@
 		22C8893D1D1C536F009DE688 /* Walla */ = {
 			isa = PBXGroup;
 			children = (
-				22EAE4B71D30C2DC008514FB /* appicons */,
 				226527371D1F1773004B89D2 /* Backend */,
 				226527281D1F1471004B89D2 /* Auth */,
 				226527251D1F13FF004B89D2 /* Requests */,
@@ -221,13 +220,6 @@
 				22F9A4A91D3006FD005C2903 /* FilterCell.swift */,
 			);
 			name = Home;
-			sourceTree = "<group>";
-		};
-		22EAE4B71D30C2DC008514FB /* appicons */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = appicons;
 			sourceTree = "<group>";
 		};
 		825D71D7C2A14F81BFED3852 /* Pods */ = {
@@ -523,6 +515,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Tim Choh (7H45KVJ2HG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tim Choh (7H45KVJ2HG)";
 				INFOPLIST_FILE = Walla/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wallasquad.walla;
@@ -539,6 +532,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Tim Choh (7H45KVJ2HG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tim Choh (7H45KVJ2HG)";
 				INFOPLIST_FILE = Walla/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wallasquad.walla;
