@@ -14,6 +14,7 @@ import RxCocoa
 import RxSwift
 import FirebaseRxSwiftExtensions
 
+var fromWalla: Bool = false
 var convoModels: [ConvoModel] = [ConvoModel]() // global variable for ViewDetails.swift access
 
 
@@ -27,7 +28,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	var isInitialLoad = true
 	var disposeBag = DisposeBag()
 	var messageIndex: Int = 0
-	var messageTitleFromWalla = ""
+	var convoFromWalla = ""
 	
 	// Model that corresponds to this ViewController
 	
@@ -53,12 +54,22 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		self.messageIndex = 0
+		//observeWithStreams()
 	}
 	
 	@IBAction func unwindToMessages(segue: UIStoryboardSegue) {
-		messageTitleFromWalla = myMessageTitle
-//		startConvoFromWalla()
+		convoFromWalla = myMessageTitle
+		fromWalla = true
+	}
+	
+	func startConvoFromWalla() {
+		self.selectIndex(self.messageIndex) //change whats in the function param for where ever the new post is going to be
+	}
+	
+	func selectIndex(index: Int) {
+		self.messageIndex = index
+		fromWalla = false
+		self.performSegueWithIdentifier("messagingSegue", sender: self)
 	}
 	
 	// MARK: - Table view data source
@@ -74,6 +85,9 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 		cell.backgroundColor = UIColor(white: 1, alpha: 0.8)
+		
+		print(indexPath.row, ": ")
+		print(convoModels[indexPath.row].convoID)
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -81,20 +95,12 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		
 		let convo = convoModels[indexPath.row] as ConvoModel
 		cell.convoModel = convo
+		
 		return cell
 	}
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		self.selectIndex(indexPath.row)
-	}
-	
-	func selectIndex(index: Int) {
-		self.messageIndex = index
-        self.performSegueWithIdentifier("messagingSegue", sender: self)
-	}
-	
-	func startConvoFromWalla() {
-		self.selectIndex(self.messageIndex) //change whats in the function param for where ever the new post is going to be
 	}
 	
 	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -105,6 +111,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	// Copied from MessagingVC, remainder of code to use is there
 	func observeWithStreams() {
 		convoModels.removeAll()
+		print("inside of streams")
 		let myID = myBasic.rootRef.authData.uid
 		myBasic.convoRef.rx_observe(FEventType.ChildAdded)
 			.filter { snapshot in
@@ -133,7 +140,6 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 			})
 			.addDisposableTo(self.disposeBag)
 	}
-	
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "messagingSegue" {            

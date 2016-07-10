@@ -104,7 +104,8 @@ class ViewDetails: UIViewController {
 	
 	@IBAction func goToMessages(sender: UIButton)
 	{
-        myMessageTitle = requestModels[currentIndex].request
+		if requestModels[currentIndex].authorID != self.myUserBackend.getUserID() {
+		myMessageTitle = requestModels[currentIndex].request
         let requestID = requestModels[currentIndex].postID!
         let authorID = requestModels[currentIndex].authorID
         let userID = myBasic.rootRef.authData.uid
@@ -127,6 +128,13 @@ class ViewDetails: UIViewController {
                 self.performSegueWithIdentifier("unwindToMessages", sender: self)
             }
 		})
+		}
+		else {
+			let alert = UIAlertView()
+			alert.title = "Sorry, you cannot create a conversation with yourself."
+			alert.addButtonWithTitle("OK")
+			alert.show()
+		}
 	}
 	
 	func createConvoHash(requestID: String, authorID: String, userID: String) -> String {

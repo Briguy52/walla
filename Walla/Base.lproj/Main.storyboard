@@ -617,6 +617,11 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="drd-bU-l03"/>
+                                                            </mask>
+                                                        </variation>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -630,6 +635,8 @@
                                                     <constraint firstAttribute="trailing" secondItem="rHp-2K-YMr" secondAttribute="trailing" constant="150" id="EbR-on-UN6"/>
                                                     <constraint firstItem="Lor-mH-Hec" firstAttribute="top" secondItem="rHp-2K-YMr" secondAttribute="bottom" constant="2" id="Hig-xv-WDb"/>
                                                     <constraint firstItem="RYv-w3-Y2k" firstAttribute="top" secondItem="Lor-mH-Hec" secondAttribute="bottom" constant="8" id="Ilu-Hr-Vtt"/>
+                                                    <constraint firstItem="Lor-mH-Hec" firstAttribute="top" secondItem="rHp-2K-YMr" secondAttribute="bottom" constant="2" id="RYx-BT-NRm"/>
+                                                    <constraint firstAttribute="bottom" secondItem="RYv-w3-Y2k" secondAttribute="bottom" constant="11" id="RwW-Fx-Wah"/>
                                                     <constraint firstItem="RYv-w3-Y2k" firstAttribute="top" secondItem="Lor-mH-Hec" secondAttribute="bottom" constant="8" id="YUd-MW-YrA"/>
                                                     <constraint firstItem="rHp-2K-YMr" firstAttribute="leading" secondItem="ZuL-J6-MoW" secondAttribute="leading" constant="150" id="nVQ-Ra-xIQ"/>
                                                     <constraint firstAttribute="trailing" secondItem="Lor-mH-Hec" secondAttribute="trailing" constant="8" id="q1B-It-NoQ"/>

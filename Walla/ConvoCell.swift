@@ -27,6 +27,12 @@ class ConvoCell: UITableViewCell {
             myRequestBackend.getRequestValue(convoModel.uniqueID, key: "request") {
                 (result: String) in
                 self.previewLabel.text = result
+				print("before comparison")
+				print("conoTitle: ", ConvoViewController().returnConvoTitle())
+				print("previewtitle: ", self.previewLabel.text)
+				if ConvoViewController().returnConvoTitle() == self.previewLabel.text {
+					print("works")
+				}
             }
             
             myUserBackend.getUserInfo("profilePicUrl", userID: convoModel.authorID) {
