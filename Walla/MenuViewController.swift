@@ -33,8 +33,8 @@ class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDat
 		tableView?.tableFooterView = UIView(frame: CGRectZero)
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
         
-        self.populateFilter()
         self.myConvoBackend.reloadConvoModels()
+        self.populateFilter()
 	}
 	
 //	override func viewWillAppear(animated: Bool) {

@@ -31,6 +31,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
 	let myRequestBackend = RequestBackend()
+    let myConvoBackend = ConvoBackend()
 	var isInitialLoad = true
 	var disposeBag = DisposeBag()
 	var authorName = ""
@@ -61,6 +62,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        self.myConvoBackend.reloadConvoModels()
         self.observeWithStreams()
     }
 	
