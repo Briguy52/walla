@@ -63,6 +63,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidAppear(animated)
         
         self.myConvoBackend.reloadConvoModels()
+        self.myRequestBackend.populateFilter()
+
         self.observeWithStreams()
     }
 	

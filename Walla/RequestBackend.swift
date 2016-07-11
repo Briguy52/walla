@@ -12,6 +12,7 @@ import Firebase
 class RequestBackend {
     
     let myBasic = Basic()
+    let myUserBackend = UserBackend()
     
     // TODO: get this to return AnyObject
     func getRequestValue(uniqueID: String, key: String, completion: (result: String) -> Void) {
@@ -37,5 +38,22 @@ class RequestBackend {
             }
         }
         return false
+    }
+    
+    func populateFilter() {
+        let refToTry = self.myBasic.userRef.childByAppendingPath(self.myUserBackend.getUserID())
+        
+        refToTry.observeEventType(.Value, withBlock: { snapshot in
+            // Confirm that User has preset tags
+            if snapshot.value.objectForKey("tags") != nil {
+                if let tagsToAppend = snapshot.value.objectForKey("tags") as? [String] {
+                    for index in 0..<tagsToAppend.count {
+                        if !filterTags.contains(tagsToAppend[index]) {
+                            filterTags.append(tagsToAppend[index])
+                        }
+                    }
+                }
+            }
+        })
     }
 }

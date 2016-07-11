@@ -44,7 +44,10 @@ class UserBackend {
 	}
 	
 	func getUserID() -> String {
-		return self.myBasic.rootRef.authData.uid
+        if let data = self.myBasic.rootRef.authData {
+            return data.uid
+        }
+        return globalUid
 	}
 	
 	// Example usage of getUserName()
