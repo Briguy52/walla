@@ -13,8 +13,6 @@ import Lock
 import Alamofire
 import Firebase
 
-var globalUid: String = ""
-
 class AuthViewController: UIViewController {
 	
 	let client_id = "NiZctA0id6Bd5IgTLcEoYai116RirhUw"
@@ -51,22 +49,17 @@ class AuthViewController: UIViewController {
 		let keychain = MyApplication.sharedInstance.keychain
 		if let idToken = keychain.stringForKey("id_token"), let jwt = try? JWTDecode.decode(idToken) {
             
-            print("womp has token")
-            
 			if jwt.expired, let refreshToken = keychain.stringForKey("refresh_token") {
-                
-                print("womp token is expired")
-                
+                print("JWT Expired")
 				MBProgressHUD.showHUDAddedTo(self.view, animated: true)
 				let success = {(token:A0Token!) -> () in
-                    
-                    print("womp success")
-                    
+                    print("Success keychain")
 					keychain.setString(token.idToken, forKey: "id_token")
 					MBProgressHUD.hideHUDForView(self.view, animated: true)
                     self.performSafeShowProfile()
 				}
 				let failure = {(error:NSError!) -> () in
+                    print("Failure keychain")
 					keychain.clearAll()
 					MBProgressHUD.hideHUDForView(self.view, animated: true)
 				}
@@ -75,7 +68,7 @@ class AuthViewController: UIViewController {
 			}
             else {
                 
-                print("womp token is NOT expired")
+                print("JWT NOT expired")
                 self.performSafeShowProfile()
                 
             }
@@ -134,10 +127,10 @@ class AuthViewController: UIViewController {
 	}
     
     func performSafeShowProfile() {
-        print("womp is it safe to show profile?")
+        print("Safe to show profile?")
         print(self.hasUserAuthenticated())
         if (self.hasUserAuthenticated()) {
-			print(self.myBasic.rootRef.authData)
+            globalUid = self.myBasic.rootRef.authData.uid
             performSegueWithIdentifier("showProfile", sender: self)
         }
     }
@@ -156,9 +149,11 @@ class AuthViewController: UIViewController {
 			} else {
 				print("Auth with Firebase Token")
 				self.myUserBackend.updateUserData("provider", value: authData.provider, userID: authData.uid)
+                self.myUserBackend.saveUidLocally(authData.uid)
                 globalUid = authData.uid
                 self.performSafeShowProfile()
 			}
 		})
 	}
+    
 }

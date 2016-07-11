@@ -9,6 +9,8 @@
 import Foundation
 import Firebase
 
+var globalUid: String = "" 
+
 class UserBackend {
 	
 	let myBasic = Basic()
@@ -42,12 +44,29 @@ class UserBackend {
 	func updateUserPosts(postID: String, userID: String) {
 		self.updateUserDataWithChildPath(postID, value: postID, userID: userID, path: "Requests")
 	}
+    
+    func saveUidLocally(uid: String) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue(uid, forKey: "localUid")
+        defaults.synchronize()
+    }
 	
 	func getUserID() -> String {
+        print("womp user id")
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
         if let data = self.myBasic.rootRef.authData {
+            print("womp " + data.uid)
             return data.uid
         }
-        return globalUid
+        else if let localUid = defaults.stringForKey("localUid") {
+            print("womp local " + localUid)
+            return localUid
+        }
+        else {
+            print("womp global " + globalUid)
+            return globalUid
+        }
 	}
 	
 	// Example usage of getUserName()
