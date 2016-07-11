@@ -30,6 +30,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	var messageIndex: Int = 0
 	var convoFromWalla = ""
 	var indexFromWalla = -1
+    
 	
 	// Model that corresponds to this ViewController
 	
@@ -38,7 +39,8 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		self.navigationItem.hidesBackButton = true
 		tableView.delegate = self
 		tableView.dataSource = self
-		observeWithStreams()
+
+        self.observeWithStreams()
 		
 		let backgroundImage = UIImage(named: "background")
 		let imageView = UIImageView(image: backgroundImage)
@@ -49,9 +51,15 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		imageView.contentMode = .ScaleAspectFill
 		
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
-		
-		self.messageIndex = 0
-	}
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if fromWalla {
+            self.selectIndex(self.messageIndex)
+            fromWalla = false
+        }
+    }
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
@@ -59,11 +67,14 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	}
 	
 	@IBAction func unwindToMessages(segue: UIStoryboardSegue) {
+        print("unwind")
 		convoFromWalla = convoIDFromHome
 		fromWalla = true
-		self.myConvoBackend.reloadConvoModels()
-		print(convoModels.count)
 	}
+    
+    func setIndex(index: Int) {
+        self.messageIndex = index 
+    }
 	
 	func startConvoFromWalla() {
 		self.selectIndex(self.messageIndex) //change whats in the function param for where ever the new post is going to be
@@ -71,6 +82,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	func selectIndex(index: Int) {
 		self.messageIndex = index
+        print("ConvoVC selected index of " + String(self.messageIndex))
 		fromWalla = false
 		self.performSegueWithIdentifier("messagingSegue", sender: self)
 	}
@@ -110,8 +122,8 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	// Copied from MessagingVC, remainder of code to use is there
 	func observeWithStreams() {
+        print("Streaming ConvoVC")
 		convoModels.removeAll()
-		print("inside of streams")
 		let myID = myBasic.rootRef.authData.uid
 		myBasic.convoRef.rx_observe(FEventType.ChildAdded)
 			.filter { snapshot in
@@ -142,7 +154,9 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "messagingSegue" {            
+		if segue.identifier == "messagingSegue" {
+            print("messaging segue called")
+            print("Chose index " + String(self.messageIndex) + "/" + String(convoModels.count))
 			let messagingVC = segue.destinationViewController as! MessageViewController
 			messagingVC.convoID = convoModels[self.messageIndex].convoID!
         }

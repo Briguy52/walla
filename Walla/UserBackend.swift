@@ -15,6 +15,7 @@ var senderDict: [String: String] = [String:String]()
 class UserBackend {
 	
 	let myBasic = Basic()
+    static let localUserKey: String = "localUid"
     
 	func logout() {
 		myBasic.rootRef.unauth()
@@ -48,24 +49,23 @@ class UserBackend {
     
     func saveUidLocally(uid: String) {
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setValue(uid, forKey: "localUid")
+        defaults.setValue(uid, forKey: UserBackend.localUserKey)
         defaults.synchronize()
     }
 	
 	func getUserID() -> String {
-        print("womp user id")
         let defaults = NSUserDefaults.standardUserDefaults()
         
         if let data = self.myBasic.rootRef.authData {
-            print("Retrieved via Firebase call")
+            print("User ID retrieved via Firebase call")
             return data.uid
         }
-        else if let localUid = defaults.stringForKey("localUid") {
-            print("Retrieved locally")
+        else if let localUid = defaults.stringForKey(UserBackend.localUserKey) {
+            print("User ID retrieved locally")
             return localUid
         }
         else {
-            print("Retrieved via global var")
+            print("User ID retrieved via global var")
             return globalUid
         }
 	}
