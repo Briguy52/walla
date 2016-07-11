@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-var tagsToPick = ["ElementarySchool", "MiddleSchool", "HighSchool", "University", "Industry", "LongTermChange", "MathAndCompSci", "PartnershipsForChange", "SocialEntrpreneurship", "Entrepreneurship", "STEM+", "MakerIdeas", "SuccessStories", "OnlineLearning", "Engineering", "CommunityIntegration", "GrowingSustainedSTEM"]
+var tagsToPick = ["ElementarySchool", "MiddleSchool", "HighSchool", "University", "Industry", "LongTermChange", "MathAndCompSci", "PartnershipsForChange", "SocialEntrepreneurship", "Entrepreneurship", "STEM+", "MakerIdeas", "SuccessStories", "OnlineLearning", "Engineering", "CommunityIntegration", "GrowingSustainedSTEM"]
 
 class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate, UITextFieldDelegate {
 
