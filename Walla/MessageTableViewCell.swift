@@ -51,10 +51,6 @@ class MessageTableViewCell: UITableViewCell {
 			make.bottom.equalTo(self).offset(-10)
 		}
 	}
-    
-    func setName(name: String) {
-        self.nameLabel.text = name
-    }
 	
 	// We won’t use this but it’s required for the class to compile
 	required init?(coder aDecoder: NSCoder) {

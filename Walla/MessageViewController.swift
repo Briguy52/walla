@@ -160,13 +160,13 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
 		let key = messageModelAtIndexPath.sender
         
         if self.senderDict.keys.contains(key) {
-            cell.setName(self.senderDict[key]!)
+            cell.nameLabel.text = self.senderDict[key]
         }
         else {
             self.myUserBackend.getUserInfo("displayName", userID: key) {
                 (result: AnyObject) in
                 print(result as? String)
-                cell.setName(self.senderDict[key]!)
+                cell.nameLabel.text = result as? String
                 self.senderDict[key] = result as? String
             }
         }
