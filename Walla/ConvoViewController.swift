@@ -165,8 +165,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "messagingSegue" {
             print("messaging segue called")
-            print(self.messageIndex)
-            print(convoModels.count)
+            print("Chose index " + String(self.messageIndex) + "/" + String(convoModels.count))
 			let messagingVC = segue.destinationViewController as! MessageViewController
 			messagingVC.convoID = convoModels[self.messageIndex].convoID!
         }
