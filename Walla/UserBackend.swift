@@ -56,15 +56,15 @@ class UserBackend {
         let defaults = NSUserDefaults.standardUserDefaults()
         
         if let data = self.myBasic.rootRef.authData {
-            print("womp " + data.uid)
+            print("Retrieved via Firebase call")
             return data.uid
         }
         else if let localUid = defaults.stringForKey("localUid") {
-            print("womp local " + localUid)
+            print("Retrieved locally")
             return localUid
         }
         else {
-            print("womp global " + globalUid)
+            print("Retrieved via global var")
             return globalUid
         }
 	}
