@@ -152,18 +152,11 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
 		let cell = tableView.dequeueReusableCellWithIdentifier(MessageTableViewCell.REUSE_ID, forIndexPath: indexPath) as! MessageTableViewCell
 		
 		let messageModelAtIndexPath = messageModels[indexPath.row]
+        cell.messageModel = messageModelAtIndexPath
 		
 		//        self.tableView.scrollToRowAtIndexPath((indexPath, atScrollPosition: .Bottom,
 		//            animated: true))
-		
-		let key = messageModelAtIndexPath.sender
-
-        self.myUserBackend.getUserInfo("displayName", userID: key) {
-			(result: AnyObject) in
-            print(result as? String)
-            cell.nameLabel.text = result as? String
-		}
-		
+		        
         // Safe unwrapping of text
         if let messageText = messageModelAtIndexPath.text as? String {
             cell.bodyLabel.text = messageText

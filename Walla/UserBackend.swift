@@ -9,7 +9,8 @@
 import Foundation
 import Firebase
 
-var globalUid: String = "" 
+var globalUid: String = ""
+var senderDict: [String: String] = [String:String]()
 
 class UserBackend {
 	
@@ -93,5 +94,22 @@ class UserBackend {
                 
             })
     }
+    
+    func reloadSenderDict() {
+        let ref = self.myBasic.userRef
+        ref.observeEventType(.ChildAdded, withBlock: { snapshot in
+            senderDict[snapshot.key] = snapshot.value["displayName"] as? String            
+            })
+    }
+    
+    func getSenderName(sender: String) -> String {
+        if senderDict.keys.contains(sender) {
+            return senderDict[sender]!
+        }
+        else {
+            return "Anonymous Wallaby"
+        }
+    }
+
 	
 }

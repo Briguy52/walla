@@ -55,16 +55,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		tableView.delegate = self
 		tableView.dataSource = self
 		masterView = self
+        
+        self.reloadData()
 		
 		self.checkForMyTags()
 	}
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    func reloadData() {
         self.myConvoBackend.reloadConvoModels()
         self.myRequestBackend.populateFilter()
-
+        self.myUserBackend.reloadSenderDict()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.reloadData()
         self.observeWithStreams()
     }
 	

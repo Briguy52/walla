@@ -12,7 +12,6 @@ import RxCocoa
 import RxSwift
 import FirebaseRxSwiftExtensions
 
-
 class ConvoBackend {
     
     let myBasic = Basic()
