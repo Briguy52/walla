@@ -28,7 +28,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4AJ-Vh-XpJ" id="iZj-pM-bso">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWK-qg-7iK">
@@ -133,7 +133,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="My Topics" id="eza-v0-h5c">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="dkB-L0-Cwz">
+                                        <barButtonItem key="leftBarButtonItem" title="Confirm" id="dkB-L0-Cwz">
                                             <connections>
                                                 <action selector="goBack:" destination="KSC-C0-68L" id="1MW-LI-85F"/>
                                             </connections>
@@ -167,6 +167,7 @@
                                             <constraint firstAttribute="width" constant="125" id="Vr6-sE-6MY"/>
                                             <constraint firstAttribute="height" constant="30" id="WgZ-vc-ljg"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Add Topic"/>
                                         <connections>
                                             <action selector="addTags:" destination="KSC-C0-68L" eventType="touchUpInside" id="fkt-ov-ayb"/>
@@ -178,12 +179,13 @@
                                             <constraint firstAttribute="height" constant="30" id="CCu-oI-PvY"/>
                                             <constraint firstAttribute="width" constant="125" id="wNS-ra-cWM"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Clear Topics"/>
                                         <connections>
                                             <action selector="removeTags:" destination="KSC-C0-68L" eventType="touchUpInside" id="Lwa-3i-sOt"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U52-6o-W3H">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U52-6o-W3H">
                                         <rect key="frame" x="8" y="209" width="319" height="332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -267,11 +269,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="hUG-uI-Ugu">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SORRY NOT LOOKING AROUND YET :'(" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoM-Tg-xvJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoM-Tg-xvJ">
                                 <rect key="frame" x="20" y="108" width="335" height="194"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="194" id="rhi-yp-FFS"/>
                                 </constraints>
+                                <string key="text">“Those who know, do. Those that understand, teach.” 
+― Aristotle</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -356,7 +360,7 @@
                                         <rect key="frame" x="0.0" y="28" width="272" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G5n-x2-pi8" id="Zwa-3O-9JM">
-                                            <rect key="frame" x="0.0" y="0.0" width="272" height="45"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="272" height="44.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ds-M7-3XH">
@@ -463,7 +467,7 @@
                                         <rect key="frame" x="0.0" y="28" width="379" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0nA-zo-0Ev" id="sWq-sY-Kco">
-                                            <rect key="frame" x="0.0" y="0.0" width="379" height="140"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="379" height="139.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tk6-PO-mVb">
@@ -768,13 +772,13 @@
                                                 </items>
                                             </navigationBar>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JTy-RX-avB">
-                                                <rect key="frame" x="151" y="562" width="72" height="44"/>
+                                                <rect key="frame" x="8" y="525" width="359" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="ByS-Lk-SWR"/>
-                                                    <constraint firstAttribute="width" constant="72" id="n6d-u3-8Ko"/>
+                                                    <constraint firstAttribute="width" constant="359" id="n6d-u3-8Ko"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                <state key="normal" title="WALLA!">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                <state key="normal" title="Click To Holla">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -788,7 +792,7 @@
                                             <constraint firstItem="ZuL-J6-MoW" firstAttribute="leading" secondItem="wdY-kI-r6M" secondAttribute="leading" id="K0b-rT-Mn6"/>
                                             <constraint firstItem="gHC-hd-0kk" firstAttribute="top" secondItem="wdY-kI-r6M" secondAttribute="top" constant="20" id="LRI-ln-sOP"/>
                                             <constraint firstItem="ZuL-J6-MoW" firstAttribute="top" secondItem="gHC-hd-0kk" secondAttribute="bottom" id="NY8-MU-2gv"/>
-                                            <constraint firstAttribute="bottom" secondItem="JTy-RX-avB" secondAttribute="bottom" constant="61" id="QRN-Vp-GIB"/>
+                                            <constraint firstAttribute="bottom" secondItem="JTy-RX-avB" secondAttribute="bottom" constant="98" id="QRN-Vp-GIB"/>
                                             <constraint firstAttribute="trailing" secondItem="dND-lm-D60" secondAttribute="trailing" id="RZ6-T2-MWw"/>
                                             <constraint firstItem="dND-lm-D60" firstAttribute="leading" secondItem="wdY-kI-r6M" secondAttribute="leading" id="SWA-vE-lkf"/>
                                             <constraint firstAttribute="trailing" secondItem="ZuL-J6-MoW" secondAttribute="trailing" id="Tpf-MF-K8d"/>
@@ -1211,16 +1215,10 @@
                                                         <rect key="frame" x="308" y="30" width="59" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="59" id="awO-JX-Ne0"/>
-                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="im6-E2-6ka"/>
                                                             <constraint firstAttribute="height" constant="30" id="n7x-E0-ltA"/>
-                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="59" id="uDS-re-lTa"/>
                                                         </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                         <state key="normal" title="save"/>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="uDS-re-lTa"/>
-                                                            </mask>
-                                                        </variation>
                                                         <connections>
                                                             <action selector="phoneNumberSavePressed:" destination="1nc-cy-LDt" eventType="touchUpInside" id="czj-P0-yli"/>
                                                         </connections>
@@ -1344,19 +1342,6 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walla-background" translatesAutoresizingMaskIntoConstraints="NO" id="gwg-sB-WdX">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGW-q1-Exe">
-                                                <rect key="frame" x="8" y="561" width="359" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="oWy-Os-6Hf"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                <state key="normal" title="HOLLA!">
-                                                    <color key="titleColor" red="0.2470588235" green="0.56078431370000004" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="allFieldsSet:" destination="BBR-qh-Caj" eventType="touchUpInside" id="flH-ep-jJS"/>
-                                                </connections>
-                                            </button>
                                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eCi-pw-FfX">
                                                 <rect key="frame" x="8" y="70" width="359" height="138"/>
                                                 <subviews>
@@ -1412,7 +1397,7 @@
                                                             <outlet property="delegate" destination="BBR-qh-Caj" id="6Zw-XV-Jfr"/>
                                                         </connections>
                                                     </textView>
-                                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="make it easy for people to find you!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fZH-6g-0QJ">
+                                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Include details so people can find you" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fZH-6g-0QJ">
                                                         <rect key="frame" x="8" y="130" width="343" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="bBf-wa-faI"/>
@@ -1478,6 +1463,20 @@
                                                     <constraint firstAttribute="height" constant="87" id="ygz-tP-VtM"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGW-q1-Exe">
+                                                <rect key="frame" x="8" y="529" width="359" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="oWy-Os-6Hf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                <size key="titleShadowOffset" width="1" height="1"/>
+                                                <state key="normal" title="Click To Holla">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="allFieldsSet:" destination="BBR-qh-Caj" eventType="touchUpInside" id="flH-ep-jJS"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1497,7 +1496,7 @@
                                             <constraint firstItem="3II-Vt-kKG" firstAttribute="leading" secondItem="vBB-94-lag" secondAttribute="leading" constant="8" id="iFr-BU-WwJ"/>
                                             <constraint firstItem="PNh-io-GHJ" firstAttribute="top" secondItem="3II-Vt-kKG" secondAttribute="bottom" constant="8" id="qWc-fG-1hm"/>
                                             <constraint firstItem="3II-Vt-kKG" firstAttribute="top" secondItem="eCi-pw-FfX" secondAttribute="bottom" constant="8" id="st3-hW-TtT"/>
-                                            <constraint firstAttribute="bottom" secondItem="jGW-q1-Exe" secondAttribute="bottom" constant="59" id="tLG-g7-nHG"/>
+                                            <constraint firstAttribute="bottom" secondItem="jGW-q1-Exe" secondAttribute="bottom" constant="91" id="tLG-g7-nHG"/>
                                             <constraint firstAttribute="trailing" secondItem="eCi-pw-FfX" secondAttribute="trailing" constant="8" id="twi-i2-CJv"/>
                                             <constraint firstItem="eCi-pw-FfX" firstAttribute="top" secondItem="vBB-94-lag" secondAttribute="top" constant="70" id="zDn-LZ-ASJ"/>
                                         </constraints>
