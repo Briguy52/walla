@@ -19,45 +19,59 @@ class AuthViewController: UIViewController {
 	let myUserBackend = UserBackend()
 	let myBasic = Basic()
     
-    var hasShownAuthScreen: Bool = false 
+    var hasShownAuthScreen: Bool = false
+    
+    func customizeTheme() {
+        let myTheme = A0Theme()
+        
+        //Customize your theme
+        myTheme.registerImageWithName("background", bundle: NSBundle.mainBundle(), forKey: "A0ThemeScreenBackgroundImageName")
+        myTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeTextFieldPlaceholderTextColor")
+        myTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeTextFieldTextColor")
+        myTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeTextFieldIconColor")
+        
+        myTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeCredentialBoxBorderColor")
+        myTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeCredentialBoxSeparatorColor")
+        
+        myTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeSecondaryButtonBackgroundColor")
+        myTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeSecondaryButtonTextColor")
+        
+        myTheme.registerImageWithName("AppIcon_60", bundle: NSBundle.mainBundle(), forKey: "A0ThemeIconImageName")
+        
+        A0Theme.sharedInstance().registerTheme(myTheme)
+    }
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
         
-        let myAwesomeTheme = A0Theme()
-        
-        //Customize your theme
-        myAwesomeTheme.registerImageWithName("background", bundle: NSBundle.mainBundle(), forKey: "A0ThemeScreenBackgroundImageName")
-        myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeTextFieldPlaceholderTextColor")
-        myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeTextFieldTextColor")
-        myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeTextFieldIconColor")
-        
-        myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeCredentialBoxBorderColor")
-        myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeCredentialBoxSeparatorColor")
-        
-        myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeSecondaryButtonBackgroundColor")
-        myAwesomeTheme.registerColor(UIColor.blackColor(), forKey: "A0ThemeSecondaryButtonTextColor")
-        
-        myAwesomeTheme.registerImageWithName("AppIcon_60", bundle: NSBundle.mainBundle(), forKey: "A0ThemeIconImageName")
-        
-        A0Theme.sharedInstance().registerTheme(myAwesomeTheme)
+        self.customizeTheme()
         
 		let keychain = MyApplication.sharedInstance.keychain
 		if let idToken = keychain.stringForKey("id_token"), let jwt = try? JWTDecode.decode(idToken) {
+            
 			if jwt.expired, let refreshToken = keychain.stringForKey("refresh_token") {
+                print("JWT Expired")
 				MBProgressHUD.showHUDAddedTo(self.view, animated: true)
 				let success = {(token:A0Token!) -> () in
+                    print("Success keychain")
 					keychain.setString(token.idToken, forKey: "id_token")
 					MBProgressHUD.hideHUDForView(self.view, animated: true)
                     self.performSafeShowProfile()
 				}
 				let failure = {(error:NSError!) -> () in
+                    print("Failure keychain")
 					keychain.clearAll()
 					MBProgressHUD.hideHUDForView(self.view, animated: true)
 				}
 				let client = MyApplication.sharedInstance.lock.apiClient()
 				client.fetchNewIdTokenWithRefreshToken(refreshToken, parameters: nil, success: success, failure: failure)
 			}
+            else {
+                
+                print("JWT NOT expired")
+                self.performSafeShowProfile()
+                
+            }
 		}
 	}
 	
@@ -77,7 +91,7 @@ class AuthViewController: UIViewController {
 				}
 				keychain.setData(NSKeyedArchiver.archivedDataWithRootObject(profile), forKey: "profile")
 				self.dismissViewControllerAnimated(true, completion: nil)
-				self.performSafeShowProfile()
+//				self.performSafeShowProfile()
 			default:
 				print("User signed up without logging in")
 			}
@@ -113,8 +127,10 @@ class AuthViewController: UIViewController {
 	}
     
     func performSafeShowProfile() {
+        print("Safe to show profile?")
+        print(self.hasUserAuthenticated())
         if (self.hasUserAuthenticated()) {
-			print(self.myBasic.rootRef.authData)
+            globalUid = self.myBasic.rootRef.authData.uid
             performSegueWithIdentifier("showProfile", sender: self)
         }
     }
@@ -133,8 +149,11 @@ class AuthViewController: UIViewController {
 			} else {
 				print("Auth with Firebase Token")
 				self.myUserBackend.updateUserData("provider", value: authData.provider, userID: authData.uid)
+                self.myUserBackend.saveUidLocally(authData.uid)
+                globalUid = authData.uid
                 self.performSafeShowProfile()
 			}
 		})
 	}
+    
 }

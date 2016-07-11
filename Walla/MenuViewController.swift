@@ -9,14 +9,15 @@
 import UIKit
 
 var hasFilters: Bool = false
+var filterTags: [String] = ["All", "Time"]
 
 class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
+    let myRequestBackend = RequestBackend()
     let myConvoBackend = ConvoBackend()
 	
-	var filterTags: [String] = ["All", "Time"]
 	var cellIdentifier = "TopicTagName"
 	
 	@IBOutlet weak var tableView: UITableView!
@@ -34,7 +35,7 @@ class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDat
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
         
         self.myConvoBackend.reloadConvoModels()
-        self.populateFilter()
+        self.myRequestBackend.populateFilter()
 	}
 	
 //	override func viewWillAppear(animated: Bool) {
@@ -42,24 +43,6 @@ class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDat
 //		tableView?.tableFooterView = UIView(frame: CGRectZero)
 //		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
 //	}
-	
-    // Based on logic in MyTopic.swift
-	func populateFilter() {
-        let refToTry = self.myBasic.userRef.childByAppendingPath(self.myUserBackend.getUserID())
-        
-        refToTry.observeEventType(.Value, withBlock: { snapshot in
-            // Confirm that User has preset tags
-            if snapshot.value.objectForKey("tags") != nil {
-                if let tagsToAppend = snapshot.value.objectForKey("tags") as? [String] {
-                    for index in 0..<tagsToAppend.count {
-                        if !self.filterTags.contains(tagsToAppend[index]) {
-                            self.filterTags.append(tagsToAppend[index])
-                        }
-                    }
-                }
-            }
-        })
-	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
@@ -81,8 +64,7 @@ class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDat
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tagsToFilter.removeAll()
-        tagsToFilter.append(self.filterTags[indexPath.row])
-        print("chose tag " + self.filterTags[indexPath.row])
+        tagsToFilter.append(filterTags[indexPath.row])
         dismissViewControllerAnimated(true, completion: nil)
     }
 
