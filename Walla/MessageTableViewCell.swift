@@ -34,11 +34,7 @@ class MessageTableViewCell: UITableViewCell {
             let myUserBackend = UserBackend()
             
             self.bodyLabel.text = messageModel.text
-            myUserBackend.getUserInfo("displayName", userID: messageModel.sender) {
-                (result: AnyObject) in
-                self.nameLabel.text = result as! String
-            }
-            
+            self.nameLabel.text = myUserBackend.getSenderName(messageModel.sender)
 //            myUserBackend.getUserInfo("profilePicUrl", userID: messageModel.sender) {
 //                (result: AnyObject) in
 //                self.profile.setImageWithURL(NSURL(string: result as! String)!)

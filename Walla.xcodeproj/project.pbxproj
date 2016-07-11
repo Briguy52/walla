@@ -40,7 +40,6 @@
 		22C889521D1C5612009DE688 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C889511D1C5612009DE688 /* HomeViewController.swift */; };
 		22F9A4AA1D3006FD005C2903 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F9A4A91D3006FD005C2903 /* FilterCell.swift */; };
 		AF0364681D23582800D57094 /* RequestBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0364671D23582800D57094 /* RequestBackend.swift */; };
-		AF1A447B1D335D6600E67AE3 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1A447A1D335D6600E67AE3 /* MessageCell.swift */; };
 		AFAA6A4F1D24CF1000FE1DB1 /* ConvoBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAA6A4E1D24CF1000FE1DB1 /* ConvoBackend.swift */; };
 		BBC0C0FB56D7B2430E20F096 /* Pods_Walla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36FD80449EB2641B7C2BB3A /* Pods_Walla.framework */; };
 /* End PBXBuildFile section */
@@ -83,7 +82,6 @@
 		3BAD9241B6F4C633F3C5DF5A /* Pods-Walla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Walla.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Walla/Pods-Walla.debug.xcconfig"; sourceTree = "<group>"; };
 		60B82CDBFF92298443BF52CE /* Pods-Walla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Walla.release.xcconfig"; path = "Pods/Target Support Files/Pods-Walla/Pods-Walla.release.xcconfig"; sourceTree = "<group>"; };
 		AF0364671D23582800D57094 /* RequestBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBackend.swift; sourceTree = "<group>"; };
-		AF1A447A1D335D6600E67AE3 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		AFAA6A4E1D24CF1000FE1DB1 /* ConvoBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvoBackend.swift; sourceTree = "<group>"; };
 		D36FD80449EB2641B7C2BB3A /* Pods_Walla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Walla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -135,7 +133,6 @@
 				224488531D1FBAAE00C98916 /* ConvoViewController.swift */,
 				224488551D1FBAD200C98916 /* ConvoCell.swift */,
 				224488571D1FBB1300C98916 /* ConvoModel.swift */,
-				AF1A447A1D335D6600E67AE3 /* MessageCell.swift */,
 			);
 			name = Messages;
 			sourceTree = "<group>";
@@ -387,7 +384,6 @@
 				222D531C1D1D47D000ABB2DD /* FilterTableViewController.swift in Sources */,
 				224488581D1FBB1300C98916 /* ConvoModel.swift in Sources */,
 				222D53191D1D44D600ABB2DD /* LookAround.swift in Sources */,
-				AF1A447B1D335D6600E67AE3 /* MessageCell.swift in Sources */,
 				226527341D1F15C5004B89D2 /* MessageTableViewCell.swift in Sources */,
 				2244885A1D1FE3E400C98916 /* MainSettings.swift in Sources */,
 				226527301D1F1572004B89D2 /* MessageViewController.swift in Sources */,

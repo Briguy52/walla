@@ -101,6 +101,15 @@ class UserBackend {
             senderDict[snapshot.key] = snapshot.value["displayName"] as? String            
             })
     }
+    
+    func getSenderName(sender: String) -> String {
+        if senderDict.keys.contains(sender) {
+            return senderDict[sender]!
+        }
+        else {
+            return "Anonymous Wallaby"
+        }
+    }
 
 	
 }
