@@ -90,11 +90,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		self.messageIndex = index
         print("ConvoVC selected index of " + String(self.messageIndex))
 		fromWalla = false
-//		self.performSegueWithIdentifier("messagingSegue", sender: self)
-        dispatch_async(dispatch_get_main_queue()) {
-            [unowned self] in
-            self.performSegueWithIdentifier("messagingSegue", sender: self)
-        }
+		self.performSegueWithIdentifier("messagingSegue", sender: self)
 	}
 	
 	// MARK: - Table view data source
