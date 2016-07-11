@@ -48,6 +48,7 @@ class ProfileViewController: UIViewController {
 			}
 		}
 		self.delay(myDelay) {
+            print("leave auth segue")
 			self.performSegueWithIdentifier("leaveAuthSegue", sender: self)
 		}
 	}

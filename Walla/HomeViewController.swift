@@ -62,9 +62,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	}
     
     func reloadData() {
-        self.myConvoBackend.reloadConvoModels()
-        self.myRequestBackend.populateFilter()
-        self.myUserBackend.reloadSenderDict()
+        if (safeToLoadID) {
+            self.myConvoBackend.reloadConvoModels()
+            self.myRequestBackend.populateFilter()
+            self.myUserBackend.reloadSenderDict()
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
