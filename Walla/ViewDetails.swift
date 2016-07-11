@@ -180,7 +180,7 @@ class ViewDetails: UIViewController {
             for convo in convoModels {
                 if (convo.convoID == self.convoID) {
                     let  convoVC = segue.destinationViewController as! ConvoViewController
-                    convoVC.selectIndex(index)
+                    convoVC.setIndex(index)
                     break
                 }
                 index += 1
