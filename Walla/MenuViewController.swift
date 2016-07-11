@@ -9,7 +9,7 @@
 import UIKit
 
 var hasFilters: Bool = false
-var filterTags: [String] = ["All", "Time"]
+var filterTags: [String] = ["All", "Time", "ElementarySchool", "MiddleSchool", "HighSchool", "University", "Industry", "LongTermChange", "MathAndCompSci", "PartnershipsForChange", "SocialEntrepreneurship", "Entrepreneurship", "STEM+", "MakerIdeas", "SuccessStories", "OnlineLearning", "Engineering", "CommunityIntegration", "GrowingSustainedSTEM"]
 
 class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
@@ -34,8 +34,8 @@ class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDat
 		tableView?.tableFooterView = UIView(frame: CGRectZero)
 		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
         
-        self.myConvoBackend.reloadConvoModels()
-        self.myRequestBackend.populateFilter()
+//        self.myConvoBackend.reloadConvoModels()
+//        self.myRequestBackend.populateFilter()
 	}
 	
 //	override func viewWillAppear(animated: Bool) {
