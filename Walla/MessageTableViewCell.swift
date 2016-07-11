@@ -39,7 +39,6 @@ class MessageTableViewCell: UITableViewCell {
 //                (result: AnyObject) in
 //                self.profile.setImageWithURL(NSURL(string: result as! String)!)
 //            }
-            
         }
     }
 	

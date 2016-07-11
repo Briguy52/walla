@@ -42,13 +42,13 @@ class MyProfileViewController: UIViewController {
 		self.setNameAndTitle()
 	}
 	
-	override func viewDidAppear(animated: Bool) {
-		super.viewDidAppear(animated)
-		if userNeedsTags {
-			performSegueWithIdentifier("showTopics", sender: self)
-			userNeedsTags = false
-		}
-	}
+//	override func viewDidAppear(animated: Bool) {
+//		super.viewDidAppear(animated)
+//		if userNeedsTags {
+//			performSegueWithIdentifier("showTopics", sender: self)
+//			userNeedsTags = false
+//		}
+//	}
 	
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()

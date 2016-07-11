@@ -58,7 +58,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.reloadData()
 		
-		self.checkForMyTags()
+//		self.checkForMyTags()
 	}
     
     func reloadData() {
@@ -107,17 +107,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	{
 	}
 	
-	func checkForMyTags() {
-		let refToTry = self.myBasic.userRef.childByAppendingPath(self.myUserBackend.getUserID())
-		
-		refToTry.observeEventType(.Value, withBlock: { snapshot in
-			// Confirm that User has preset tags
-			if snapshot.value.objectForKey("tags") == nil {
-				userNeedsTags = true
-				self.performSegueWithIdentifier("unwindToTopicsFromHome", sender: self)
-			}
-		})
-	}
+//	func checkForMyTags() {
+//		let refToTry = self.myBasic.userRef.childByAppendingPath(self.myUserBackend.getUserID())
+//		
+//		refToTry.observeEventType(.Value, withBlock: { snapshot in
+//			// Confirm that User has preset tags
+//			if snapshot.value.objectForKey("tags") == nil {
+//				userNeedsTags = true
+//				self.performSegueWithIdentifier("unwindToTopicsFromHome", sender: self)
+//			}
+//		})
+//	}
 	
 	// Copied from MessagingVC, remainder of code to use is there
 	func observeWithStreams() {
