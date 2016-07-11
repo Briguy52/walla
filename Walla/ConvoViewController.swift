@@ -31,19 +31,17 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	var messageIndex: Int = 0
 	var convoFromWalla = ""
 	var indexFromWalla = -1
-    var shouldObserveStreams: Bool = true
-    
 	
 	// Model that corresponds to this ViewController
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        print("Should ConvoVC stream? " + String(self.shouldObserveStreams))
 		self.navigationItem.hidesBackButton = true
 		tableView.delegate = self
 		tableView.dataSource = self
-        if (self.shouldObserveStreams) {
-            observeWithStreams()
-        }
+
+        self.observeWithStreams()
 		
 		let backgroundImage = UIImage(named: "background")
 		let imageView = UIImageView(image: backgroundImage)
@@ -71,7 +69,6 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	@IBAction func unwindToMessages(segue: UIStoryboardSegue) {
         print("unwind")
-        self.shouldObserveStreams = false
 		convoFromWalla = convoIDFromHome
 		fromWalla = true
 //		self.myConvoBackend.reloadConvoModels()
