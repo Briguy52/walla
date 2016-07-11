@@ -64,6 +64,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.myConvoBackend.reloadConvoModels()
         self.myRequestBackend.populateFilter()
+        self.myUserBackend.reloadSenderDict()
 
         self.observeWithStreams()
     }

@@ -26,7 +26,6 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
 	var sender = "sender" // TODO: comes from backend
 	var recipient = ""
 	var convoID = "sampleConversation"
-    var senderDict: [String: String] = [String:String]()
 	
 	var pressedRightButtonSubject : PublishSubject<String> = PublishSubject()
 	
@@ -153,24 +152,11 @@ class MessageViewController: SLKTextViewController, UINavigationBarDelegate{
 		let cell = tableView.dequeueReusableCellWithIdentifier(MessageTableViewCell.REUSE_ID, forIndexPath: indexPath) as! MessageTableViewCell
 		
 		let messageModelAtIndexPath = messageModels[indexPath.row]
+        cell.messageModel = messageModelAtIndexPath
 		
 		//        self.tableView.scrollToRowAtIndexPath((indexPath, atScrollPosition: .Bottom,
 		//            animated: true))
-		
-		let key = messageModelAtIndexPath.sender
-        
-        if self.senderDict.keys.contains(key) {
-            cell.nameLabel.text = self.senderDict[key]
-        }
-        else {
-            self.myUserBackend.getUserInfo("displayName", userID: key) {
-                (result: AnyObject) in
-                print(result as? String)
-                cell.nameLabel.text = result as? String
-                self.senderDict[key] = result as? String
-            }
-        }
-        
+		        
         // Safe unwrapping of text
         if let messageText = messageModelAtIndexPath.text as? String {
             cell.bodyLabel.text = messageText

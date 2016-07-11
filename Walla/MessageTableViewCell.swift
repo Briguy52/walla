@@ -27,6 +27,25 @@ class MessageTableViewCell: UITableViewCell {
 		label.numberOfLines = 0
 		return label
 	}()
+    
+    var messageModel: MessageModel! {
+        didSet {
+            
+            let myUserBackend = UserBackend()
+            
+            self.bodyLabel.text = messageModel.text
+            myUserBackend.getUserInfo("displayName", userID: messageModel.sender) {
+                (result: AnyObject) in
+                self.nameLabel.text = result as! String
+            }
+            
+//            myUserBackend.getUserInfo("profilePicUrl", userID: messageModel.sender) {
+//                (result: AnyObject) in
+//                self.profile.setImageWithURL(NSURL(string: result as! String)!)
+//            }
+            
+        }
+    }
 	
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
