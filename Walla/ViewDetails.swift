@@ -36,6 +36,8 @@ class ViewDetails: UIViewController {
 		self.profile?.layer.borderColor = UIColor.blackColor().CGColor
 		self.profile?.layer.cornerRadius = self.profile.frame.height / 2
 		self.profile?.clipsToBounds = true
+        
+        self.myConvoBackend.reloadConvoModels()
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -114,7 +116,7 @@ class ViewDetails: UIViewController {
         
 		let refToTry = self.buildRef()
 		refToTry.observeEventType(.Value, withBlock: { snapshot in
-            
+                        
             // Convo does not yet exist
 			if snapshot.value is NSNull {
                 refToTry.removeAllObservers()
@@ -127,7 +129,7 @@ class ViewDetails: UIViewController {
                 refToTry.removeAllObservers()
 				self.convoID = convoHash
 				convoIDFromHome = self.convoID
-				self.myConvoBackend.reloadConvoModels()
+//				self.myConvoBackend.reloadConvoModels()
                 self.performSegueWithIdentifier("unwindToMessages", sender: self)
             }
 		})

@@ -62,7 +62,6 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 		convoFromWalla = convoIDFromHome
 		fromWalla = true
 		self.myConvoBackend.reloadConvoModels()
-		print(convoModels.count)
 	}
 	
 	func startConvoFromWalla() {
@@ -71,6 +70,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	func selectIndex(index: Int) {
 		self.messageIndex = index
+        print("ConvoVC selected index of " + String(index))
 		fromWalla = false
 		self.performSegueWithIdentifier("messagingSegue", sender: self)
 	}
@@ -111,7 +111,6 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	// Copied from MessagingVC, remainder of code to use is there
 	func observeWithStreams() {
 		convoModels.removeAll()
-		print("inside of streams")
 		let myID = myBasic.rootRef.authData.uid
 		myBasic.convoRef.rx_observe(FEventType.ChildAdded)
 			.filter { snapshot in
@@ -142,7 +141,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "messagingSegue" {            
+		if segue.identifier == "messagingSegue" {
 			let messagingVC = segue.destinationViewController as! MessageViewController
 			messagingVC.convoID = convoModels[self.messageIndex].convoID!
         }

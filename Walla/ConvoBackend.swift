@@ -63,9 +63,11 @@ class ConvoBackend {
                 return ConvoModel(snapshot: snapshot)
             }
             .subscribeNext({ (convoModel: ConvoModel) -> Void in
+                print(convoModels.count)
                 convoModels.insert(convoModel, atIndex: 0);
             })
             .addDisposableTo(self.disposeBag)
+        
     }
     
     
