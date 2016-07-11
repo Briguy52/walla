@@ -13,6 +13,8 @@ import Lock
 import Alamofire
 import Firebase
 
+var safeToLoadID: Bool = false
+
 class AuthViewController: UIViewController {
 	
 	let client_id = "NiZctA0id6Bd5IgTLcEoYai116RirhUw"
@@ -136,6 +138,7 @@ class AuthViewController: UIViewController {
     }
 	
     func hasUserAuthenticated() -> Bool {
+        safeToLoadID = (self.myBasic.rootRef.authData != nil)
         return self.myBasic.rootRef.authData != nil
     }
 	
