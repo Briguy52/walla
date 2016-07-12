@@ -44,6 +44,9 @@ PODS:
     - Firebase (~> 2.5.0)
     - FirebaseOSX (~> 2.4.3)
     - RxSwift (~> 2.0)
+  - JSQMessagesViewController (7.3.3):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
   - JWTDecode (1.0.0)
   - Lock (1.22.0):
     - CocoaLumberjack (~> 2.0)
@@ -79,6 +82,7 @@ DEPENDENCIES:
   - Alamofire (~> 3.0)
   - Firebase (>= 2.5.0)
   - FirebaseRxSwiftExtensions (>= 0.6)
+  - JSQMessagesViewController
   - JWTDecode (~> 1.0)
   - Lock (~> 1.22)
   - Lock-Facebook (~> 2.2)
@@ -98,6 +102,8 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   FirebaseRxSwiftExtensions: 067196e8cb0f5ac1bf041b8e8edde721f61e82b9
+  JSQMessagesViewController: 0ee3f80237268192a3e8337fd0d787f1a1bf5a7a
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   JWTDecode: d172edcb1607cc15aed85d58eceedcbb675a4534
   Lock: 44dc7465a9aae6f0a6b2eb1c3dfe082855faad5b
   Lock-Facebook: 09f2397cbc9ae2e1fc654f7e66248da30343e349
@@ -108,6 +114,6 @@ SPEC CHECKSUMS:
   SlackTextViewController: 6b0d1030c53937226fc5358f217af2a34fc211cf
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
 
-PODFILE CHECKSUM: 7250822c241c1928dfdc8a724ca440bcaeb9efe9
+PODFILE CHECKSUM: 7d3ef5d8dc2ce21525ade40ca7e261302abb0c5f
 
 COCOAPODS: 1.0.1
