@@ -6,6 +6,7 @@ use_frameworks!
 
 target 'Walla' do
 pod 'Firebase', '>= 2.5.0'
+pod 'JSQMessagesViewController'
 pod 'SlackTextViewController', '>= 1.9'
 pod 'RxSwift', '>= 1.8.1'
 pod 'RxCocoa', '>= 1.8.1'
