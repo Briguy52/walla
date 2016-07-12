@@ -13,7 +13,7 @@ var userNeedsTags: Bool = false
 class MyProfileViewController: UIViewController {
 	
 	@IBOutlet weak var profile: UIImageView!
-	@IBOutlet weak var username: UILabel!
+	@IBOutlet weak var username: UITextField!
 	@IBOutlet weak var points: UILabel!
 	@IBOutlet weak var myHollas: UIButton!
 	@IBOutlet weak var myWallas: UIButton!
@@ -87,7 +87,8 @@ class MyProfileViewController: UIViewController {
 	func setTotalPoints()
 	{
 		let random = arc4random_uniform(20) + 10
-		self.points?.text = "Points: " + String(random)
+		//self.points?.text = "Points: " + String(random)
+		self.points?.text = ""
 	}
 	
 	func setNameAndTitle()
@@ -98,6 +99,13 @@ class MyProfileViewController: UIViewController {
             self.username.text = result as! String
 		}
 	}
+	
+	@IBAction func changeUsername(sender: UITextField) {
+		if let newName = self.username.text {
+			self.myUserBackend.updateUserData("displayName", value: newName, userID: myBasic.rootRef.authData.uid)
+		}
+	}
+	
 	
 	@IBAction func logout(sender: UIButton) {
 		myUserBackend.logout()
