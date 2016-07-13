@@ -86,7 +86,7 @@ class MyProfileViewController: UIViewController {
 	
 	func setTotalPoints()
 	{
-		let random = arc4random_uniform(20) + 10
+		//let random = arc4random_uniform(20) + 10
 		//self.points?.text = "Points: " + String(random)
 		self.points?.text = ""
 	}
