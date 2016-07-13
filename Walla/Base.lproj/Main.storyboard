@@ -84,6 +84,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="tableView" destination="NwH-tm-Xhz" id="yUv-80-G1o"/>
+                        <segue destination="4ux-RC-hsb" kind="show" identifier="messagingSegue" id="L8G-dc-MHh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mlu-hH-3iB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -99,14 +100,14 @@
                         <viewControllerLayoutGuide type="bottom" id="9hI-C5-GJS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fYY-dh-SbF">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGU-fo-I2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1570" y="1322"/>
+            <point key="canvasLocation" x="1704" y="1323"/>
         </scene>
         <!--My Topics-->
         <scene sceneID="L2j-29-ymk">
@@ -251,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q60-1s-ptM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1910.5" y="1322.5"/>
+            <point key="canvasLocation" x="2354" y="1322"/>
         </scene>
         <!--Look Around-->
         <scene sceneID="ncd-YX-B28">

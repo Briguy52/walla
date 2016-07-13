@@ -6,15 +6,6 @@
 //  Copyright © 2016 GenieUs. All rights reserved.
 //
 
-// Old
-import UIKit
-import Lock
-import RxCocoa
-import RxSwift
-import SlackTextViewController
-import FirebaseRxSwiftExtensions
-
-
 import Firebase
 import JSQMessagesViewController
 
