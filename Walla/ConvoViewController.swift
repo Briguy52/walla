@@ -122,7 +122,6 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	// Copied from MessagingVC, remainder of code to use is there
 	func observeWithStreams() {
-        print("Streaming ConvoVC")
 		convoModels.removeAll()
 		let myID = myBasic.rootRef.authData.uid
 		myBasic.convoRef.rx_observe(FEventType.ChildAdded)
@@ -158,6 +157,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        let navVc = segue.destinationViewController as! UINavigationController
         let chatVc = segue.destinationViewController as! MessageViewController
         chatVc.senderId = self.myBasic.rootRef.authData.uid
+        chatVc.convoID = convoModels[self.messageIndex].convoID!
         chatVc.senderDisplayName = ""
 	}
 	

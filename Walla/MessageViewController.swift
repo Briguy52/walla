@@ -30,7 +30,7 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        self.messageRef = self.myBasic.messageRef
+        self.messageRef = self.myBasic.messageRef.childByAppendingPath(self.convoID)
         
         title = "ChatChat"
         self.setupBubbles()
@@ -42,14 +42,9 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        addMessage("foo", text: "Hey person!")
-        addMessage(senderId, text: "Yo!")
-        addMessage(senderId, text: "I like turtles!")
-        finishReceivingMessage()
 
-//        observeMessages()
-//        observeTyping()
+        observeMessages()
+        observeTyping()
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!,
@@ -112,7 +107,9 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
         let itemRef = messageRef.childByAutoId()
         let messageItem = [
             "text": text,
-            "senderId": senderId
+            "sender": senderId,
+            "timestamp": self.myBasic.getTimestamp(),
+            "recipient":""
         ]
         itemRef.setValue(messageItem)
         
@@ -126,9 +123,8 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
     private func observeMessages() {
         let messagesQuery = messageRef.queryLimitedToLast(25)
         messagesQuery.observeEventType(.ChildAdded) { (snapshot: FDataSnapshot!) in
-            print (snapshot.value)
             
-            let id = snapshot.value["senderId"] as! String
+            let id = snapshot.value["sender"] as! String
             let text = snapshot.value["text"] as! String
             
             self.addMessage(id, text: text)
