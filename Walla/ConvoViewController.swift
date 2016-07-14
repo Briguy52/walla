@@ -159,6 +159,9 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        let chatVc = segue.destinationViewController as! MessageViewController
         chatVc.senderId = self.myBasic.rootRef.authData.uid
         chatVc.convoID = convoModels[self.messageIndex].convoID!
+//        chatVc.setConversationTitle("womp womp")
+        print("womp womp")
+        print(self.myConvoBackend.printNotMe(convoModels[self.messageIndex], userID: self.myBasic.rootRef.authData.uid))
         chatVc.senderDisplayName = ""
 	}
 	

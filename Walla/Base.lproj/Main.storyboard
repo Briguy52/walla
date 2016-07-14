@@ -91,7 +91,7 @@
             </objects>
             <point key="canvasLocation" x="943.5" y="1322.5"/>
         </scene>
-        <!--Message View Controller-->
+        <!--Walla-->
         <scene sceneID="T3W-az-or8">
             <objects>
                 <viewController id="4ux-RC-hsb" customClass="MessageViewController" customModule="Walla" customModuleProvider="target" sceneMemberID="viewController">
@@ -104,7 +104,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="yTd-vc-u9Z">
+                    <navigationItem key="navigationItem" title="Walla" id="yTd-vc-u9Z">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="jdS-ib-dlw">
                             <connections>
                                 <action selector="backButtonClick:" destination="4ux-RC-hsb" id="XxU-kc-TJK"/>

@@ -19,7 +19,6 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
     var usersTypingQuery: FQuery!
     var convoID: String = ""
 
-
 	@IBOutlet weak var backButton: UIBarButtonItem!
 	let myBasic = Basic() // This ref will be replaced by the selected conversation ref
 	let myUserBackend = UserBackend()
@@ -65,6 +64,10 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
     
     private func disableAttachments() {
         self.inputToolbar.contentView.leftBarButtonItem = nil
+    }
+    
+    func setConversationTitle(title: String) {
+        self.title = title
     }
     
     private func setupBubbles() {
