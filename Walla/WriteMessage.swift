@@ -98,49 +98,16 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		dropDown.anchorView = topicPicker
 		dropDown.bottomOffset = CGPoint(x: 0, y: topicPicker.bounds.height)
 		dropDown.dataSource = tagsToPick
+		dropDown.selectRowAtIndex(0)
 		dropDown.selectionAction = { [unowned self] (index, item) in self.topicPicker.setTitle(item, forState: .Normal)}
-		
-		self.myTags.append(self.myTitle)
+		print(dropDown.indexForSelectedRow!)
+		if let selected = dropDown.indexForSelectedRow {
+			self.myTags.removeAll()
+			self.myTags.append(tagsToPick[selected])
+			print("selected \(selected)")
+			print("myTags: \(self.myTags)")
+		}
 	}
-	
-	//		NSNotificationCenter.defaultCenter().addObserver(
-	//			self,
-	//			selector: #selector(WriteMessage.keyboardWillShow(_:)),
-	//			name: UIKeyboardWillShowNotification,
-	//			object: nil
-	//		)
-	//
-	//		NSNotificationCenter.defaultCenter().addObserver(
-	//			self,
-	//			selector: #selector(WriteMessage.keyboardWillHide(_:)),
-	//			name: UIKeyboardWillHideNotification,
-	//			object: nil
-	//		)
-	//	}
-	//
-	//	deinit {
-	//		NSNotificationCenter.defaultCenter().removeObserver(self)
-	//	}
-	//
-	//	override func viewDidAppear(animated: Bool) {
-	//		self.viewDidLoad()
-	//	}
-	//
-	//	func adjustInsetForKeyboardShow(show: Bool, notification: NSNotification) {
-	//		guard let value = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue else { return }
-	//		let keyboardFrame = value.CGRectValue()
-	//		let adjustmentHeight = (CGRectGetHeight(keyboardFrame) + 20) * (show ? 1 : -1)
-	//		scrollView.contentInset.bottom += adjustmentHeight
-	//		scrollView.scrollIndicatorInsets.bottom += adjustmentHeight
-	//	}
-	//
-	//	func keyboardWillShow(notification: NSNotification) {
-	//		adjustInsetForKeyboardShow(true, notification: notification)
-	//	}
-	//
-	//	func keyboardWillHide(notification: NSNotification) {
-	//		adjustInsetForKeyboardShow(false, notification: notification)
-	//	}
 	
 	func customizeDropDown(sender: AnyObject) {
 		let appearance = DropDown.appearance()
@@ -150,7 +117,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		appearance.selectionBackgroundColor = UIColor(red: 0.6494, green: 0.8155, blue: 1.0, alpha: 0.2)
 		appearance.separatorColor = UIColor(white: 0.7, alpha: 0.8)
 		appearance.cornerRadius = 10
-		appearance.shadowColor = UIColor(white: 0.6, alpha: 1)
+		appearance.shadowColor = UIColor(white: 0.8, alpha: 1)
 		appearance.shadowOpacity = 0.9
 		appearance.shadowRadius = 25
 		appearance.animationduration = 0.25
@@ -183,41 +150,13 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		//		print(requestDetails.text)
 		//		print(generalLocation.text)
 		//
-		if self.myTags.count == 1 || self.myTags[0] == "Choose A Topic"
-		{
-			tags = true
-		}
-		else
-		{
-			tags = false
-		}
+		if self.myTags.count == 1 || self.myTags[0] == "Choose A Topic" { tags = true } else { tags = false }
 		
-		if self.requestBody.text!.isEmptyField == false
-		{
-			wish = true
-		}
-		else
-		{
-			wish = false
-		}
+		if self.requestBody.text!.isEmptyField == false { wish = true } else { wish = false }
 		
-		if self.requestDetails.text!.isEmptyField == false
-		{
-			dets = true
-		}
-		else
-		{
-			dets = false
-		}
+		if self.requestDetails.text!.isEmptyField == false { dets = true } else { dets = false }
 		
-		if self.generalLocation.text!.isEmptyField == false
-		{
-			locs = true
-		}
-		else
-		{
-			locs = false
-		}
+		if self.generalLocation.text!.isEmptyField == false { locs = true } else { locs = false }
 		
 		if tags == true && wish == true && dets == true && locs == true
 		{
@@ -312,11 +251,6 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		self.myAuthorName = name
 	}
 	
-	// currently not called
-	//	func initRequestInfo() {
-	//		self.tagLabel.text = self.myTags.joinWithSeparator("")
-	//	}
-	
 	func calcHoursFromNow(expiry: Double) -> Double {
 		let difference = expiry - self.myBasic.getTimestamp()
 		return (difference / (60 * 60 ))
@@ -356,74 +290,6 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 			self.myLocation = text
 		}
 	}
-	
-	//tag functions
-	func setPossibleTags(tags: [String]) {
-		tagsToPick = tags
-	}
-	
-	func setSelectedTags(tags: [String]) {
-		self.myTags = tags
-	}
-	
-	func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-		return 1
-	}
-	
-	func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-		return tagsToPick.count
-	}
-	
-	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		return tagsToPick[row]
-	}
-	
-	func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-		
-		let titleData = tagsToPick[row]
-		let myTitle = NSAttributedString(string: titleData, attributes: [NSForegroundColorAttributeName: UIColor.orangeColor()])
-		
-		return myTitle
-	}
-	//
-	//	func oneTag()
-	//	{
-	//		if self.myTags.count == 1
-	//		{
-	//			self.addTagButton.hidden = true
-	//			self.removeTagButton.hidden = false
-	//		}
-	//		else
-	//		{
-	//			self.addTagButton.hidden = false
-	//			self.removeTagButton.hidden = true
-	//		}
-	//	}
-	//
-	//	@IBAction func addTags(sender: UIButton)
-	//	{
-	//		let tag = tagsToPick[self.tagPicker.selectedRowInComponent(0)]
-	//		if tagLabel.text == "Please Enter a Tag"
-	//		{
-	//			tagLabel.text = ""
-	//		}
-	//		self.addTag(tag)
-	////		self.oneTag()
-	//	}
-	//
-	//	@IBAction func removeTags(sender: UIButton)
-	//	{
-	//		self.myTags.removeAll()
-	//		self.tagLabel.textColor = UIColor.redColor()
-	//		self.tagLabel.text = "Please Enter a Tag"
-	////		self.oneTag()
-	//	}
-	//
-	//	func addTag(tag: String) {
-	//        self.myTags.removeAll()
-	//        self.myTags.append(tag)
-	//        self.tagLabel.text = self.myTags.joinWithSeparator(" ")
-	//	}
 }
 
 extension String {
