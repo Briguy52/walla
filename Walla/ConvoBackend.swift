@@ -42,7 +42,6 @@ class ConvoBackend {
         return false
     }
     
-    
     // Copied from MessagingVC, remainder of code to use is there
     func reloadConvoModels() {
         convoModels.removeAll()
@@ -66,8 +65,14 @@ class ConvoBackend {
                 convoModels.insert(convoModel, atIndex: 0);
             })
             .addDisposableTo(self.disposeBag)
-        
     }
     
+    // Returns the other person's UserID (NOT displayName... do that later)
+    func printNotMe(model: ConvoModel, userID: String) -> String {
+        let idOne: String = model.authorID
+        let idTwo: String = model.userID
+        
+        return (idOne == userID) ? idTwo : idOne
+    }
     
 }

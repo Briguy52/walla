@@ -24,6 +24,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	@IBOutlet weak var tableView: UITableView!
 	
 	let myBasic = Basic()
+    let myUserBackend = UserBackend()
 	let myConvoBackend =  ConvoBackend()
 	var isInitialLoad = true
 	var disposeBag = DisposeBag()
@@ -122,7 +123,6 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	// Copied from MessagingVC, remainder of code to use is there
 	func observeWithStreams() {
-        print("Streaming ConvoVC")
 		convoModels.removeAll()
 		let myID = myBasic.rootRef.authData.uid
 		myBasic.convoRef.rx_observe(FEventType.ChildAdded)
@@ -154,12 +154,17 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "messagingSegue" {
-            print("messaging segue called")
-            print("Chose index " + String(self.messageIndex) + "/" + String(convoModels.count))
-			let messagingVC = segue.destinationViewController as! MessageViewController
-			messagingVC.convoID = convoModels[self.messageIndex].convoID!
-        }
+        super.prepareForSegue(segue, sender: sender)
+        let navVc = segue.destinationViewController as! UINavigationController
+        let chatVc = navVc.viewControllers.first as! MessageViewController 
+//        let chatVc = segue.destinationViewController as! MessageViewController
+        let userID = self.myBasic.rootRef.authData.uid
+        let convoModel = convoModels[self.messageIndex]
+        
+        chatVc.senderId = userID
+        chatVc.convoID = convoModel.convoID!
+        chatVc.setConversationTitle(self.myUserBackend.getSenderName(self.myConvoBackend.printNotMe(convoModel, userID: userID)))
+        chatVc.senderDisplayName = ""
 	}
 	
 }
