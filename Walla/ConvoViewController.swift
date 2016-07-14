@@ -24,6 +24,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	@IBOutlet weak var tableView: UITableView!
 	
 	let myBasic = Basic()
+    let myUserBackend = UserBackend()
 	let myConvoBackend =  ConvoBackend()
 	var isInitialLoad = true
 	var disposeBag = DisposeBag()
@@ -157,11 +158,12 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let navVc = segue.destinationViewController as! UINavigationController
         let chatVc = navVc.viewControllers.first as! MessageViewController 
 //        let chatVc = segue.destinationViewController as! MessageViewController
-        chatVc.senderId = self.myBasic.rootRef.authData.uid
-        chatVc.convoID = convoModels[self.messageIndex].convoID!
-//        chatVc.setConversationTitle("womp womp")
-        print("womp womp")
-        print(self.myConvoBackend.printNotMe(convoModels[self.messageIndex], userID: self.myBasic.rootRef.authData.uid))
+        let userID = self.myBasic.rootRef.authData.uid
+        let convoModel = convoModels[self.messageIndex]
+        
+        chatVc.senderId = userID
+        chatVc.convoID = convoModel.convoID!
+        chatVc.setConversationTitle(self.myUserBackend.getSenderName(self.myConvoBackend.printNotMe(convoModel, userID: userID)))
         chatVc.senderDisplayName = ""
 	}
 	
