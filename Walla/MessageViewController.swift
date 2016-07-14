@@ -17,8 +17,6 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
     var incomingBubbleImageView: JSQMessagesBubbleImage!
     var messageRef: Firebase!
     var usersTypingQuery: FQuery!
-    
-    // Tells this class to load Messages from /Messages/convoID
     var convoID: String = ""
 
 
@@ -32,10 +30,15 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
 		super.viewDidLoad()
         self.messageRef = self.myBasic.messageRef.childByAppendingPath(self.convoID)
         
-        title = "ChatChat"
+        title = "Walla"
         self.setupBubbles()
         
         // No avatars - consider removing
+        self.collectionView.backgroundColor = UIColor.clearColor()
+        let background = UIImage(named: "background")
+        let bView = UIImageView(image: background)
+        self.view.insertSubview(bView, atIndex: 0)
+        
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
     }
