@@ -17,6 +17,9 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
     var incomingBubbleImageView: JSQMessagesBubbleImage!
     var messageRef: Firebase!
     var usersTypingQuery: FQuery!
+    
+    // Tells this class to load Messages from /Messages/convoID
+    var convoID: String = ""
 
 
 	@IBOutlet weak var backButton: UIBarButtonItem!
@@ -39,23 +42,26 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        observeMessages()
-        observeTyping()
+        
+        addMessage("foo", text: "Hey person!")
+        addMessage(senderId, text: "Yo!")
+        addMessage(senderId, text: "I like turtles!")
+        finishReceivingMessage()
+
+//        observeMessages()
+//        observeTyping()
     }
     
-    // New
     override func collectionView(collectionView: JSQMessagesCollectionView!,
                                  messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
     }
     
-    // New
     override func collectionView(collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
         return messages.count
     }
     
-    // New
     private func setupBubbles() {
         let factory = JSQMessagesBubbleImageFactory()
         outgoingBubbleImageView = factory.outgoingMessagesBubbleImageWithColor(
@@ -64,7 +70,6 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
             UIColor.jsq_messageBubbleLightGrayColor())
     }
     
-    // New
     override func collectionView(collectionView: JSQMessagesCollectionView!,
                                  messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
         let message = messages[indexPath.item]
@@ -121,6 +126,8 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
     private func observeMessages() {
         let messagesQuery = messageRef.queryLimitedToLast(25)
         messagesQuery.observeEventType(.ChildAdded) { (snapshot: FDataSnapshot!) in
+            print (snapshot.value)
+            
             let id = snapshot.value["senderId"] as! String
             let text = snapshot.value["text"] as! String
             
