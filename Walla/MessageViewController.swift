@@ -165,21 +165,14 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
         }
         
     }
+    @IBAction func backButtonClick(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+
+    }
     
     override func textViewDidChange(textView: UITextView) {
         super.textViewDidChange(textView)
         // If the text is not empty, the user is typing
         isTyping = textView.text != ""
     }
-	
-//	func backButtonClick() -> Void
-//	{
-//		dismissViewControllerAnimated(true, completion: nil)
-//		//self.navigationController?.popViewControllerAnimated(true)
-//	}
-//	
-//	@IBAction func backMessage(sender: UIBarButtonItem) {
-//		dismissViewControllerAnimated(true, completion: nil)
-//		//self.navigationController?.popViewControllerAnimated(true)
-//	}
 }

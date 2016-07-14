@@ -154,8 +154,9 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
-//        let navVc = segue.destinationViewController as! UINavigationController
-        let chatVc = segue.destinationViewController as! MessageViewController
+        let navVc = segue.destinationViewController as! UINavigationController
+        let chatVc = navVc.viewControllers.first as! MessageViewController 
+//        let chatVc = segue.destinationViewController as! MessageViewController
         chatVc.senderId = self.myBasic.rootRef.authData.uid
         chatVc.convoID = convoModels[self.messageIndex].convoID!
         chatVc.senderDisplayName = ""
