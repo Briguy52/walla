@@ -28,8 +28,6 @@
 		2265272C1D1F14EA004B89D2 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265272B1D1F14EA004B89D2 /* AuthViewController.swift */; };
 		2265272E1D1F153B004B89D2 /* ProflieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265272D1D1F153B004B89D2 /* ProflieViewController.swift */; };
 		226527301D1F1572004B89D2 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265272F1D1F1572004B89D2 /* MessageViewController.swift */; };
-		226527321D1F158E004B89D2 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226527311D1F158E004B89D2 /* MessageModel.swift */; };
-		226527341D1F15C5004B89D2 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226527331D1F15C5004B89D2 /* MessageTableViewCell.swift */; };
 		226527391D1F179C004B89D2 /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226527381D1F179C004B89D2 /* Basic.swift */; };
 		2265273B1D1F17DD004B89D2 /* UserBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265273A1D1F17DD004B89D2 /* UserBackend.swift */; };
 		2279873B1D1C5CCF00C0EC30 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279873A1D1C5CCF00C0EC30 /* HomeCell.swift */; };
@@ -66,8 +64,6 @@
 		2265272B1D1F14EA004B89D2 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		2265272D1D1F153B004B89D2 /* ProflieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProflieViewController.swift; sourceTree = "<group>"; };
 		2265272F1D1F1572004B89D2 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
-		226527311D1F158E004B89D2 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
-		226527331D1F15C5004B89D2 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		226527381D1F179C004B89D2 /* Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Basic.swift; sourceTree = "<group>"; };
 		2265273A1D1F17DD004B89D2 /* UserBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBackend.swift; sourceTree = "<group>"; };
 		2279873A1D1C5CCF00C0EC30 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
@@ -128,8 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				2265272F1D1F1572004B89D2 /* MessageViewController.swift */,
-				226527311D1F158E004B89D2 /* MessageModel.swift */,
-				226527331D1F15C5004B89D2 /* MessageTableViewCell.swift */,
 				224488531D1FBAAE00C98916 /* ConvoViewController.swift */,
 				224488551D1FBAD200C98916 /* ConvoCell.swift */,
 				224488571D1FBB1300C98916 /* ConvoModel.swift */,
@@ -384,12 +378,10 @@
 				222D531C1D1D47D000ABB2DD /* FilterTableViewController.swift in Sources */,
 				224488581D1FBB1300C98916 /* ConvoModel.swift in Sources */,
 				222D53191D1D44D600ABB2DD /* LookAround.swift in Sources */,
-				226527341D1F15C5004B89D2 /* MessageTableViewCell.swift in Sources */,
 				2244885A1D1FE3E400C98916 /* MainSettings.swift in Sources */,
 				226527301D1F1572004B89D2 /* MessageViewController.swift in Sources */,
 				225B64811D250518007D7268 /* MyTopics.swift in Sources */,
 				224488541D1FBAAE00C98916 /* ConvoViewController.swift in Sources */,
-				226527321D1F158E004B89D2 /* MessageModel.swift in Sources */,
 				224488561D1FBAD200C98916 /* ConvoCell.swift in Sources */,
 				222D53131D1D26A000ABB2DD /* DismissMenuAnimator.swift in Sources */,
 				224488521D1F27F400C98916 /* MyProfileViewController.swift in Sources */,
