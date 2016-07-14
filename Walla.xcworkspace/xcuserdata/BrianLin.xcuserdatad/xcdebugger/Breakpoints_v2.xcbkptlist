@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walla/MessageViewController.swift"
-            timestampString = "490157152.933951"
+            timestampString = "490158531.973705"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "observeMessages()"
             landmarkType = "5">
          </BreakpointContent>

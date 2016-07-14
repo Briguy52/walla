@@ -30,15 +30,11 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
 		super.viewDidLoad()
         self.messageRef = self.myBasic.messageRef.childByAppendingPath(self.convoID)
         
-        title = "Walla"
         self.setupBubbles()
-        
-        // No avatars - consider removing
-        self.collectionView.backgroundColor = UIColor.clearColor()
-        let background = UIImage(named: "background")
-        let bView = UIImageView(image: background)
-        self.view.insertSubview(bView, atIndex: 0)
-        
+        self.addCustomBackground()
+        self.disableAttachments()
+
+        // Hide avatars
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
     }
@@ -58,6 +54,17 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
     override func collectionView(collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
         return messages.count
+    }
+    
+    private func addCustomBackground() {
+        self.collectionView.backgroundColor = UIColor.clearColor()
+        let background = UIImage(named: "background")
+        let bView = UIImageView(image: background)
+        self.view.insertSubview(bView, atIndex: 0)
+    }
+    
+    private func disableAttachments() {
+        self.inputToolbar.contentView.leftBarButtonItem = nil
     }
     
     private func setupBubbles() {
