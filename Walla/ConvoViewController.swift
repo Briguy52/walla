@@ -163,7 +163,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         chatVc.senderId = userID
         chatVc.convoID = convoModel.convoID!
-        chatVc.setConversationTitle(self.myUserBackend.getSenderName(self.myConvoBackend.printNotMe(convoModel, userID: userID)))
+        chatVc.setConversationTitle("Talking to " + self.myUserBackend.getSenderName(self.myConvoBackend.printNotMe(convoModel, userID: userID)))
         chatVc.senderDisplayName = ""
 	}
 	
