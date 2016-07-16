@@ -509,6 +509,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Tim Choh (7H45KVJ2HG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tim Choh (7H45KVJ2HG)";
 				INFOPLIST_FILE = Walla/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wallasquad.walla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -526,6 +527,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Tim Choh (7H45KVJ2HG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tim Choh (7H45KVJ2HG)";
 				INFOPLIST_FILE = Walla/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wallasquad.walla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
