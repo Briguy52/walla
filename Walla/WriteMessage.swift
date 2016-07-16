@@ -20,6 +20,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	@IBOutlet weak var generalLocation: UITextField!
 	@IBOutlet weak var holla: UIButton!
 	@IBOutlet weak var scrollView: UIScrollView!
+	@IBOutlet weak var textCounter: UILabel!
 	
 	let dropDown = DropDown()
 	
@@ -33,7 +34,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	var myLatitude: Double = 36.0014
 	var myLongitude: Double = 78.9382
 	var myLocation: String = "default location"
-	var myTags:[String] = ["STEM+"]
+	var myTags:[String] = ["Choose A Topic"]
 	var myDelayHours: Double = 5
 	
 	let myBasic = Basic()
@@ -47,6 +48,8 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		
 		customizeDropDown(self)
 		self.setupDropDown()
+		
+		textCounter.text = "Remaining characters: 122"
 		
 		self.navigationItem.hidesBackButton = false
 		//		self.requestDetails?.layer.borderWidth = 0.2
@@ -98,15 +101,9 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		dropDown.anchorView = topicPicker
 		dropDown.bottomOffset = CGPoint(x: 0, y: topicPicker.bounds.height)
 		dropDown.dataSource = tagsToPick
-		dropDown.selectRowAtIndex(0)
+		//dropDown.selectRowAtIndex(0)
 		dropDown.selectionAction = { [unowned self] (index, item) in self.topicPicker.setTitle(item, forState: .Normal)}
-		print(dropDown.indexForSelectedRow!)
-		if let selected = dropDown.indexForSelectedRow {
-			self.myTags.removeAll()
-			self.myTags.append(tagsToPick[selected])
-			print("selected \(selected)")
-			print("myTags: \(self.myTags)")
-		}
+		//print(dropDown.indexForSelectedRow!)
 	}
 	
 	func customizeDropDown(sender: AnyObject) {
@@ -125,6 +122,24 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		//		appearance.textFont = UIFont(name: "Georgia", size: 14)
 	}
 	
+	func checkRemainingChars() {
+		let allowedChars = 122
+		let charsInTextView = -requestBody.text.characters.count
+		let remainingChars = allowedChars + charsInTextView
+		
+		textCounter.text = "Remaining characters: " + String(remainingChars)
+		
+		if remainingChars <= allowedChars {
+			textCounter.textColor = UIColor.blackColor()
+		}
+		if remainingChars <= 20 {
+			textCounter.textColor = UIColor.orangeColor()
+		}
+		if remainingChars <= 10 {
+			textCounter.textColor = UIColor.redColor()
+		}
+	}
+	
 	func submit()
 	{
 		self.saveAndUpdate()
@@ -141,6 +156,10 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		var dets: Bool = false
 		var locs: Bool = false
 		
+		let allowedChars = 122
+		let charsInTextView = -requestBody.text.characters.count
+		let remainingChars = allowedChars + charsInTextView
+		
 		let alert = UIAlertView()
 		alert.title = "You missed a field"
 		alert.addButtonWithTitle("OK")
@@ -149,8 +168,16 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		//		print(requestBody.text)
 		//		print(requestDetails.text)
 		//		print(generalLocation.text)
-		//
-		if self.myTags.count == 1 || self.myTags[0] == "Choose A Topic" { tags = true } else { tags = false }
+		
+		if let selected = self.dropDown.selectedItem {
+			self.myTags.removeAll()
+			self.myTags.append(selected)
+			print("selected \(selected)")
+			print("myTags: \(self.myTags)")
+		}
+
+		print(self.myTags[0])
+		if self.myTags[0] != "Choose A Topic" { tags = true } else { tags = false }
 		
 		if self.requestBody.text!.isEmptyField == false { wish = true } else { wish = false }
 		
@@ -158,30 +185,26 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		
 		if self.generalLocation.text!.isEmptyField == false { locs = true } else { locs = false }
 		
-		if tags == true && wish == true && dets == true && locs == true
-		{
+		if tags == true && wish == true && dets == true && locs == true && remainingChars > -1 {
 			self.submit()
 		}
-		else
-		{
-			if tags == false
-			{
+		else {
+			if tags == false {
 				alert.title = "You forgot to add tags!"
 			}
-			else if wish == false
-			{
+			else if wish == false {
 				alert.title = "You forgot the wish!"
 			}
-			else if dets == false
-			{
+			else if dets == false {
 				alert.title = "You forgot the details!"
 			}
-			else if locs == false
-			{
+			else if locs == false {
 				alert.title = "You forgot the location!"
 			}
-			else
-			{
+			else if remainingChars < 0 {
+				alert.title = "Too many characters in What You Want To Do!"
+			}
+			else {
 				alert.title = "Not sure why this showed up. Please try again."
 			}
 			
@@ -225,7 +248,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 			"location": location,
 			"resolved": resolved,
 			"visible": visible,
-			"tags": [self.myTags],
+			"tags": [self.myTags[0]],
 			"timestamp": self.myBasic.getTimestamp(),
 			"expirationDate": expirationDate
 		]
@@ -270,6 +293,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	}
 	
 	func textViewDidChange(textView: UITextView) {
+		checkRemainingChars()
 		if let text = self.requestBody.text {
 			self.myTitle = text
 		}
