@@ -8,49 +8,51 @@
 
 import UIKit
 import Firebase
+import DropDown
 
-var tagsToPick = ["ElementarySchool", "MiddleSchool", "HighSchool", "University", "Industry", "LongTermChange", "MathAndCompSci", "PartnershipsForChange", "SocialEntrepreneurship", "Entrepreneurship", "STEM+", "MakerIdeas", "SuccessStories", "OnlineLearning", "Engineering", "CommunityIntegration", "GrowingSustainedSTEM"]
+var tagsToPick = ["Choose A Topic", "ElementarySchool", "MiddleSchool", "HighSchool", "University", "Industry", "LongTermChange", "MathAndCompSci", "PartnershipsForChange", "SocialEntrepreneurship", "Entrepreneurship", "STEM+", "MakerIdeas", "SuccessStories", "OnlineLearning", "Engineering", "CommunityIntegration", "GrowingSustainedSTEM"]
 
-class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate, UITextFieldDelegate {
-
-	@IBOutlet weak var tagPicker: UIPickerView!
-//	@IBOutlet weak var addTagButton: UIButton!
-//	@IBOutlet weak var removeTagButton: UIButton!
-//	@IBOutlet weak var tagLabel: UILabel!
+class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
+	
+	@IBOutlet weak var topicPicker: UIButton!
 	@IBOutlet weak var requestBody: UITextView!
 	@IBOutlet weak var requestDetails: UITextField!
 	@IBOutlet weak var generalLocation: UITextField!
 	@IBOutlet weak var holla: UIButton!
 	@IBOutlet weak var scrollView: UIScrollView!
 	
+	let dropDown = DropDown()
+	
+	lazy var dropDowns: [DropDown] = {
+		return [self.dropDown]
+	}()
+	
 	var myTitle:String = "default request"
 	var myAuthorName:String = ""
 	var myDetails:String = "default details"
 	var myLatitude: Double = 36.0014
 	var myLongitude: Double = 78.9382
-    var myLocation: String = "default location"
+	var myLocation: String = "default location"
 	var myTags:[String] = ["STEM+"]
 	var myDelayHours: Double = 5
 	
-	//let locManager = CLLocationManager()
-	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
-
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.hideKeyboardWhenTappedAround()
 		
-		self.tagPicker?.dataSource = self
-		self.tagPicker?.delegate = self
-        
-        self.initRequestDetails()
+		self.initRequestDetails()
+		
+		customizeDropDown(self)
+		self.setupDropDown()
 		
 		self.navigationItem.hidesBackButton = false
-//		self.requestDetails?.layer.borderWidth = 0.2
-//		self.requestDetails?.layer.borderColor = UIColor.lightGrayColor().CGColor
+		//		self.requestDetails?.layer.borderWidth = 0.2
+		//		self.requestDetails?.layer.borderColor = UIColor.lightGrayColor().CGColor
 		
-//		self.addTagButton.hidden = true
+		//		self.addTagButton.hidden = true
 		
 		//self.holla?.userInteractionEnabled = false
 		//self.holla?.titleLabel?.textColor = UIColor(netHex: 0xffa160)
@@ -58,8 +60,8 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		//self.hidesBottomBarWhenPushed = true
 		
 		self.tabBarController?.tabBar.hidden = true
-//
-//		navigationController?.popViewControllerAnimated(true)
+		//
+		//		navigationController?.popViewControllerAnimated(true)
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -88,44 +90,40 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
 	}
 	
-//		NSNotificationCenter.defaultCenter().addObserver(
-//			self,
-//			selector: #selector(WriteMessage.keyboardWillShow(_:)),
-//			name: UIKeyboardWillShowNotification,
-//			object: nil
-//		)
-//		
-//		NSNotificationCenter.defaultCenter().addObserver(
-//			self,
-//			selector: #selector(WriteMessage.keyboardWillHide(_:)),
-//			name: UIKeyboardWillHideNotification,
-//			object: nil
-//		)
-//	}
-//	
-//	deinit {
-//		NSNotificationCenter.defaultCenter().removeObserver(self)
-//	}
-//	
-//	override func viewDidAppear(animated: Bool) {
-//		self.viewDidLoad()
-//	}
-//	
-//	func adjustInsetForKeyboardShow(show: Bool, notification: NSNotification) {
-//		guard let value = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue else { return }
-//		let keyboardFrame = value.CGRectValue()
-//		let adjustmentHeight = (CGRectGetHeight(keyboardFrame) + 20) * (show ? 1 : -1)
-//		scrollView.contentInset.bottom += adjustmentHeight
-//		scrollView.scrollIndicatorInsets.bottom += adjustmentHeight
-//	}
-// 
-//	func keyboardWillShow(notification: NSNotification) {
-//		adjustInsetForKeyboardShow(true, notification: notification)
-//	}
-// 
-//	func keyboardWillHide(notification: NSNotification) {
-//		adjustInsetForKeyboardShow(false, notification: notification)
-//	}
+	@IBAction func chooseTopic(sender: AnyObject) {
+		dropDown.show()
+	}
+	
+	func setupDropDown() {
+		dropDown.anchorView = topicPicker
+		dropDown.bottomOffset = CGPoint(x: 0, y: topicPicker.bounds.height)
+		dropDown.dataSource = tagsToPick
+		dropDown.selectRowAtIndex(0)
+		dropDown.selectionAction = { [unowned self] (index, item) in self.topicPicker.setTitle(item, forState: .Normal)}
+		print(dropDown.indexForSelectedRow!)
+		if let selected = dropDown.indexForSelectedRow {
+			self.myTags.removeAll()
+			self.myTags.append(tagsToPick[selected])
+			print("selected \(selected)")
+			print("myTags: \(self.myTags)")
+		}
+	}
+	
+	func customizeDropDown(sender: AnyObject) {
+		let appearance = DropDown.appearance()
+		
+		appearance.cellHeight = 60
+		appearance.backgroundColor = UIColor(white: 1, alpha: 1)
+		appearance.selectionBackgroundColor = UIColor(red: 0.6494, green: 0.8155, blue: 1.0, alpha: 0.2)
+		appearance.separatorColor = UIColor(white: 0.7, alpha: 0.8)
+		appearance.cornerRadius = 10
+		appearance.shadowColor = UIColor(white: 0.8, alpha: 1)
+		appearance.shadowOpacity = 0.9
+		appearance.shadowRadius = 25
+		appearance.animationduration = 0.25
+		appearance.textColor = .darkGrayColor()
+		//		appearance.textFont = UIFont(name: "Georgia", size: 14)
+	}
 	
 	func submit()
 	{
@@ -136,7 +134,7 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		self.performSegueWithIdentifier("unwindToHomeFromWrite", sender: self)
 	}
 	
-	@IBAction func allFieldsSet(sender: UIButton)
+	func allFieldsSet(sender: UIButton)
 	{
 		var tags: Bool = false
 		var wish: Bool = false
@@ -147,46 +145,18 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		alert.title = "You missed a field"
 		alert.addButtonWithTitle("OK")
 		
-//		print(myTags.count)
-//		print(requestBody.text)
-//		print(requestDetails.text)
-//		print(generalLocation.text)
-//		
-		if self.myTags.count == 1
-		{
-			tags = true
-		}
-		else
-		{
-			tags = false
-		}
+		//		print(myTags.count)
+		//		print(requestBody.text)
+		//		print(requestDetails.text)
+		//		print(generalLocation.text)
+		//
+		if self.myTags.count == 1 || self.myTags[0] == "Choose A Topic" { tags = true } else { tags = false }
 		
-		if self.requestBody.text!.isEmptyField == false
-		{
-			wish = true
-		}
-		else
-		{
-			wish = false
-		}
+		if self.requestBody.text!.isEmptyField == false { wish = true } else { wish = false }
 		
-		if self.requestDetails.text!.isEmptyField == false
-		{
-			dets = true
-		}
-		else
-		{
-			dets = false
-		}
+		if self.requestDetails.text!.isEmptyField == false { dets = true } else { dets = false }
 		
-		if self.generalLocation.text!.isEmptyField == false
-		{
-			locs = true
-		}
-		else
-		{
-			locs = false
-		}
+		if self.generalLocation.text!.isEmptyField == false { locs = true } else { locs = false }
 		
 		if tags == true && wish == true && dets == true && locs == true
 		{
@@ -219,11 +189,11 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		}
 		
 	}
-
 	
-    // TODO: link up location with Tim's UI text field
+	
+	// TODO: link up location with Tim's UI text field
 	func saveAndUpdate() {
-        self.postNewRequest(self.myUserBackend.getUserID(), request: self.myTitle, additionalDetails: self.myDetails, latitude: self.myLatitude, longitude: self.myLongitude, location: self.myLocation, resolved: false, visible: true, tags: self.myTags, expirationDate: self.calcExpirationDate(self.myDelayHours))
+		self.postNewRequest(self.myUserBackend.getUserID(), request: self.myTitle, additionalDetails: self.myDetails, latitude: self.myLatitude, longitude: self.myLongitude, location: self.myLocation, resolved: false, visible: true, tags: self.myTags, expirationDate: self.calcExpirationDate(self.myDelayHours))
 	}
 	
 	
@@ -243,48 +213,43 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		//tagLabel?.text = "#STEM+ "
 	}
 	
-    func postNewRequest(authorID: String, request: String, additionalDetails: String, latitude: Double, longitude: Double, location: String, resolved: Bool, visible: Bool, tags: [String], expirationDate: Double ) -> Void {
-	_ = "tags"
-	
-	let newPost = [
-        "authorID": authorID,
-        "request": request,
-        "additionalDetails": additionalDetails,
-		"latitude": latitude,
-		"longitude": longitude,
-		"location": location,
-		"resolved": resolved,
-		"visible": visible,
-		"tags": [tagsToPick[self.tagPicker.selectedRowInComponent(0)]],
-		"timestamp": self.myBasic.getTimestamp(),
-		"expirationDate": expirationDate
-	]
-	
-	let toHash = authorID + request
-	let afterHash = String(toHash.hashValue)
-	
-	let newPostRef = myBasic.requestRef.childByAppendingPath(afterHash) // generate a unique ID for this post
-	let postId = newPostRef.key
-	newPostRef.setValue(newPost, withCompletionBlock: {
-		(error:NSError?, ref:Firebase!) in
-		if (error != nil) {
-			print("Post data could not be saved.")
-		} else {
-			print("Post data saved successfully!")
-			self.myUserBackend.updateUserPosts(postId, userID: authorID)
-		}
-	})
-}
+	func postNewRequest(authorID: String, request: String, additionalDetails: String, latitude: Double, longitude: Double, location: String, resolved: Bool, visible: Bool, tags: [String], expirationDate: Double ) -> Void {
+		_ = "tags"
+		
+		let newPost = [
+			"authorID": authorID,
+			"request": request,
+			"additionalDetails": additionalDetails,
+			"latitude": latitude,
+			"longitude": longitude,
+			"location": location,
+			"resolved": resolved,
+			"visible": visible,
+			"tags": [self.myTags],
+			"timestamp": self.myBasic.getTimestamp(),
+			"expirationDate": expirationDate
+		]
+		
+		let toHash = authorID + request
+		let afterHash = String(toHash.hashValue)
+		
+		let newPostRef = myBasic.requestRef.childByAppendingPath(afterHash) // generate a unique ID for this post
+		let postId = newPostRef.key
+		newPostRef.setValue(newPost, withCompletionBlock: {
+			(error:NSError?, ref:Firebase!) in
+			if (error != nil) {
+				print("Post data could not be saved.")
+			} else {
+				print("Post data saved successfully!")
+				self.myUserBackend.updateUserPosts(postId, userID: authorID)
+			}
+		})
+	}
 	
 	//init functions
 	func setAuthorName(name: String) {
 		self.myAuthorName = name
 	}
-	
-    // currently not called
-//	func initRequestInfo() {
-//		self.tagLabel.text = self.myTags.joinWithSeparator("")
-//	}
 	
 	func calcHoursFromNow(expiry: Double) -> Double {
 		let difference = expiry - self.myBasic.getTimestamp()
@@ -295,104 +260,36 @@ class WriteMessage: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
 		return ( self.myBasic.getTimestamp() + hours * 60 * 60 )
 	}
 	
-    
-    // Begin listeners for input text fields and text views (Brian)
-    
-    @IBAction func requestEditingDidEnd(sender: UITextField) {
-        if let text = self.requestDetails.text {
-            self.myDetails = text
-        }
-    }
-    
-    func textViewDidChange(textView: UITextView) {
-        if let text = self.requestBody.text {
-            self.myTitle = text
-        }
-    }
-    
-    func initRequestDetails() {
-        self.requestDetails.delegate = self
-    }
-    
+	
+	// Begin listeners for input text fields and text views (Brian)
+	
+	@IBAction func requestEditingDidEnd(sender: UITextField) {
+		if let text = self.requestDetails.text {
+			self.myDetails = text
+		}
+	}
+	
+	func textViewDidChange(textView: UITextView) {
+		if let text = self.requestBody.text {
+			self.myTitle = text
+		}
+	}
+	
+	func initRequestDetails() {
+		self.requestDetails.delegate = self
+	}
+	
 	@IBAction func locationEditingChanged(sender: UITextField) {
 		if let text = self.generalLocation.text {
 			self.myLocation = text
 		}
 	}
 	
-    @IBAction func locationEditingDidEnd(sender: UITextField) {
-        if let text = self.generalLocation.text {
-            self.myLocation = text
-        }
-    }
-    
-	//tag functions
-	func setPossibleTags(tags: [String]) {
-		tagsToPick = tags
+	@IBAction func locationEditingDidEnd(sender: UITextField) {
+		if let text = self.generalLocation.text {
+			self.myLocation = text
+		}
 	}
-	
-	func setSelectedTags(tags: [String]) {
-		self.myTags = tags
-	}
-	
-	func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-		return 1
-	}
-	
-	func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-		return tagsToPick.count
-	}
-	
-	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		return tagsToPick[row]
-	}
-	
-	func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-		
-		let titleData = tagsToPick[row]
-		let myTitle = NSAttributedString(string: titleData, attributes: [NSForegroundColorAttributeName: UIColor.orangeColor()])
-		
-		return myTitle
-	}
-//	
-//	func oneTag()
-//	{
-//		if self.myTags.count == 1
-//		{
-//			self.addTagButton.hidden = true
-//			self.removeTagButton.hidden = false
-//		}
-//		else
-//		{
-//			self.addTagButton.hidden = false
-//			self.removeTagButton.hidden = true
-//		}
-//	}
-//	
-//	@IBAction func addTags(sender: UIButton)
-//	{
-//		let tag = tagsToPick[self.tagPicker.selectedRowInComponent(0)]
-//		if tagLabel.text == "Please Enter a Tag"
-//		{
-//			tagLabel.text = ""
-//		}
-//		self.addTag(tag)
-////		self.oneTag()
-//	}
-//	
-//	@IBAction func removeTags(sender: UIButton)
-//	{
-//		self.myTags.removeAll()
-//		self.tagLabel.textColor = UIColor.redColor()
-//		self.tagLabel.text = "Please Enter a Tag"
-////		self.oneTag()
-//	}
-//	
-//	func addTag(tag: String) {
-//        self.myTags.removeAll()
-//        self.myTags.append(tag)
-//        self.tagLabel.text = self.myTags.joinWithSeparator(" ")
-//	}
 }
 
 extension String {

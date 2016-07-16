@@ -35,6 +35,7 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
+  - DropDown (1.0.1)
   - FBSDKCoreKit (4.10.0):
     - Bolts (~> 1.5)
   - FBSDKLoginKit (4.10.0):
@@ -80,6 +81,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
+  - DropDown
   - Firebase (>= 2.5.0)
   - FirebaseRxSwiftExtensions (>= 0.6)
   - JSQMessagesViewController
@@ -98,6 +100,7 @@ SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  DropDown: 335df9e9547e97a861a60aed8448821e239d3513
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
@@ -114,6 +117,6 @@ SPEC CHECKSUMS:
   SlackTextViewController: 6b0d1030c53937226fc5358f217af2a34fc211cf
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
 
-PODFILE CHECKSUM: 7d3ef5d8dc2ce21525ade40ca7e261302abb0c5f
+PODFILE CHECKSUM: 7a3cd38187ae4d7ce746d3021e0fe8227bddb676
 
 COCOAPODS: 1.0.1
