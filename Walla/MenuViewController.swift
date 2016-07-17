@@ -9,7 +9,7 @@
 import UIKit
 
 var hasFilters: Bool = false
-var filterTags: [String] = ["All", "Time", "ElementarySchool", "MiddleSchool", "HighSchool", "University", "Industry", "LongTermChange", "MathAndCompSci", "PartnershipsForChange", "SocialEntrepreneurship", "Entrepreneurship", "STEM+", "MakerIdeas", "SuccessStories", "OnlineLearning", "Engineering", "CommunityIntegration", "GrowingSustainedSTEM"]
+var filterTags: [String] = ["All", "Comp Sci", "Math", "Engineering", "Pre Med", "Physics", "Biology", "Chemistry", "Global Health", "Sports", "Video Games", "Music", "Dance", "English", "Business", "Engineering", "Marketing", "Finance"]
 
 class MenuViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
