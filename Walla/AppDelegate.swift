@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 //		let lock = MyApplication.sharedInstance.lock
 //		lock.applicationLaunchedWithOptions(launchOptions)
+		
 		
 		return true
 	}

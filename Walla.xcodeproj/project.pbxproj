@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2229BEBE1D3B047100A30EDB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2229BEBD1D3B047100A30EDB /* GoogleService-Info.plist */; };
 		222D53091D1D094C00ABB2DD /* ViewDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D53081D1D094C00ABB2DD /* ViewDetails.swift */; };
 		222D530B1D1D226F00ABB2DD /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D530A1D1D226F00ABB2DD /* MenuViewController.swift */; };
 		222D530D1D1D233B00ABB2DD /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D530C1D1D233B00ABB2DD /* Interactor.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2229BEBD1D3B047100A30EDB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		222D53081D1D094C00ABB2DD /* ViewDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewDetails.swift; sourceTree = "<group>"; };
 		222D530A1D1D226F00ABB2DD /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		222D530C1D1D233B00ABB2DD /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		22C8893D1D1C536F009DE688 /* Walla */ = {
 			isa = PBXGroup;
 			children = (
+				2229BEBD1D3B047100A30EDB /* GoogleService-Info.plist */,
 				226527371D1F1773004B89D2 /* Backend */,
 				226527281D1F1471004B89D2 /* Auth */,
 				226527251D1F13FF004B89D2 /* Requests */,
@@ -301,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22C889491D1C536F009DE688 /* LaunchScreen.storyboard in Resources */,
+				2229BEBE1D3B047100A30EDB /* GoogleService-Info.plist in Resources */,
 				22C889461D1C536F009DE688 /* Assets.xcassets in Resources */,
 				22C889441D1C536F009DE688 /* Main.storyboard in Resources */,
 			);
