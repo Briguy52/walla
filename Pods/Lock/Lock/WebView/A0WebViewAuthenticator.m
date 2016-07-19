@@ -25,6 +25,11 @@
 #import "A0WebKitViewController.h"
 #import "A0Theme.h"
 #import "A0ModalPresenter.h"
+#import <WebKit/WebKit.h>
+#import "Constants.h"
+#import "A0APIClient.h"
+#import "A0Lock.h"
+#include "A0Telemetry.h"
 
 NSString * const A0WebViewAuthenticatorTitleBarTintColor = @"A0WebViewAuthenticatorTitleBarTintColor";
 NSString * const A0WebViewAuthenticatorTitleBarBarTintColor = @"A0WebViewAuthenticatorTitleBarBarTintColor";
@@ -32,16 +37,18 @@ NSString * const A0WebViewAuthenticatorTitleTextColor = @"A0WebViewAuthenticator
 NSString * const A0WebViewAuthenticatorTitleTextFont = @"A0WebViewAuthenticatorTitleTextFont";
 
 @interface A0WebViewAuthenticator ()
-@property (strong, nonatomic) A0APIClient *client;
+@property (strong, nonatomic) A0Lock *lock;
 @property (copy, nonatomic) NSString *connectionName;
 @end
 
 @implementation A0WebViewAuthenticator
 
--(instancetype)initWithConnectionName:(NSString * __nonnull)connectionName client:(A0APIClient * __nonnull)client {
+AUTH0_DYNAMIC_LOGGER_METHODS
+
+-(instancetype)initWithConnectionName:(NSString * __nonnull)connectionName lock:(A0Lock * __nonnull)lock {
     self = [super init];
     if (self) {
-        _client = client;
+        _lock = lock;
         _connectionName = [connectionName copy];
     }
     return self;
@@ -54,9 +61,11 @@ NSString * const A0WebViewAuthenticatorTitleTextFont = @"A0WebViewAuthenticatorT
     controller.onAuthentication = success;
     controller.onFailure = failure;
     controller.localizedCancelButtonTitle = self.localizedCancelButtonTitle;
+    [controller setTelemetryInfo:self.lock.telemetry.base64Value];
     UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:controller];
     [self applyThemeToNavigationBar:navigation.navigationBar];
     A0ModalPresenter *presenter = [[A0ModalPresenter alloc] init];
+    A0LogDebug(@"Presenting controller %@ from %@", NSStringFromClass(controller.class), NSStringFromClass(presenter.class));
     [presenter presentController:navigation completion:nil];
 }
 
@@ -69,13 +78,34 @@ NSString * const A0WebViewAuthenticatorTitleTextFont = @"A0WebViewAuthenticatorT
 }
 
 - (void)clearSessions {
+    if (NSClassFromString(@"WKWebsiteDataStore")) {
+        NSSet *types = [NSSet setWithArray:@[
+                                             WKWebsiteDataTypeLocalStorage,
+                                             WKWebsiteDataTypeCookies,
+                                             WKWebsiteDataTypeSessionStorage,
+                                             WKWebsiteDataTypeIndexedDBDatabases,
+                                             WKWebsiteDataTypeWebSQLDatabases
+                                             ]];
+        NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:types modifiedSince:dateFrom completionHandler:^{
+            A0LogVerbose(@"Removed WKWebView data: %@", types);
+        }];
+    }
+
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
+    A0LogVerbose(@"Removed UIWebView cookies from shared storage");
 }
 
 - (UIViewController<A0WebAuthenticable> *)newWebControllerWithParameters:(A0AuthParameters *)parameters {
+    A0APIClient *client = self.lock.apiClient;
+    BOOL usePKCE = self.lock.usePKCE;
     if (NSClassFromString(@"WKWebView")) {
-        return [[A0WebKitViewController alloc] initWithAPIClient:self.client connectionName:self.connectionName parameters:parameters];
+        return [[A0WebKitViewController alloc] initWithAPIClient:client connectionName:self.connectionName parameters:parameters usePKCE:usePKCE];
     } else {
-        return [[A0WebViewController alloc] initWithAPIClient:self.client connectionName:self.connectionName parameters:parameters];
+        return [[A0WebViewController alloc] initWithAPIClient:client connectionName:self.connectionName parameters:parameters usePKCE:usePKCE];
     }
 }
 

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '18942562E8E0474F510DB05E6F7FF94A'
+               BlueprintIdentifier = '25C4DCE9DCEA16C6D470F1BFAA90EDD7'
                BlueprintName = 'Lock-Auth0'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Auth0.bundle'>
