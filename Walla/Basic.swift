@@ -9,19 +9,15 @@
 import Foundation
 import Firebase
 
-let rootPath = "https://thegenieapp.firebaseio.com"
-
 class Basic {
 	// rule: keep all explicit Firebase calls here.
 	
-	// Create a reference to a Firebase location
-    // https://thegenieapp.firebaseio.com/
-
-	let rootRef = Firebase(url: rootPath)
-	let requestRef = Firebase(url: rootPath + "/Requests")
-	let userRef = Firebase(url: rootPath + "/Users")
-	let convoRef = Firebase(url: rootPath + "/Conversations")
-	let messageRef = Firebase(url: rootPath + "/Messages")
+    var rootRef = FIRDatabase.database().reference()
+    
+	let requestRef = rootRef.child("Requests")
+	let userRef = rootRef.child("Users")
+	let convoRef = rootRef.child("Conversations")
+	let messageRef = rootRef.child("Messages")
     
     func getTimestamp() -> Double {
         return NSDate().timeIntervalSince1970 
