@@ -22,14 +22,23 @@ class Basic {
     func getTimestamp() -> Double {
         return NSDate().timeIntervalSince1970 
     }
+    
+    func addUserSignedInListener() {
+        FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
+            if let user = user {
+                print("womp user is signed in!")
+            } else {
+                print("womp no user signed in :/")
+            }
+        }
+    }
 	
 	func checkLoggedIn() -> Bool {
-		if rootRef.authData != nil {
-			print(rootRef.authData)
-			return true
-		} else {
-			print("No users signed in")
-			return false
-		}
+        if let user = FIRAuth.auth()?.currentUser {
+            print("womp user is signed in!")
+        } else {
+            print("womp no user signed in :/")
+        }
+        return FIRAuth.auth()?.currentUser != nil // true if logged in, false if not logged in
 	}
 }
