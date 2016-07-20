@@ -102,7 +102,7 @@ class MyProfileViewController: UIViewController {
 	
 	@IBAction func changeUsername(sender: UITextField) {
 		if let newName = self.username.text {
-			self.myUserBackend.updateUserData("displayName", value: newName, userID: myBasic.rootRef.authData.uid)
+			self.myUserBackend.updateUserData("displayName", value: newName, userID: self.myUserBackend.getUserID())
 		}
 	}
 	

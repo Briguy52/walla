@@ -20,21 +20,21 @@ class MainSettings: UIViewController{
 	@IBOutlet weak var scrollView: UIScrollView!
 	
 	@IBAction func requestResolvedPressed(sender: AnyObject) {
-		self.myUserBackend.updateNotificationSetting("requestResolvedNotification", value: self.requestResolvedToggle.on, userID: myBasic.rootRef.authData.uid)
+		self.myUserBackend.updateNotificationSetting("requestResolvedNotification", value: self.requestResolvedToggle.on, userID: self.myUserBackend.getUserID())
 	}
 	@IBAction func newRequestPressed(sender: AnyObject) {
-		self.myUserBackend.updateNotificationSetting("newRequestNotification", value: self.newRequestToggle.on, userID: myBasic.rootRef.authData.uid)
+		self.myUserBackend.updateNotificationSetting("newRequestNotification", value: self.newRequestToggle.on, userID: self.myUserBackend.getUserID())
 	}
 	@IBAction func messagePressed(sender: AnyObject) {
-		self.myUserBackend.updateNotificationSetting("messageNotification", value: self.messageToggle.on, userID: myBasic.rootRef.authData.uid)
+		self.myUserBackend.updateNotificationSetting("messageNotification", value: self.messageToggle.on, userID: myBasic.self.myUserBackend.getUserID())
 	}
 	@IBAction func helpMeResponsePressed(sender: AnyObject) {
-		self.myUserBackend.updateNotificationSetting("helpMeResponseNotification", value: self.helpMeResponseToggle.on, userID: myBasic.rootRef.authData.uid)
+		self.myUserBackend.updateNotificationSetting("helpMeResponseNotification", value: self.helpMeResponseToggle.on, self.myUserBackend.getUserID())
 	}
 	
 	@IBAction func phoneNumberSavePressed(sender: AnyObject) {
 		if let number = self.phoneNumberTextField.text {
-            self.myUserBackend.updateUserData("phoneNumber", value: number, userID: myBasic.rootRef.authData.uid)
+            self.myUserBackend.updateUserData("phoneNumber", value: number, userID: self.myUserBackend.getUserID())
 		}
 		self.phoneNumberSaveButton.hidden = true
 		self.dismissKeyboard()
@@ -86,11 +86,11 @@ class MainSettings: UIViewController{
 	}
 	
 	func initContactInfo() {
-		self.myUserBackend.getUserInfo("email", userID: self.myBasic.rootRef.authData.uid) {
+		self.myUserBackend.getUserInfo("email", userID: self.myUserBackend.getUserID()) {
 			(result: AnyObject) in
 			self.emailTextField.text = result as! String
 		}
-		self.myUserBackend.getUserInfo("phoneNumber", userID: self.myBasic.rootRef.authData.uid) {
+		self.myUserBackend.getUserInfo("phoneNumber", userID: self.myUserBackend.getUserID()) {
 			(result: AnyObject) in
 			self.phoneNumberTextField.text = result as! String
 		}
