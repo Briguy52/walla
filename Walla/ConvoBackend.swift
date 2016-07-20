@@ -48,31 +48,14 @@ class ConvoBackend {
         
         ref.observeEventType(.ChildAdded, withBlock: { (snapshot) in
             
-            
-            let postDict = snapshot.value as! [String : AnyObject]
-            // ...
+            // Check 1) Non-null 2) Not a duplicate and 3) Relevant to User
+            if (!(snapshot.value is NSNull) && !self.contains(convoModels, snapshot:snapshot) && (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID) ) {
+                convoModels.insert(ConvoModel(snapshot:snapshot), atIndex:0)
+            }
             
         })
-//        myBasic.convoRef.rx_observe(FEventType.ChildAdded)
-//            .filter { snapshot in
-//                // Note: can also add filters for tags, location, etc.
-//                return !(snapshot.value is NSNull)
-//            }
-//            .filter { snapshot in
-//                return !self.contains(convoModels, snapshot: snapshot) // avoids showing duplicate Convos on initial load
-//            }
-//            .filter { snapshot in
-//                // Only return Snapshots with authorID or userID == user's ID
-//                return (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID)
-//            }
-//            .map {snapshot in
-//                return ConvoModel(snapshot: snapshot)
-//            }
-//            .subscribeNext({ (convoModel: ConvoModel) -> Void in
-//                convoModels.insert(convoModel, atIndex: 0);
-//            })
-//            .addDisposableTo(self.disposeBag)
     }
+
     
     // Returns the other person's UserID (NOT displayName... do that later)
     func printNotMe(model: ConvoModel, userID: String) -> String {
