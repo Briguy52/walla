@@ -23,8 +23,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	let myBasic = Basic()
     let myUserBackend = UserBackend()
 	let myConvoBackend =  ConvoBackend()
-	var isInitialLoad = true
-	var disposeBag = DisposeBag()
+//	var isInitialLoad = true
 	var messageIndex: Int = 0
 	var convoFromWalla = ""
 	var indexFromWalla = -1
@@ -65,7 +64,6 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	}
 	
 	@IBAction func unwindToMessages(segue: UIStoryboardSegue) {
-        print("unwind")
 		convoFromWalla = convoIDFromHome
 		fromWalla = true
 	}
@@ -121,33 +119,47 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
 	// Copied from MessagingVC, remainder of code to use is there
 	func observeWithStreams() {
 		convoModels.removeAll()
-		let myID = myBasic.rootRef.authData.uid
-		myBasic.convoRef.rx_observe(FEventType.ChildAdded)
-			.filter { snapshot in
-				// Note: can also add filters for tags, location, etc.
-				return !(snapshot.value is NSNull)
-			}
-            .filter { snapshot in
-                return !self.myConvoBackend.contains(convoModels, snapshot: snapshot) // avoids showing duplicate Convos on initial load
+        let myID = self.myUserBackend.getUserID()
+        let ref = self.myBasic.convoRef
+        
+        ref.observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            
+            // Check 1) Non-null 2) Not a duplicate and 3) Relevant to User
+            if (!(snapshot.value is NSNull) && !self.contains(convoModels, snapshot:snapshot) && (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID) ) {
+                convoModels.insert(ConvoModel(snapshot:snapshot), atIndex:0)
+                self.tableView.reloadData()
             }
-            .filter { snapshot in
-                // Only return Snapshots with authorID or userID == user's ID
-                return (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID)
-            }
-			.map {snapshot in
-				return ConvoModel(snapshot: snapshot)
-			}
-			.subscribeNext({ (convoModel: ConvoModel) -> Void in
-				convoModels.insert(convoModel, atIndex: 0);
-			})
-			.addDisposableTo(self.disposeBag)
-		
-		myBasic.convoRef.rx_observe(FEventType.Value)
-			.subscribeNext({ (snapshot: FDataSnapshot) -> Void in
-				self.tableView.reloadData()
-				self.isInitialLoad = false;
-			})
-			.addDisposableTo(self.disposeBag)
+            
+        })
+
+        
+        
+//		myBasic.convoRef.rx_observe(FEventType.ChildAdded)
+//			.filter { snapshot in
+//				// Note: can also add filters for tags, location, etc.
+//				return !(snapshot.value is NSNull)
+//			}
+//            .filter { snapshot in
+//                return !self.myConvoBackend.contains(convoModels, snapshot: snapshot) // avoids showing duplicate Convos on initial load
+//            }
+//            .filter { snapshot in
+//                // Only return Snapshots with authorID or userID == user's ID
+//                return (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID)
+//            }
+//			.map {snapshot in
+//				return ConvoModel(snapshot: snapshot)
+//			}
+//			.subscribeNext({ (convoModel: ConvoModel) -> Void in
+//				convoModels.insert(convoModel, atIndex: 0);
+//			})
+//			.addDisposableTo(self.disposeBag)
+//		
+//		myBasic.convoRef.rx_observe(FEventType.Value)
+//			.subscribeNext({ (snapshot: FDataSnapshot) -> Void in
+//				self.tableView.reloadData()
+//				self.isInitialLoad = false;
+//			})
+//			.addDisposableTo(self.disposeBag)
 	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
