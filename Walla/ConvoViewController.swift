@@ -10,9 +10,6 @@ import UIKit
 import CoreLocation
 import Foundation
 import Firebase
-import RxCocoa
-import RxSwift
-import FirebaseRxSwiftExtensions
 
 var fromWalla: Bool = false
 var convoModels: [ConvoModel] = [ConvoModel]() // global variable for ViewDetails.swift access
