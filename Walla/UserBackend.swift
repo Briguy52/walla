@@ -6,6 +6,11 @@
 //  Copyright © 2016 GenieUs. All rights reserved.
 //
 
+// Resource I'm using: https://firebase.google.com/docs/auth/ios/manage-users
+
+// Replace childByAppendingPath() with just child()
+// Replace self.myBasic.rootRef.authData with FIRAuth.auth()?.currentUser
+
 import Foundation
 import Firebase
 
@@ -18,24 +23,52 @@ class UserBackend {
     static let localUserKey: String = "localUid"
     
 	func logout() {
-		myBasic.rootRef.unauth()
+		try! FIRAuth.auth()!.signOut()
 	}
+    
+    // New
+    func getUserProfileInfo() {
+        if let user = FIRAuth.auth()?.currentUser {
+            let name = user.displayName
+            let email = user.email
+            let photoUrl = user.photoURL
+            let uid = user.uid;  // The user's ID, unique to the Firebase project.
+        } else {
+            // No user is signed in.
+        }
+    }
+    
+    // New
+    func getUserProviderData() {
+        if let user = FIRAuth.auth()?.currentUser {
+            for profile in user.providerData {
+                let providerID = profile.providerID
+                let uid = profile.uid;  // Provider-specific UID
+                let name = profile.displayName
+                let email = profile.email
+                let photoURL = profile.photoURL
+            }
+        } else {
+            // No user is signed in.
+        }
+    }
+
 	
 	func updateUserData(key: String, value: AnyObject, userID: String) {
 		let pair = [key:value]
-		let pairRef = myBasic.userRef.childByAppendingPath(userID)
+        let pairRef = myBasic.userRef.child(userID)
 		pairRef.updateChildValues(pair)
 	}
 	
 	func updateNotificationSetting(setting: String, value: Bool, userID: String) {
 		let pair = [setting:value]
-		let pairRef = myBasic.userRef.childByAppendingPath(userID)
+        let pairRef = myBasic.userRef.child(userID)
 		pairRef.updateChildValues(pair)
 	}
 	
 	func updateUserDataWithChildPath(key: String, value: String, userID: String, path: String) {
 		let pair = [key:value]
-		let pairRef = myBasic.userRef.childByAppendingPath(userID).childByAppendingPath(path)
+        let pairRef = myBasic.userRef.child(userID).child(path)
 		pairRef.updateChildValues(pair)
 	}
 	
@@ -56,7 +89,7 @@ class UserBackend {
 	func getUserID() -> String {
         let defaults = NSUserDefaults.standardUserDefaults()
         
-        if let data = self.myBasic.rootRef.authData {
+        if let data = FIRAuth.auth()?.currentUser {
             print("User ID retrieved via Firebase call")
             return data.uid
         }
