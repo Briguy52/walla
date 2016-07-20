@@ -15,6 +15,7 @@ import FirebaseRxSwiftExtensions
 class ConvoBackend {
     
     let myBasic = Basic()
+    let myUserBackend = UserBackend()
     var disposeBag = DisposeBag()
     
     func getConversationValue(convoID: String, key: String, completion: (result: String) -> Void) {
@@ -45,7 +46,10 @@ class ConvoBackend {
     // Copied from MessagingVC, remainder of code to use is there
     func reloadConvoModels() {
         convoModels.removeAll()
-        let myID = myBasic.rootRef.authData.uid
+        let myID = self.myUserBackend.getUserID()
+                
+        
+        
         myBasic.convoRef.rx_observe(FEventType.ChildAdded)
             .filter { snapshot in
                 // Note: can also add filters for tags, location, etc.
