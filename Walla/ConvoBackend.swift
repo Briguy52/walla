@@ -8,9 +8,6 @@
 
 import Foundation
 import Firebase
-import RxCocoa
-import RxSwift
-import FirebaseRxSwiftExtensions
 
 class ConvoBackend {
     
@@ -47,28 +44,34 @@ class ConvoBackend {
     func reloadConvoModels() {
         convoModels.removeAll()
         let myID = self.myUserBackend.getUserID()
-                
+        let ref = self.myBasic.convoRef
         
-        
-        myBasic.convoRef.rx_observe(FEventType.ChildAdded)
-            .filter { snapshot in
-                // Note: can also add filters for tags, location, etc.
-                return !(snapshot.value is NSNull)
-            }
-            .filter { snapshot in
-                return !self.contains(convoModels, snapshot: snapshot) // avoids showing duplicate Convos on initial load
-            }
-            .filter { snapshot in
-                // Only return Snapshots with authorID or userID == user's ID
-                return (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID)
-            }
-            .map {snapshot in
-                return ConvoModel(snapshot: snapshot)
-            }
-            .subscribeNext({ (convoModel: ConvoModel) -> Void in
-                convoModels.insert(convoModel, atIndex: 0);
-            })
-            .addDisposableTo(self.disposeBag)
+        ref.observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            
+            
+            let postDict = snapshot.value as! [String : AnyObject]
+            // ...
+            
+        })
+//        myBasic.convoRef.rx_observe(FEventType.ChildAdded)
+//            .filter { snapshot in
+//                // Note: can also add filters for tags, location, etc.
+//                return !(snapshot.value is NSNull)
+//            }
+//            .filter { snapshot in
+//                return !self.contains(convoModels, snapshot: snapshot) // avoids showing duplicate Convos on initial load
+//            }
+//            .filter { snapshot in
+//                // Only return Snapshots with authorID or userID == user's ID
+//                return (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID)
+//            }
+//            .map {snapshot in
+//                return ConvoModel(snapshot: snapshot)
+//            }
+//            .subscribeNext({ (convoModel: ConvoModel) -> Void in
+//                convoModels.insert(convoModel, atIndex: 0);
+//            })
+//            .addDisposableTo(self.disposeBag)
     }
     
     // Returns the other person's UserID (NOT displayName... do that later)

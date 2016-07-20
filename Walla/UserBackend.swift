@@ -52,7 +52,6 @@ class UserBackend {
             // No user is signed in.
         }
     }
-
 	
 	func updateUserData(key: String, value: AnyObject, userID: String) {
 		let pair = [key:value]

@@ -4,7 +4,9 @@ platform :ios, '8.0'
 inhibit_all_warnings!
 use_frameworks!
 target 'Walla' do
-pod 'Firebase'
+pod 'Firebase/Database'
+pod 'Firebase/Auth'
+pod 'FirebaseUI'
 pod 'JSQMessagesViewController'
 # pod 'SlackTextViewController', '>= 1.9'
 pod 'RxSwift', '>= 1.8.1'

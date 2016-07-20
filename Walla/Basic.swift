@@ -12,12 +12,12 @@ import Firebase
 class Basic {
 	// rule: keep all explicit Firebase calls here.
 	
-    var rootRef = FIRDatabase.database().reference()
+    var rootRef: FIRDatabaseReference = FIRDatabase.database().reference()
     
-	let requestRef = rootRef.child("Requests")
-	let userRef = rootRef.child("Users")
-	let convoRef = rootRef.child("Conversations")
-	let messageRef = rootRef.child("Messages")
+    let requestRef: FIRDatabaseReference = rootRef.child("Requests")
+    let userRef: FIRDatabaseReference = rootRef.child("Users")
+    let convoRef: FIRDatabaseReference = rootRef.child("Conversations")
+    let messageRef: FIRDatabaseReference = rootRef.child("Messages")
     
     func getTimestamp() -> Double {
         return NSDate().timeIntervalSince1970 
