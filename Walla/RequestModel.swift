@@ -26,7 +26,7 @@ struct RequestModel {
 	var timestamp: Double // time the Request was created
 	var expirationDate: Double // time the Request becomes invalidated (calculated OUTSIDE of this Model)
 	
-	init(snapshot: FDataSnapshot){ // Note: you can print any of these values for debugging purposes
+	init(snapshot: FIRDataSnapshot){ // Note: you can print any of these values for debugging purposes
 		postID = snapshot.key
 		request = snapshot.value["request"] as! String
 		additionalDetails = snapshot.value["additionalDetails"] as! String
