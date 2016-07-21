@@ -9,6 +9,7 @@
 import UIKit
 import Lock
 import AFNetworking
+import Firebase 
 
 class ProfileViewController: UIViewController {
 	
@@ -27,7 +28,7 @@ class ProfileViewController: UIViewController {
 		let profile:A0UserProfile = NSKeyedUnarchiver.unarchiveObjectWithData(profileData) as! A0UserProfile
 		self.profileImage.setImageWithURL(profile.picture)
 		self.welcomeLabel.text = "Welcome \(profile.name)!"
-		if let data = myBasic.rootRef.authData {
+		if let data = FIRAuth.auth()?.currentUser {
             
             myUserBackend.updateUserData("displayName", value: profile.nickname, userID: data.uid)
             myUserBackend.updateUserData("name", value: profile.name, userID: data.uid)

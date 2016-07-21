@@ -117,10 +117,8 @@ class UserBackend {
         ref.queryOrderedByChild(key)
             .observeEventType(.ChildAdded, withBlock: { snapshot in
                 if snapshot.key == userID {
-                    if let snapshot = snapshot {
-                        if let out = snapshot.value[param]!! as? AnyObject {
-                            completion(result: out)
-                        }
+                    if let out = snapshot.value![param]!! as? AnyObject {
+                        completion(result: out)
                     }
                 }
             })
@@ -129,7 +127,7 @@ class UserBackend {
     func reloadSenderDict() {
         let ref = self.myBasic.userRef
         ref.observeEventType(.ChildAdded, withBlock: { snapshot in
-            senderDict[snapshot.key] = snapshot.value["displayName"] as? String            
+            senderDict[snapshot.key] = snapshot.value!["displayName"] as? String            
             })
     }
     

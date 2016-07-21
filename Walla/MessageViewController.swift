@@ -137,8 +137,8 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
         let messagesQuery = messageRef.queryLimitedToLast(25)
         messagesQuery.observeEventType(.ChildAdded) { (snapshot: FIRDataSnapshot!) in
             
-            let id = snapshot.value["sender"] as! String
-            let text = snapshot.value["text"] as! String
+            let id = snapshot.value!["sender"] as! String
+            let text = snapshot.value!["text"] as! String
             
             self.addMessage(id, text: text)
             self.finishReceivingMessage()

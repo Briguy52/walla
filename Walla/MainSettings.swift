@@ -26,10 +26,10 @@ class MainSettings: UIViewController{
 		self.myUserBackend.updateNotificationSetting("newRequestNotification", value: self.newRequestToggle.on, userID: self.myUserBackend.getUserID())
 	}
 	@IBAction func messagePressed(sender: AnyObject) {
-		self.myUserBackend.updateNotificationSetting("messageNotification", value: self.messageToggle.on, userID: myBasic.self.myUserBackend.getUserID())
+		self.myUserBackend.updateNotificationSetting("messageNotification", value: self.messageToggle.on, userID: self.myUserBackend.getUserID())
 	}
 	@IBAction func helpMeResponsePressed(sender: AnyObject) {
-		self.myUserBackend.updateNotificationSetting("helpMeResponseNotification", value: self.helpMeResponseToggle.on, self.myUserBackend.getUserID())
+		self.myUserBackend.updateNotificationSetting("helpMeResponseNotification", value: self.helpMeResponseToggle.on, userID: self.myUserBackend.getUserID())
 	}
 	
 	@IBAction func phoneNumberSavePressed(sender: AnyObject) {

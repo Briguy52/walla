@@ -28,17 +28,17 @@ struct RequestModel {
 	
 	init(snapshot: FIRDataSnapshot){ // Note: you can print any of these values for debugging purposes
 		postID = snapshot.key
-		request = snapshot.value["request"] as! String
-		additionalDetails = snapshot.value["additionalDetails"] as! String
-		authorID = snapshot.value["authorID"] as! String
-		latitude = snapshot.value["latitude"] as! Double
-		longitude = snapshot.value["longitude"] as! Double
-		location = snapshot.value["location"] as! String
-        resolved = snapshot.value["resolved"] as! Bool
-        visible = snapshot.value["visible"] as! Bool
-		tags = snapshot.value["tags"] as! [String]
-		timestamp =  snapshot.value["timestamp"] as! Double
-		expirationDate = snapshot.value["expirationDate"] as! Double
+		request = snapshot.value!["request"] as! String
+		additionalDetails = snapshot.value!["additionalDetails"] as! String
+		authorID = snapshot.value!["authorID"] as! String
+		latitude = snapshot.value!["latitude"] as! Double
+		longitude = snapshot.value!["longitude"] as! Double
+		location = snapshot.value!["location"] as! String
+        resolved = snapshot.value!["resolved"] as! Bool
+        visible = snapshot.value!["visible"] as! Bool
+		tags = snapshot.value!["tags"] as! [String]
+		timestamp =  snapshot.value!["timestamp"] as! Double
+		expirationDate = snapshot.value!["expirationDate"] as! Double
 	}
 	
     init(request: String, additionalDetails: String, authorID: String, latitude: Double, longitude: Double, location: String, resolved: Bool, visible: Bool, tags: [String], expirationDate: Double) {

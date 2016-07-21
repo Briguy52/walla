@@ -259,7 +259,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		let newPostRef = myBasic.requestRef.child(afterHash) // generate a unique ID for this post
 		let postId = newPostRef.key
 		newPostRef.setValue(newPost, withCompletionBlock: {
-			(error:NSError?, ref:Firebase!) in
+			(error:NSError?, ref:FIRDatabaseReference!) in
 			if (error != nil) {
 				print("Post data could not be saved.")
 			} else {

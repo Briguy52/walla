@@ -39,8 +39,8 @@ class MyTopics: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     
         refToTry.observeEventType(.Value, withBlock: { snapshot in
             // Confirm that User has preset tags
-            if snapshot.value.objectForKey("tags") != nil {
-                self.initTags(snapshot.value.objectForKey("tags") as! [String])
+            if snapshot.value!.objectForKey("tags") != nil {
+                self.initTags(snapshot.value!.objectForKey("tags") as! [String])
             }
         })
     }

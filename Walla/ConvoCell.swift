@@ -21,7 +21,7 @@ class ConvoCell: UITableViewCell {
 	var convoModel: ConvoModel! {
 		didSet {
             
-            let userID = self.myBasic.rootRef.authData.uid
+            let userID = self.myUserBackend.getUserID()
             let otherID = self.myConvoBackend.printNotMe(convoModel, userID: userID)
             
             self.nameLabel.text = self.myUserBackend.getSenderName(otherID)

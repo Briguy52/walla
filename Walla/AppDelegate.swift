@@ -14,11 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
+    override init() {
+        super.init()
+        FIRApp.configure()
+        // not really needed unless you really need it FIRDatabase.database().persistenceEnabled = true
+    }
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Use Firebase library to configure APIs
-        FIRApp.configure()
-        
         return true
 	}
 

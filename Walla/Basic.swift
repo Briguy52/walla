@@ -14,10 +14,10 @@ class Basic {
 	
     var rootRef: FIRDatabaseReference = FIRDatabase.database().reference()
     
-    let requestRef: FIRDatabaseReference = rootRef.child("Requests")
-    let userRef: FIRDatabaseReference = rootRef.child("Users")
-    let convoRef: FIRDatabaseReference = rootRef.child("Conversations")
-    let messageRef: FIRDatabaseReference = rootRef.child("Messages")
+    let requestRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Requests")
+    let userRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Users")
+    let convoRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Conversations")
+    let messageRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Messages")
     
     func getTimestamp() -> Double {
         return NSDate().timeIntervalSince1970 

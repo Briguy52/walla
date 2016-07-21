@@ -132,31 +132,31 @@ class AuthViewController: UIViewController {
         print("Safe to show profile?")
         print(self.hasUserAuthenticated())
         if (self.hasUserAuthenticated()) {
-            globalUid = self.myBasic.rootRef.authData.uid
+            globalUid = self.myUserBackend.getUserID()
             performSegueWithIdentifier("showProfile", sender: self)
         }
     }
 	
     func hasUserAuthenticated() -> Bool {
-        safeToLoadID = (self.myBasic.rootRef.authData != nil)
-        return self.myBasic.rootRef.authData != nil
+        safeToLoadID = (FIRAuth.auth()?.currentUser != nil)
+        return safeToLoadID
     }
 	
 	// Source: https://www.firebase.com/docs/web/guide/login/custom.html (Authenticating Clients section)
 	// Note: call this method from auth0Delegation
 	func authWithFirebaseToken(firebaseToken: String) {
 		let ref = myBasic.rootRef
-		ref.authWithCustomToken(firebaseToken, withCompletionBlock: { error, authData in
-			if error != nil {
-				print("Login failed! \(error)")
-			} else {
-				print("Auth with Firebase Token")
-				self.myUserBackend.updateUserData("provider", value: authData.provider, userID: authData.uid)
-                self.myUserBackend.saveUidLocally(authData.uid)
-                globalUid = authData.uid
-                self.performSafeShowProfile()
-			}
-		})
+//		ref.authWithCustomToken(firebaseToken, withCompletionBlock: { error, authData in
+//			if error != nil {
+//				print("Login failed! \(error)")
+//			} else {
+//				print("Auth with Firebase Token")
+//				self.myUserBackend.updateUserData("provider", value: authData.provider, userID: authData.uid)
+//                self.myUserBackend.saveUidLocally(authData.uid)
+//                globalUid = authData.uid
+//                self.performSafeShowProfile()
+//			}
+//		})
 	}
     
 }

@@ -153,7 +153,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //			cell.setAuthorName(result as! String)
 //		}
         
-        cell.setAuthorName(senderDict[key]!)
+        cell.setAuthorName(self.myUserBackend.getSenderName(key))
         
         self.myUserBackend.getUserInfo("profilePicUrl", userID: key)
         {
