@@ -125,7 +125,7 @@ class ConvoViewController: UIViewController, UITableViewDelegate, UITableViewDat
         ref.observeEventType(.ChildAdded, withBlock: { (snapshot) in
             
             // Check 1) Non-null 2) Not a duplicate and 3) Relevant to User
-            if (!(snapshot.value is NSNull) && !self.contains(convoModels, snapshot:snapshot) && (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID) ) {
+            if (!(snapshot.value is NSNull) && !self.myConvoBackend.contains(convoModels, snapshot:snapshot) && (self.myConvoBackend.checkSnapIncludesUid(snapshot, uid: myID)) ) {
                 convoModels.insert(ConvoModel(snapshot:snapshot), atIndex:0)
                 self.tableView.reloadData()
             }

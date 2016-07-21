@@ -13,28 +13,23 @@ class ConvoBackend {
     
     let myBasic = Basic()
     let myUserBackend = UserBackend()
-    var disposeBag = DisposeBag()
     
     func getConversationValue(convoID: String, key: String, completion: (result: String) -> Void) {
         
         self.myBasic.convoRef.queryOrderedByChild(convoID)
             .observeEventType(.ChildAdded, withBlock: { snapshot in
                 if snapshot.key == convoID {
-                    if let snapshot = snapshot {
-                        if let out = snapshot.value[key] as? String {
-                            completion(result: out)
-                        }
+                    if let out = snapshot.value![key] as? String {
+                        completion(result: out)
                     }
                 }
             })
     }
     
-    func contains(models: [ConvoModel], snapshot: FDataSnapshot) -> Bool {
-        if let snapID = snapshot.key {
-            for model in models {
-                if model.convoID == snapID {
-                    return true
-                }
+    func contains(models: [ConvoModel], snapshot: FIRDataSnapshot) -> Bool {
+        for model in models {
+            if model.convoID == snapshot.key {
+                return true
             }
         }
         return false
@@ -49,14 +44,23 @@ class ConvoBackend {
         ref.observeEventType(.ChildAdded, withBlock: { (snapshot) in
             
             // Check 1) Non-null 2) Not a duplicate and 3) Relevant to User
-            if (!(snapshot.value is NSNull) && !self.contains(convoModels, snapshot:snapshot) && (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID) ) {
+            if (!(snapshot.value is NSNull) && !self.contains(convoModels, snapshot:snapshot) && self.checkSnapIncludesUid(snapshot, uid: myID) ) {
                 convoModels.insert(ConvoModel(snapshot:snapshot), atIndex:0)
             }
             
         })
     }
-
     
+    // true = valid, false = not valid
+    func checkSnapIncludesUid(snap: FIRDataSnapshot, uid: String) -> Bool {
+        if let authorID = snap.value?.objectForKey("authorID") as? String {
+            if let userID = snap.value?.objectForKey("userID") as? String {
+                return authorID == uid || userID == uid
+            }
+        }
+        return false
+    }
+ 
     // Returns the other person's UserID (NOT displayName... do that later)
     func printNotMe(model: ConvoModel, userID: String) -> String {
         let idOne: String = model.authorID

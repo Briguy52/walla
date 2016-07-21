@@ -10,9 +10,6 @@ import UIKit
 import CoreLocation
 import Foundation
 import Firebase
-import RxCocoa
-import RxSwift
-import FirebaseRxSwiftExtensions
 
 var masterView: HomeViewController?
 var detailView: ViewDetails?
@@ -33,18 +30,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	let myRequestBackend = RequestBackend()
     let myConvoBackend = ConvoBackend()
 	var isInitialLoad = true
-	var disposeBag = DisposeBag()
 	var authorName = ""
     var latitude: Double = 36.0014
     var longitude: Double = 78.9382
 	var postsAreExpired: Bool = false
-	
-	// TODO: stores these tags in the Users ref
-	//var tagsToFilter: [String] = ["All"]
-	
-	//	var usernames: [String] = ["user1", "user2", "user3", "user4"]
-	//	var messages: [String] = ["m1", "m2", "m3", "m4"]
-	//	var topics: [String] = ["t1", "t2", "t3"]
 	
 	override func viewDidLoad()
 	{
@@ -109,65 +98,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	{
 	}
 	
-//	func checkForMyTags() {
-//		let refToTry = self.myBasic.userRef.childByAppendingPath(self.myUserBackend.getUserID())
-//		
-//		refToTry.observeEventType(.Value, withBlock: { snapshot in
-//			// Confirm that User has preset tags
-//			if snapshot.value.objectForKey("tags") == nil {
-//				userNeedsTags = true
-//				self.performSegueWithIdentifier("unwindToTopicsFromHome", sender: self)
-//			}
-//		})
-//	}
-	
 	// Copied from MessagingVC, remainder of code to use is there
 	func observeWithStreams() {
 		requestModels.removeAll()
-		
-		self.myBasic.requestRef.rx_observe(FEventType.ChildAdded)
-			.filter { snapshot in
-				return !(snapshot.value is NSNull) // hide Null requests
-			}
-			.filter { snapshot in
-				if let exp = snapshot.value.objectForKey("expirationDate")?.doubleValue { // hide expired Requests
-					return exp >= self.myBasic.getTimestamp()
-				}
-				return false
-			}
-            .filter { snapshot in
-                
-                if tagsToFilter.contains("All") || tagsToFilter.contains("Time") {
-                    return true
-                }
-                
-                var ret = true
-                if let tags = snapshot.value.objectForKey("tags") as? [String] {
-                    for tag in tagsToFilter {
-                        if (!tags.contains(tag)) {
-                            ret = false
-                        }
-                    }
-                }
-                return ret
+        let ref = self.myBasic.requestRef
+        ref.observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            
+            // Check 1) Non-null
+            if (!(snapshot.value is NSNull) && self.myRequestBackend.checkSnapExpired(snapshot) && self.myRequestBackend.contains(requestModels, snapshot: snapshot) && self.myRequestBackend.checkTags(snapshot, tags: tagsToFilter)) {
+                requestModels.insert(RequestModel(snapshot:snapshot), atIndex:0)
+                self.tableView.reloadData()
             }
-			.filter { snapshot in
-				return !self.myRequestBackend.contains(requestModels, snapshot: snapshot) // avoids showing duplicate Requests on initial load
-			}
-			.map { snapshot in
-				return RequestModel(snapshot: snapshot)
-			}
-			.subscribeNext({ (requestModel: RequestModel) -> Void in
-				requestModels.insert(requestModel, atIndex: 0);
-			})
-			.addDisposableTo(self.disposeBag)
-		
-		self.myBasic.requestRef.rx_observe(FEventType.Value)
-			.subscribeNext({ (snapshot: FDataSnapshot) -> Void in
-				self.tableView.reloadData()
-				self.isInitialLoad = false;
-			})
-			.addDisposableTo(self.disposeBag)
+        })
 	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
