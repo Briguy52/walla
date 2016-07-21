@@ -104,7 +104,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let ref = self.myBasic.requestRef
         ref.observeEventType(.ChildAdded, withBlock: { (snapshot) in
             
-            // Check 1) Non-null
+            // Check 1) Non-null, 2) Not expired 3) Not duplicate and 4) Filter tags
             if (!(snapshot.value is NSNull) && self.myRequestBackend.checkSnapExpired(snapshot) && self.myRequestBackend.contains(requestModels, snapshot: snapshot) && self.myRequestBackend.checkTags(snapshot, tags: tagsToFilter)) {
                 requestModels.insert(RequestModel(snapshot:snapshot), atIndex:0)
                 self.tableView.reloadData()
@@ -146,24 +146,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		let requestModel = requestModels[indexPath.row]
 		
 		let key = requestModel.authorID
-		self.myUserBackend.getUserInfo("displayName", userID: key)
-		{
-			(result: AnyObject) in
-			cell.setAuthorName(result as! String)
-		}
+        
+//		self.myUserBackend.getUserInfo("displayName", userID: key)
+//		{
+//			(result: AnyObject) in
+//			cell.setAuthorName(result as! String)
+//		}
+        
+        cell.setAuthorName(senderDict[key]!)
         
         self.myUserBackend.getUserInfo("profilePicUrl", userID: key)
         {
             (result: AnyObject) in
             cell.setCellImage(NSURL(string: result as! String)!)
         }
-
-		
-		/*self.myUserBackend.getUserInfo("ProfilePicUrl", userID: self.myUserBackend.getUserID())
-		{
-			(result: AnyObject) in
-			cell.setProfileImage(result as! String)
-		}*/
 		
 		cell.userName?.text = requestModel.authorID
 		cell.message?.text = requestModel.request
