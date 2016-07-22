@@ -52,35 +52,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //		self.checkForMyTags()
 	}
     
-    // Temporary method with all the hardcoded auth calls
-    func hardCodedLogin() {
-        let tempEmail = "womp@womp.com"
-        let tempPass = "womp"
-        self.myUserBackend.nativeLogin(tempEmail, password: tempPass)
-        safeToLoadID = true
-        myUserBackend.updateUserData("karma", value: 0, userID: "womp")
-        if let data = FIRAuth.auth()?.currentUser {
-            var displayName = "womp"
-            var name = "womp"
-            var profilePicUrl = "http://media.npr.org/assets/img/2016/03/29/ap_090911089838_sq-3271237f28995f6530d9634ff27228cae88e3440-s900-c85.jpg"
-            
-            myUserBackend.updateUserData("displayName", value: displayName, userID: data.uid)
-            myUserBackend.updateUserData("name", value: name, userID: data.uid)
-            myUserBackend.updateUserData("profilePicUrl", value: profilePicUrl, userID: data.uid)
-            myUserBackend.updateUserData("phoneNumber", value: "12345678", userID: data.uid)
-            myUserBackend.updateUserData("latitude", value: 36.0014, userID: data.uid)
-            myUserBackend.updateUserData("longitude", value: 78.9382, userID: data.uid)
-            myUserBackend.updateUserData("karma", value: 0, userID: data.uid)
-            
-            myUserBackend.updateNotificationSetting("pushNotifications", value: true, userID: data.uid)
-            myUserBackend.updateNotificationSetting("messageNotification", value: true, userID: data.uid)
-            myUserBackend.updateNotificationSetting("helpMeResponseNotifcation", value: true, userID: data.uid)
-            myUserBackend.updateNotificationSetting("newRequestNotification", value: true, userID: data.uid)
-            myUserBackend.updateNotificationSetting("requestResolvedNotification", value: true, userID: data.uid)
-        }
-        
-    }
-    
     func reloadData() {
         if (safeToLoadID) {
             self.myConvoBackend.reloadConvoModels()
@@ -97,9 +68,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		
-        self.hardCodedLogin()
-        
+            
 		let backgroundImage = UIImage(named: "background")
 		let imageView = UIImageView(image: backgroundImage)
 		self.tableView?.backgroundView = imageView

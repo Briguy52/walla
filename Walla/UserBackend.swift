@@ -53,11 +53,20 @@ class UserBackend {
         }
     }
     
+    func nativeCreateUser(email: String, password: String) {
+        FIRAuth.auth()?.createUserWithEmail(email, password: password) { (user, error) in
+            if (error != nil) {
+                print("womp successfully created user ")
+                print(user)
+            }
+        }
+    }
+    
     func nativeLogin(email: String, password: String) {
         FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
             if (error != nil) {
                 print("womp successfully logged in user ")
-                print(user?.email)
+                print(user)
             }
         }
     }

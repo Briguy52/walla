@@ -17,7 +17,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     override init() {
         super.init()
         FIRApp.configure()
+        FIRAuth.auth()?.createUserWithEmail("womp@womp.com", password: "wompwomp") { (user, error) in
+            print(user)
+            print(error)
+        }
         // not really needed unless you really need it FIRDatabase.database().persistenceEnabled = true
+    }
+    
+    // Temporary method with all the hardcoded auth calls
+    func hardCodedLogin() {
+        let tempEmail = "womp@womp.com"
+        let tempPass = "womp"
+        let myUserBackend = UserBackend()
+//        myUserBackend.nativeCreateUser(tempEmail, password: tempPass)
+        myUserBackend.nativeLogin(tempEmail, password: tempPass)
+        safeToLoadID = true
+        myUserBackend.updateUserData("karma", value: 0, userID: "v5G0djFGreTJ2WcEwd7bEbIlZzP2")
+        if let data = FIRAuth.auth()?.currentUser {
+            var displayName = "womp"
+            var name = "womp"
+            var profilePicUrl = "http://media.npr.org/assets/img/2016/03/29/ap_090911089838_sq-3271237f28995f6530d9634ff27228cae88e3440-s900-c85.jpg"
+            
+            myUserBackend.updateUserData("displayName", value: displayName, userID: data.uid)
+            myUserBackend.updateUserData("name", value: name, userID: data.uid)
+            myUserBackend.updateUserData("profilePicUrl", value: profilePicUrl, userID: data.uid)
+            myUserBackend.updateUserData("phoneNumber", value: "12345678", userID: data.uid)
+            myUserBackend.updateUserData("latitude", value: 36.0014, userID: data.uid)
+            myUserBackend.updateUserData("longitude", value: 78.9382, userID: data.uid)
+            myUserBackend.updateUserData("karma", value: 0, userID: data.uid)
+            
+            myUserBackend.updateNotificationSetting("pushNotifications", value: true, userID: data.uid)
+            myUserBackend.updateNotificationSetting("messageNotification", value: true, userID: data.uid)
+            myUserBackend.updateNotificationSetting("helpMeResponseNotifcation", value: true, userID: data.uid)
+            myUserBackend.updateNotificationSetting("newRequestNotification", value: true, userID: data.uid)
+            myUserBackend.updateNotificationSetting("requestResolvedNotification", value: true, userID: data.uid)
+        }
+        
     }
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
