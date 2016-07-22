@@ -1,19 +1,4 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
-    - AFNetworking/NSURLSession
   - Alamofire (3.4.1)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
@@ -21,14 +6,6 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - CocoaLumberjack (2.3.0):
-    - CocoaLumberjack/Default (= 2.3.0)
-    - CocoaLumberjack/Extensions (= 2.3.0)
-  - CocoaLumberjack/Core (2.3.0)
-  - CocoaLumberjack/Default (2.3.0):
-    - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.3.0):
-    - CocoaLumberjack/Default
   - DropDown (1.0.1)
   - FBSDKCoreKit (4.14.0):
     - Bolts (~> 1.7)
@@ -98,59 +75,24 @@ PODS:
   - JSQMessagesViewController (7.3.3):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - JWTDecode (1.0.0)
-  - Lock (1.26.1):
-    - CocoaLumberjack (~> 2.0)
-    - Lock/Core (= 1.26.1)
-    - Lock/UI (= 1.26.1)
-    - Lock/WebView (= 1.26.1)
-  - Lock-Facebook (2.2.1):
-    - CocoaLumberjack (~> 2.0)
-    - FBSDKCoreKit (~> 4.6)
-    - FBSDKLoginKit (~> 4.6)
-    - Lock/Core (~> 1.11)
-  - Lock/Core (1.26.1):
-    - AFNetworking (~> 3.0)
-    - CocoaLumberjack (~> 2.0)
-  - Lock/CoreUI (1.26.1):
-    - CocoaLumberjack (~> 2.0)
-    - Lock/Core
-    - Masonry (~> 0.6)
-  - Lock/UI (1.26.1):
-    - CocoaLumberjack (~> 2.0)
-    - Lock/CoreUI
-  - Lock/WebView (1.26.1):
-    - CocoaLumberjack (~> 2.0)
-    - Lock/CoreUI
-  - Masonry (0.6.4)
   - MBProgressHUD (0.9.2)
-  - RxCocoa (2.6.0):
-    - RxSwift (~> 2.5)
-  - RxSwift (2.6.0)
-  - SimpleKeychain (0.7.0)
   - SnapKit (0.21.1)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
   - DropDown
+  - FBSDKLoginKit
   - Firebase/Auth
   - Firebase/Database
   - FirebaseUI
+  - GoogleSignIn
   - JSQMessagesViewController
-  - JWTDecode (~> 1.0)
-  - Lock (~> 1.22)
-  - Lock-Facebook (~> 2.2)
   - MBProgressHUD (~> 0.9)
-  - RxCocoa (>= 1.8.1)
-  - RxSwift (>= 1.8.1)
-  - SimpleKeychain (~> 0.3)
   - SnapKit
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   DropDown: 335df9e9547e97a861a60aed8448821e239d3513
   FBSDKCoreKit: 6e020b5db0b5bd1e01f5fb0902131befd129a502
   FBSDKLoginKit: da563567a108050ef83739c8c8c001ee9e25fa13
@@ -170,16 +112,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   JSQMessagesViewController: 0ee3f80237268192a3e8337fd0d787f1a1bf5a7a
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  JWTDecode: d172edcb1607cc15aed85d58eceedcbb675a4534
-  Lock: d981a23c9ea7d2a77d7637ea83826b751df4e2f2
-  Lock-Facebook: 09f2397cbc9ae2e1fc654f7e66248da30343e349
-  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  RxCocoa: 89ab00d5753502520227940e3a0e0a0413683c6b
-  RxSwift: 77f3a0b15324baa7a1c9bfa9f199648a82424e26
-  SimpleKeychain: b50cef3b87939d480ea1143425c00f5b4b70fe21
   SnapKit: bbad04cb016c7cead63965f16b00c09318d271ee
 
-PODFILE CHECKSUM: 9617ff0f0311610432542dca07f686795892885a
+PODFILE CHECKSUM: fe8021d329a09c44afd0d0f6ab8cdf5e079ae1f5
 
 COCOAPODS: 1.0.1

@@ -45,10 +45,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		tableView.dataSource = self
 		masterView = self
         
+        self.hardCodedLogin()
         self.reloadData()
 		
 //		self.checkForMyTags()
 	}
+    
+    // Temporary method with all the hardcoded auth calls
+    func hardCodedLogin() {
+        let tempEmail = "womp@womp.com"
+        let tempPass = "womp"
+        self.myUserBackend.nativeLogin(tempEmail, password: tempPass)
+    }
     
     func reloadData() {
         if (safeToLoadID) {

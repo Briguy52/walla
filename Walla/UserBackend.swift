@@ -52,6 +52,15 @@ class UserBackend {
             // No user is signed in.
         }
     }
+    
+    func nativeLogin(email: String, password: String) {
+        FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
+            if (error != nil) {
+                print("womp successfully logged in user ")
+                print(user) 
+            }
+        }
+    }
 	
 	func updateUserData(key: String, value: AnyObject, userID: String) {
 		let pair = [key:value]

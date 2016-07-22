@@ -4,22 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AFNetworking.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Bolts.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>CocoaLumberjack.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -49,52 +39,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>JWTDecode.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Lock-Auth0.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Lock-Facebook.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Lock.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Masonry.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Walla.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>RxCocoa.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>RxSwift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SimpleKeychain.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -112,37 +62,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0F7C651A331420FD63FC1566F790CC7B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>12C71A8491B595A4CF3992124DB31C8C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1C3436CEA5C3D39764C5F54374794ECB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>1ED4DFAAD25E1999D0244868457A351E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>25C4DCE9DCEA16C6D470F1BFAA90EDD7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>30ACB0ADC27BEF6D93D16AF47E705CD2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3EC04412E649D56D5ECC039B13119BA3</key>
+		<key>215C071951BFA475689960D80C6F5C81</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,27 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>5D48528596236BF217CC3FDD4D14580D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6EDC37F3FA92533C6AC3562458AA91F1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>71E5F3D462D265E715A95D5D42439E7D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7E057F39F15BAE9D27EFC5AB5C39AC31</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8A2E8FED01C8A6BC8ADFCF3C3B78368F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -183,21 +98,6 @@
 			<true/>
 		</dict>
 		<key>9F766ADB76A46AB732825D44C4BAAABF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A9E4A9E7C9168243643D7EC31DE6B03D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CFABCF590B06C0F9D4CC041CBE9421FE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D518F7D7E946E995E325FDCC245A9342</key>
 		<dict>
 			<key>primary</key>
 			<true/>
