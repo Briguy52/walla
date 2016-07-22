@@ -77,9 +77,7 @@ class ViewDetails: UIViewController {
 		{
 			timeDifference = "\(difference.hour)h" + " " + "\(difference.minute)m"
 		}
-		
-		//		print(timeDifference)
-		
+				
 		return String("posted " + timeDifference + " ago")
 	}
 	
@@ -88,7 +86,12 @@ class ViewDetails: UIViewController {
 		self.myUserBackend.getUserInfo("profilePicUrl", userID: self.myUserBackend.getUserID())
 		{
 			(result: AnyObject) in
-			self.profile.setImageWithURL(NSURL(string: result as! String)!)
+            if let url = NSURL(string: String(result)) {
+                if let data = NSData(contentsOfURL: url){
+                    self.profile.contentMode = UIViewContentMode.ScaleAspectFit
+                    self.profile.image = UIImage(data: data)
+                }
+            }
 		}
 	}
 	
@@ -96,22 +99,21 @@ class ViewDetails: UIViewController {
 		dismissViewControllerAnimated(true, completion: nil)
 	}
     
-    func buildRef() -> Firebase {
+    func buildRef() -> FIRDatabaseReference {
         let requestID = requestModels[currentIndex].postID!
         let authorID = requestModels[currentIndex].authorID
-        let userID = myBasic.rootRef.authData.uid
+        let userID = self.myUserBackend.getUserID()
         let convoHash = createConvoHash(requestID, authorID: authorID, userID: userID)
         
-        return myBasic.convoRef.childByAppendingPath(convoHash)
+        return myBasic.convoRef.child(convoHash)
     }
 	
 	@IBAction func goToMessages(sender: UIButton)
 	{
 		if requestModels[currentIndex].authorID != self.myUserBackend.getUserID() {
-//		myMessageTitle = requestModels[currentIndex].request
         let requestID = requestModels[currentIndex].postID!
         let authorID = requestModels[currentIndex].authorID
-        let userID = myBasic.rootRef.authData.uid
+        let userID = self.myUserBackend.getUserID()
         let convoHash = createConvoHash(requestID, authorID: authorID, userID: userID)
         
 		let refToTry = self.buildRef()
@@ -121,7 +123,6 @@ class ViewDetails: UIViewController {
 			if snapshot.value is NSNull {
                 refToTry.removeAllObservers()
 				self.createSingleConvoRef(requestID, authorID: authorID, userID: userID)
-                
 			}
             
             // Convo does exist
@@ -129,10 +130,9 @@ class ViewDetails: UIViewController {
                 refToTry.removeAllObservers()
 				self.convoID = convoHash
 				convoIDFromHome = self.convoID
-//				self.myConvoBackend.reloadConvoModels()
                 self.performSegueWithIdentifier("unwindToMessages", sender: self)
             }
-		})
+        })
 		}
 		else {
 			let alert = UIAlertView()
@@ -160,11 +160,11 @@ class ViewDetails: UIViewController {
 		let convoHash = createConvoHash(requestID, authorID: authorID , userID: userID)
 		
 		// Create a new Conversation with the above information
-		let newConvoRef = myBasic.convoRef.childByAppendingPath(convoHash)
+		let newConvoRef = myBasic.convoRef.child(convoHash)
 		
 		convoID = newConvoRef.key // make sure that convoID = convoHash
 		newConvoRef.setValue(newConvo, withCompletionBlock: {
-			(error:NSError?, ref:Firebase!) in
+			(error:NSError?, ref:FIRDatabaseReference!) in
 			if (error != nil) {
 				print("Conversation data could not be saved.")
 			} else {

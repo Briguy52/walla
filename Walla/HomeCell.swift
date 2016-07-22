@@ -30,7 +30,10 @@ class HomeCell: UITableViewCell {
 	}
 	
     func setCellImage(url: NSURL) {
-        self.profile.setImageWithURL(url)
+        if let data = NSData(contentsOfURL: url){
+            self.profile.contentMode = UIViewContentMode.ScaleAspectFit
+            self.profile.image = UIImage(data: data)
+        }
     }
     
 	func setCellTags(tagsToSet: [String])
@@ -46,8 +49,13 @@ class HomeCell: UITableViewCell {
 	
 	func setProfileImage(result: String)
 	{
-			self.profile.setImageWithURL(NSURL(string: result)!)
-	}
+        if let url = NSURL(string: result) {
+            if let data = NSData(contentsOfURL: url){
+                self.profile.contentMode = UIViewContentMode.ScaleAspectFit
+                self.profile.image = UIImage(data: data)
+            }
+        }
+    }
 	
 	func parseDateFromTime(time: Double) -> String {
 		let postedDate = NSDate(timeIntervalSince1970: time)

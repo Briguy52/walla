@@ -21,7 +21,7 @@ class ConvoCell: UITableViewCell {
 	var convoModel: ConvoModel! {
 		didSet {
             
-            let userID = self.myBasic.rootRef.authData.uid
+            let userID = self.myUserBackend.getUserID()
             let otherID = self.myConvoBackend.printNotMe(convoModel, userID: userID)
             
             self.nameLabel.text = self.myUserBackend.getSenderName(otherID)
@@ -34,7 +34,15 @@ class ConvoCell: UITableViewCell {
             
             myUserBackend.getUserInfo("profilePicUrl", userID: otherID) {
                 (result: AnyObject) in
-                self.profile.setImageWithURL(NSURL(string: result as! String)!)
+//                self.profile.setImageWithURL(NSURL(string: result as! String)!)
+                
+                if let url = NSURL(string: String(result)) {
+                    if let data = NSData(contentsOfURL: url){
+                        self.profile.contentMode = UIViewContentMode.ScaleAspectFit
+                        self.profile.image = UIImage(data: data)
+                    }
+
+                }
             }
             
 		}

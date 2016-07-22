@@ -8,35 +8,28 @@
 
 import Foundation
 import Firebase
-import RxCocoa
-import RxSwift
-import FirebaseRxSwiftExtensions
 
 class ConvoBackend {
     
     let myBasic = Basic()
-    var disposeBag = DisposeBag()
+    let myUserBackend = UserBackend()
     
     func getConversationValue(convoID: String, key: String, completion: (result: String) -> Void) {
         
         self.myBasic.convoRef.queryOrderedByChild(convoID)
             .observeEventType(.ChildAdded, withBlock: { snapshot in
                 if snapshot.key == convoID {
-                    if let snapshot = snapshot {
-                        if let out = snapshot.value[key] as? String {
-                            completion(result: out)
-                        }
+                    if let out = snapshot.value![key] as? String {
+                        completion(result: out)
                     }
                 }
             })
     }
     
-    func contains(models: [ConvoModel], snapshot: FDataSnapshot) -> Bool {
-        if let snapID = snapshot.key {
-            for model in models {
-                if model.convoID == snapID {
-                    return true
-                }
+    func contains(models: [ConvoModel], snapshot: FIRDataSnapshot) -> Bool {
+        for model in models {
+            if model.convoID == snapshot.key {
+                return true
             }
         }
         return false
@@ -45,28 +38,29 @@ class ConvoBackend {
     // Copied from MessagingVC, remainder of code to use is there
     func reloadConvoModels() {
         convoModels.removeAll()
-        let myID = myBasic.rootRef.authData.uid
-        myBasic.convoRef.rx_observe(FEventType.ChildAdded)
-            .filter { snapshot in
-                // Note: can also add filters for tags, location, etc.
-                return !(snapshot.value is NSNull)
+        let myID = self.myUserBackend.getUserID()
+        let ref = self.myBasic.convoRef
+        
+        ref.observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            
+            // Check 1) Non-null 2) Not a duplicate and 3) Relevant to User
+            if (!(snapshot.value is NSNull) && !self.contains(convoModels, snapshot:snapshot) && self.checkSnapIncludesUid(snapshot, uid: myID) ) {
+                convoModels.insert(ConvoModel(snapshot:snapshot), atIndex:0)
             }
-            .filter { snapshot in
-                return !self.contains(convoModels, snapshot: snapshot) // avoids showing duplicate Convos on initial load
-            }
-            .filter { snapshot in
-                // Only return Snapshots with authorID or userID == user's ID
-                return (snapshot.value.objectForKey("authorID") as? String == myID || snapshot.value.objectForKey("userID") as? String == myID)
-            }
-            .map {snapshot in
-                return ConvoModel(snapshot: snapshot)
-            }
-            .subscribeNext({ (convoModel: ConvoModel) -> Void in
-                convoModels.insert(convoModel, atIndex: 0);
-            })
-            .addDisposableTo(self.disposeBag)
+            
+        })
     }
     
+    // true = valid, false = not valid
+    func checkSnapIncludesUid(snap: FIRDataSnapshot, uid: String) -> Bool {
+        if let authorID = snap.value?.objectForKey("authorID") as? String {
+            if let userID = snap.value?.objectForKey("userID") as? String {
+                return authorID == uid || userID == uid
+            }
+        }
+        return false
+    }
+ 
     // Returns the other person's UserID (NOT displayName... do that later)
     func printNotMe(model: ConvoModel, userID: String) -> String {
         let idOne: String = model.authorID

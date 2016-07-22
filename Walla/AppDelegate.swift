@@ -7,25 +7,26 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
+    override init() {
+        super.init()
+        FIRApp.configure()
+        let myUserBackend = UserBackend()
+        myUserBackend.hardCodedLogin()
+        // not really needed unless you really need it FIRDatabase.database().persistenceEnabled = true
+    }
+    
 
-	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {		
-		
-//		let lock = MyApplication.sharedInstance.lock
-//		lock.applicationLaunchedWithOptions(launchOptions)
-		
-		return true
+
+	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        return true
 	}
-	
-//	func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-//		let lock = MyApplication.sharedInstance.lock
-//		return lock.handleURL(url, sourceApplication: sourceApplication)
-//	}
 
 	func applicationWillResignActive(application: UIApplication) {
 		// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

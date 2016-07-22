@@ -15,8 +15,8 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
     var messages = [JSQMessage]()
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
     var incomingBubbleImageView: JSQMessagesBubbleImage!
-    var messageRef: Firebase!
-    var usersTypingQuery: FQuery!
+    var messageRef: FIRDatabaseReference!
+    var usersTypingQuery: 	FIRDatabaseQuery!
     var convoID: String = ""
 
 	@IBOutlet weak var backButton: UIBarButtonItem!
@@ -27,7 +27,7 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        self.messageRef = self.myBasic.messageRef.childByAppendingPath(self.convoID)
+        self.messageRef = self.myBasic.messageRef.child(self.convoID)
         
         self.setupBubbles()
         self.addCustomBackground()
@@ -135,17 +135,17 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
     
     private func observeMessages() {
         let messagesQuery = messageRef.queryLimitedToLast(25)
-        messagesQuery.observeEventType(.ChildAdded) { (snapshot: FDataSnapshot!) in
+        messagesQuery.observeEventType(.ChildAdded) { (snapshot: FIRDataSnapshot!) in
             
-            let id = snapshot.value["sender"] as! String
-            let text = snapshot.value["text"] as! String
+            let id = snapshot.value!["sender"] as! String
+            let text = snapshot.value!["text"] as! String
             
             self.addMessage(id, text: text)
             self.finishReceivingMessage()
         }
     }
     
-    var userIsTypingRef: Firebase!
+    var userIsTypingRef: FIRDatabaseReference!
     private var localTyping = false
     var isTyping: Bool {
         get {
@@ -158,13 +158,13 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
     }
     
     private func observeTyping() {
-        let typingIndicatorRef = self.myBasic.rootRef.childByAppendingPath("typingIndicator")
-        userIsTypingRef = typingIndicatorRef.childByAppendingPath(senderId)
+        let typingIndicatorRef = self.myBasic.rootRef.child("typingIndicator")
+        userIsTypingRef = typingIndicatorRef.child(senderId)
         userIsTypingRef.onDisconnectRemoveValue()
         
         usersTypingQuery = typingIndicatorRef.queryOrderedByValue().queryEqualToValue(true)
         
-        usersTypingQuery.observeEventType(.Value) { (data: FDataSnapshot!) in
+        usersTypingQuery.observeEventType(.Value) { (data: FIRDataSnapshot!) in
             
             if data.childrenCount == 1 && self.isTyping {
                 return

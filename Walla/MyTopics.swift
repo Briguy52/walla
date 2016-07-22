@@ -35,12 +35,12 @@ class MyTopics: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 	}
     
     func checkForTags() {
-        let refToTry = self.myBasic.userRef.childByAppendingPath(self.myUserBackend.getUserID())
+        let refToTry = self.myBasic.userRef.child(self.myUserBackend.getUserID())
     
         refToTry.observeEventType(.Value, withBlock: { snapshot in
             // Confirm that User has preset tags
-            if snapshot.value.objectForKey("tags") != nil {
-                self.initTags(snapshot.value.objectForKey("tags") as! [String])
+            if snapshot.value!.objectForKey("tags") != nil {
+                self.initTags(snapshot.value!.objectForKey("tags") as! [String])
             }
         })
     }
@@ -127,6 +127,6 @@ class MyTopics: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 	}
     
     func updateUserTags() {
-        self.myUserBackend.updateUserData("tags", value: self.myTags, userID: self.myBasic.rootRef.authData.uid)
+        self.myUserBackend.updateUserData("tags", value: self.myTags, userID: self.myUserBackend.getUserID())
     }
 }

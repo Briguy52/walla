@@ -19,12 +19,12 @@ struct ConvoModel {
 	var userID: String
 	var timestamp: Double
 	
-	init(snapshot: FDataSnapshot){ // Note: you can print any of these values for debugging purposes
+	init(snapshot: FIRDataSnapshot){ // Note: you can print any of these values for debugging purposes
 		convoID = snapshot.key
-		uniqueID = snapshot.value["uniqueID"] as! String
-		authorID = snapshot.value["authorID"] as! String
-		userID = snapshot.value["userID"] as! String
-		timestamp =  snapshot.value["timestamp"] as! Double
+		uniqueID = snapshot.value!["uniqueID"] as! String
+		authorID = snapshot.value!["authorID"] as! String
+		userID = snapshot.value!["userID"] as! String
+		timestamp =  snapshot.value!["timestamp"] as! Double
 	}
 	
 	init(convoID: String, uniqueID: String, authorID: String, userID: String) {
