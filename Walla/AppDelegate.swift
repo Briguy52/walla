@@ -17,17 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     override init() {
         super.init()
         FIRApp.configure()
-        FIRAuth.auth()?.createUserWithEmail("womp@womp.com", password: "wompwomp") { (user, error) in
-            print(user)
-            print(error)
-        }
+        self.hardCodedLogin()
         // not really needed unless you really need it FIRDatabase.database().persistenceEnabled = true
     }
     
     // Temporary method with all the hardcoded auth calls
     func hardCodedLogin() {
         let tempEmail = "womp@womp.com"
-        let tempPass = "womp"
+        let tempPass = "wompwomp"
         let myUserBackend = UserBackend()
 //        myUserBackend.nativeCreateUser(tempEmail, password: tempPass)
         myUserBackend.nativeLogin(tempEmail, password: tempPass)
