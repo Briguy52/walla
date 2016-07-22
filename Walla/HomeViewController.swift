@@ -102,15 +102,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	
 	// Copied from MessagingVC, remainder of code to use is there
 	func observeWithStreams() {
-		requestModels.removeAll()
+        requestModels.removeAll()
         let ref = self.myBasic.requestRef
         ref.observeEventType(.ChildAdded, withBlock: { (snapshot) in
-            
-            // Check 1) Non-null, 2) Not expired 3) Not duplicate and 4) Filter tags
-            if (!(snapshot.value is NSNull) && self.myRequestBackend.checkSnapExpired(snapshot) && self.myRequestBackend.contains(requestModels, snapshot: snapshot) && self.myRequestBackend.checkTags(snapshot, tags: tagsToFilter)) {
+            if (!(snapshot.value is NSNull)) {
+                print(snapshot)
                 requestModels.insert(RequestModel(snapshot:snapshot), atIndex:0)
                 self.tableView.reloadData()
             }
+//            // Check 1) Non-null, 2) Not expired 3) Not duplicate and 4) Filter tags
+//            if (!(snapshot.value is NSNull) && self.myRequestBackend.checkSnapExpired(snapshot) && self.myRequestBackend.contains(requestModels, snapshot: snapshot) && self.myRequestBackend.checkTags(snapshot, tags: tagsToFilter)) {
+//                requestModels.insert(RequestModel(snapshot:snapshot), atIndex:0)
+//                self.tableView.reloadData()
+//            }
         })
 	}
 	
