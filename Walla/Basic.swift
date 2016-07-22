@@ -27,6 +27,7 @@ class Basic {
         FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
             if let user = user {
                 print("womp user is signed in!")
+                print(user) 
             } else {
                 print("womp no user signed in :/")
             }

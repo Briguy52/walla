@@ -25,9 +25,6 @@
 		2244885A1D1FE3E400C98916 /* MainSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224488591D1FE3E400C98916 /* MainSettings.swift */; };
 		225B64811D250518007D7268 /* MyTopics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225B64801D250518007D7268 /* MyTopics.swift */; };
 		226527271D1F1422004B89D2 /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226527261D1F1422004B89D2 /* RequestModel.swift */; };
-		2265272A1D1F14AC004B89D2 /* MyApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226527291D1F14AC004B89D2 /* MyApplication.swift */; };
-		2265272C1D1F14EA004B89D2 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265272B1D1F14EA004B89D2 /* AuthViewController.swift */; };
-		2265272E1D1F153B004B89D2 /* ProflieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265272D1D1F153B004B89D2 /* ProflieViewController.swift */; };
 		226527301D1F1572004B89D2 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265272F1D1F1572004B89D2 /* MessageViewController.swift */; };
 		226527391D1F179C004B89D2 /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226527381D1F179C004B89D2 /* Basic.swift */; };
 		2265273B1D1F17DD004B89D2 /* UserBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265273A1D1F17DD004B89D2 /* UserBackend.swift */; };
@@ -62,9 +59,6 @@
 		224488591D1FE3E400C98916 /* MainSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSettings.swift; sourceTree = "<group>"; };
 		225B64801D250518007D7268 /* MyTopics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTopics.swift; sourceTree = "<group>"; };
 		226527261D1F1422004B89D2 /* RequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
-		226527291D1F14AC004B89D2 /* MyApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyApplication.swift; sourceTree = "<group>"; };
-		2265272B1D1F14EA004B89D2 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		2265272D1D1F153B004B89D2 /* ProflieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProflieViewController.swift; sourceTree = "<group>"; };
 		2265272F1D1F1572004B89D2 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		226527381D1F179C004B89D2 /* Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Basic.swift; sourceTree = "<group>"; };
 		2265273A1D1F17DD004B89D2 /* UserBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBackend.swift; sourceTree = "<group>"; };
@@ -144,9 +138,6 @@
 		226527281D1F1471004B89D2 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				226527291D1F14AC004B89D2 /* MyApplication.swift */,
-				2265272B1D1F14EA004B89D2 /* AuthViewController.swift */,
-				2265272D1D1F153B004B89D2 /* ProflieViewController.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -369,7 +360,6 @@
 				222D530D1D1D233B00ABB2DD /* Interactor.swift in Sources */,
 				22C8893F1D1C536F009DE688 /* AppDelegate.swift in Sources */,
 				222D53231D1D53CD00ABB2DD /* MainTabBarController.swift in Sources */,
-				2265272A1D1F14AC004B89D2 /* MyApplication.swift in Sources */,
 				222D530B1D1D226F00ABB2DD /* MenuViewController.swift in Sources */,
 				2265273B1D1F17DD004B89D2 /* UserBackend.swift in Sources */,
 				222D53091D1D094C00ABB2DD /* ViewDetails.swift in Sources */,
@@ -377,7 +367,6 @@
 				226527271D1F1422004B89D2 /* RequestModel.swift in Sources */,
 				2279873B1D1C5CCF00C0EC30 /* HomeCell.swift in Sources */,
 				222D53161D1D396200ABB2DD /* WriteMessage.swift in Sources */,
-				2265272E1D1F153B004B89D2 /* ProflieViewController.swift in Sources */,
 				222D53111D1D23A300ABB2DD /* PresentMenuAnimator.swift in Sources */,
 				222D531C1D1D47D000ABB2DD /* FilterTableViewController.swift in Sources */,
 				224488581D1FBB1300C98916 /* ConvoModel.swift in Sources */,
@@ -391,7 +380,6 @@
 				224488521D1F27F400C98916 /* MyProfileViewController.swift in Sources */,
 				22C889521D1C5612009DE688 /* HomeViewController.swift in Sources */,
 				226527391D1F179C004B89D2 /* Basic.swift in Sources */,
-				2265272C1D1F14EA004B89D2 /* AuthViewController.swift in Sources */,
 				AFAA6A4F1D24CF1000FE1DB1 /* ConvoBackend.swift in Sources */,
 				222D530F1D1D235D00ABB2DD /* MenuHelper.swift in Sources */,
 			);

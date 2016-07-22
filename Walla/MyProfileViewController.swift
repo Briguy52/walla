@@ -80,7 +80,12 @@ class MyProfileViewController: UIViewController {
         self.myUserBackend.getUserInfo("profilePicUrl", userID: self.myUserBackend.getUserID())
 		{
 			(result: AnyObject) in
-            self.profile.setImageWithURL(NSURL(string: result as! String)!)
+            if let url = NSURL(string: String(result)) {
+                if let data = NSData(contentsOfURL: url){
+                    self.profile.contentMode = UIViewContentMode.ScaleAspectFit
+                    self.profile.image = UIImage(data: data)
+                }
+            }
 		}
 	}
 	

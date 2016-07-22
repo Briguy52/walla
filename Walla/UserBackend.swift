@@ -57,7 +57,7 @@ class UserBackend {
         FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
             if (error != nil) {
                 print("womp successfully logged in user ")
-                print(user) 
+                print(user?.email)
             }
         }
     }
