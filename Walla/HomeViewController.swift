@@ -105,16 +105,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         requestModels.removeAll()
         let ref = self.myBasic.requestRef
         ref.observeEventType(.ChildAdded, withBlock: { (snapshot) in
-            if (!(snapshot.value is NSNull)) {
-                print(snapshot)
+            // Check 1) Non-null, 2) Not expired 3) Not duplicate and 4) Filter tags
+            if (!(snapshot.value is NSNull) && self.myRequestBackend.checkSnapExpired(snapshot) && !self.myRequestBackend.contains(requestModels, snapshot: snapshot) && self.myRequestBackend.checkTags(snapshot, tags: tagsToFilter)) {
                 requestModels.insert(RequestModel(snapshot:snapshot), atIndex:0)
                 self.tableView.reloadData()
             }
-//            // Check 1) Non-null, 2) Not expired 3) Not duplicate and 4) Filter tags
-//            if (!(snapshot.value is NSNull) && self.myRequestBackend.checkSnapExpired(snapshot) && self.myRequestBackend.contains(requestModels, snapshot: snapshot) && self.myRequestBackend.checkTags(snapshot, tags: tagsToFilter)) {
-//                requestModels.insert(RequestModel(snapshot:snapshot), atIndex:0)
-//                self.tableView.reloadData()
-//            }
         })
 	}
 	
@@ -153,14 +148,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		let key = requestModel.authorID
         
-//		self.myUserBackend.getUserInfo("displayName", userID: key)
-//		{
-//			(result: AnyObject) in
-//			cell.setAuthorName(result as! String)
-//		}
-        
-        cell.setAuthorName(self.myUserBackend.getSenderName(key))
-        
+		self.myUserBackend.getUserInfo("displayName", userID: key)
+		{
+			(result: AnyObject) in
+			cell.setAuthorName(result as! String)
+		}
+                
         self.myUserBackend.getUserInfo("profilePicUrl", userID: key)
         {
             (result: AnyObject) in

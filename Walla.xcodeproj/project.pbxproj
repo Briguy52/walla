@@ -135,13 +135,6 @@
 			name = Requests;
 			sourceTree = "<group>";
 		};
-		226527281D1F1471004B89D2 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Auth;
-			sourceTree = "<group>";
-		};
 		226527371D1F1773004B89D2 /* Backend */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,7 +169,6 @@
 			children = (
 				2229BEBD1D3B047100A30EDB /* GoogleService-Info.plist */,
 				226527371D1F1773004B89D2 /* Backend */,
-				226527281D1F1471004B89D2 /* Auth */,
 				226527251D1F13FF004B89D2 /* Requests */,
 				222D53211D1D4C0500ABB2DD /* Messages */,
 				222D531A1D1D464C00ABB2DD /* MyProfile */,

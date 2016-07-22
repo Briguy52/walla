@@ -26,42 +26,62 @@ class UserBackend {
 		try! FIRAuth.auth()!.signOut()
 	}
     
-    // New
-    func getUserProfileInfo() {
-        if let user = FIRAuth.auth()?.currentUser {
-            let name = user.displayName
-            let email = user.email
-            let photoUrl = user.photoURL
-            let uid = user.uid;  // The user's ID, unique to the Firebase project.
-        } else {
-            // No user is signed in.
-        }
-    }
-    
-    // New
-    func getUserProviderData() {
-        if let user = FIRAuth.auth()?.currentUser {
-            for profile in user.providerData {
-                let providerID = profile.providerID
-                let uid = profile.uid;  // Provider-specific UID
-                let name = profile.displayName
-                let email = profile.email
-                let photoURL = profile.photoURL
-            }
-        } else {
-            // No user is signed in.
-        }
+    // Temporary method with all the hardcoded auth calls
+    func hardCodedLogin() {
+        let tempEmail = "brian@womp.com"
+        let tempPass = "wompwomp"
+        
+        // Uncomment this to CREATE a new user
+//        self.nativeCreateUser(tempEmail, password: tempPass)
+        
+        // This line logs in an EXISTING user
+        self.nativeLogin(tempEmail, password: tempPass)
+        
+        safeToLoadID = true
+        
     }
     
     func nativeCreateUser(email: String, password: String) {
         FIRAuth.auth()?.createUserWithEmail(email, password: password) { (user, error) in
+            print("womp create user callback")
             print(error)
             print(user)
+            
+            if (user != nil) {
+                // Post some default user data
+                if let data = user {
+                    
+//                    var displayName = "womp"
+//                    var name = "womp"
+//                    var profilePicUrl = "https://metrouk2.files.wordpress.com/2009/12/article-1260439489005-07877bac000005dc-595563_636x932.jpg"
+                    
+                    var displayName = "brian"
+                    var name = "brian"
+                    var profilePicUrl = "http://media.npr.org/assets/img/2016/03/29/ap_090911089838_sq-3271237f28995f6530d9634ff27228cae88e3440-s900-c85.jpg"
+                    
+                    self.updateUserData("displayName", value: displayName, userID: data.uid)
+                    self.updateUserData("name", value: name, userID: data.uid)
+                    self.updateUserData("profilePicUrl", value: profilePicUrl, userID: data.uid)
+                    self.updateUserData("phoneNumber", value: "12345678", userID: data.uid)
+                    self.updateUserData("latitude", value: 36.0014, userID: data.uid)
+                    self.updateUserData("longitude", value: 78.9382, userID: data.uid)
+                    self.updateUserData("karma", value: 0, userID: data.uid)
+                    
+                    self.updateNotificationSetting("pushNotifications", value: true, userID: data.uid)
+                    self.updateNotificationSetting("messageNotification", value: true, userID: data.uid)
+                    self.updateNotificationSetting("helpMeResponseNotifcation", value: true, userID: data.uid)
+                    self.updateNotificationSetting("newRequestNotification", value: true, userID: data.uid)
+                    self.updateNotificationSetting("requestResolvedNotification", value: true, userID: data.uid)
+                }
+                
+
+            }
         }
     }
     
     func nativeLogin(email: String, password: String) {
         FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
+            print("womp login user callback")
             print(error)
             print(user) 
         }
@@ -143,6 +163,8 @@ class UserBackend {
         ref.observeEventType(.ChildAdded, withBlock: { snapshot in
             senderDict[snapshot.key] = snapshot.value!["displayName"] as? String            
             })
+        print("sender dict")
+        print(senderDict)
     }
     
     func getSenderName(sender: String) -> String {
