@@ -38,6 +38,7 @@
 		22AE09E11D4D8A1D00295364 /* ic_school.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AE09DA1D4D8A1D00295364 /* ic_school.png */; };
 		22AE09E21D4D8A1D00295364 /* ic_sports.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AE09DB1D4D8A1D00295364 /* ic_sports.png */; };
 		22AE09E41D4DB1E700295364 /* Select All-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AE09E31D4DB1E700295364 /* Select All-50.png */; };
+		22AE09E61D4E831700295364 /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE09E51D4E831700295364 /* DatePickerDialog.swift */; };
 		22C8893F1D1C536F009DE688 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C8893E1D1C536F009DE688 /* AppDelegate.swift */; };
 		22C889441D1C536F009DE688 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C889421D1C536F009DE688 /* Main.storyboard */; };
 		22C889461D1C536F009DE688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22C889451D1C536F009DE688 /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 		22AE09DA1D4D8A1D00295364 /* ic_school.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_school.png; path = "../../genie-android/app/src/main/res/drawable-xhdpi/ic_school.png"; sourceTree = "<group>"; };
 		22AE09DB1D4D8A1D00295364 /* ic_sports.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_sports.png; path = "../../genie-android/app/src/main/res/drawable-xhdpi/ic_sports.png"; sourceTree = "<group>"; };
 		22AE09E31D4DB1E700295364 /* Select All-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Select All-50.png"; path = "../../../Downloads/Select All-50.png"; sourceTree = "<group>"; };
+		22AE09E51D4E831700295364 /* DatePickerDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatePickerDialog.swift; path = "../../../Downloads/DatePickerDialog-iOS-Swift-master/Sources/DatePickerDialog.swift"; sourceTree = "<group>"; };
 		22C8893B1D1C536E009DE688 /* Walla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Walla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22C8893E1D1C536F009DE688 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22C889431D1C536F009DE688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				222D53151D1D396100ABB2DD /* WriteMessage.swift */,
+				22AE09E51D4E831700295364 /* DatePickerDialog.swift */,
 			);
 			name = Write;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				22C8893F1D1C536F009DE688 /* AppDelegate.swift in Sources */,
 				222D53231D1D53CD00ABB2DD /* MainTabBarController.swift in Sources */,
 				222D530B1D1D226F00ABB2DD /* MenuViewController.swift in Sources */,
+				22AE09E61D4E831700295364 /* DatePickerDialog.swift in Sources */,
 				2265273B1D1F17DD004B89D2 /* UserBackend.swift in Sources */,
 				222D53091D1D094C00ABB2DD /* ViewDetails.swift in Sources */,
 				22F9A4AA1D3006FD005C2903 /* FilterCell.swift in Sources */,
