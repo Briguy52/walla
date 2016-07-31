@@ -40,8 +40,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var longitude: Double = 78.9382
 	var postsAreExpired: Bool = false
 	
-	var filtersTitles = ["Food", "Artsy", "School", "Rides", "Games", "Others"]
-	var filterImages = [UIImage(named: "ic_food.png")!, UIImage(named: "ic_art.png")!, UIImage(named: "ic_school.png")!, UIImage(named: "ic_rides.png")!, UIImage(named: "ic_games.png")!, UIImage(named: "ic_other.png")!]
+	var filterTitles = ["All", "Food", "Artsy", "School", "Rides", "Games", "Others"]
+	var filterImages = [UIImage(named: "Select All-50.png")!, UIImage(named: "ic_food.png")!, UIImage(named: "ic_art.png")!, UIImage(named: "ic_school.png")!, UIImage(named: "ic_rides.png")!, UIImage(named: "ic_games.png")!, UIImage(named: "ic_other.png")!]
 	
 	override func viewDidLoad()
 	{
@@ -93,6 +93,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		imageView.contentMode = .ScaleAspectFill
 		
 		tableView?.backgroundColor = UIColor(netHex: 0xf3f3f3)
+		
+		collectionView.reloadData()
+		let indexPath = NSIndexPath(forItem: 0, inSection: 0)
+		self.collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+		self.collectionView(self.collectionView, didSelectItemAtIndexPath: indexPath)
 		
         self.observeWithStreams()
 		
@@ -188,15 +193,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		switch requestModel.tags[0] {
 			case "Food":
-				cell.topics?.backgroundColor = UIColor.init(netHex: 0xee604d)
+				cell.topics?.backgroundColor = UIColor.init(netHex: 0xe74c3c)
 			case "Artsy":
-				cell.topics?.backgroundColor = UIColor.init(netHex: 0x6fdcc6)
+				cell.topics?.backgroundColor = UIColor.init(netHex: 0xe67e22)
 			case "School":
-				cell.topics?.backgroundColor = UIColor.init(netHex: 0x3686e0)
+				cell.topics?.backgroundColor = UIColor.init(netHex: 0xf1c40f)
 			case "Rides":
-				cell.topics?.backgroundColor = UIColor.init(netHex: 0x88bb4b)
+				cell.topics?.backgroundColor = UIColor.init(netHex: 0x2ecc71)
 			case "Games":
-				cell.topics?.backgroundColor = UIColor.init(netHex: 0xffe067)
+				cell.topics?.backgroundColor = UIColor.init(netHex: 0x1abc9c)
 			default:
 				cell.topics?.backgroundColor = UIColor.lightGrayColor()
 		}
@@ -218,7 +223,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		whiteRoundedView.layer.masksToBounds = false
 		whiteRoundedView.layer.cornerRadius = 4.0
 		whiteRoundedView.layer.shadowOffset = CGSizeMake(-1, 1)
-		whiteRoundedView.layer.shadowOpacity = 0.2
+		whiteRoundedView.layer.shadowOpacity = 0.1
 		
 		cell.contentView.addSubview(whiteRoundedView)
 		cell.contentView.sendSubviewToBack(whiteRoundedView)
@@ -237,9 +242,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		self.performSegueWithIdentifier("showDetail", sender: nil)
 	}
 	
-	@IBAction func openMenu(sender: AnyObject) {
-		performSegueWithIdentifier("openMenu", sender: nil)
-	}
+//	@IBAction func openMenu(sender: AnyObject) {
+//		performSegueWithIdentifier("openMenu", sender: nil)
+//	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "showDetail" {
@@ -247,11 +252,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 				currentIndex = indexPath.row
 			}
 		}
-		if segue.identifier == "openMenu" {
-			if let destinationViewController = segue.destinationViewController as? MenuViewController {
-				destinationViewController.transitioningDelegate = self
-			}
-		}
+//		if segue.identifier == "openMenu" {
+//			if let destinationViewController = segue.destinationViewController as? MenuViewController {
+//				destinationViewController.transitioningDelegate = self
+//			}
+//		}
 	}
 	
 	// MARK: Cell View Controller things
@@ -266,10 +271,35 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionIdentifier, forIndexPath: indexPath) as! FilterCellController
 		
-		cell.filterName.text = self.filtersTitles[indexPath.row]
+		collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition.None)
+		
+		cell.filterName.text = self.filterTitles[indexPath.row]
 		cell.filterImage.image = self.filterImages[indexPath.row]
 		
 		return cell
+	}
+	
+	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+		if collectionView.cellForItemAtIndexPath(indexPath) != nil {
+			tagsToFilter.removeAll()
+			if filterTitles[indexPath.row] != "All" {
+				tagsToFilter.append(filterTitles[indexPath.row])
+				let cell = collectionView.cellForItemAtIndexPath(indexPath)
+				cell!.layer.borderWidth = 2.0
+				cell!.layer.borderColor = UIColor.grayColor().CGColor
+				print(tagsToFilter)
+			}
+			self.observeWithStreams()
+		} else {
+			// Error indexPath is not on screen: this should never happen.
+		}
+	}
+	
+	func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+		let cell = collectionView.cellForItemAtIndexPath(indexPath)
+		
+		cell!.layer.borderWidth = 0.0
+
 	}
 }
 
