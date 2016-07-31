@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import Foundation
 import Firebase
+import QuartzCore
 
 var masterView: HomeViewController?
 var detailView: ViewDetails?
@@ -19,13 +20,15 @@ var tagsToFilter: [String] = []
 
 var safeToLoadID: Bool = false
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource
 {
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var collectionView: UICollectionView!
 	@IBOutlet weak var noWallas: UILabel!
 	@IBOutlet weak var filterButton: UIBarButtonItem!
 	
 	var cellIdentifier = "ViewWallaCell"
+	var collectionIdentifier = "filterReuseCell"
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
@@ -37,6 +40,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var longitude: Double = 78.9382
 	var postsAreExpired: Bool = false
 	
+	var filtersTitles = ["Food", "Artsy", "School", "Rides", "Games", "Others"]
+	var filterImages = [UIImage(named: "ic_food.png")!, UIImage(named: "ic_art.png")!, UIImage(named: "ic_school.png")!, UIImage(named: "ic_rides.png")!, UIImage(named: "ic_games.png")!, UIImage(named: "ic_other.png")!]
+	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
@@ -45,7 +51,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		tableView.delegate = self
 		tableView.dataSource = self
+		collectionView.delegate = self
+		collectionView.dataSource = self
 		masterView = self
+		
+		tableView.estimatedRowHeight = 85.0
+		tableView.rowHeight = UITableViewAutomaticDimension
+		
+		self.tableView.setNeedsLayout()
+		self.tableView.layoutIfNeeded()
         
         self.reloadData()
 		
@@ -71,14 +85,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
 		let backgroundImage = UIImage(named: "background")
 		let imageView = UIImageView(image: backgroundImage)
-		self.tableView?.backgroundView = imageView
+//		self.tableView?.backgroundView = imageView
 		
 		tableView?.tableFooterView = UIView(frame: CGRectZero)
+		tableView?.tableHeaderView = UIView(frame: CGRectZero)
 		
 		imageView.contentMode = .ScaleAspectFill
 		
-		tableView?.backgroundColor = UIColor(netHex: 0xffa160)
-        
+		tableView?.backgroundColor = UIColor(netHex: 0xf3f3f3)
+		
         self.observeWithStreams()
 		
 		//self.noWallasPosts()
@@ -122,18 +137,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	}
 	
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		return 140.0
+		return UITableViewAutomaticDimension
 	}
 	
 //	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 //		
 //		cell.contentView.backgroundColor = UIColor.clearColor()
 //		
-//		let whiteRoundedView : UIView = UIView(frame: CGRectMake(0, 10, self.view.frame.size.width, 120))
+//		let whiteRoundedView : UIView = UIView(frame: CGRectMake(0, 10, self.view.frame.size.width, 200))
 //		
-//		whiteRoundedView.layer.backgroundColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 1.0])
+//		whiteRoundedView.backgroundColor = UIColor(netHex: 0xf3f3f3)
+//		//whiteRoundedView.layer.backgroundColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 1.0])
 //		whiteRoundedView.layer.masksToBounds = false
-//		whiteRoundedView.layer.cornerRadius = 2.0
+//		whiteRoundedView.layer.cornerRadius = 5.0
 //		whiteRoundedView.layer.shadowOffset = CGSizeMake(-1, 1)
 //		whiteRoundedView.layer.shadowOpacity = 0.2
 //		
@@ -154,46 +170,68 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 			cell.setAuthorName(result as! String)
 		}
                 
-        self.myUserBackend.getUserInfo("profilePicUrl", userID: key)
-        {
-            (result: AnyObject) in
-            cell.setCellImage(NSURL(string: result as! String)!)
-        }
+//        self.myUserBackend.getUserInfo("profilePicUrl", userID: key)
+//        {
+//            (result: AnyObject) in
+//            cell.setCellImage(NSURL(string: result as! String)!)
+//        }
 		
 		cell.userName?.text = requestModel.authorID
 		cell.message?.text = requestModel.request
-		cell.topics?.text = requestModel.tags.joinWithSeparator(" ")
-		cell.timeStamp?.text = "posted " + cell.parseDateFromTime(requestModel.timestamp)
+		cell.message?.lineBreakMode = .ByWordWrapping
+		cell.message?.numberOfLines = 0
+		cell.message?.sizeToFit()
+		cell.topics?.text = requestModel.tags.joinWithSeparator("")
+		cell.topics?.sizeToFit()
+		cell.topics?.layer.cornerRadius = 5
+		cell.topics?.layer.masksToBounds = true
 		
-		cell.profile.layer.borderWidth = 0.5
-		cell.profile.layer.masksToBounds = false
-		cell.profile.layer.borderColor = UIColor.blackColor().CGColor
-		cell.profile.layer.cornerRadius = cell.profile.frame.height / 2
-		cell.profile.clipsToBounds = true
+		switch requestModel.tags[0] {
+			case "Food":
+				cell.topics?.backgroundColor = UIColor.init(netHex: 0xee604d)
+			case "Artsy":
+				cell.topics?.backgroundColor = UIColor.init(netHex: 0x6fdcc6)
+			case "School":
+				cell.topics?.backgroundColor = UIColor.init(netHex: 0x3686e0)
+			case "Rides":
+				cell.topics?.backgroundColor = UIColor.init(netHex: 0x88bb4b)
+			case "Games":
+				cell.topics?.backgroundColor = UIColor.init(netHex: 0xffe067)
+			default:
+				cell.topics?.backgroundColor = UIColor.lightGrayColor()
+		}
+		
+		cell.timeStamp?.text = cell.parseDateFromTime(requestModel.timestamp)
+		
+//		cell.profile.layer.borderWidth = 0.5
+//		cell.profile.layer.masksToBounds = false
+//		cell.profile.layer.borderColor = UIColor.blackColor().CGColor
+//		cell.profile.layer.cornerRadius = cell.profile.frame.height / 2
+//		cell.profile.clipsToBounds = true
 		
 		self.noWallasPosts()
 		
-		let whiteRoundedView : UIView = UIView(frame: CGRectMake(10, 8, self.view.frame.size.width - 20, 149))
+		cell.contentView.backgroundColor = UIColor(netHex: 0xf3f3f3)
+		let whiteRoundedView : UIView = UIView(frame: CGRectMake(10, 8, self.view.frame.size.width - 20, 160))
 		
 		whiteRoundedView.layer.backgroundColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 0.8])
 		whiteRoundedView.layer.masksToBounds = false
 		whiteRoundedView.layer.cornerRadius = 4.0
 		whiteRoundedView.layer.shadowOffset = CGSizeMake(-1, 1)
-		whiteRoundedView.layer.shadowOpacity = 0.1
+		whiteRoundedView.layer.shadowOpacity = 0.2
 		
 		cell.contentView.addSubview(whiteRoundedView)
 		cell.contentView.sendSubviewToBack(whiteRoundedView)
 		
-		return cell
-	}
+		return cell	}
 	
 	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
 		return false
 	}
 	
-	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-		cell.backgroundColor = UIColor(white: 1, alpha: 0.1)
-	}
+//	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//		cell.backgroundColor = UIColor(white: 1, alpha: 0.1)
+//	}
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		self.performSegueWithIdentifier("showDetail", sender: nil)
@@ -214,6 +252,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 				destinationViewController.transitioningDelegate = self
 			}
 		}
+	}
+	
+	// MARK: Cell View Controller things
+	func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+		return 1
+	}
+	
+	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return filterImages.count
+	}
+	
+	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+		let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionIdentifier, forIndexPath: indexPath) as! FilterCellController
+		
+		cell.filterName.text = self.filtersTitles[indexPath.row]
+		cell.filterImage.image = self.filterImages[indexPath.row]
+		
+		return cell
 	}
 }
 

@@ -26,16 +26,16 @@ class HomeCell: UITableViewCell {
 	
 	func setAuthorName(nameToSet: String)
 	{
-		self.userName.text = nameToSet
+		self.userName.text = "posted by " + nameToSet
 	}
 	
-    func setCellImage(url: NSURL) {
-        if let data = NSData(contentsOfURL: url){
-            self.profile.contentMode = UIViewContentMode.ScaleAspectFit
-            self.profile.image = UIImage(data: data)
-        }
-    }
-    
+//    func setCellImage(url: NSURL) {
+//        if let data = NSData(contentsOfURL: url){
+//            self.profile.contentMode = UIViewContentMode.ScaleAspectFit
+//            self.profile.image = UIImage(data: data)
+//        }
+//    }
+	
 	func setCellTags(tagsToSet: [String])
 	{
 		self.topics.text = tagsToSet.joinWithSeparator("")
@@ -58,25 +58,36 @@ class HomeCell: UITableViewCell {
     }
 	
 	func parseDateFromTime(time: Double) -> String {
-		let postedDate = NSDate(timeIntervalSince1970: time)
+		let postedTime = NSDate(timeIntervalSince1970: time)
 		
-		let currentDate = NSDate()
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "hh:mm a"
+		dateFormatter.AMSymbol = "AM"
+		dateFormatter.PMSymbol = "PM"
+		return dateFormatter.stringFromDate(postedTime)
 		
-		let hourMinute: NSCalendarUnit = [.Hour, .Minute]
-		let difference = NSCalendar.currentCalendar().components(hourMinute, fromDate: postedDate, toDate: currentDate, options: [])
-		var timeDifference: String = ""
-		
-		if difference.hour < 1
-		{
-			timeDifference = "\(difference.minute)m"
-		}
-		else
-		{
-			timeDifference = "\(difference.hour)h" + " " + "\(difference.minute)m"
-		}
-		
-//		print(timeDifference)
-		
-		return String(timeDifference + " ago")
 	}
+	
+//	func parseDateFromTime(time: Double) -> String {
+//		let postedDate = NSDate(timeIntervalSince1970: time)
+//		
+//		let currentDate = NSDate()
+//		
+//		let hourMinute: NSCalendarUnit = [.Hour, .Minute]
+//		let difference = NSCalendar.currentCalendar().components(hourMinute, fromDate: postedDate, toDate: currentDate, options: [])
+//		var timeDifference: String = ""
+//		
+//		if difference.hour < 1
+//		{
+//			timeDifference = "\(difference.minute)m"
+//		}
+//		else
+//		{
+//			timeDifference = "\(difference.hour)h" + " " + "\(difference.minute)m"
+//		}
+//		
+////		print(timeDifference)
+//		
+//		return String(timeDifference + " ago")
+//	}
 }

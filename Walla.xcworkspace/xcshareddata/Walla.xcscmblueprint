@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "44233BFC2DE06FC3079F79AE188D2FD1DC8C98B4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "84059C50BDDE4F5C9AEEC36A3A8F5B244E5DAF7D" : 0,
+    "44233BFC2DE06FC3079F79AE188D2FD1DC8C98B4" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8B6B845B-A712-4BF5-9F68-01AC57C538A9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "84059C50BDDE4F5C9AEEC36A3A8F5B244E5DAF7D" : "genie-android\/",
+    "44233BFC2DE06FC3079F79AE188D2FD1DC8C98B4" : "GenieUs-Walla\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Walla",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Walla.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/timchoh585\/GenieUs-Walla.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "44233BFC2DE06FC3079F79AE188D2FD1DC8C98B4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/timchoh585\/genie-android.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "84059C50BDDE4F5C9AEEC36A3A8F5B244E5DAF7D"
+    }
+  ]
+}

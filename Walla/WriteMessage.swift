@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import DropDown
 
-var tagsToPick = ["Choose A Topic", "Comp Sci", "Math", "Engineering", "Pre Med", "Physics", "Biology", "Chemistry", "Global Health", "Sports", "Video Games", "Music", "Dance", "English", "Business", "Engineering", "Marketing", "Finance"]
+var tagsToPick = ["Food", "Artsy", "School", "Rides", "Games", "Others"]
 
 class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	
