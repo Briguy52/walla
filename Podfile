@@ -4,6 +4,7 @@ platform :ios, '8.0'
 inhibit_all_warnings!
 use_frameworks!
 target 'Walla' do
+
 # Firebase imports
 pod 'Firebase/Database'
 pod 'Firebase/Auth'
@@ -12,6 +13,9 @@ pod 'FirebaseUI'
 # Authentication providers
 pod 'FBSDKLoginKit'
 pod 'GoogleSignIn'
+
+# Push Notifications
+pod 'OneSignal'
 
 # UI
 pod 'JSQMessagesViewController'

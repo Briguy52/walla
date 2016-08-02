@@ -35,7 +35,8 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	var myLongitude: Double = 78.9382
 	var myLocation: String = "default location"
 	var myTags:[String] = ["Choose A Topic"]
-	var myDelayHours: Double = 5
+	var myDelayHours: Double = 0.5
+	var myStartTime: Double = Basic.getTimestamp(<#T##Basic#>)
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
@@ -247,7 +248,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 			"resolved": resolved,
 			"visible": visible,
 			"tags": [self.myTags[0]],
-			"timestamp": self.myBasic.getTimestamp(),
+			"timestamp": myStartTime,//self.myBasic.getTimestamp(),
 			"expirationDate": expirationDate
 		]
 		
@@ -270,6 +271,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	@IBAction func pickTime(sender: AnyObject) {
 		DatePickerDialog().show("DatePickerDialog", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .Time) {
 			(time) -> Void in
+			myStartTime = NSDate(timeIntervalSince1970: time)
 			let formatter = NSDateFormatter()
 			formatter.timeStyle = .ShortStyle
 			let newTime = formatter.stringFromDate(time!)

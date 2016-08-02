@@ -41,7 +41,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	var postsAreExpired: Bool = false
 	
 	var filterTitles = ["All", "Food", "Artsy", "School", "Rides", "Games", "Others"]
-	var filterImages = [UIImage(named: "Select All-50.png")!, UIImage(named: "ic_food.png")!, UIImage(named: "ic_art.png")!, UIImage(named: "ic_school.png")!, UIImage(named: "ic_rides.png")!, UIImage(named: "ic_games.png")!, UIImage(named: "ic_other.png")!]
+	var filterImages = [UIImage(named: "select_all.png")!, UIImage(named: "ic_food.png")!, UIImage(named: "ic_art.png")!, UIImage(named: "ic_school.png")!, UIImage(named: "ic_rides.png")!, UIImage(named: "ic_games.png")!, UIImage(named: "ic_other.png")!]
 	
 	override func viewDidLoad()
 	{

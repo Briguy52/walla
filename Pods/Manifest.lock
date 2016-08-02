@@ -76,6 +76,7 @@ PODS:
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
   - MBProgressHUD (0.9.2)
+  - OneSignal (1.13.3)
   - SnapKit (0.21.1)
 
 DEPENDENCIES:
@@ -88,6 +89,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - JSQMessagesViewController
   - MBProgressHUD (~> 0.9)
+  - OneSignal
   - SnapKit
 
 SPEC CHECKSUMS:
@@ -113,8 +115,9 @@ SPEC CHECKSUMS:
   JSQMessagesViewController: 0ee3f80237268192a3e8337fd0d787f1a1bf5a7a
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  OneSignal: 434facae3389cb0d4d3fc57b9a6cf66db685205e
   SnapKit: bbad04cb016c7cead63965f16b00c09318d271ee
 
-PODFILE CHECKSUM: fe8021d329a09c44afd0d0f6ab8cdf5e079ae1f5
+PODFILE CHECKSUM: 342886b4c6f67768a1ed1b3befe44497583a8df7
 
 COCOAPODS: 1.0.1
