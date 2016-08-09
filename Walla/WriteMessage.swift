@@ -36,7 +36,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	var myLocation: String = "default location"
 	var myTags:[String] = ["Choose A Topic"]
 	var myDelayHours: Double = 0.5
-	var myStartTime: Double = Basic.getTimestamp(<#T##Basic#>)
+	var myStartTime: Double = 0.0
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
@@ -46,6 +46,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		self.hideKeyboardWhenTappedAround()
 		
 //		self.initRequestDetails()
+        self.myStartTime = self.myBasic.getTimestamp()
 		
 		customizeDropDown(self)
 		self.setupDropDown()
@@ -271,7 +272,9 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	@IBAction func pickTime(sender: AnyObject) {
 		DatePickerDialog().show("DatePickerDialog", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .Time) {
 			(time) -> Void in
-			myStartTime = NSDate(timeIntervalSince1970: time)
+//			myStartTime = NSDate(timeIntervalSince1970: time)
+            print("womp pick time in")
+            print(time)
 			let formatter = NSDateFormatter()
 			formatter.timeStyle = .ShortStyle
 			let newTime = formatter.stringFromDate(time!)

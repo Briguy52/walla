@@ -17,6 +17,8 @@ var detailView: ViewDetails?
 var requestModels: [RequestModel] = [RequestModel]()
 var currentIndex: Int = 0
 var tagsToFilter: [String] = []
+var catURL: NSURL = NSURL(string: "https://metrouk2.files.wordpress.com/2009/12/article-1260439489005-07877bac000005dc-595563_636x932.jpg")!
+var catData: NSData = NSData(contentsOfURL: catURL)!
 
 var safeToLoadID: Bool = false
 
@@ -41,7 +43,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	var postsAreExpired: Bool = false
 	
 	var filterTitles = ["All", "Food", "Artsy", "School", "Rides", "Games", "Others"]
-	var filterImages = [UIImage(named: "select_all.png")!, UIImage(named: "ic_food.png")!, UIImage(named: "ic_art.png")!, UIImage(named: "ic_school.png")!, UIImage(named: "ic_rides.png")!, UIImage(named: "ic_games.png")!, UIImage(named: "ic_other.png")!]
+//	var filterImages = [UIImage(named: "select_all.png")!, UIImage(named: "ic_food.png")!, UIImage(named: "ic_art.png")!, UIImage(named: "ic_school.png")!, UIImage(named: "ic_rides.png")!, UIImage(named: "ic_games.png")!, UIImage(named: "ic_other.png")!]
+    
+    var filterImages = [UIImage(data: catData)]
 	
 	override func viewDidLoad()
 	{
