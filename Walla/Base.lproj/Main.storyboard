@@ -522,7 +522,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tl6-MX-pfd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tl6-MX-pfd">
                                 <rect key="frame" x="0.0" y="172" width="600" height="379"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -973,7 +973,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Veh-LV-q80">
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Veh-LV-q80">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="qep-J7-Eh4"/>
@@ -989,7 +989,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Interests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGv-2s-b5L">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your Interests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGv-2s-b5L">
                                 <rect key="frame" x="20" y="77" width="176" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="176" id="Auq-It-Su2"/>
@@ -999,7 +999,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNc-M0-e3Z">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNc-M0-e3Z">
                                 <rect key="frame" x="20" y="106" width="560" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1010,7 +1010,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YSI-OO-A5x">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YSI-OO-A5x">
                                 <rect key="frame" x="20" y="181" width="560" height="165"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B07-Vu-hLn">
@@ -1175,7 +1175,7 @@
                                     <constraint firstItem="HVk-Fe-f9k" firstAttribute="top" secondItem="NCs-Ll-lcc" secondAttribute="bottom" constant="8" id="y4V-Ve-dUe"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Interests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVL-pR-ipR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Edit Interests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVL-pR-ipR">
                                 <rect key="frame" x="20" y="152" width="176" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="176" id="IYw-MV-Rvv"/>
@@ -1319,7 +1319,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nlX-pq-SCC">
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nlX-pq-SCC">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="dG7-rn-hLn"/>
@@ -1333,7 +1333,7 @@
                                     <navigationItem title="MY PROFILE" id="Xv1-7r-LyR"/>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iK7-hE-qjV">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iK7-hE-qjV">
                                 <rect key="frame" x="0.0" y="64" width="600" height="121"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DOy-jh-RR3">
@@ -1397,7 +1397,7 @@
                                     <constraint firstItem="8x1-yj-lkK" firstAttribute="leading" secondItem="iK7-hE-qjV" secondAttribute="leading" constant="27" id="vS4-HR-aEX"/>
                                 </constraints>
                             </view>
-                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gZk-KQ-QKi">
+                            <view alpha="0.75" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZk-KQ-QKi">
                                 <rect key="frame" x="0.0" y="193" width="600" height="246"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksu-Pk-uLU">
@@ -1818,65 +1818,6 @@ Be sure to double check your entries! After submitting your post, you can commen
             </objects>
             <point key="canvasLocation" x="2430" y="-1059"/>
         </scene>
-        <!--WELCOME TO WALLA-->
-        <scene sceneID="1a4-9u-b75">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EpB-In-PmJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="ghy-10-qaV" customClass="AuthViewController" customModule="Walla" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="j2b-li-Bzb"/>
-                        <viewControllerLayoutGuide type="bottom" id="aNp-Pi-KK4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6bV-n6-V9Q">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MC6-v3-ubG">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="sDV-vd-2Ub">
-                                        <rect key="frame" x="0.0" y="63" width="600" height="537"/>
-                                    </imageView>
-                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8G3-RS-NGI">
-                                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="LRd-eE-On2"/>
-                                        </constraints>
-                                        <color key="barTintColor" red="0.99215686270000003" green="0.56078431370000004" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <textAttributes key="titleTextAttributes">
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </textAttributes>
-                                        <items>
-                                            <navigationItem title="Welcome To Walla" id="PcS-DU-3d3"/>
-                                        </items>
-                                    </navigationBar>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="sDV-vd-2Ub" firstAttribute="top" secondItem="8G3-RS-NGI" secondAttribute="bottom" constant="-1" id="2fq-CJ-IZR"/>
-                                    <constraint firstItem="8G3-RS-NGI" firstAttribute="width" secondItem="MC6-v3-ubG" secondAttribute="width" id="6QI-lI-aWz"/>
-                                    <constraint firstItem="8G3-RS-NGI" firstAttribute="top" secondItem="MC6-v3-ubG" secondAttribute="top" constant="20" id="DTZ-YG-7Yu"/>
-                                    <constraint firstItem="8G3-RS-NGI" firstAttribute="leading" secondItem="sDV-vd-2Ub" secondAttribute="leading" id="Exg-ag-LE7"/>
-                                    <constraint firstItem="sDV-vd-2Ub" firstAttribute="height" secondItem="MC6-v3-ubG" secondAttribute="height" constant="-63" id="ZMV-dr-2MI"/>
-                                    <constraint firstItem="sDV-vd-2Ub" firstAttribute="width" secondItem="MC6-v3-ubG" secondAttribute="width" id="dbk-qf-Zpf"/>
-                                    <constraint firstAttribute="trailing" secondItem="8G3-RS-NGI" secondAttribute="trailing" id="nle-HK-QtL"/>
-                                    <constraint firstItem="8G3-RS-NGI" firstAttribute="leading" secondItem="MC6-v3-ubG" secondAttribute="leading" id="o1s-Df-EWl"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="MC6-v3-ubG" firstAttribute="leading" secondItem="6bV-n6-V9Q" secondAttribute="leading" id="4Y5-tT-hcP"/>
-                            <constraint firstItem="MC6-v3-ubG" firstAttribute="width" secondItem="6bV-n6-V9Q" secondAttribute="width" id="5OQ-dz-sbJ"/>
-                            <constraint firstItem="MC6-v3-ubG" firstAttribute="bottom" secondItem="aNp-Pi-KK4" secondAttribute="top" constant="49" id="NI3-1z-nDu"/>
-                            <constraint firstItem="MC6-v3-ubG" firstAttribute="height" secondItem="6bV-n6-V9Q" secondAttribute="height" id="fTU-h3-2Pd"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="WELCOME TO WALLA" id="Ah6-lg-JO4"/>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="-2048" y="256"/>
-        </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="OhI-Wm-YuQ">
             <objects>
@@ -1911,8 +1852,8 @@ Be sure to double check your entries! After submitting your post, you can commen
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="O9k-kt-a6v">
-                                <rect key="frame" x="0.0" y="400" width="600" height="200"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="O9k-kt-a6v">
+                                <rect key="frame" x="0.0" y="400" width="600" height="100"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUs-c4-tru">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
@@ -1928,50 +1869,8 @@ Be sure to double check your entries! After submitting your post, you can commen
                                             <segue destination="eYU-rn-Zna" kind="presentation" id="m2v-iM-Qwq"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSB-Yt-AuR">
-                                        <rect key="frame" x="0.0" y="50" width="600" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="ERb-o6-Fjz"/>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="Twt-79-AAa"/>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="UtQ-JP-zri"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="ak1-hL-How"/>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="xpa-Tz-Vxk"/>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="zkI-YM-gYd"/>
-                                        </constraints>
-                                        <color key="tintColor" red="0.085337765100000004" green="0.554830661" blue="0.50989129440000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Sign in with Facebook">
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="zkI-YM-gYd"/>
-                                                <exclude reference="ak1-hL-How"/>
-                                                <exclude reference="xpa-Tz-Vxk"/>
-                                                <exclude reference="UtQ-JP-zri"/>
-                                                <exclude reference="Twt-79-AAa"/>
-                                            </mask>
-                                        </variation>
-                                    </button>
-                                    <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8DQ-YX-tcg">
-                                        <rect key="frame" x="0.0" y="100" width="600" height="50"/>
-                                        <color key="backgroundColor" red="0.085337765100000004" green="0.554830661" blue="0.50989129440000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="Yxn-KV-0cy"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="z51-60-mcN"/>
-                                        </constraints>
-                                        <state key="normal" title="Sign in with Google">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="z51-60-mcN"/>
-                                            </mask>
-                                        </variation>
-                                    </button>
                                     <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P93-Nd-0xQ">
-                                        <rect key="frame" x="0.0" y="150" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="3jI-Th-laV"/>
@@ -1994,41 +1893,23 @@ Be sure to double check your entries! After submitting your post, you can commen
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="kSB-Yt-AuR" firstAttribute="leading" secondItem="O9k-kt-a6v" secondAttribute="leading" id="9qL-wN-f6R"/>
-                                    <constraint firstAttribute="trailing" secondItem="kSB-Yt-AuR" secondAttribute="trailing" id="NMc-Sh-NoU"/>
                                     <constraint firstAttribute="trailing" secondItem="xUs-c4-tru" secondAttribute="trailing" id="esG-Ex-i4t"/>
-                                    <constraint firstItem="8DQ-YX-tcg" firstAttribute="leading" secondItem="O9k-kt-a6v" secondAttribute="leading" id="igp-Uh-taQ"/>
                                     <constraint firstAttribute="trailing" secondItem="P93-Nd-0xQ" secondAttribute="trailing" id="lCq-J0-ytS"/>
-                                    <constraint firstAttribute="trailing" secondItem="8DQ-YX-tcg" secondAttribute="trailing" id="ms8-bw-c2J"/>
                                     <constraint firstItem="P93-Nd-0xQ" firstAttribute="leading" secondItem="O9k-kt-a6v" secondAttribute="leading" id="pQi-hT-YOp"/>
                                     <constraint firstItem="xUs-c4-tru" firstAttribute="leading" secondItem="O9k-kt-a6v" secondAttribute="leading" id="z7O-dS-Z5H"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Walla" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO3-j8-ZHX">
-                                <rect key="frame" x="100" y="66" width="400" height="33"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="LpB-OF-9Aj">
                                 <rect key="frame" x="0.0" y="32" width="600" height="537"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.096404464019999997" green="0.18123130330000001" blue="0.554830661" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="O9k-kt-a6v" secondAttribute="trailing" id="JGe-CH-PuG"/>
-                            <constraint firstItem="GO3-j8-ZHX" firstAttribute="leading" secondItem="DYD-pu-Zdg" secondAttribute="leading" constant="100" id="OPa-f3-75C"/>
                             <constraint firstItem="O9k-kt-a6v" firstAttribute="leading" secondItem="DYD-pu-Zdg" secondAttribute="leading" id="VPX-bu-Akh"/>
-                            <constraint firstItem="GO3-j8-ZHX" firstAttribute="top" secondItem="47v-Mn-UAP" secondAttribute="bottom" constant="46" id="gMN-Jo-EVt"/>
                             <constraint firstAttribute="bottom" secondItem="O9k-kt-a6v" secondAttribute="bottom" id="gRr-ed-kqi"/>
-                            <constraint firstAttribute="trailing" secondItem="GO3-j8-ZHX" secondAttribute="trailing" constant="100" id="pji-yE-Xle"/>
                         </constraints>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="600"/>
-                    <connections>
-                        <outlet property="wallaTitleLabel" destination="GO3-j8-ZHX" id="Svj-WB-kQh"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XOf-Td-JSN" sceneMemberID="firstResponder"/>
             </objects>
@@ -2102,7 +1983,7 @@ Be sure to double check your entries! After submitting your post, you can commen
                     <navigationItem key="navigationItem" title="Sign In" id="x9O-CQ-iig" propertyAccessControl="none">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="UNP-ZT-8aD">
                             <connections>
-                                <segue destination="L12-os-2Me" kind="unwind" identifier="CancelToMainMenu" unwindAction="signInCancelToMainMenu:" id="ui4-Mh-eSR"/>
+                                <segue destination="Mkx-5E-59k" kind="show" id="aMd-i3-ymr"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="Y6G-Ia-AY6"/>
@@ -2114,7 +1995,6 @@ Be sure to double check your entries! After submitting your post, you can commen
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jf8-2X-tyI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="L12-os-2Me" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-516" y="-806"/>
         </scene>
@@ -2210,7 +2090,7 @@ Be sure to double check your entries! After submitting your post, you can commen
                     <navigationItem key="navigationItem" title="Sign Up" id="QQZ-8h-k0q">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="hI7-kh-kOw">
                             <connections>
-                                <segue destination="8Ov-BZ-pfx" kind="unwind" unwindAction="signInCancelToMainMenu:" id="4ew-gD-GBf"/>
+                                <segue destination="Mkx-5E-59k" kind="show" id="0vc-TS-pBy"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Submit" id="Xwg-T4-gbm"/>
@@ -2224,7 +2104,6 @@ Be sure to double check your entries! After submitting your post, you can commen
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lig-BZ-NOh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="8Ov-BZ-pfx" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="7Fm-8A-xWm">
                     <connections>
                         <action selector="selectImageFromPhotoLibrary:" destination="CBR-6o-ZIf" id="96r-mJ-rOn"/>
@@ -2264,6 +2143,7 @@ Be sure to double check your entries! After submitting your post, you can commen
         <image name="write" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hWE-g9-2jM"/>
+        <segue reference="iV6-uD-pjU"/>
+        <segue reference="0vc-TS-pBy"/>
     </inferredMetricsTieBreakers>
 </document>
