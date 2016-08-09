@@ -1902,15 +1902,26 @@ Be sure to double check your entries! After submitting your post, you can commen
                                     <constraint firstItem="xUs-c4-tru" firstAttribute="leading" secondItem="O9k-kt-a6v" secondAttribute="leading" id="z7O-dS-Z5H"/>
                                 </constraints>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="kWG-8n-JNn">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dZk-KI-y49">
                                 <rect key="frame" x="236" y="130" width="129" height="129"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="kWG-8n-JNn">
+                                        <rect key="frame" x="0.0" y="0.0" width="129" height="129"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="129" id="WLz-Bl-rXg"/>
+                                            <constraint firstAttribute="width" constant="129" id="aE7-Zh-qgj"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="dZk-KI-y49" firstAttribute="top" secondItem="47v-Mn-UAP" secondAttribute="bottom" constant="66" id="6g0-Xo-IL7"/>
                             <constraint firstAttribute="trailing" secondItem="O9k-kt-a6v" secondAttribute="trailing" id="JGe-CH-PuG"/>
                             <constraint firstItem="O9k-kt-a6v" firstAttribute="leading" secondItem="DYD-pu-Zdg" secondAttribute="leading" id="VPX-bu-Akh"/>
                             <constraint firstAttribute="bottom" secondItem="O9k-kt-a6v" secondAttribute="bottom" id="gRr-ed-kqi"/>
+                            <constraint firstItem="dZk-KI-y49" firstAttribute="centerX" secondItem="DYD-pu-Zdg" secondAttribute="centerX" id="wUY-D7-2N4"/>
                         </constraints>
                     </view>
                     <connections>
