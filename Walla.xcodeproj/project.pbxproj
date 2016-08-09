@@ -39,6 +39,9 @@
 		22F9A4AA1D3006FD005C2903 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F9A4A91D3006FD005C2903 /* FilterCell.swift */; };
 		AF0364681D23582800D57094 /* RequestBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0364671D23582800D57094 /* RequestBackend.swift */; };
 		AFAA6A4F1D24CF1000FE1DB1 /* ConvoBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAA6A4E1D24CF1000FE1DB1 /* ConvoBackend.swift */; };
+		AFC8A1DD1D5A7971003AC152 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC8A1DC1D5A7971003AC152 /* LoginViewController.swift */; };
+		AFC8A1DF1D5A79C5003AC152 /* NewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC8A1DE1D5A79C5003AC152 /* NewAccountViewController.swift */; };
+		AFC8A1E11D5A7A04003AC152 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC8A1E01D5A7A04003AC152 /* InitialViewController.swift */; };
 		BBC0C0FB56D7B2430E20F096 /* Pods_Walla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36FD80449EB2641B7C2BB3A /* Pods_Walla.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +90,9 @@
 		60B82CDBFF92298443BF52CE /* Pods-Walla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Walla.release.xcconfig"; path = "Pods/Target Support Files/Pods-Walla/Pods-Walla.release.xcconfig"; sourceTree = "<group>"; };
 		AF0364671D23582800D57094 /* RequestBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBackend.swift; sourceTree = "<group>"; };
 		AFAA6A4E1D24CF1000FE1DB1 /* ConvoBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvoBackend.swift; sourceTree = "<group>"; };
+		AFC8A1DC1D5A7971003AC152 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AFC8A1DE1D5A79C5003AC152 /* NewAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAccountViewController.swift; sourceTree = "<group>"; };
+		AFC8A1E01D5A7A04003AC152 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		D36FD80449EB2641B7C2BB3A /* Pods_Walla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Walla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -180,6 +186,7 @@
 		22C8893D1D1C536F009DE688 /* Walla */ = {
 			isa = PBXGroup;
 			children = (
+				AFC8A1DB1D5A790A003AC152 /* Login */,
 				2229BEBD1D3B047100A30EDB /* GoogleService-Info.plist */,
 				226527371D1F1773004B89D2 /* Backend */,
 				226527251D1F13FF004B89D2 /* Requests */,
@@ -239,6 +246,16 @@
 				D36FD80449EB2641B7C2BB3A /* Pods_Walla.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AFC8A1DB1D5A790A003AC152 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				AFC8A1DC1D5A7971003AC152 /* LoginViewController.swift */,
+				AFC8A1DE1D5A79C5003AC152 /* NewAccountViewController.swift */,
+				AFC8A1E01D5A7A04003AC152 /* InitialViewController.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,8 +390,10 @@
 				AF0364681D23582800D57094 /* RequestBackend.swift in Sources */,
 				222D530D1D1D233B00ABB2DD /* Interactor.swift in Sources */,
 				22C8893F1D1C536F009DE688 /* AppDelegate.swift in Sources */,
+				AFC8A1E11D5A7A04003AC152 /* InitialViewController.swift in Sources */,
 				222D53231D1D53CD00ABB2DD /* MainTabBarController.swift in Sources */,
 				222D530B1D1D226F00ABB2DD /* MenuViewController.swift in Sources */,
+				AFC8A1DD1D5A7971003AC152 /* LoginViewController.swift in Sources */,
 				225D6E401D52F51C00B64295 /* DatePickerDialog.swift in Sources */,
 				2265273B1D1F17DD004B89D2 /* UserBackend.swift in Sources */,
 				222D53091D1D094C00ABB2DD /* ViewDetails.swift in Sources */,
@@ -392,6 +411,7 @@
 				224488541D1FBAAE00C98916 /* ConvoViewController.swift in Sources */,
 				224488561D1FBAD200C98916 /* ConvoCell.swift in Sources */,
 				22AE09D41D4D86DF00295364 /* FilterCellController.swift in Sources */,
+				AFC8A1DF1D5A79C5003AC152 /* NewAccountViewController.swift in Sources */,
 				222D53131D1D26A000ABB2DD /* DismissMenuAnimator.swift in Sources */,
 				224488521D1F27F400C98916 /* MyProfileViewController.swift in Sources */,
 				22C889521D1C5612009DE688 /* HomeViewController.swift in Sources */,
