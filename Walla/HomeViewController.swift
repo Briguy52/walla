@@ -65,6 +65,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		self.tableView.setNeedsLayout()
 		self.tableView.layoutIfNeeded()
         
+        print("womp " + self.myUserBackend.getUserID())
+        
         self.reloadData()
 		
 //		self.checkForMyTags()

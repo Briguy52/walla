@@ -24,7 +24,6 @@
 		224488581D1FBB1300C98916 /* ConvoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224488571D1FBB1300C98916 /* ConvoModel.swift */; };
 		2244885A1D1FE3E400C98916 /* MainSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224488591D1FE3E400C98916 /* MainSettings.swift */; };
 		225B64811D250518007D7268 /* MyTopics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225B64801D250518007D7268 /* MyTopics.swift */; };
-		225D6E3E1D5151BB00B64295 /* select_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 225D6E3D1D5151BB00B64295 /* select_all.png */; };
 		225D6E401D52F51C00B64295 /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225D6E3F1D52F51C00B64295 /* DatePickerDialog.swift */; };
 		226527271D1F1422004B89D2 /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226527261D1F1422004B89D2 /* RequestModel.swift */; };
 		226527301D1F1572004B89D2 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265272F1D1F1572004B89D2 /* MessageViewController.swift */; };
@@ -32,13 +31,6 @@
 		2265273B1D1F17DD004B89D2 /* UserBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2265273A1D1F17DD004B89D2 /* UserBackend.swift */; };
 		2279873B1D1C5CCF00C0EC30 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279873A1D1C5CCF00C0EC30 /* HomeCell.swift */; };
 		22AE09D41D4D86DF00295364 /* FilterCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE09D31D4D86DF00295364 /* FilterCellController.swift */; };
-		22AE09DC1D4D8A1D00295364 /* ic_art.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AE09D51D4D8A1D00295364 /* ic_art.png */; };
-		22AE09DD1D4D8A1D00295364 /* ic_food.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AE09D61D4D8A1D00295364 /* ic_food.png */; };
-		22AE09DE1D4D8A1D00295364 /* ic_games.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AE09D71D4D8A1D00295364 /* ic_games.png */; };
-		22AE09DF1D4D8A1D00295364 /* ic_other.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AE09D81D4D8A1D00295364 /* ic_other.png */; };
-		22AE09E01D4D8A1D00295364 /* ic_rides.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AE09D91D4D8A1D00295364 /* ic_rides.png */; };
-		22AE09E11D4D8A1D00295364 /* ic_school.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AE09DA1D4D8A1D00295364 /* ic_school.png */; };
-		22AE09E21D4D8A1D00295364 /* ic_sports.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AE09DB1D4D8A1D00295364 /* ic_sports.png */; };
 		22C8893F1D1C536F009DE688 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C8893E1D1C536F009DE688 /* AppDelegate.swift */; };
 		22C889441D1C536F009DE688 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C889421D1C536F009DE688 /* Main.storyboard */; };
 		22C889461D1C536F009DE688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22C889451D1C536F009DE688 /* Assets.xcassets */; };
@@ -316,18 +308,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22AE09DC1D4D8A1D00295364 /* ic_art.png in Resources */,
 				22C889491D1C536F009DE688 /* LaunchScreen.storyboard in Resources */,
 				2229BEBE1D3B047100A30EDB /* GoogleService-Info.plist in Resources */,
-				22AE09DE1D4D8A1D00295364 /* ic_games.png in Resources */,
-				22AE09DF1D4D8A1D00295364 /* ic_other.png in Resources */,
 				22C889461D1C536F009DE688 /* Assets.xcassets in Resources */,
 				22C889441D1C536F009DE688 /* Main.storyboard in Resources */,
-				22AE09E21D4D8A1D00295364 /* ic_sports.png in Resources */,
-				22AE09E01D4D8A1D00295364 /* ic_rides.png in Resources */,
-				225D6E3E1D5151BB00B64295 /* select_all.png in Resources */,
-				22AE09DD1D4D8A1D00295364 /* ic_food.png in Resources */,
-				22AE09E11D4D8A1D00295364 /* ic_school.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
