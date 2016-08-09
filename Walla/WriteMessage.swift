@@ -10,17 +10,17 @@ import UIKit
 import Firebase
 import DropDown
 
-var tagsToPick = ["Choose A Topic", "Comp Sci", "Math", "Engineering", "Pre Med", "Physics", "Biology", "Chemistry", "Global Health", "Sports", "Video Games", "Music", "Dance", "English", "Business", "Engineering", "Marketing", "Finance"]
+var tagsToPick = ["Food", "Artsy", "School", "Rides", "Games", "Others"]
 
 class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	
 	@IBOutlet weak var topicPicker: UIButton!
 	@IBOutlet weak var requestBody: UITextView!
-	@IBOutlet weak var requestDetails: UITextField!
 	@IBOutlet weak var generalLocation: UITextField!
 	@IBOutlet weak var holla: UIButton!
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var textCounter: UILabel!
+	@IBOutlet weak var timePickerButton: UIButton!
 	
 	let dropDown = DropDown()
 	
@@ -35,7 +35,8 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	var myLongitude: Double = 78.9382
 	var myLocation: String = "default location"
 	var myTags:[String] = ["Choose A Topic"]
-	var myDelayHours: Double = 5
+	var myDelayHours: Double = 0.5
+	var myStartTime: Double = Basic.getTimestamp(<#T##Basic#>)
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
@@ -44,12 +45,12 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		super.viewDidLoad()
 		self.hideKeyboardWhenTappedAround()
 		
-		self.initRequestDetails()
+//		self.initRequestDetails()
 		
 		customizeDropDown(self)
 		self.setupDropDown()
 		
-		textCounter.text = "Remaining characters: 122"
+		textCounter.text = "Character count: 73"
 		
 		self.navigationItem.hidesBackButton = false
 		//		self.requestDetails?.layer.borderWidth = 0.2
@@ -72,26 +73,26 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		self.tabBarController?.tabBar.hidden = true
 	}
 	
-	func textFieldDidBeginEditing(textField: UITextField) {
-		scrollView.setContentOffset(CGPointMake(0, 150), animated: true)
-	}
-	
-	func textFieldShouldReturn(textField: UITextField) -> Bool {
-		textField.resignFirstResponder()
-		return true
-	}
-	
-	func textFieldDidEndEditing(textField: UITextField) {
-		scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
-	}
-	
-	func textViewDidBeginEditing(textView: UITextView) {
-		scrollView.setContentOffset(CGPointMake(0, 25), animated: true)
-	}
-	
-	func textViewDidEndEditing(textView: UITextView) {
-		scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
-	}
+//	func textFieldDidBeginEditing(textField: UITextField) {
+//		scrollView.setContentOffset(CGPointMake(0, 150), animated: true)
+//	}
+//	
+//	func textFieldShouldReturn(textField: UITextField) -> Bool {
+//		textField.resignFirstResponder()
+//		return true
+//	}
+//	
+//	func textFieldDidEndEditing(textField: UITextField) {
+//		scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+//	}
+//	
+//	func textViewDidBeginEditing(textView: UITextView) {
+//		scrollView.setContentOffset(CGPointMake(0, 25), animated: true)
+//	}
+//	
+//	func textViewDidEndEditing(textView: UITextView) {
+//		scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+//	}
 	
 	@IBAction func chooseTopic(sender: AnyObject) {
 		dropDown.show()
@@ -123,7 +124,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	}
 	
 	func checkRemainingChars() {
-		let allowedChars = 122
+		let allowedChars = 73
 		let charsInTextView = -requestBody.text.characters.count
 		let remainingChars = allowedChars + charsInTextView
 		
@@ -156,7 +157,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		var dets: Bool = false
 		var locs: Bool = false
 		
-		let allowedChars = 122
+		let allowedChars = 73
 		let charsInTextView = -requestBody.text.characters.count
 		let remainingChars = allowedChars + charsInTextView
 		
@@ -181,7 +182,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		
 		if self.requestBody.text!.isEmptyField == false { wish = true } else { wish = false }
 		
-		if self.requestDetails.text!.isEmptyField == false { dets = true } else { dets = false }
+		//if self.requestDetails.text!.isEmptyField == false { dets = true } else { dets = false }
 		
 		if self.generalLocation.text!.isEmptyField == false { locs = true } else { locs = false }
 		
@@ -195,9 +196,9 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 			else if wish == false {
 				alert.title = "You forgot the wish!"
 			}
-			else if dets == false {
-				alert.title = "You forgot the details!"
-			}
+//			else if dets == false {
+//				alert.title = "You forgot the details!"
+//			}
 			else if locs == false {
 				alert.title = "You forgot the location!"
 			}
@@ -219,7 +220,6 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		self.postNewRequest(self.myUserBackend.getUserID(), request: self.myTitle, additionalDetails: self.myDetails, latitude: self.myLatitude, longitude: self.myLongitude, location: self.myLocation, resolved: false, visible: true, tags: self.myTags, expirationDate: self.calcExpirationDate(self.myDelayHours))
 	}
 	
-	
 	@IBAction func cancelWalla(sender: AnyObject)
 	{
 		self.tabBarController?.tabBar.hidden = false
@@ -231,9 +231,8 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	func resetFields()
 	{
 		requestBody?.text = ""
-		requestDetails?.text = ""
 		generalLocation?.text = ""
-		//tagLabel?.text = "#STEM+ "
+		textCounter?.text = "Character count: 73"
 	}
 	
 	func postNewRequest(authorID: String, request: String, additionalDetails: String, latitude: Double, longitude: Double, location: String, resolved: Bool, visible: Bool, tags: [String], expirationDate: Double ) -> Void {
@@ -249,7 +248,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 			"resolved": resolved,
 			"visible": visible,
 			"tags": [self.myTags[0]],
-			"timestamp": self.myBasic.getTimestamp(),
+			"timestamp": myStartTime,//self.myBasic.getTimestamp(),
 			"expirationDate": expirationDate
 		]
 		
@@ -269,6 +268,17 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		})
 	}
 	
+	@IBAction func pickTime(sender: AnyObject) {
+		DatePickerDialog().show("DatePickerDialog", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .Time) {
+			(time) -> Void in
+			myStartTime = NSDate(timeIntervalSince1970: time)
+			let formatter = NSDateFormatter()
+			formatter.timeStyle = .ShortStyle
+			let newTime = formatter.stringFromDate(time!)
+			self.timePickerButton.setTitle(newTime, forState: .Normal)
+		}
+	}
+	
 	//init functions
 	func setAuthorName(name: String) {
 		self.myAuthorName = name
@@ -286,11 +296,11 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	
 	// Begin listeners for input text fields and text views (Brian)
 	
-	@IBAction func requestEditingDidEnd(sender: UITextField) {
-		if let text = self.requestDetails.text {
-			self.myDetails = text
-		}
-	}
+//	@IBAction func requestEditingDidEnd(sender: UITextField) {
+//		if let text = self.requestDetails.text {
+//			self.myDetails = text
+//		}
+//	}
 	
 	func textViewDidChange(textView: UITextView) {
 		checkRemainingChars()
@@ -299,9 +309,9 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		}
 	}
 	
-	func initRequestDetails() {
-		self.requestDetails.delegate = self
-	}
+//	func initRequestDetails() {
+//		self.requestDetails.delegate = self
+//	}
 	
 	@IBAction func locationEditingChanged(sender: UITextField) {
 		if let text = self.generalLocation.text {

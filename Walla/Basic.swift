@@ -20,7 +20,7 @@ class Basic {
     let messageRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Messages")
     
     func getTimestamp() -> Double {
-        return NSDate().timeIntervalSince1970 
+        return NSDate().timeIntervalSince1970
     }
     
     func addUserSignedInListener() {
