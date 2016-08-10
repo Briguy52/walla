@@ -2019,7 +2019,7 @@ Be sure to double check your entries! After submitting your post, you can commen
                     <connections>
                         <outlet property="emailTextField" destination="naX-yN-EQW" id="9aw-5g-CW2"/>
                         <outlet property="passwordTextField" destination="0MC-f3-Sbt" id="keX-jn-Oz8"/>
-                        <segue destination="ak3-Nb-uIc" kind="show" identifier="loggedInSegue" id="hWE-g9-2jM"/>
+                        <segue destination="ak3-Nb-uIc" kind="show" identifier="loggedInSegue" id="h7w-Bo-xyN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jf8-2X-tyI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2180,7 +2180,7 @@ Be sure to double check your entries! After submitting your post, you can commen
         <image name="write" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hWE-g9-2jM"/>
+        <segue reference="h7w-Bo-xyN"/>
         <segue reference="aMd-i3-ymr"/>
     </inferredMetricsTieBreakers>
 </document>

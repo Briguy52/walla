@@ -12,6 +12,7 @@ import Firebase
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let myUserBackend = UserBackend()
+    var hasLoggedIn: Bool = false
     
     //MARK: Text fields
     
@@ -22,14 +23,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
         if checkFieldsValid() {
-            self.myUserBackend.nativeLogin(self.emailTextField.text!, password: self.passwordTextField.text!)
-            FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
-                if let user = user {
-                    print("user is signed in!")
-                    self.performSegueWithIdentifier("loggedInSegue", sender: self)
-                } else {
-                    print("no user signed in")
-                }
+            self.nativeLogin(self.emailTextField.text!, password: self.passwordTextField.text!)
+        }
+    }
+    
+    func nativeLogin(email: String, password: String) {
+        FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
+            print("womp login user callback")
+            if let user = user {
+                print("user successfully logged in:")
+                print(user)
+                self.performSegueWithIdentifier("loggedInSegue", sender: self)
+            }
+            else {
+                print("user not authenticated properly, see error:")
+                print(error)
             }
         }
     }
@@ -60,7 +68,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+
     }
     
 }
