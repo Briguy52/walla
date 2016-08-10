@@ -63,7 +63,6 @@
 		224488571D1FBB1300C98916 /* ConvoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvoModel.swift; sourceTree = "<group>"; };
 		224488591D1FE3E400C98916 /* MainSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSettings.swift; sourceTree = "<group>"; };
 		225B64801D250518007D7268 /* MyTopics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTopics.swift; sourceTree = "<group>"; };
-		225D6E3D1D5151BB00B64295 /* select_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = select_all.png; path = ../../../Downloads/select_all.png; sourceTree = "<group>"; };
 		225D6E3F1D52F51C00B64295 /* DatePickerDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
 		226527261D1F1422004B89D2 /* RequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
 		2265272F1D1F1572004B89D2 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
@@ -71,13 +70,6 @@
 		2265273A1D1F17DD004B89D2 /* UserBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBackend.swift; sourceTree = "<group>"; };
 		2279873A1D1C5CCF00C0EC30 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		22AE09D31D4D86DF00295364 /* FilterCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCellController.swift; sourceTree = "<group>"; };
-		22AE09D51D4D8A1D00295364 /* ic_art.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_art.png; path = "../../genie-android/app/src/main/res/drawable-xhdpi/ic_art.png"; sourceTree = "<group>"; };
-		22AE09D61D4D8A1D00295364 /* ic_food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_food.png; path = "../../genie-android/app/src/main/res/drawable-xhdpi/ic_food.png"; sourceTree = "<group>"; };
-		22AE09D71D4D8A1D00295364 /* ic_games.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_games.png; path = "../../genie-android/app/src/main/res/drawable-xhdpi/ic_games.png"; sourceTree = "<group>"; };
-		22AE09D81D4D8A1D00295364 /* ic_other.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_other.png; path = "../../genie-android/app/src/main/res/drawable-xhdpi/ic_other.png"; sourceTree = "<group>"; };
-		22AE09D91D4D8A1D00295364 /* ic_rides.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_rides.png; path = "../../genie-android/app/src/main/res/drawable-xhdpi/ic_rides.png"; sourceTree = "<group>"; };
-		22AE09DA1D4D8A1D00295364 /* ic_school.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_school.png; path = "../../genie-android/app/src/main/res/drawable-xhdpi/ic_school.png"; sourceTree = "<group>"; };
-		22AE09DB1D4D8A1D00295364 /* ic_sports.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_sports.png; path = "../../genie-android/app/src/main/res/drawable-xhdpi/ic_sports.png"; sourceTree = "<group>"; };
 		22C8893B1D1C536E009DE688 /* Walla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Walla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22C8893E1D1C536F009DE688 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22C889431D1C536F009DE688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -198,14 +190,6 @@
 				22C8893E1D1C536F009DE688 /* AppDelegate.swift */,
 				22C889421D1C536F009DE688 /* Main.storyboard */,
 				22C889451D1C536F009DE688 /* Assets.xcassets */,
-				22AE09D51D4D8A1D00295364 /* ic_art.png */,
-				22AE09D61D4D8A1D00295364 /* ic_food.png */,
-				225D6E3D1D5151BB00B64295 /* select_all.png */,
-				22AE09D71D4D8A1D00295364 /* ic_games.png */,
-				22AE09D81D4D8A1D00295364 /* ic_other.png */,
-				22AE09D91D4D8A1D00295364 /* ic_rides.png */,
-				22AE09DA1D4D8A1D00295364 /* ic_school.png */,
-				22AE09DB1D4D8A1D00295364 /* ic_sports.png */,
 				22C889471D1C536F009DE688 /* LaunchScreen.storyboard */,
 				22C8894A1D1C536F009DE688 /* Info.plist */,
 				222D53221D1D53CD00ABB2DD /* MainTabBarController.swift */,
