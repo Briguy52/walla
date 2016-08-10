@@ -151,89 +151,63 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 		return UITableViewAutomaticDimension
 	}
 	
-//	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//		
-//		cell.contentView.backgroundColor = UIColor.clearColor()
-//		
-//		let whiteRoundedView : UIView = UIView(frame: CGRectMake(0, 10, self.view.frame.size.width, 200))
-//		
-//		whiteRoundedView.backgroundColor = UIColor(netHex: 0xf3f3f3)
-//		//whiteRoundedView.layer.backgroundColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 1.0])
-//		whiteRoundedView.layer.masksToBounds = false
-//		whiteRoundedView.layer.cornerRadius = 5.0
-//		whiteRoundedView.layer.shadowOffset = CGSizeMake(-1, 1)
-//		whiteRoundedView.layer.shadowOpacity = 0.2
-//		
-//		cell.contentView.addSubview(whiteRoundedView)
-//		cell.contentView.sendSubviewToBack(whiteRoundedView)
-//	}
-	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell :HomeCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! HomeCell
 		
-		let requestModel = requestModels[indexPath.row]
-		
-		let key = requestModel.authorID
+        cell.contentView.backgroundColor = UIColor(netHex: 0xf3f3f3)
+        let whiteRoundedView : UIView = UIView(frame: CGRectMake(10, 8, self.view.frame.size.width - 20, 160))
         
-		self.myUserBackend.getUserInfo("displayName", userID: key)
-		{
-			(result: AnyObject) in
-			cell.setAuthorName(result as! String)
-		}
-                
-//        self.myUserBackend.getUserInfo("profilePicUrl", userID: key)
-//        {
-//            (result: AnyObject) in
-//            cell.setCellImage(NSURL(string: result as! String)!)
-//        }
-		
-		cell.userName?.text = requestModel.authorID
-		cell.message?.text = requestModel.request
-		cell.message?.lineBreakMode = .ByWordWrapping
-		cell.message?.numberOfLines = 0
-		cell.message?.sizeToFit()
-		cell.topics?.text = requestModel.tags.joinWithSeparator("")
-		cell.topics?.sizeToFit()
-		cell.topics?.layer.cornerRadius = 5
-		cell.topics?.layer.masksToBounds = true
-		
-		switch requestModel.tags[0] {
-			case "Food":
-				cell.topics?.backgroundColor = UIColor.init(netHex: 0xe74c3c)
-			case "Artsy":
-				cell.topics?.backgroundColor = UIColor.init(netHex: 0xe67e22)
-			case "School":
-				cell.topics?.backgroundColor = UIColor.init(netHex: 0xf1c40f)
-			case "Rides":
-				cell.topics?.backgroundColor = UIColor.init(netHex: 0x2ecc71)
-			case "Games":
-				cell.topics?.backgroundColor = UIColor.init(netHex: 0x1abc9c)
-			default:
-				cell.topics?.backgroundColor = UIColor.lightGrayColor()
-		}
-		
-		cell.timeStamp?.text = cell.parseDateFromTime(requestModel.timestamp)
-		
-//		cell.profile.layer.borderWidth = 0.5
-//		cell.profile.layer.masksToBounds = false
-//		cell.profile.layer.borderColor = UIColor.blackColor().CGColor
-//		cell.profile.layer.cornerRadius = cell.profile.frame.height / 2
-//		cell.profile.clipsToBounds = true
-		
-		self.noWallasPosts()
-		
-		cell.contentView.backgroundColor = UIColor(netHex: 0xf3f3f3)
-		let whiteRoundedView : UIView = UIView(frame: CGRectMake(10, 8, self.view.frame.size.width - 20, 160))
-		
-		whiteRoundedView.layer.backgroundColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 0.8])
-		whiteRoundedView.layer.masksToBounds = false
-		whiteRoundedView.layer.cornerRadius = 4.0
-		whiteRoundedView.layer.shadowOffset = CGSizeMake(-1, 1)
-		whiteRoundedView.layer.shadowOpacity = 0.1
-		
-		cell.contentView.addSubview(whiteRoundedView)
-		cell.contentView.sendSubviewToBack(whiteRoundedView)
-		
+        whiteRoundedView.layer.backgroundColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 0.8])
+        whiteRoundedView.layer.masksToBounds = false
+        whiteRoundedView.layer.cornerRadius = 4.0
+        whiteRoundedView.layer.shadowOffset = CGSizeMake(-1, 1)
+        whiteRoundedView.layer.shadowOpacity = 0.1
+        
+        cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.sendSubviewToBack(whiteRoundedView)
+
+        if indexPath.row < requestModels.count {
+            let requestModel = requestModels[indexPath.row]
+            
+            let key = requestModel.authorID
+            
+            self.myUserBackend.getUserInfo("displayName", userID: key)
+            {
+                (result: AnyObject) in
+                cell.setAuthorName(result as! String)
+            }
+            
+            cell.userName?.text = requestModel.authorID
+            cell.message?.text = requestModel.request
+            cell.message?.lineBreakMode = .ByWordWrapping
+            cell.message?.numberOfLines = 0
+            cell.message?.sizeToFit()
+            cell.topics?.text = requestModel.tags.joinWithSeparator("")
+            cell.topics?.sizeToFit()
+            cell.topics?.layer.cornerRadius = 5
+            cell.topics?.layer.masksToBounds = true
+            
+            switch requestModel.tags[0] {
+            case "Food":
+                cell.topics?.backgroundColor = UIColor.init(netHex: 0xe74c3c)
+            case "Artsy":
+                cell.topics?.backgroundColor = UIColor.init(netHex: 0xe67e22)
+            case "School":
+                cell.topics?.backgroundColor = UIColor.init(netHex: 0xf1c40f)
+            case "Rides":
+                cell.topics?.backgroundColor = UIColor.init(netHex: 0x2ecc71)
+            case "Games":
+                cell.topics?.backgroundColor = UIColor.init(netHex: 0x1abc9c)
+            default:
+                cell.topics?.backgroundColor = UIColor.lightGrayColor()
+            }
+            
+            cell.timeStamp?.text = cell.parseDateFromTime(requestModel.timestamp)
+            
+            self.noWallasPosts()
+
+        }
+				
 		return cell	}
 	
 	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

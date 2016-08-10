@@ -187,7 +187,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 		
 		if self.generalLocation.text!.isEmptyField == false { locs = true } else { locs = false }
 		
-		if tags == true && wish == true && dets == true && locs == true && remainingChars > -1 {
+		if tags == true && wish == true && locs == true && remainingChars > -1 {
 			self.submit()
 		}
 		else {
