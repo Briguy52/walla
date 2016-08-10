@@ -2093,6 +2093,9 @@ Be sure to double check your entries! After submitting your post, you can commen
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="CBR-6o-ZIf" eventType="touchUpInside" id="T4h-lk-K46"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2163,7 +2166,7 @@ Be sure to double check your entries! After submitting your post, you can commen
         <image name="write" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="h7w-Bo-xyN"/>
-        <segue reference="aMd-i3-ymr"/>
+        <segue reference="fJs-zf-jeQ"/>
+        <segue reference="0vc-TS-pBy"/>
     </inferredMetricsTieBreakers>
 </document>
