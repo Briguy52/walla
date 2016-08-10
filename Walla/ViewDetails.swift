@@ -22,6 +22,7 @@ class ViewDetails: UIViewController {
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
+    let myRequestBackend = RequestBackend() 
 	let myConvoBackend = ConvoBackend()
 	var convoID:String!
 	
