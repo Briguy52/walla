@@ -23,7 +23,7 @@ class InitialViewController: UIViewController {
     }
     
     func formatLogo() {
-        self.wallaLogo.layer.cornerRadius = self.wallaLogo.frame.size.width / 3;
+        self.wallaLogo.layer.cornerRadius = self.wallaLogo.frame.size.width / 3
         self.wallaLogo.clipsToBounds = true
         self.wallaLogo.layer.borderWidth = 3.0
         self.wallaLogo.layer.borderColor = UIColor.whiteColor().CGColor

@@ -2049,6 +2049,9 @@ Be sure to double check your entries! After submitting your post, you can commen
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walla-background" translatesAutoresizingMaskIntoConstraints="NO" id="33I-ir-Whs">
+                                <rect key="frame" x="0.0" y="-49" width="600" height="649"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="To4-pI-G6R">
                                 <rect key="frame" x="0.0" y="206" width="600" height="120"/>
                                 <subviews>
@@ -2088,6 +2091,7 @@ Be sure to double check your entries! After submitting your post, you can commen
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="33I-ir-Whs" secondAttribute="trailing" constant="-20" id="7mq-br-WWe"/>
                             <constraint firstItem="To4-pI-G6R" firstAttribute="top" secondItem="7rl-bI-Whq" secondAttribute="bottom" constant="12" id="Dig-zy-ela"/>
                             <constraint firstAttribute="trailing" secondItem="7rl-bI-Whq" secondAttribute="trailing" constant="241" id="Hc0-YM-Keb"/>
                             <constraint firstItem="7rl-bI-Whq" firstAttribute="centerX" secondItem="To4-pI-G6R" secondAttribute="centerX" id="Ljb-3g-c8A"/>
@@ -2096,8 +2100,11 @@ Be sure to double check your entries! After submitting your post, you can commen
                             <constraint firstItem="7rl-bI-Whq" firstAttribute="top" secondItem="n5Q-Bm-ihd" secondAttribute="bottom" constant="12" id="Uey-OF-fLf"/>
                             <constraint firstItem="To4-pI-G6R" firstAttribute="leading" secondItem="Ywx-83-5AK" secondAttribute="leading" id="Ufs-1S-vef"/>
                             <constraint firstAttribute="trailing" secondItem="To4-pI-G6R" secondAttribute="trailing" id="Xw9-GC-8Jt"/>
+                            <constraint firstItem="33I-ir-Whs" firstAttribute="leading" secondItem="Ywx-83-5AK" secondAttribute="leadingMargin" constant="-20" id="ZGh-sI-IlR"/>
                             <constraint firstItem="To4-pI-G6R" firstAttribute="top" secondItem="7rl-bI-Whq" secondAttribute="bottom" constant="12" id="aRV-fs-fmT"/>
+                            <constraint firstItem="33I-ir-Whs" firstAttribute="top" secondItem="Ywx-83-5AK" secondAttribute="topMargin" constant="-49" id="e0u-rF-3GH"/>
                             <constraint firstItem="7rl-bI-Whq" firstAttribute="top" secondItem="n5Q-Bm-ihd" secondAttribute="bottom" constant="12" id="mIn-sN-uPm"/>
+                            <constraint firstItem="5cU-Tt-IcV" firstAttribute="top" secondItem="33I-ir-Whs" secondAttribute="bottom" id="mwn-bv-LT6"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">

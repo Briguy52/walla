@@ -29,6 +29,12 @@ class NewAccountViewController: UIViewController, UITextFieldDelegate, UIImagePi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initEmptyStrings() // inits text fields with ""
+        self.formatProfilePic()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        self.formatProfilePic()
     }
     
     //MARK: Actions
@@ -92,6 +98,13 @@ class NewAccountViewController: UIViewController, UITextFieldDelegate, UIImagePi
         }
         
         return true
+    }
+    
+    func formatProfilePic() {
+        self.photoImageView.layer.cornerRadius = self.photoImageView.frame.size.width / 3
+        self.photoImageView.clipsToBounds = true
+        self.photoImageView.layer.borderWidth = 3.0
+        self.photoImageView.layer.borderColor = UIColor.whiteColor().CGColor
     }
     
     @IBAction func submitButtonPressed(sender: AnyObject) {
