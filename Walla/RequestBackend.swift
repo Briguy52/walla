@@ -67,7 +67,7 @@ class RequestBackend {
                 if snapshot.key == postID {
                     // If attendees list exists and I'm not on it, add myself and push!
                     if var out = snapshot.value!["attendees"] as? [String] {
-                        completion(result: out.count)
+                        completion(result: out.count + 1)
                     }
                         // If no attendees yet, create new list and push!
                     else {
@@ -78,8 +78,6 @@ class RequestBackend {
     }
     
     func addSelfToAttendees(postID: String, myID: String) {
-        print("womp womp womp")
-        
         myBasic.requestRef.queryOrderedByChild(postID)
             .observeEventType(.ChildAdded, withBlock: { snapshot in
                 if snapshot.key == postID {
@@ -93,7 +91,6 @@ class RequestBackend {
                     }
                         // If no attendees yet, create new list and push!
                     else {
-                        print("else")
                         self.myBasic.requestRef.child(postID).child("attendees").setValue([myID])
                     }
                 }

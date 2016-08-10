@@ -117,12 +117,10 @@ class ViewDetails: UIViewController {
 	{
         if requestModels[currentIndex].authorID != self.myUserBackend.getUserID() {
             let requestID = requestModels[currentIndex].postID!
-            //        let authorID = requestModels[currentIndex].authorID
             let userID = self.myUserBackend.getUserID()
-            print("wompwmowomowmpwmpmpwmpmw")
             self.myRequestBackend.addSelfToAttendees(requestID, myID: userID)
         }
-	}
+     	}
 	
 	func createConvoHash(requestID: String, authorID: String, userID: String) -> String {
 		let toHash = requestID + authorID + userID
