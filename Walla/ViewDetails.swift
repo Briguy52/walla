@@ -59,7 +59,7 @@ class ViewDetails: UIViewController {
         //		self.additional?.text = requestModel.additionalDetails
         self.myRequestBackend.countAttendees(requestModel.postID!) {
             (result: Int) in
-            self.additional?.text = String(result) + " attendees"
+            self.additional?.text = String(result) + " attendee(s)"
         }
         self.location?.text = requestModel.location
         self.tags?.text = requestModel.tags.joinWithSeparator(" ")
