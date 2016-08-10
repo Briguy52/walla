@@ -115,36 +115,13 @@ class ViewDetails: UIViewController {
 	
 	@IBAction func goToMessages(sender: UIButton)
 	{
-		if requestModels[currentIndex].authorID != self.myUserBackend.getUserID() {
-        let requestID = requestModels[currentIndex].postID!
-        let authorID = requestModels[currentIndex].authorID
-        let userID = self.myUserBackend.getUserID()
-        let convoHash = createConvoHash(requestID, authorID: authorID, userID: userID)
-        
-		let refToTry = self.buildRef()
-		refToTry.observeEventType(.Value, withBlock: { snapshot in
-                        
-            // Convo does not yet exist
-			if snapshot.value is NSNull {
-                refToTry.removeAllObservers()
-				self.createSingleConvoRef(requestID, authorID: authorID, userID: userID)
-			}
+        if requestModels[currentIndex].authorID != self.myUserBackend.getUserID() {
+            let requestID = requestModels[currentIndex].postID!
+            //        let authorID = requestModels[currentIndex].authorID
+            let userID = self.myUserBackend.getUserID()
             
-            // Convo does exist
-			else {
-                refToTry.removeAllObservers()
-				self.convoID = convoHash
-				convoIDFromHome = self.convoID
-                self.performSegueWithIdentifier("unwindToMessages", sender: self)
-            }
-        })
-		}
-		else {
-			let alert = UIAlertView()
-			alert.title = "Sorry, you cannot create a conversation with yourself."
-			alert.addButtonWithTitle("OK")
-			alert.show()
-		}
+            self.myRequestBackend.addSelfToAttendees(requestID, myID: userID)
+        }
 	}
 	
 	func createConvoHash(requestID: String, authorID: String, userID: String) -> String {
