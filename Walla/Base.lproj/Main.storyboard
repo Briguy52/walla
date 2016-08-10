@@ -1852,7 +1852,7 @@ Be sure to double check your entries! After submitting your post, you can commen
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="splashscreen" translatesAutoresizingMaskIntoConstraints="NO" id="LpB-OF-9Aj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="walla-background" translatesAutoresizingMaskIntoConstraints="NO" id="LpB-OF-9Aj">
                                 <rect key="frame" x="0.0" y="64" width="600" height="537"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="O9k-kt-a6v">
@@ -2160,7 +2160,6 @@ Be sure to double check your entries! After submitting your post, you can commen
         <image name="lookaround" width="32" height="15"/>
         <image name="me" width="25" height="32"/>
         <image name="messages" width="32" height="19"/>
-        <image name="splashscreen" width="406" height="720"/>
         <image name="walla-background" width="405" height="719"/>
         <image name="write" width="30" height="30"/>
     </resources>
