@@ -119,7 +119,7 @@ class ViewDetails: UIViewController {
             let requestID = requestModels[currentIndex].postID!
             //        let authorID = requestModels[currentIndex].authorID
             let userID = self.myUserBackend.getUserID()
-            
+            print("wompwmowomowmpwmpmpwmpmw")
             self.myRequestBackend.addSelfToAttendees(requestID, myID: userID)
         }
 	}
