@@ -22,7 +22,7 @@ class ViewDetails: UIViewController {
 	
 	let myBasic = Basic()
 	let myUserBackend = UserBackend()
-    let myRequestBackend = RequestBackend() 
+    let myRequestBackend = RequestBackend()
 	let myConvoBackend = ConvoBackend()
 	var convoID:String!
 	
@@ -49,17 +49,21 @@ class ViewDetails: UIViewController {
 		super.viewWillDisappear(animated)
 	}
 	
-	func initRequestInfo()
-	{
-		let requestModel = requestModels[currentIndex]
-		
-		self.setImage()
-		self.message?.text = requestModel.request
-		self.timestamp?.text = parseDateFromTime(requestModel.timestamp)
-		self.additional?.text = requestModel.additionalDetails
-		self.location?.text = requestModel.location
-		self.tags?.text = requestModel.tags.joinWithSeparator(" ")
-	}
+    func initRequestInfo()
+    {
+        let requestModel = requestModels[currentIndex]
+        
+        self.setImage()
+        self.message?.text = requestModel.request
+        self.timestamp?.text = parseDateFromTime(requestModel.timestamp)
+        //		self.additional?.text = requestModel.additionalDetails
+        self.myRequestBackend.countAttendees(requestModel.postID!) {
+            (result: Int) in
+            self.additional?.text = String(result) + " attendees"
+        }
+        self.location?.text = requestModel.location
+        self.tags?.text = requestModel.tags.joinWithSeparator(" ")
+    }
 	
 	func parseDateFromTime(time: Double) -> String {
 		let postedDate = NSDate(timeIntervalSince1970: time)
