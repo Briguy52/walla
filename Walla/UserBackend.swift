@@ -41,7 +41,7 @@ class UserBackend {
         
     }
     
-    func nativeCreateUser(email: String, password: String) {
+    func nativeCreateUser(email: String, password: String, displayName: String, name: String) {
         FIRAuth.auth()?.createUserWithEmail(email, password: password) { (user, error) in
             print("womp create user callback")
             print(error)
@@ -55,8 +55,8 @@ class UserBackend {
 //                    var name = "womp"
 //                    var profilePicUrl = "https://metrouk2.files.wordpress.com/2009/12/article-1260439489005-07877bac000005dc-595563_636x932.jpg"
                     
-                    var displayName = "brian"
-                    var name = "brian"
+//                    var displayName = "brian"
+//                    var name = "brian"
                     var profilePicUrl = "http://media.npr.org/assets/img/2016/03/29/ap_090911089838_sq-3271237f28995f6530d9634ff27228cae88e3440-s900-c85.jpg"
                     
                     self.updateUserData("displayName", value: displayName, userID: data.uid)

@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         super.init()
         FIRApp.configure()
         let myUserBackend = UserBackend()
-        myUserBackend.hardCodedLogin()
+//        myUserBackend.hardCodedLogin()
         // not really needed unless you really need it FIRDatabase.database().persistenceEnabled = true
     }
     

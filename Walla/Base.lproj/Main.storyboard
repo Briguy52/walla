@@ -2012,7 +2012,7 @@ Be sure to double check your entries! After submitting your post, you can commen
                     <connections>
                         <outlet property="emailTextField" destination="naX-yN-EQW" id="9aw-5g-CW2"/>
                         <outlet property="passwordTextField" destination="0MC-f3-Sbt" id="keX-jn-Oz8"/>
-                        <segue destination="ak3-Nb-uIc" kind="show" id="hWE-g9-2jM"/>
+                        <segue destination="ak3-Nb-uIc" kind="show" identifier="tabBarSegue" id="hWE-g9-2jM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jf8-2X-tyI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2066,9 +2066,6 @@ Be sure to double check your entries! After submitting your post, you can commen
                                         <rect key="frame" x="0.0" y="60" width="600" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <segue destination="ak3-Nb-uIc" kind="show" id="iV6-uD-pjU"/>
-                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nMx-QP-Drq">
                                         <rect key="frame" x="0.0" y="90" width="600" height="30"/>
@@ -2114,7 +2111,11 @@ Be sure to double check your entries! After submitting your post, you can commen
                                 <segue destination="Mkx-5E-59k" kind="show" id="0vc-TS-pBy"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Submit" id="Xwg-T4-gbm"/>
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="Xwg-T4-gbm">
+                            <connections>
+                                <action selector="submitButtonPressed:" destination="CBR-6o-ZIf" id="GCP-Vm-hWe"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="emailTextField" destination="abN-FB-fq6" id="dh0-Sw-Kkq"/>
@@ -2122,6 +2123,7 @@ Be sure to double check your entries! After submitting your post, you can commen
                         <outlet property="lastNameTextField" destination="xlc-Ov-xTK" id="sY2-rk-gnR"/>
                         <outlet property="passwordTextField" destination="nMx-QP-Drq" id="Voi-W6-lDm"/>
                         <outlet property="photoImageView" destination="7rl-bI-Whq" id="l0g-bo-Kkl"/>
+                        <segue destination="ak3-Nb-uIc" kind="show" identifier="signedUpSegue" id="fJs-zf-jeQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lig-BZ-NOh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2164,7 +2166,7 @@ Be sure to double check your entries! After submitting your post, you can commen
         <image name="write" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iV6-uD-pjU"/>
+        <segue reference="fJs-zf-jeQ"/>
         <segue reference="0vc-TS-pBy"/>
     </inferredMetricsTieBreakers>
 </document>

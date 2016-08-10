@@ -11,6 +11,8 @@ import UIKit
 
 class NewAccountViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
+    let myUserBackend = UserBackend()
+    
     //MARK: Text Fields
     
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -23,6 +25,11 @@ class NewAccountViewController: UIViewController, UITextFieldDelegate, UIImagePi
     //MARK: Properties
     
     @IBOutlet weak var photoImageView: UIImageView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.initEmptyStrings() // inits text fields with ""
+    }
     
     //MARK: Actions
     
@@ -60,6 +67,40 @@ class NewAccountViewController: UIViewController, UITextFieldDelegate, UIImagePi
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func initEmptyStrings() {
+        self.emailTextField.text = ""
+        self.firstNameTextField.text = ""
+        self.lastNameTextField.text = ""
+        self.passwordTextField.text = ""
+    }
+    
+    func checkFieldsValid() -> Bool {
+        var email = self.emailTextField.text!
+        var first = self.firstNameTextField.text!
+        var last = self.lastNameTextField.text!
+        var pass = self.passwordTextField.text!
+        
+        var array = [email, first, last, pass]
+        for field in array {
+            if field == "" {
+                return false
+            }
+        }
+        // Firebase requires passwords of at least six characters
+        if pass.characters.count < 6 {
+            return false
+        }
+        
+        return true
+    }
+    
+    @IBAction func submitButtonPressed(sender: AnyObject) {
+        if (checkFieldsValid()) {
+            self.myUserBackend.nativeCreateUser(self.emailTextField.text!, password: self.passwordTextField.text!, displayName: self.firstNameTextField.text!, name: self.firstNameTextField.text! + " " + self.lastNameTextField.text!)
+            
+            self.performSegueWithIdentifier("signedUpSegue", sender: self)
+        }
+    }
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
@@ -71,7 +112,9 @@ class NewAccountViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        if segue.identifier == "signedUpSegue" {
+            print("signed up")
+        }
     }
     
 }
