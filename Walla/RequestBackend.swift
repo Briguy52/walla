@@ -61,6 +61,42 @@ class RequestBackend {
         return ret
     }
     
+    func countAttendees(postID: String, completion: (result: Int) -> Void) {
+        myBasic.requestRef.queryOrderedByChild(postID)
+            .observeEventType(.ChildAdded, withBlock: { snapshot in
+                if snapshot.key == postID {
+                    // If attendees list exists and I'm not on it, add myself and push!
+                    if var out = snapshot.value!["attendees"] as? [String] {
+                        completion(result: out.count)
+                    }
+                        // If no attendees yet, create new list and push!
+                    else {
+                        completion(result: 1)
+                    }
+                }
+            })
+    }
+    
+    func addSelfToAttendees(postID: String, myID: String) {
+        myBasic.requestRef.queryOrderedByChild(postID)
+            .observeEventType(.ChildAdded, withBlock: { snapshot in
+                if snapshot.key == postID {
+                    // If attendees list exists and I'm not on it, add myself and push!
+                    if var out = snapshot.value!["attendees"] as? [String] {
+                        if !out.contains(myID) {
+                            out.append(myID)
+                            self.myBasic.requestRef.child(postID).child("attendees").setValue(out)
+                        }
+                    }
+                        // If no attendees yet, create new list and push!
+                    else {
+                        self.myBasic.requestRef.child(postID).child("attendees").setValue([myID])
+                    }
+                }
+            })
+
+    }
+    
     func populateFilter() {
         let refToTry = self.myBasic.userRef.child(self.myUserBackend.getUserID())
         
