@@ -21,7 +21,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     
     
-    @IBAction func doneButtonPressed(sender: AnyObject) {
+    @IBAction func submitButtonPressed(sender: AnyObject) {
         if checkFieldsValid() {
             self.nativeLogin(self.emailTextField.text!, password: self.passwordTextField.text!)
         }
