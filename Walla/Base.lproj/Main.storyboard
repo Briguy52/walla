@@ -1948,10 +1948,9 @@ Be sure to double check your entries! After submitting your post, you can commen
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SaC-gZ-FRj">
-                                <rect key="frame" x="20" y="206" width="167" height="28"/>
-                                <state key="normal" title="Forgot Password?"/>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walla-background" translatesAutoresizingMaskIntoConstraints="NO" id="rGG-g5-QBz">
+                                <rect key="frame" x="0.0" y="-24" width="600" height="624"/>
+                            </imageView>
                             <stackView opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8ey-dr-S0U">
                                 <rect key="frame" x="0.0" y="104" width="600" height="68"/>
                                 <subviews>
@@ -1987,9 +1986,13 @@ Be sure to double check your entries! After submitting your post, you can commen
                         <color key="backgroundColor" red="0.94901960780000005" green="0.96078431369999995" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="8ey-dr-S0U" secondAttribute="trailing" id="A7h-mS-Ntr"/>
+                            <constraint firstItem="rGG-g5-QBz" firstAttribute="leading" secondItem="ybr-FQ-j0K" secondAttribute="leadingMargin" constant="-20" id="Emz-X7-SU2"/>
                             <constraint firstItem="8ey-dr-S0U" firstAttribute="leading" secondItem="ybr-FQ-j0K" secondAttribute="leading" id="GPC-lm-QU7"/>
                             <constraint firstAttribute="trailing" secondItem="8ey-dr-S0U" secondAttribute="trailing" id="HV5-uM-Vei"/>
                             <constraint firstItem="8ey-dr-S0U" firstAttribute="leading" secondItem="ybr-FQ-j0K" secondAttribute="leadingMargin" constant="-20" id="HWi-YU-r72"/>
+                            <constraint firstItem="N94-wB-atD" firstAttribute="top" secondItem="rGG-g5-QBz" secondAttribute="bottom" id="JHY-DD-3TQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rGG-g5-QBz" secondAttribute="trailing" constant="-20" id="VhE-AF-nVb"/>
+                            <constraint firstItem="rGG-g5-QBz" firstAttribute="top" secondItem="ybr-FQ-j0K" secondAttribute="topMargin" constant="-24" id="a1N-dJ-NDU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8ey-dr-S0U" secondAttribute="trailing" id="lA6-A7-alm"/>
                             <constraint firstItem="8ey-dr-S0U" firstAttribute="top" secondItem="Z76-TL-WvS" secondAttribute="bottom" constant="40" id="nAb-fG-59g"/>
                             <constraint firstItem="8ey-dr-S0U" firstAttribute="top" secondItem="Z76-TL-WvS" secondAttribute="bottom" constant="40" id="qzZ-mR-5Rw"/>
@@ -2007,12 +2010,16 @@ Be sure to double check your entries! After submitting your post, you can commen
                                 <segue destination="Mkx-5E-59k" kind="show" id="aMd-i3-ymr"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="Y6G-Ia-AY6"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="Y6G-Ia-AY6">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="U37-r4-MLH" id="ugv-Uc-v1e"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="emailTextField" destination="naX-yN-EQW" id="9aw-5g-CW2"/>
                         <outlet property="passwordTextField" destination="0MC-f3-Sbt" id="keX-jn-Oz8"/>
-                        <segue destination="ak3-Nb-uIc" kind="show" identifier="tabBarSegue" id="hWE-g9-2jM"/>
+                        <segue destination="ak3-Nb-uIc" kind="show" identifier="loggedInSegue" id="hWE-g9-2jM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jf8-2X-tyI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2173,7 +2180,7 @@ Be sure to double check your entries! After submitting your post, you can commen
         <image name="write" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fJs-zf-jeQ"/>
-        <segue reference="0vc-TS-pBy"/>
+        <segue reference="hWE-g9-2jM"/>
+        <segue reference="aMd-i3-ymr"/>
     </inferredMetricsTieBreakers>
 </document>
