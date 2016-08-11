@@ -1461,7 +1461,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vBB-94-lag">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="650"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGW-q1-Exe">
+                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGW-q1-Exe">
                                                 <rect key="frame" x="0.0" y="618" width="600" height="31.5"/>
                                                 <color key="backgroundColor" red="0.23529411764705882" green="0.70588235294117652" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
@@ -1559,9 +1559,9 @@
                                                 <color key="textColor" red="0.43137254899999999" green="0.43137254899999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGu-YU-gSh">
-                                                <rect key="frame" x="16" y="425" width="570" height="57.5"/>
-                                                <string key="text">Your post dissappears 30 minutes after the activity starts!
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGu-YU-gSh">
+                                                <rect key="frame" x="-33" y="425" width="619" height="57.5"/>
+                                                <string key="text">Your post disappears 30 minutes after the activity starts!
 
 Be sure to double check your entries! After submitting your post, you can comment on it, but you can't edit it.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
