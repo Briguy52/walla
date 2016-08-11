@@ -52,6 +52,8 @@ class RequestBackend {
 
         var ret = true
         if let requestTags = snap.value!.objectForKey("tags") as? [String] {
+            print("womp request tags")
+            print(requestTags)
             for tag in tags {
                 if (!requestTags.contains(tag)) {
                     ret = false
