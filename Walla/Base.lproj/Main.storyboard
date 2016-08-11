@@ -1401,69 +1401,39 @@
                                     <constraint firstItem="8x1-yj-lkK" firstAttribute="leading" secondItem="iK7-hE-qjV" secondAttribute="leading" constant="27" id="vS4-HR-aEX"/>
                                 </constraints>
                             </view>
-                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gZk-KQ-QKi">
-                                <rect key="frame" x="0.0" y="193" width="600" height="246"/>
-                                <subviews>
-                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksu-Pk-uLU">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="600" id="FER-IS-m31"/>
-                                            <constraint firstAttribute="height" constant="50" id="vTf-Aa-mHB"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                        <state key="normal" title="     Logout">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logout:" destination="M8p-iL-WUF" eventType="touchUpInside" id="0yX-Yi-I9O"/>
-                                            <segue destination="Mkx-5E-59k" kind="show" id="l3w-OT-Iy4"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksu-Pk-uLU">
+                                <rect key="frame" x="0.0" y="210" width="600" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ksu-Pk-uLU" secondAttribute="trailing" id="CB9-Wd-JUO"/>
-                                    <constraint firstAttribute="bottom" secondItem="ksu-Pk-uLU" secondAttribute="bottom" constant="196" id="Nlb-MP-pjb"/>
-                                    <constraint firstAttribute="width" constant="600" id="QCr-hN-GgR"/>
-                                    <constraint firstItem="ksu-Pk-uLU" firstAttribute="leading" secondItem="gZk-KQ-QKi" secondAttribute="leading" id="XpR-sX-As9"/>
-                                    <constraint firstItem="ksu-Pk-uLU" firstAttribute="top" secondItem="gZk-KQ-QKi" secondAttribute="top" id="gqJ-0W-oYL"/>
+                                    <constraint firstAttribute="width" constant="600" id="FER-IS-m31"/>
+                                    <constraint firstAttribute="height" constant="50" id="vTf-Aa-mHB"/>
                                 </constraints>
-                            </view>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <state key="normal" title="     Logout">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logout:" destination="M8p-iL-WUF" eventType="touchUpInside" id="0yX-Yi-I9O"/>
+                                    <segue destination="Mkx-5E-59k" kind="show" id="l3w-OT-Iy4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="iK7-hE-qjV" secondAttribute="trailing" id="0u3-k2-JAD"/>
-                            <constraint firstAttribute="trailing" secondItem="gZk-KQ-QKi" secondAttribute="trailing" id="0uN-9b-zJb"/>
-                            <constraint firstItem="7Yz-ky-2yw" firstAttribute="top" secondItem="gZk-KQ-QKi" secondAttribute="bottom" id="2Ja-cS-zBr"/>
                             <constraint firstItem="iK7-hE-qjV" firstAttribute="top" secondItem="nlX-pq-SCC" secondAttribute="bottom" id="7ci-SX-Iq7"/>
-                            <constraint firstItem="7Yz-ky-2yw" firstAttribute="top" secondItem="gZk-KQ-QKi" secondAttribute="bottom" id="CRE-nH-O2X"/>
-                            <constraint firstItem="gZk-KQ-QKi" firstAttribute="leading" secondItem="o0L-yp-zzF" secondAttribute="leading" id="GYO-a5-yow"/>
-                            <constraint firstItem="gZk-KQ-QKi" firstAttribute="top" secondItem="iK7-hE-qjV" secondAttribute="bottom" constant="8" id="LSu-wq-ErP"/>
-                            <constraint firstItem="gZk-KQ-QKi" firstAttribute="leading" secondItem="o0L-yp-zzF" secondAttribute="leading" id="T3g-Mh-7lR"/>
-                            <constraint firstAttribute="trailing" secondItem="gZk-KQ-QKi" secondAttribute="trailing" id="a3F-KK-cV8"/>
-                            <constraint firstItem="gZk-KQ-QKi" firstAttribute="width" secondItem="o0L-yp-zzF" secondAttribute="width" id="au2-n0-zzk"/>
                             <constraint firstItem="iK7-hE-qjV" firstAttribute="leading" secondItem="o0L-yp-zzF" secondAttribute="leading" id="eZq-Fu-YMG"/>
                             <constraint firstAttribute="trailing" secondItem="nlX-pq-SCC" secondAttribute="trailing" id="eir-mX-F1j"/>
-                            <constraint firstItem="gZk-KQ-QKi" firstAttribute="leading" secondItem="o0L-yp-zzF" secondAttribute="leading" id="llV-mn-40S"/>
-                            <constraint firstAttribute="trailing" secondItem="gZk-KQ-QKi" secondAttribute="trailing" id="rNM-tr-Wfc"/>
                             <constraint firstItem="nlX-pq-SCC" firstAttribute="top" secondItem="gh9-GO-8nT" secondAttribute="bottom" id="rU1-h2-vsK"/>
                             <constraint firstItem="nlX-pq-SCC" firstAttribute="leading" secondItem="o0L-yp-zzF" secondAttribute="leading" id="uxC-aM-jCw"/>
                             <constraint firstItem="nlX-pq-SCC" firstAttribute="width" secondItem="o0L-yp-zzF" secondAttribute="width" id="v9m-XY-aJY"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="2Ja-cS-zBr"/>
-                                <exclude reference="CRE-nH-O2X"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="me" selectedImage="me" id="MqA-hr-dnI">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="0.0"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-5"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="buttonViews" destination="gZk-KQ-QKi" id="y10-Eg-r9S"/>
                         <outlet property="logout" destination="ksu-Pk-uLU" id="hBA-tE-WJs"/>
                         <outlet property="profile" destination="8x1-yj-lkK" id="XtO-vv-jQD"/>
                         <outlet property="username" destination="DOy-jh-RR3" id="Hl6-Ig-oZN"/>
