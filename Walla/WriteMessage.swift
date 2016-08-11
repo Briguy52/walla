@@ -272,13 +272,13 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	@IBAction func pickTime(sender: AnyObject) {
 		DatePickerDialog().show("Set a starting time", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .Time) {
 			(time) -> Void in
-//			myStartTime = NSDate(timeIntervalSince1970: time)
-            print("womp pick time in")
-            print(time)
 			let formatter = NSDateFormatter()
 			formatter.timeStyle = .ShortStyle
-			let newTime = formatter.stringFromDate(time!)
-			self.timePickerButton.setTitle(newTime, forState: .Normal)
+            var timePicked = formatter.stringFromDate(NSDate())
+            if let time = time {
+                timePicked = formatter.stringFromDate(time) // Handles when user cancels out of time picker
+            }
+			self.timePickerButton.setTitle(timePicked, forState: .Normal)
 		}
 	}
 	
