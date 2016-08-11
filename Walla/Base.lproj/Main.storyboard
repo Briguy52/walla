@@ -1404,15 +1404,15 @@
                             <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gZk-KQ-QKi">
                                 <rect key="frame" x="0.0" y="193" width="600" height="246"/>
                                 <subviews>
-                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksu-Pk-uLU">
-                                        <rect key="frame" x="0.0" y="197" width="600" height="50"/>
+                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksu-Pk-uLU">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="600" id="FER-IS-m31"/>
                                             <constraint firstAttribute="height" constant="50" id="vTf-Aa-mHB"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                        <state key="normal" title="Logout">
+                                        <state key="normal" title="     Logout">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -1420,94 +1420,14 @@
                                             <segue destination="Mkx-5E-59k" kind="show" id="l3w-OT-Iy4"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p8r-p0-Ncr">
-                                        <rect key="frame" x="0.0" y="50" width="600" height="50"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="600" id="Yvj-fM-cNu"/>
-                                            <constraint firstAttribute="height" constant="50" id="jgZ-Y6-e4g"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                        <state key="normal" title="My Activities">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logout:" destination="M8p-iL-WUF" eventType="touchUpInside" id="r5h-Ke-7ZK"/>
-                                            <segue destination="xsx-YF-gay" kind="show" id="1Dx-gi-Vfz"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HmF-K0-mT9">
-                                        <rect key="frame" x="0.0" y="148" width="600" height="50"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="600" id="hgm-Bf-5fu"/>
-                                            <constraint firstAttribute="height" constant="50" id="xXI-rV-Arc"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                        <state key="normal" title="Account Settings">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logout:" destination="M8p-iL-WUF" eventType="touchUpInside" id="5vh-p9-l1I"/>
-                                            <segue destination="Xha-FI-pjb" kind="show" id="zwP-7f-mh6"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fnb-Tb-wIx">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="600" id="Dp2-xl-fZ2"/>
-                                            <constraint firstAttribute="height" constant="50" id="K8Y-qu-no5"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                        <state key="normal" title="My Interests">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logout:" destination="M8p-iL-WUF" eventType="touchUpInside" id="GTx-Jd-BTN"/>
-                                            <segue destination="aTd-LB-fyD" kind="show" id="dPM-C4-423"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqF-tz-mOn">
-                                        <rect key="frame" x="0.0" y="98" width="600" height="50"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="T79-8R-64Y"/>
-                                            <constraint firstAttribute="width" constant="600" id="prc-KD-G17"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                        <state key="normal" title="Activities I'm Going To">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logout:" destination="M8p-iL-WUF" eventType="touchUpInside" id="3ee-xH-FzV"/>
-                                            <segue destination="wwE-4c-VXZ" kind="show" id="e6D-ne-KJ3"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="p8r-p0-Ncr" secondAttribute="trailing" id="0Xi-q0-jtM"/>
-                                    <constraint firstAttribute="bottom" secondItem="ksu-Pk-uLU" secondAttribute="bottom" constant="-1" id="2Fe-0u-Mv2"/>
-                                    <constraint firstAttribute="trailing" secondItem="Fnb-Tb-wIx" secondAttribute="trailing" id="2OV-FZ-DAE"/>
-                                    <constraint firstAttribute="trailing" secondItem="ksu-Pk-uLU" secondAttribute="trailing" id="6ut-eZ-oQg"/>
-                                    <constraint firstItem="ksu-Pk-uLU" firstAttribute="leading" secondItem="gZk-KQ-QKi" secondAttribute="leading" id="BV6-T6-ksc"/>
-                                    <constraint firstAttribute="bottom" secondItem="HmF-K0-mT9" secondAttribute="bottom" constant="48" id="Evu-s0-Jan"/>
-                                    <constraint firstItem="Fnb-Tb-wIx" firstAttribute="leading" secondItem="gZk-KQ-QKi" secondAttribute="leading" id="Ff0-xA-ecD"/>
-                                    <constraint firstItem="p8r-p0-Ncr" firstAttribute="top" secondItem="Fnb-Tb-wIx" secondAttribute="bottom" id="Fqa-2D-oE1"/>
-                                    <constraint firstAttribute="trailing" secondItem="ksu-Pk-uLU" secondAttribute="trailing" id="GLZ-Yb-XcB"/>
-                                    <constraint firstItem="JqF-tz-mOn" firstAttribute="leading" secondItem="gZk-KQ-QKi" secondAttribute="leading" id="JHp-Sz-fTC"/>
+                                    <constraint firstAttribute="trailing" secondItem="ksu-Pk-uLU" secondAttribute="trailing" id="CB9-Wd-JUO"/>
+                                    <constraint firstAttribute="bottom" secondItem="ksu-Pk-uLU" secondAttribute="bottom" constant="196" id="Nlb-MP-pjb"/>
                                     <constraint firstAttribute="width" constant="600" id="QCr-hN-GgR"/>
-                                    <constraint firstItem="Fnb-Tb-wIx" firstAttribute="top" secondItem="gZk-KQ-QKi" secondAttribute="top" id="bD5-Xi-syw"/>
-                                    <constraint firstItem="JqF-tz-mOn" firstAttribute="top" secondItem="Fnb-Tb-wIx" secondAttribute="bottom" constant="49" id="cfa-Xi-W1k"/>
-                                    <constraint firstAttribute="bottom" secondItem="ksu-Pk-uLU" secondAttribute="bottom" constant="-1" id="fe0-lj-BBb"/>
-                                    <constraint firstAttribute="trailing" secondItem="JqF-tz-mOn" secondAttribute="trailing" id="kGI-PU-kbc"/>
-                                    <constraint firstItem="p8r-p0-Ncr" firstAttribute="leading" secondItem="gZk-KQ-QKi" secondAttribute="leading" id="kPe-At-QBi"/>
-                                    <constraint firstItem="HmF-K0-mT9" firstAttribute="leading" secondItem="gZk-KQ-QKi" secondAttribute="leading" id="qa6-Yv-FFf"/>
-                                    <constraint firstAttribute="trailing" secondItem="HmF-K0-mT9" secondAttribute="trailing" id="rtO-VW-JSf"/>
-                                    <constraint firstItem="ksu-Pk-uLU" firstAttribute="top" secondItem="JqF-tz-mOn" secondAttribute="bottom" constant="48" id="uVa-y9-8gu"/>
-                                    <constraint firstItem="ksu-Pk-uLU" firstAttribute="leading" secondItem="gZk-KQ-QKi" secondAttribute="leading" id="w24-kB-uT5"/>
-                                    <constraint firstItem="HmF-K0-mT9" firstAttribute="top" secondItem="p8r-p0-Ncr" secondAttribute="bottom" constant="48" id="ytL-BF-3wQ"/>
+                                    <constraint firstItem="ksu-Pk-uLU" firstAttribute="leading" secondItem="gZk-KQ-QKi" secondAttribute="leading" id="XpR-sX-As9"/>
+                                    <constraint firstItem="ksu-Pk-uLU" firstAttribute="top" secondItem="gZk-KQ-QKi" secondAttribute="top" id="gqJ-0W-oYL"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1522,7 +1442,6 @@
                             <constraint firstItem="gZk-KQ-QKi" firstAttribute="top" secondItem="iK7-hE-qjV" secondAttribute="bottom" constant="8" id="LSu-wq-ErP"/>
                             <constraint firstItem="gZk-KQ-QKi" firstAttribute="leading" secondItem="o0L-yp-zzF" secondAttribute="leading" id="T3g-Mh-7lR"/>
                             <constraint firstAttribute="trailing" secondItem="gZk-KQ-QKi" secondAttribute="trailing" id="a3F-KK-cV8"/>
-                            <constraint firstItem="7Yz-ky-2yw" firstAttribute="top" secondItem="gZk-KQ-QKi" secondAttribute="bottom" constant="112" id="agp-GY-4Ny"/>
                             <constraint firstItem="gZk-KQ-QKi" firstAttribute="width" secondItem="o0L-yp-zzF" secondAttribute="width" id="au2-n0-zzk"/>
                             <constraint firstItem="iK7-hE-qjV" firstAttribute="leading" secondItem="o0L-yp-zzF" secondAttribute="leading" id="eZq-Fu-YMG"/>
                             <constraint firstAttribute="trailing" secondItem="nlX-pq-SCC" secondAttribute="trailing" id="eir-mX-F1j"/>
@@ -2185,7 +2104,7 @@ Be sure to double check your entries! After submitting your post, you can commen
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="eSV-Lc-445"/>
+        <segue reference="l3w-OT-Iy4"/>
         <segue reference="fJs-zf-jeQ"/>
-        <segue reference="5mp-BU-fcd"/>
     </inferredMetricsTieBreakers>
 </document>
