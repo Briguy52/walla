@@ -270,7 +270,7 @@ class WriteMessage: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 	}
 	
 	@IBAction func pickTime(sender: AnyObject) {
-		DatePickerDialog().show("DatePickerDialog", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .Time) {
+		DatePickerDialog().show("Set a starting time", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .Time) {
 			(time) -> Void in
 //			myStartTime = NSDate(timeIntervalSince1970: time)
             print("womp pick time in")
