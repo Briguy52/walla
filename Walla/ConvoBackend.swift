@@ -6,6 +6,8 @@
 //  Copyright © 2016 GenieUs. All rights reserved.
 //
 
+// Backend methods related to Conversations and Messages (based on RequestBackend.swift) 
+
 import Foundation
 import Firebase
 
@@ -14,6 +16,8 @@ class ConvoBackend {
     let myBasic = Basic()
     let myUserBackend = UserBackend()
     
+    // Returns Conversation fields provided a key and ConvoID
+    // Callback function needed in order to 'return' out of the Firebase void method
     func getConversationValue(convoID: String, key: String, completion: (result: String) -> Void) {
         
         self.myBasic.convoRef.queryOrderedByChild(convoID)
@@ -26,6 +30,7 @@ class ConvoBackend {
             })
     }
     
+    // Check if ConvoModels array contains a given Convo Firebase snapshot
     func contains(models: [ConvoModel], snapshot: FIRDataSnapshot) -> Bool {
         for model in models {
             if model.convoID == snapshot.key {
@@ -35,7 +40,7 @@ class ConvoBackend {
         return false
     }
     
-    // Copied from MessagingVC, remainder of code to use is there
+    // Refresh array of ConvoModels (call this when switching to/from Convo screen, swipe down from top of Convo screen to refresh, etc.)
     func reloadConvoModels() {
         convoModels.removeAll()
         let myID = self.myUserBackend.getUserID()
@@ -51,7 +56,7 @@ class ConvoBackend {
         })
     }
     
-    // true = valid, false = not valid
+    // Return true = valid, false = not valid
     func checkSnapIncludesUid(snap: FIRDataSnapshot, uid: String) -> Bool {
         if let authorID = snap.value?.objectForKey("authorID") as? String {
             if let userID = snap.value?.objectForKey("userID") as? String {
@@ -62,6 +67,7 @@ class ConvoBackend {
     }
  
     // Returns the other person's UserID (NOT displayName... do that later)
+    // Used to determine if user is author or recipient of a message 
     func printNotMe(model: ConvoModel, userID: String) -> String {
         let idOne: String = model.authorID
         let idTwo: String = model.userID
