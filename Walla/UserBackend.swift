@@ -2,20 +2,20 @@
 //  UserBackend.swift
 //  Walla
 //
-//  Created by Timothy Choh on 6/25/16.
+//  Created by Brian Lin on 6/25/16.
 //  Copyright © 2016 GenieUs. All rights reserved.
 //
 
-// Resource I'm using: https://firebase.google.com/docs/auth/ios/manage-users
+// Resource I'm using for migration from old Firebase to Google Firebase: https://firebase.google.com/docs/auth/ios/manage-users
 
-// Replace childByAppendingPath() with just child()
-// Replace self.myBasic.rootRef.authData with FIRAuth.auth()?.currentUser
+// Note: Replace childByAppendingPath() with just child()
+// Note: Replace self.myBasic.rootRef.authData with FIRAuth.auth()?.currentUser
 
 import Foundation
 import Firebase
 
-var globalUid: String = ""
-var senderDict: [String: String] = [String:String]()
+var globalUid: String = "" // used for fast retrieval of user's user ID
+var senderDict: [String: String] = [String:String]() // 'cache' user IDs here for fast retrieval (ie don't make Firebase calls for IDs already retrieved)
 
 class UserBackend {
 	
@@ -25,21 +25,6 @@ class UserBackend {
 	func logout() {
 		try! FIRAuth.auth()!.signOut()
 	}
-    
-    // Temporary method with all the hardcoded auth calls
-    func hardCodedLogin() {
-        let tempEmail = "brian@womp.com"
-        let tempPass = "wompwomp"
-        
-        // Uncomment this to CREATE a new user
-//        self.nativeCreateUser(tempEmail, password: tempPass)
-        
-        // This line logs in an EXISTING user
-        self.nativeLogin(tempEmail, password: tempPass)
-        
-        safeToLoadID = true
-        
-    }
     
     func nativeCreateUser(email: String, password: String, displayName: String, name: String) {
         FIRAuth.auth()?.createUserWithEmail(email, password: password) { (user, error) in
