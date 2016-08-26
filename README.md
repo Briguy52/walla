@@ -8,7 +8,7 @@ Here's a list of my specific backend classes:
 * ConvoModel.swift (a struct for the the contents of a Conversation)
 * RequestModel.swift (a struct for the contents of a Request)
 
-> I also integrated our backend- that meant populating fields/labels/cells with my backend query results and also pushing new content to the backend (new messages, new posts, updating user information, etc.). For these classes, you can ignore the frontend code (stuff like setting cell dimensions, background colors, etc. as that's what my partner worked on). 
+I also integrated our backend- that meant populating fields/labels/cells with my backend query results and also pushing new content to the backend (new messages, new posts, updating user information, etc.). For these classes, you can ignore the frontend code (stuff like setting cell dimensions, background colors, etc. as that's what my partner worked on). 
 
 > For instance, in ViewDetails.swift, I worked on initRequestInfo() and setImage() which populates the screen from a Request Model as well as buildRef(), createConvoHash(), createSingleConvoRef(), and goToMessages() which starts a conversation with the author and then segues to the Conversation tab.   
 
