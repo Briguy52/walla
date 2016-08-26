@@ -49,6 +49,7 @@ class ViewDetails: UIViewController {
 		super.viewWillDisappear(animated)
 	}
 	
+    // Populates fields with request model contents
     func initRequestInfo()
     {
         let requestModel = requestModels[currentIndex]
@@ -65,6 +66,7 @@ class ViewDetails: UIViewController {
         self.tags?.text = requestModel.tags.joinWithSeparator(" ")
     }
 	
+    // Format epoch time to user-friendly hour & minute
 	func parseDateFromTime(time: Double) -> String {
 		let postedDate = NSDate(timeIntervalSince1970: time)
 		
@@ -86,6 +88,7 @@ class ViewDetails: UIViewController {
 		return String("posted " + timeDifference + " ago")
 	}
 	
+    // Set image using Firebase user info
 	func setImage()
 	{
 		self.myUserBackend.getUserInfo("profilePicUrl", userID: self.myUserBackend.getUserID())
@@ -100,10 +103,12 @@ class ViewDetails: UIViewController {
 		}
 	}
 	
+    // Back button
 	@IBAction func goBack(sender: UIBarButtonItem) {
 		dismissViewControllerAnimated(true, completion: nil)
 	}
     
+    // Create Firebase ref
     func buildRef() -> FIRDatabaseReference {
         let requestID = requestModels[currentIndex].postID!
         let authorID = requestModels[currentIndex].authorID
@@ -113,6 +118,7 @@ class ViewDetails: UIViewController {
         return myBasic.convoRef.child(convoHash)
     }
 	
+    // View messages related to post
 	@IBAction func goToMessages(sender: UIButton)
 	{
         if requestModels[currentIndex].authorID != self.myUserBackend.getUserID() {
@@ -122,12 +128,13 @@ class ViewDetails: UIViewController {
         }
      	}
 	
+    // Create unique ID for convo
 	func createConvoHash(requestID: String, authorID: String, userID: String) -> String {
 		let toHash = requestID + authorID + userID
 		return String(toHash.hashValue)
 	}
 	
-	// Should only be called by users other than the Author
+	// Should only be called by users other than the Author (b/c it creates a new Convo with the author)
 	func createSingleConvoRef(requestID: String, authorID: String, userID: String) {
         
 		let newConvo = [
@@ -153,7 +160,8 @@ class ViewDetails: UIViewController {
 			}
 		})
 	}
-
+    
+    // Segue to ConvoVC to view active conversations 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "unwindToMessages" {
             var index: Int = 0
