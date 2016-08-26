@@ -2,7 +2,7 @@
 //  ConvoModel.swift
 //  Walla
 //
-//  Created by Timothy Choh on 6/26/16.
+//  Created by Brian Lin on 6/26/16.
 //  Copyright © 2016 GenieUs. All rights reserved.
 //
 
