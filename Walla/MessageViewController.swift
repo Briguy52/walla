@@ -2,9 +2,11 @@
 //  MessageViewController.swift
 //  Walla
 //
-//  Created by Timothy Choh on 6/25/16.
+//  Created by Brian Lin on 6/25/16.
 //  Copyright © 2016 GenieUs. All rights reserved.
 //
+
+// Code based heavily/borrowed from Ray Wenderlich's excellent tutorial here: https://www.raywenderlich.com/122148/firebase-tutorial-real-time-chat
 
 import Firebase
 import JSQMessagesViewController
@@ -41,8 +43,8 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        observeMessages()
-        observeTyping()
+        observeMessages() // begin pulling messages from Firebase
+        observeTyping() // begin observing user type input
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!,
@@ -70,6 +72,7 @@ class MessageViewController: JSQMessagesViewController, UINavigationBarDelegate{
         self.title = title
     }
     
+    // Blue = mine, Grey = friend's 
     private func setupBubbles() {
         let factory = JSQMessagesBubbleImageFactory()
         outgoingBubbleImageView = factory.outgoingMessagesBubbleImageWithColor(
