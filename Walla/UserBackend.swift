@@ -26,11 +26,9 @@ class UserBackend {
 		try! FIRAuth.auth()!.signOut()
 	}
     
+    // Use Firebase's built-in methods to create a new user
     func nativeCreateUser(email: String, password: String, displayName: String, name: String) {
         FIRAuth.auth()?.createUserWithEmail(email, password: password) { (user, error) in
-            print("womp create user callback")
-            print(error)
-            print(user)
             
             if (user != nil) {
                 // Post some default user data
@@ -57,6 +55,7 @@ class UserBackend {
         }
     }
     
+    // Use Firebase's native methods to login a user
     func nativeLogin(email: String, password: String) {
         FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
             print("womp login user callback")
@@ -65,38 +64,46 @@ class UserBackend {
         }
     }
 	
+    // Helper method to update user data
 	func updateUserData(key: String, value: AnyObject, userID: String) {
 		let pair = [key:value]
         let pairRef = myBasic.userRef.child(userID)
 		pairRef.updateChildValues(pair)
 	}
 	
+    // Helper method to update user Notification settings
 	func updateNotificationSetting(setting: String, value: Bool, userID: String) {
 		let pair = [setting:value]
         let pairRef = myBasic.userRef.child(userID)
 		pairRef.updateChildValues(pair)
 	}
 	
+    // Helper methopd to update user data at specific child path
 	func updateUserDataWithChildPath(key: String, value: String, userID: String, path: String) {
 		let pair = [key:value]
         let pairRef = myBasic.userRef.child(userID).child(path)
 		pairRef.updateChildValues(pair)
 	}
 	
+    // Method to update user's active conversations
 	func updateUserConversations(convoID: String, userID: String) {
 		self.updateUserDataWithChildPath(convoID, value: convoID, userID: userID, path: "Conversations")
 	}
 	
+    // Method to update user's active posts
 	func updateUserPosts(postID: String, userID: String) {
 		self.updateUserDataWithChildPath(postID, value: postID, userID: userID, path: "Requests")
 	}
     
+    // Method to save user ID locally (not pushed to Firebase)
     func saveUidLocally(uid: String) {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setValue(uid, forKey: UserBackend.localUserKey)
         defaults.synchronize()
     }
 	
+    // Method to retrieve user ID from possible sources (Firebase, local defaults, or local global variable) 
+    // Corrects for async. issues due to Firebase calls
 	func getUserID() -> String {
         let defaults = NSUserDefaults.standardUserDefaults()
         
@@ -114,7 +121,7 @@ class UserBackend {
         }
 	}
 	
-	// Example usage of getUserName()
+	// Example usage of callback method
 	
 	//    let ub = UserBackend()
 	//    print(ub.getUserID())
@@ -123,6 +130,7 @@ class UserBackend {
 	//    print("got back: \(result)")
 	//    }
 	
+    // Callback method for getting user info (b/c all Firebase query methods are void)
 	func getUserInfo(param: String, userID: String, completion: (result: AnyObject) -> Void) {
         let key = userID
         let ref = myBasic.userRef
@@ -136,15 +144,17 @@ class UserBackend {
             })
     }
     
+    // Update local sender dict with retrieved user ID
     func reloadSenderDict() {
         let ref = self.myBasic.userRef
         ref.observeEventType(.ChildAdded, withBlock: { snapshot in
             senderDict[snapshot.key] = snapshot.value!["displayName"] as? String            
             })
-        print("sender dict")
+        print("sender dict reloaded")
         print(senderDict)
     }
     
+    // Retrieve username from sender dict, if no match found, return placeholder 
     func getSenderName(sender: String) -> String {
         if senderDict.keys.contains(sender) {
             return senderDict[sender]!
